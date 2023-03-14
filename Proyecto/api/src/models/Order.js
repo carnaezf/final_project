@@ -37,12 +37,10 @@ module.exports = (sequelize) => {
     subTotal:{
       type: DataTypes.STRING,
       allowNull: false,
-      primaryKey:true,
     },
     iva:{
         type: DataTypes.STRING,
         allowNull: false,
-        primaryKey:true,
       },
       status:{
         type: DataTypes.STRING,
