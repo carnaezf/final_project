@@ -15,21 +15,21 @@ const sequelize = new Sequelize(
 const basename = path.basename(__filename);
 const modelDefiners = [product];
 
-const modelCategory= requiere ("./models/Category")
-const modelCoustomer= requiere ("./models/Coustomer")
-const modelOrder= requiere ("./models/Order")
-const modelProduct= requiere ("./models/Product")
-const modelReview= requiere ("./models/Review")
-const modelUser= requiere ("./models/User")
+const modelCategory= require ("./models/Category")
+
+const modelOrder= require ("./models/Order")
+const modelProduct= require ("./models/Product")
+const modelReview= require ("./models/Review")
+const modelUser= require ("./models/User")
 
 modelCategory(sequelize)
-modelCoustomer(sequelize)
+
 modelOrder(sequelize)
 modelProduct(sequelize)
 modelReview(sequelize)
 modelUser(sequelize)
 
-const {Category,Coustomer,Order,Product,Review,User} =sequelize.models;
+const {Category,Order,Product,Review,User} =sequelize.models;
 
 Category.hasMany(Product)//una categoria muchos productos
 Product.belongsTo(Category)//cada producto pertenece a una categoria
@@ -40,14 +40,11 @@ Product.belongsToMany(Order, {through:"Order_Product"})//un producto puede perte
 Product.hasMany(Review) //un producto puede tener muchas review
 Review.hasOne(Product)// un review ouede pertenecer a un producto
 
-Order.hasOne(Coustomer)//Una orden pertenece a un clien
-Coustomer.hasMany(Order)//un cliente puede tener mcuhas ordenes
+Review.hasOne(User)
+User.hasMany(Review)
 
-Coustomer.hasMany(Review)//un cliente puede tener muchos review
-Review.hasOne(Coustomer)//un review puede pertenecer a un coiente en particular
 
-User.hasMany(Coustomer)
-Coustomer.hasOne(User)
+
 
 fs.readdirSync(path.join(__dirname, "/models"))
   .filter(
