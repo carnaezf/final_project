@@ -1,7 +1,10 @@
 
-import Paginated from "../../Components/Paginated";
+import Paginated from "../../Components/Paginated/Paginated";
 import { useEffect, useState } from "react";
 import { useDispatch,useSelector} from "react-redux"; //mis hooks
+import {getProducts} from "../../Redux/actions"
+import { Link } from "react-router-dom";
+import CardsProducts from "../../Components/CardsProducts/CardsProducts"
 
 const Home= ()=>{
 
@@ -25,14 +28,17 @@ const Home= ()=>{
   }
 
   return (
-   <div className={styles.home}>
-      <NavBar pagin={pagin}/>//!Cambiar componente
+   <div >
+    <h1>home</h1>
+      <Link to= "/products"><button>products</button></Link>
+      {/* <NavBar />//!Cambiar componente */}
       
-      <Filter pagin={pagin}/>
+      {/* <Filter /> */}
     
-      <Paginated maximumPage={maximumPage} pagin={pagin} />
-    
-      <Cards newStateProducts={newStateProducts}/>
+      <Paginated maximumPage={maximumPage} pagin={pagin}/>
+      
+      <CardsProducts newStateProducts ={newStateProducts} />
+
 
       <p>Pagina {pageActual}</p>
    </div>

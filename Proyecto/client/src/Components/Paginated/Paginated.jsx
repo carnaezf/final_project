@@ -2,7 +2,7 @@
 const Paginated=(props)=>{
 
     const allPage=[];
-    for(let i=1;i<= props.miximoPage;i++){ 
+    for(let i=1;i<= props.maximumPage;i++){  //se corrigio error de sintaxis antes decia "miximoPage"
         allPage.push(i);
     };
 
@@ -10,8 +10,8 @@ const Paginated=(props)=>{
         <nav>
             <ul>
                 {allPage && allPage.map(n=>(
-                    <li>
-                        <a onClick={()=>props.paginado(n)}>{n}</a>
+                    <li key = {n}>  
+                    <button onClick={()=>props.paginado(n)}>{n}</button> 
                     </li>
                 ))}
             </ul>
