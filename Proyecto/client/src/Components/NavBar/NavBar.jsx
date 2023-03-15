@@ -1,5 +1,5 @@
-import React, {useState} from React;
-import { Link, NavLink } from 'react-router-dom';
+import React  from React;
+import { Link } from 'react-router-dom';
 
 export default function navBar(){
     return(
