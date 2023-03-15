@@ -3,6 +3,7 @@ const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
 const obj2 = obj.map((object) => {
+  console.log(object);
   return {
     name: object.name,
     description: object.description.slice(0, 12),
