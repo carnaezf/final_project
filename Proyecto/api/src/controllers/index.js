@@ -11,7 +11,7 @@ const obj2 = obj.map((object) => {
     average_rating: object.average_rating,
     sku: object.sku,
     category: object.category,
-    // average_count: object.average_count,
+    reviews_count: object?.reviews_count,
   };
 });
 const getProducts = async () => {
@@ -23,7 +23,6 @@ const getProducts = async () => {
   return products;
 };
 const getSearch = async (name) => {
-  console.log(name);
   try {
     const products = await Product.findAll({
       where: {

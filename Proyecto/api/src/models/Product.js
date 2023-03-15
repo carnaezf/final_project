@@ -40,9 +40,9 @@ module.exports = (sequelize) => {
         // allowNull: false,
       },
 
-      // reviews_count: {
-      //   type: DataTypes.INTEGER,
-      // },
+      reviews_count: {
+        type: DataTypes.FLOAT,
+      },
     },
     {
       timestamps: false,
