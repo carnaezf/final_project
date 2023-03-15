@@ -10,7 +10,8 @@ function App() {
   //const location =useLocation();
   // console.log(location);
   return (
-    <div className="App">
+    <div className="App"> 
+     <React.Fragment>
       {/* {/* {/* {location.pathname !=="/" && <NavBar/>}  /} */}
       <Route exact path="/home" component={Home} />
       <Route exact path="/home/products" component={Products} />
@@ -23,7 +24,9 @@ function App() {
       <Route exact path="/home/account" component={Account} />
       <Route exact path="/home/shoppingBag" component={ShoppingBag} />
       <Route exact path="*" component={Home} />
+    </React.Fragment>
     </div>
+      
   );
 }
 

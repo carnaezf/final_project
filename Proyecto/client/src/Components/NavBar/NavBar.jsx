@@ -1,1 +1,25 @@
-/********* */
+import React, {useState} from React;
+import { Link, NavLink } from 'react-router-dom';
+
+export default function navBar(){
+    return(
+        <div className={style.navBar}>
+        <div className={style.menu}>
+        <ul>
+          <li>
+            <Link to='/home/men'> <h3>Hombre</h3> </Link>
+          </li>
+          <li>
+            <Link to='/home/women'> <h3>Mujer</h3> </Link>
+          </li>
+          <li>
+            <Link to='/home/kids'> <h3>Niños</h3> </Link>
+          </li>
+          <li>
+            <Link to='/home/products'>	<h3>Productos</h3> </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+    )
+} 
