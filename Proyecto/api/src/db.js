@@ -15,12 +15,12 @@ const sequelize = new Sequelize(
 const basename = path.basename(__filename);
 const modelDefiners = [product];
 
-const modelCategory= requiere ("./models/Category")
-const modelCoustomer= requiere ("./models/Coustomer")
-const modelOrder= requiere ("./models/Order")
-const modelProduct= requiere ("./models/Product")
-const modelReview= requiere ("./models/Review")
-const modelUser= requiere ("./models/User")
+const modelCategory= require ("./models/Category")
+const modelCoustomer= require ("./models/Coustomer")
+const modelOrder= require ("./models/Order")
+const modelProduct= require ("./models/Product")
+const modelReview= require ("./models/Review")
+const modelUser= require ("./models/User")
 
 modelCategory(sequelize)
 modelCoustomer(sequelize)
