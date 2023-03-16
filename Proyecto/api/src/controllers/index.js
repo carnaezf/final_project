@@ -57,6 +57,7 @@ const getProductById = async (id) => {
       return "Id not found";
     }
   };
+  
 module.exports = {
   getProducts,
   getSearch,
