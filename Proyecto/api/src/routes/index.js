@@ -11,7 +11,7 @@ router.get("/products/search", getSearchHandler);
 
 router.get("/products/:id", getByIdHandler);
 
-router.get("/products/:category", getByCategoryHandler)
+router.get("/products/category/:category", getByCategoryHandler)
 
 router.put("/products/addReview", addReviewHandler)
 
