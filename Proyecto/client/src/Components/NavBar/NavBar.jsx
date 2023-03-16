@@ -7,13 +7,13 @@ export default function navBar(){
         <div className={style.menu}>
         <ul>
           <li>
-            <Link to='/home/men'> <h3>Hombre</h3> </Link>
+            <Link to='/home/products'> <h3>Hombre</h3> </Link>
           </li>
           <li>
-            <Link to='/home/women'> <h3>Mujer</h3> </Link>
+            <Link to='/home/products'> <h3>Mujer</h3> </Link>
           </li>
           <li>
-            <Link to='/home/kids'> <h3>Niños</h3> </Link>
+            <Link to='/home/products'> <h3>Niños</h3> </Link>
           </li>
           <li>
             <Link to='/home/products'>	<h3>Productos</h3> </Link>
