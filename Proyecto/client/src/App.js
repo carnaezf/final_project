@@ -11,9 +11,22 @@ function App() {
   // console.log(location);
   return (
     <BrowserRouter>
-      
-      
-      
+      <div className="App">
+        <Switch>
+          <Route exact path="/home" component={Home} />
+          {/*   <Route exact path="/home/products" component={Products} /> */}
+          <Route exact path="/home/products/detail/:id" component={Details} />
+          <Route exact path="/products" component={Products} />
+          {/*   <Route exact path="/home/men" component={Men} />
+          <Route exact path="/home/women" component={Women} />
+          <Route exact path="/home/kids" component={Kids} />
+          <Route exact path="/home/category" component={Category} />
+          <Route exact path="/home/order" component={Order} />
+          <Route exact path="/home/account" component={Account} />
+          <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
+          <Route exact path="*" component={Home} />
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }
