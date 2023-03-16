@@ -6,21 +6,7 @@ const CardsProducts = (props) => {
     const products = props.newStateProducts
 
     return (
-        <>
-        <div>
-            {products.map((el)=>{
-                return(
-                    <CardProduct
-                    sku={el.sku} 
-                    name={el.name} 
-                    selling_price={el.sellingPrice} 
-                    images={el.images[1]} 
-                    average_rating={el.average_rating}/>
-                )
-            })}
-
-        </div>
-        </>
+      
         
     )
 }
