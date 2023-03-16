@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 
 
 const obj2 = obj.map((object) => {
- // console.log(object);
+
   return {
     name: object.name,
     description: object.description.slice(0, 12),
@@ -19,6 +19,7 @@ const obj2 = obj.map((object) => {
 });
 const getProducts = async () => {
   const products = await Product.findAll();
+  // console.log(products);
   if (products.length === 0) {
     const productDb = await Product.bulkCreate(obj2);
     return productDb;
