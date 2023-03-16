@@ -7,10 +7,10 @@ const CardProduct = (props) => {
             <Link to ={`/home/products/detail/${props.sku}`} >
             <div className="containerCard">
                 <div>
-                    <img className="img" src={props.images} alt="no se encontro la imagen"/>
+                    <img className="img" src={props.images[1]} alt="no se encontro la imagen"/>
                 </div>
                 <h2>{props.name}</h2>
-                <h3>{props.selling_price}</h3>
+                <h3>{props.sellingPrice}</h3>
                 <h4>{props.average_rating}</h4>
             </div>
          </Link>

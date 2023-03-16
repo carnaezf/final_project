@@ -13,8 +13,8 @@ const CardsProducts = (props) => {
                     <CardProduct
                     sku={el.sku} 
                     name={el.name} 
-                    selling_price={el.selling_price} 
-                    images={el.images ? el.images : el.images} 
+                    selling_price={el.sellingPrice} 
+                    images={el.images[1]} 
                     average_rating={el.average_rating}/>
                 )
             })}
