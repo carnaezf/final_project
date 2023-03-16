@@ -5,7 +5,7 @@ import { useDispatch,useSelector} from "react-redux"; //mis hooks
 import {getProducts} from "../../Redux/actions"
 import { Link } from "react-router-dom";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
-
+import  "../../index.css"
 const Home= ()=>{
 
   const dispatch= useDispatch();
@@ -29,7 +29,7 @@ const Home= ()=>{
 
   return (
    <div >
-    <h1>home</h1>
+    <h1 className="text-3xl font-bold underline">home</h1>
       <Link to= "/products"><button>products</button></Link>
       {/* <NavBar />//!Cambiar componente */}
       
