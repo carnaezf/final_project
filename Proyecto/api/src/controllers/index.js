@@ -3,7 +3,6 @@ const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
 const obj2 = obj.map((object) => {
-  console.log(object);
   return {
     name: object.name,
     description: object.description.slice(0, 12),
@@ -38,7 +37,27 @@ const getSearch = async (name) => {
   }
 };
 
+const getByCategory = async (category) => {
+  const products = await Product.findAll({
+      where: {
+        category: category
+      }
+    })
+    return products
+}
+
+const addReview = async ({ sku, reviewValue }) => {
+  const product = await Product.findByPk(sku)
+  await product.update(
+    {
+      average_rating: (product.average_rating * product.reviews_count + Number(reviewValue)) / (product.reviews_count + 1),
+      reviews_count: product.reviews_count + 1,
+    })
+}
+
 module.exports = {
   getProducts,
   getSearch,
+  getByCategory,
+  addReview
 };
