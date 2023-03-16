@@ -4,7 +4,17 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('User', {
+    userId:{
+      type:DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      allowNull:false,
+      primaryKey:true,
+    },
     name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      lastName: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -22,11 +32,27 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    admin: {
+    isAdmin: {
         type:DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue:false,
       },
+      dni: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    phone: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+    birthDate:{
+        type:DataTypes.DATEONLY,
+        allowNull: false,
+    },
+    country:{
+        type: DataTypes.STRING,
+        allowNull: false,
+    }
 
 
   },{

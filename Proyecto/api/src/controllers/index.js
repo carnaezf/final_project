@@ -3,6 +3,7 @@ const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
 const obj2 = obj.map((object) => {
+
   return {
     name: object.name,
     description: object.description.slice(0, 12),
@@ -14,14 +15,17 @@ const obj2 = obj.map((object) => {
     reviews_count: object?.reviews_count,
   };
 });
+
 const getProducts = async () => {
   const products = await Product.findAll();
+  // console.log(products);
   if (products.length === 0) {
     const productDb = await Product.bulkCreate(obj2);
     return productDb;
   }
   return products;
 };
+
 const getSearch = async (name) => {
   try {
     const products = await Product.findAll({
@@ -36,31 +40,6 @@ const getSearch = async (name) => {
     return "Clothes not found";
   }
 };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const getByCategory = async (category) => {
   const products = await Product.findAll({
@@ -80,9 +59,27 @@ const addReview = async ({ sku, reviewValue }) => {
     })
 }
 
+
+//..........................................
+const getProductById = async (id) => {
+  try {
+      const products = await Product.findOne({
+        where: { sku: id },
+      });
+   
+     const detail = products.dataValues;
+ 
+     return detail;
+     
+    } catch (error) {
+      return "Id not found";
+    }
+  };
+  
 module.exports = {
   getProducts,
   getSearch,
+  getProductById,
   getByCategory,
   addReview
 };
