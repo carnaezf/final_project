@@ -8,6 +8,7 @@ module.exports = (sequelize) => {
     comments: {
         type: DataTypes.TEXT,
         allowNull: true,
+        defaultValue:[],
       },
     rating: {
         type: DataTypes.INTEGER,
