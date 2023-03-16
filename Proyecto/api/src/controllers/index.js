@@ -37,6 +37,31 @@ const getSearch = async (name) => {
   }
 };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const getByCategory = async (category) => {
   const products = await Product.findAll({
       where: {
