@@ -11,7 +11,7 @@ const obj2 = obj.map((object) => {
     images: object.images.split("~"),
     average_rating: object.average_rating,
     sku: object.sku,
-    category: object.category,
+    category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
   };
 });

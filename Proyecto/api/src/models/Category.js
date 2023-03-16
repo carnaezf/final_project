@@ -6,9 +6,9 @@ module.exports = (sequelize) => {
   sequelize.define('Category', {
     type: {
       type: DataTypes.ENUM(
-        "Clothing",
-        "Shoes",
-        "Accessories"
+        "clothing",
+        "shoes",
+        "accessories"
         
       ),
     },

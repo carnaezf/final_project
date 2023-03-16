@@ -13,6 +13,7 @@ const getSearchHandler = async (req, res) => {
   const { name } = req.query;
   try {
     const products = await getSearch(name);
+    if(products.length === 0) return res.status(200).json('There are no products with that name')
     res.status(200).json(products);
   } catch (error) {
     res.status(404).json({ msg: "Clothes not found" });
@@ -21,8 +22,9 @@ const getSearchHandler = async (req, res) => {
 
 const getByCategoryHandler = async (req, res) => {
   const { category } = req.params;
+  const lcCategory = category.toLowerCase()
   try {
-    const products = await getByCategory(category);
+    const products = await getByCategory(lcCategory);
     res.status(200).json(products);
   } catch (error) {
     res.status(400).json({ msg: error.message });
