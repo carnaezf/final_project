@@ -17,6 +17,7 @@ const obj2 = obj.map((object) => {
     reviews_count: object?.reviews_count,
   };
 });
+//........................................
 const getProducts = async () => {
   const products = await Product.findAll();
   // console.log(products);
@@ -26,6 +27,7 @@ const getProducts = async () => {
   }
   return products;
 };
+//.....................................................
 const getSearch = async (name) => {
   try {
     const products = await Product.findAll({
@@ -40,8 +42,23 @@ const getSearch = async (name) => {
     return "Clothes not found";
   }
 };
-
+//..........................................
+const getProductById = async (id) => {
+  try {
+      const products = await Product.findOne({
+        where: { sku: id },
+      });
+   
+     const detail = products.dataValues;
+ 
+     return detail;
+     
+    } catch (error) {
+      return "Id not found";
+    }
+  };
 module.exports = {
   getProducts,
   getSearch,
+  getProductById
 };
