@@ -2,8 +2,6 @@ const { Product } = require("../db");
 const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
-
-
 const obj2 = obj.map((object) => {
   console.log(object);
   return {
