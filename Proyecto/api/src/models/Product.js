@@ -10,6 +10,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      sku: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        primaryKey: true,
+      },
       description: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -18,32 +23,28 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        // allowNull: false,
-      },
       average_rating: {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
       // availability: {
-      //   type: DataTypes.STRING,
-      //   allowNull: false,
-      // },
-      sku: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        primaryKey: true,
+        //   type: DataTypes.STRING,
+        //   allowNull: false,
+        // },
+        category: {
+          type: DataTypes.STRING,
+          // allowNull: false,
+        },
+        
+        reviews_count: {
+          type: DataTypes.FLOAT,
+        },
+        
+        images: {
+          type: DataTypes.ARRAY(DataTypes.STRING),
+          // allowNull: false,
+        },
       },
-      category: {
-        type: DataTypes.STRING,
-        // allowNull: false,
-      },
-
-      reviews_count: {
-        type: DataTypes.FLOAT,
-      },
-    },
     {
       timestamps: false,
     }
