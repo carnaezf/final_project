@@ -11,8 +11,8 @@ function App() {
   // console.log(location);
   return (
     <BrowserRouter>
-      <Switch>
-        <div className="App">
+      <div className="App">
+        <Switch>
           <Route exact path="/home" component={Home} />
           {/*   <Route exact path="/home/products" component={Products} /> */}
           <Route exact path="/home/products/detail/:id" component={Details} />
@@ -25,8 +25,8 @@ function App() {
           <Route exact path="/home/account" component={Account} />
           <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
           <Route exact path="*" component={Home} />
-        </div>
-      </Switch>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }
