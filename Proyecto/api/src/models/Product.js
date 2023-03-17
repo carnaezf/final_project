@@ -10,7 +10,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       sku: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         // allowNull: false,
         primaryKey: true,
@@ -28,9 +28,7 @@ module.exports = (sequelize) => {
         // allowNull: false,
       },
       availability: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: true,
-        allowNull: false,
+        type: DataTypes.STRING,
       },
       category: {
         type: DataTypes.STRING,

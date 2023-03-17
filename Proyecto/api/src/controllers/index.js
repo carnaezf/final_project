@@ -9,9 +9,9 @@ const obj2 = obj.map((object) => {
     sellingPrice: object.selling_price,
     images: object.images.split("~"),
     average_rating: object.average_rating,
-    sku: object.sku,
     category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
+    availability: object?.availability.toLowerCase(),
   };
 });
 
