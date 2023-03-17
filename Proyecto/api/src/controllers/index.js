@@ -1,4 +1,5 @@
 const { Product } = require("../db");
+const { Comment } = require("../db");
 const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
@@ -18,7 +19,6 @@ const obj2 = obj.map((object) => {
 
 const getProducts = async () => {
   const products = await Product.findAll();
-  // console.log(products);
   if (products.length === 0) {
     const productDb = await Product.bulkCreate(obj2);
     return productDb;
@@ -50,8 +50,8 @@ const getByCategory = async (category) => {
     return products
 }
 
-const addReview = async ({ sku, reviewValue }) => {
-  const product = await Product.findByPk(sku)
+const addReview = async ({ id, reviewValue }) => {
+  const product = await Product.findByPk(id)
   await product.update(
     {
       average_rating: (product.average_rating * product.reviews_count + Number(reviewValue)) / (product.reviews_count + 1),
@@ -59,6 +59,11 @@ const addReview = async ({ sku, reviewValue }) => {
     })
 }
 
+const addComment = async ({ comment, userId, id, }) => {
+  const newComment = await Comment.create({comment})
+  await newComment.setUser(userId)
+  await newComment.setProduct(id)
+}
 
 //..........................................
 const getProductById = async (id) => {
@@ -81,5 +86,6 @@ module.exports = {
   getSearch,
   getProductById,
   getByCategory,
-  addReview
+  addReview,
+  addComment
 };

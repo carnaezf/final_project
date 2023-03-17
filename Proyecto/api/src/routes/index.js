@@ -1,4 +1,4 @@
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
+const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler } = require("../handlers/index");
 const { getByIdHandler } = require("../handlers/getByIdHandler");
 
 
@@ -14,5 +14,7 @@ router.get("/products/:id", getByIdHandler);
 router.get("/products/category/:category", getByCategoryHandler)
 
 router.put("/products/addReview", addReviewHandler)
+
+router.post("/products/addComment", addCommentHandler)
 
 module.exports = router;

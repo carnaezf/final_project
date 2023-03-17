@@ -1,4 +1,4 @@
-const { getProducts, getSearch, getByCategory, addReview } = require("../controllers/index");
+const { getProducts, getSearch, getByCategory, addReview, addComment } = require("../controllers/index");
 
 const getProductsHandler = async (req, res) => {
   try {
@@ -39,10 +39,20 @@ const addReviewHandler = async (req, res) => {
   }
 };
 
+const addCommentHandler = async (req, res) => {
+  try {
+    await addComment(req.body);
+    res.status(200).json('Your comment has been added. :)');
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+};
 
 module.exports = {
   getProductsHandler,
   getSearchHandler,
   getByCategoryHandler,
-  addReviewHandler
+  addReviewHandler,
+  addCommentHandler
+
 };
