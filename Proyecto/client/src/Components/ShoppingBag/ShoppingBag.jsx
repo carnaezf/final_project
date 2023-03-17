@@ -1,3 +1,4 @@
+import style from './shoppingBag.module.css'
 import Cookie from 'js-cookie';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -16,7 +17,7 @@ const ShoppingBag = () => {
     return (
         <div>
             <div>
-                <div className='envoltorio-principal'>
+                <div className={style.principal}>
                     <div>
                         <div>
                             <></>
