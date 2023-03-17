@@ -11,7 +11,7 @@ module.exports = (sequelize) => {
       },
       sku: {
         type: DataTypes.STRING,
-        allowNull: false,
+       
         primaryKey: true,
       },
       description: {
@@ -26,10 +26,13 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
         allowNull: false,
       },
-      // availability: {
-        //   type: DataTypes.STRING,
-        //   allowNull: false,
-        // },
+       availability: {
+        type: DataTypes.STRING,
+         
+       },
+       breadcrumbs:{
+        type: DataTypes.STRING,
+       },
         category: {
           type: DataTypes.STRING,
           // allowNull: false,
@@ -43,6 +46,7 @@ module.exports = (sequelize) => {
           type: DataTypes.ARRAY(DataTypes.STRING),
           // allowNull: false,
         },
+        
       },
     {
       timestamps: false,

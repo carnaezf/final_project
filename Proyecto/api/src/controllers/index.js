@@ -3,7 +3,7 @@ const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
 const obj2 = obj.map((object) => {
-
+//console.log(object)
   return {
     name: object.name,
     description: object.description.slice(0, 12),
@@ -13,6 +13,8 @@ const obj2 = obj.map((object) => {
     sku: object.sku,
     category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
+    breadcrumbs:object?.breadcrumbs.toLowerCase(),
+    availability: object?.availability.toLowerCase(),
   };
 });
 
