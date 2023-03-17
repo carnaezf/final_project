@@ -72,7 +72,7 @@ const addComment = async ({ comment, userId, id, }) => {
 const getProductById = async (id) => {
   try {
     const products = await Product.findOne({
-      where: { sku: id },
+      where: { id: id },
     });
 
     const detail = products.dataValues;
@@ -89,7 +89,7 @@ const createProduct = async (
   sellingPrice,
   images,
   average_rating,
-  sku,
+  id,
   category,
   reviews_count
 ) => {
@@ -99,7 +99,7 @@ const createProduct = async (
     sellingPrice,
     images,
     average_rating,
-    sku,
+    id,
     category,
     reviews_count,
   });

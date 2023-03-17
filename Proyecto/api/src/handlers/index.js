@@ -44,10 +44,13 @@ const addReviewHandler = async (req, res) => {
 
 
 const addCommentHandler = async (req, res) => {
-  try {
-    await addComment(req.body);
-    res.status(200).json('Your comment has been added. :)');
-
+    try {
+      await addComment(req.body);
+      res.status(200).json('Your comment has been added. :)');
+    } catch (error) {
+      res.status(400).json({ msg: error.message });
+    }
+  };
 const createProductHandler = async (req, res) => {
   const {
     name,
@@ -55,7 +58,7 @@ const createProductHandler = async (req, res) => {
     sellingPrice,
     images,
     average_rating,
-    sku,
+    id,
     category,
     reviews_count,
   } = req.body;
@@ -66,7 +69,7 @@ const createProductHandler = async (req, res) => {
       sellingPrice,
       images,
       average_rating,
-      sku,
+      id,
       category,
       reviews_count
     );
