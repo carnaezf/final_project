@@ -8,10 +8,10 @@ const Paginated=(props)=>{
 
     return(
         <nav>
-            <ul>
+            <ul className="btn-group">
                 {allPage && allPage.map(n=>(
                     <li key = {n}>  
-                    <button onClick={()=>props.paginado(n)}>{n}</button> 
+                    <button className="btn btn-outline" onClick={()=>props.pagin(n)}>{n}</button> 
                     </li>
                 ))}
             </ul>
