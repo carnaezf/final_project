@@ -5,6 +5,7 @@ import Products from "./Views/Products/Products";
 // import { Route, useLocation } from "react-router-dom"; //para poder usar el useLocation //asi venia
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
+import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
 function App() {
   //const location =useLocation();
@@ -24,6 +25,7 @@ function App() {
           <Route exact path="/home/order" component={Order} />
           <Route exact path="/home/account" component={Account} />
           <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
+          <Route exact path="/shoppingBag" component={ShoppingBag} />
           <Route exact path="*" component={Home} />
         </Switch>
       </div>
