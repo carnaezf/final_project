@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
 import ShoppingBag from "../../Components/ShoppingBag/ShoppingBag"
 import  "../../index.css"
+import NavBar
+ from "../../Components/NavBar/NavBar";
 const Home= ()=>{
 
   const dispatch= useDispatch();
@@ -32,7 +34,7 @@ const Home= ()=>{
    <div >
     <h1 className="text-3xl font-bold underline">home</h1>
       <Link to= "/products"><button>products</button></Link>
-      {/* <NavBar />//!Cambiar componente */}
+      <NavBar />
       
       {/* <Filter /> */}
 
