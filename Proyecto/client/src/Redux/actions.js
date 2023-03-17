@@ -1,7 +1,10 @@
+import axios from "axios";
 // import { combineReducers } from "redux";
 // import { GET_PRODUCTS } from "./actionType";
 
+import { func } from "prop-types";
 export const GET_PRODUCTS = "GET_PRODUCTS";
+export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
 
 const array = [
   {
@@ -2315,5 +2318,21 @@ export const getProducts = () => {
   return function (dispatch) {
     const allProducts = array;
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
+  };
+};
+
+export const getProductsDetail = (sku) => {
+  return async function (dispatch) {
+    try {
+      var json = await axios.get(
+        "http://localhost:3000/home/products/detail/" + sku
+      );
+      return dispatch({
+        type: GET_PRODUCTS_DETAIL,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
