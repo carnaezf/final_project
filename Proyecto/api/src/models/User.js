@@ -1,16 +1,18 @@
-const { DataTypes } = require('sequelize');
+const { DataTypes } = require("sequelize");
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
   // defino el modelo
-  sequelize.define('User', {
-    userId:{
-      type:DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4,
-      allowNull:false,
-      primaryKey:true,
-    },
-    name: {
+  sequelize.define(
+    "User",
+    {
+      userId: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        primaryKey: true,
+      },
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
@@ -18,7 +20,7 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    email: {
+      email: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
@@ -28,34 +30,33 @@ module.exports = (sequelize) => {
           },
         },
       },
-    password: {
+      password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    isAdmin: {
-        type:DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue:false,
+      isAdmin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
       dni: {
         type: DataTypes.INTEGER,
         allowNull: false,
       },
-    phone: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-    birthDate:{
-        type:DataTypes.DATEONLY,
-        allowNull: false,
-    },
-    country:{
+      phone: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      birthDate: {
+        type: DataTypes.DATEONLY,
+        // allowNull: false,
+      },
+      country: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+      },
+    },
+    {
+      timestamps: false,
     }
-
-
-  },{
-    timestamps: false
-});
+  );
 };

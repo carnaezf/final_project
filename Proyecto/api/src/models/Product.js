@@ -11,7 +11,8 @@ module.exports = (sequelize) => {
       },
       sku: {
         type: DataTypes.STRING,
-        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+        // allowNull: false,
         primaryKey: true,
       },
       description: {
@@ -24,26 +25,27 @@ module.exports = (sequelize) => {
       },
       average_rating: {
         type: DataTypes.FLOAT,
+        // allowNull: false,
+      },
+      availability: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
         allowNull: false,
       },
-      // availability: {
-        //   type: DataTypes.STRING,
-        //   allowNull: false,
-        // },
-        category: {
-          type: DataTypes.STRING,
-          // allowNull: false,
-        },
-        
-        reviews_count: {
-          type: DataTypes.FLOAT,
-        },
-        
-        images: {
-          type: DataTypes.ARRAY(DataTypes.STRING),
-          // allowNull: false,
-        },
+      category: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
+
+      reviews_count: {
+        type: DataTypes.FLOAT,
+      },
+
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
+      },
+    },
     {
       timestamps: false,
     }
