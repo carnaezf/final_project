@@ -1,4 +1,5 @@
 const { Product } = require("../db");
+const { Comment } = require("../db");
 const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
@@ -49,15 +50,23 @@ const getByCategory = async (category) => {
   return products;
 };
 
-const addReview = async ({ sku, reviewValue }) => {
-  const product = await Product.findByPk(sku);
-  await product.update({
-    average_rating:
-      (product.average_rating * product.reviews_count + Number(reviewValue)) /
-      (product.reviews_count + 1),
-    reviews_count: product.reviews_count + 1,
-  });
-};
+
+const addReview = async ({ id, reviewValue }) => {
+  const product = await Product.findByPk(id)
+  await product.update(
+    {
+      average_rating: (product.average_rating * product.reviews_count + Number(reviewValue)) / (product.reviews_count + 1),
+      reviews_count: product.reviews_count + 1,
+    })
+}
+
+const addComment = async ({ comment, userId, id, }) => {
+  const newComment = await Comment.create({comment})
+  await newComment.setUser(userId)
+  await newComment.setProduct(id)
+}
+
+
 
 //..........................................
 const getProductById = async (id) => {
@@ -103,5 +112,9 @@ module.exports = {
   getProductById,
   getByCategory,
   addReview,
+
+  addComment,
+
   createProduct,
+
 };

@@ -1,14 +1,12 @@
-const {
-  getProductsHandler,
-  getSearchHandler,
-  getByCategoryHandler,
-  addReviewHandler,
-  createProductHandler,
-} = require("../handlers/index");
+
+const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
+
+
 const {
   createUserHandler,
   getAllUserHandler,
 } = require("../handlers/userHandler");
+
 const { getByIdHandler } = require("../handlers/getByIdHandler");
 
 const { Router } = require("express");
@@ -29,5 +27,7 @@ router.post("/products", createProductHandler);
 router.post("/user", createUserHandler);
 
 router.get("/user", getAllUserHandler);
+
+router.post("/products/addComment", addCommentHandler)
 
 module.exports = router;
