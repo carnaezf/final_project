@@ -5,6 +5,7 @@ import { useDispatch,useSelector} from "react-redux"; //mis hooks
 import {getProducts} from "../../Redux/actions"
 import { Link } from "react-router-dom";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
+import ShoppingBag from "../../Components/ShoppingBag/ShoppingBag"
 import  "../../index.css"
 const Home= ()=>{
 
@@ -34,6 +35,13 @@ const Home= ()=>{
       {/* <NavBar />//!Cambiar componente */}
       
       {/* <Filter /> */}
+
+      {/* <ShoppingBag /> */}
+
+      <Link to='shoppingBag'>
+        <button>ShoppingBag</button>
+      </Link>
+
     
       <Paginated maximumPage={maximumPage} pagin={pagin}/>
       
