@@ -1,6 +1,6 @@
 
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
-const { getByIdHandler } = require("../handlers/getByIdHandler");
+// const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
+// const { getByIdHandler } = require("../handlers/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
 const {filterByGenreHandler} = require("../handlers/filterByGenreHandler")
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
