@@ -11,7 +11,7 @@ const CardsProducts = (props) => {
             {products.map((el)=>{
                 return(
                     <CardProduct
-                    sku={el.sku} 
+                    sku={el.id} 
                     name={el.name} 
                     sellingPrice={el.sellingPrice} 
                     images={el.images} 
