@@ -1,21 +1,22 @@
-
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
 const { getByIdHandler } = require("../handlers/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
 const {filterByGenreHandler} = require("../handlers/filterByGenreHandler")
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
 const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/filterByStockHandler")
-
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
-
+const {
+    getProductsHandler, 
+    getSearchHandler, 
+    getByCategoryHandler, 
+    addReviewHandler, 
+    addCommentHandler,
+    createProductHandler, 
+ } = require("../handlers/index");
 
 const {
   createUserHandler,
   getAllUserHandler,
 } = require("../handlers/userHandler");
-
-const { getByIdHandler } = require("../handlers/getByIdHandler");
 
 const { Router } = require("express");
 const router = Router();
