@@ -13,11 +13,34 @@ const CreateProduct = () => {
                     category: '',
                     images: ''
                 }}
-                onSubmit={() => {
+                validate={
+                    (values) => {
+                        if (!values.id) {
+                            console.log('id is required');
+                        }
+                        if (!values.name) {
+                            console.log('name is required');
+                        }
+                        if (!values.sellingPrice) {
+                            console.log('sellingPrice is required');
+                        }
+                        if (!values.description) {
+                            console.log('description is required');
+                        }
+                        if (!values.category) {
+                            console.log('category is required');
+                        }
+                        if (!values.images) {
+                            console.log('images is required');
+                        }
+                    }
+                }
+                onSubmit={(values) => {
+                    console.log(values);
                     console.log('Form submitted');
                 }}
             >
-                {( { handleChange, values, handleSubmit } ) => (
+                {( { values, handleSubmit, handleChange, handleBlur } ) => (
                     <form 
                         className='ceateProductName' 
                         onSubmit={ handleSubmit }
@@ -32,6 +55,7 @@ const CreateProduct = () => {
                             placeholder='Enter id product' 
                             value={ values.id }
                             onChange={handleChange}
+                            onBlur={ handleBlur }
                         />
                     </div>
 
@@ -46,6 +70,7 @@ const CreateProduct = () => {
                             placeholder='Enter product name' 
                             value={ values.name }
                             onChange={handleChange}
+                            onBlur={ handleBlur }
                         />
                     </div>
 
@@ -60,6 +85,7 @@ const CreateProduct = () => {
                             placeholder='Enter selling price' 
                             value={ values.sellingPrice }
                             onChange={handleChange}
+                            onBlur={ handleBlur }
                         />
                     </div>
 
@@ -74,6 +100,7 @@ const CreateProduct = () => {
                             placeholder='Enter product description' 
                             value={ values.description }
                             onChange={handleChange}
+                            onBlur={ handleBlur }
                         />
                     </div>
 
@@ -88,6 +115,7 @@ const CreateProduct = () => {
                             placeholder='Enter product category' 
                             value={ values.category }
                             onChange={handleChange}
+                            onBlur={ handleBlur }
                         />
                     </div>
 
@@ -101,6 +129,7 @@ const CreateProduct = () => {
                             id="images" 
                             value={ values.images }
                             onChange={handleChange}
+                            onBlur={ handleBlur }
                         />
                     </div>
                     <button type='submit'>Send</button>
