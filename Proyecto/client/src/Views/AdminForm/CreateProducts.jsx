@@ -1,5 +1,6 @@
 import React from 'react';
 import { Formik } from 'formik';
+import style from './CreateProducts.module.css';
 
 const CreateProduct = () => {
     return (
@@ -15,24 +16,27 @@ const CreateProduct = () => {
                 }}
                 validate={
                     (values) => {
+                        let InputErrors = {};
+
                         if (!values.id) {
-                            console.log('id is required');
+                            InputErrors.id = 'id is required';
                         }
                         if (!values.name) {
-                            console.log('name is required');
+                            InputErrors.name = 'name is required';
                         }
                         if (!values.sellingPrice) {
-                            console.log('sellingPrice is required');
+                            InputErrors.sellingPrice = 'sellingPrice is required';
                         }
                         if (!values.description) {
-                            console.log('description is required');
+                            InputErrors.description = 'description is required';
                         }
                         if (!values.category) {
-                            console.log('category is required');
+                            InputErrors.category = 'category is required';
                         }
                         if (!values.images) {
-                            console.log('images is required');
+                            InputErrors.images = 'images is required';
                         }
+                        return InputErrors;
                     }
                 }
                 onSubmit={(values) => {
@@ -40,11 +44,9 @@ const CreateProduct = () => {
                     console.log('Form submitted');
                 }}
             >
-                {( { values, handleSubmit, handleChange, handleBlur } ) => (
-                    <form 
-                        className='ceateProductName' 
-                        onSubmit={ handleSubmit }
-                    > 
+                {( { values, errors, handleSubmit, handleChange, handleBlur } ) => (
+                    <form className='ceateProductName' onSubmit={ handleSubmit }> 
+                    {console.log(errors)}
                     <div>
                         <label 
                             htmlFor="id">Product id: 
@@ -57,6 +59,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
+                        { errors.id && <div className={style.inputError} >{errors.id}</div> }
                     </div>
 
                     <div>
@@ -72,6 +75,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
+                        { errors.name && <div className={style.inputError} >{errors.name}</div> }
                     </div>
 
                     <div>
@@ -87,6 +91,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
+                        { errors.sellingPrice && <div className={style.inputError} >{errors.sellingPrice}</div> }
                     </div>
 
                     <div>
@@ -102,6 +107,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
+                        { errors.description && <div className={style.inputError} >{errors.description}</div> }
                     </div>
 
                     <div>
@@ -117,6 +123,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
+                        { errors.category && <div className={style.inputError} >{errors.category}</div> }
                     </div>
 
                     <div>
@@ -131,6 +138,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
+                        { errors.images && <div className={style.inputError} >{errors.images}</div> }
                     </div>
                     <button type='submit'>Send</button>
                 </form>
