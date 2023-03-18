@@ -5,41 +5,103 @@ const CreateProduct = () => {
     return (
         <>
             <Formik
+                initialValues={{
+                    id: '',
+                    name: '',
+                    sellingPrice: '',
+                    description: '',
+                    category: '',
+                    images: ''
+                }}
                 onSubmit={() => {
                     console.log('Form submitted');
                 }}
             >
-                {(props) => (
-                    <form className='ceateProductName' onSubmit={props.handleSubmit} >
-                    {console.log(props)}    
+                {( { handleChange, values, handleSubmit } ) => (
+                    <form 
+                        className='ceateProductName' 
+                        onSubmit={ handleSubmit }
+                    > 
                     <div>
-                        <label htmlFor="id">Product id: </label>
-                        <input type="text" name="id" id="id" placeholder='Enter id product'/>
+                        <label 
+                            htmlFor="id">Product id: 
+                        </label>
+                        <input 
+                            type="text" 
+                            name="id" id="id" 
+                            placeholder='Enter id product' 
+                            value={ values.id }
+                            onChange={handleChange}
+                        />
                     </div>
 
                     <div>
-                        <label htmlFor="name">Product Name: </label>
-                        <input type="text" name="name" id="name"  placeholder='Enter product name'/>
+                        <label 
+                            htmlFor="name">Product Name: 
+                        </label>
+                        <input 
+                            type="text" 
+                            name="name" 
+                            id="name"  
+                            placeholder='Enter product name' 
+                            value={ values.name }
+                            onChange={handleChange}
+                        />
                     </div>
 
                     <div>
-                        <label htmlFor="sellingPrice">Selling Price: </label>
-                        <input type="number" name="sellingPrice" id="sellingPrice" placeholder='Enter selling price'/>
+                        <label 
+                            htmlFor="sellingPrice">Selling Price: 
+                        </label>
+                        <input 
+                            type="number" 
+                            name="sellingPrice" 
+                            id="sellingPrice" 
+                            placeholder='Enter selling price' 
+                            value={ values.sellingPrice }
+                            onChange={handleChange}
+                        />
                     </div>
 
                     <div>
-                        <label htmlFor="description">Product Description: </label>
-                        <input type="text" name="description" id="description"  placeholder='Enter product description'/>
+                        <label 
+                            htmlFor="description">Product Description: 
+                        </label>
+                        <input 
+                            type="text" 
+                            name="description" 
+                            id="description"  
+                            placeholder='Enter product description' 
+                            value={ values.description }
+                            onChange={handleChange}
+                        />
                     </div>
 
                     <div>
-                        <label htmlFor="category">Product Category: </label>
-                        <input type="text" name="category" id="category" placeholder='Enter product category'/>
+                        <label 
+                            htmlFor="category">Product Category: 
+                        </label>
+                        <input 
+                            type="text" 
+                            name="category" 
+                            id="category" 
+                            placeholder='Enter product category' 
+                            value={ values.category }
+                            onChange={handleChange}
+                        />
                     </div>
 
                     <div>
-                        <label htmlFor="images">Images: </label>
-                        <input type="file" name="images" id="images"/>
+                        <label 
+                            htmlFor="images">Images: 
+                            </label>
+                        <input 
+                            type="file" 
+                            name="images" 
+                            id="images" 
+                            value={ values.images }
+                            onChange={handleChange}
+                        />
                     </div>
                     <button type='submit'>Send</button>
                 </form>
