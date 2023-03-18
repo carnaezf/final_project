@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik } from 'formik';
 import style from './CreateProducts.module.css';
 
+
 const CreateProduct = () => {
+    const [ formSubmitted, changeSubmittedForm ] = useState(false);
     return (
         <>
             <Formik
@@ -42,6 +44,8 @@ const CreateProduct = () => {
                 onSubmit={(values, { resetForm }) => {
                     resetForm()
                     console.log('Form submitted');
+                    changeSubmittedForm(true);
+                    setTimeout( () => changeSubmittedForm(false), 2000 )
                 }}
             >
                 {( { values, errors, touched, handleSubmit, handleChange, handleBlur } ) => (
@@ -143,6 +147,7 @@ const CreateProduct = () => {
                         { touched.images && errors.images && <div className={style.inputError} >{errors.images}</div> }
                     </div>
                     <button type='submit'>Send</button>
+                    { formSubmitted && <p className={style.exito}>Form successfully submitted!</p>  }
                 </form>
                 )}
             </Formik>
