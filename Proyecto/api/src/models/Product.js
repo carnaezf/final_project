@@ -24,7 +24,7 @@ module.exports = (sequelize) => {
       },
       average_rating: {
         type: DataTypes.FLOAT,
-        // allowNull: false,
+        allowNull: false,
       },
       availability: {
         type: DataTypes.STRING,
@@ -33,25 +33,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-       availability: {
+      breadcrumbs: {
         type: DataTypes.STRING,
-       },
-       breadcrumbs:{
-        type: DataTypes.STRING,
-       },
-        category: {
-          type: DataTypes.STRING,
-          // allowNull: false,
-        },
-        
-        reviews_count: {
-          type: DataTypes.FLOAT,
-        },
-        images: {
-          type: DataTypes.ARRAY(DataTypes.STRING),
-          // allowNull: false,
-        },
-
+      },
       reviews_count: {
         type: DataTypes.FLOAT,
       },
