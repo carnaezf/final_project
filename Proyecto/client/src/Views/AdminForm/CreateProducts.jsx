@@ -3,7 +3,7 @@ import react from 'react';
 const CreateProduct = () => {
     return (
         <>
-            <form>
+            <form className='ceateProductName'>
                 <div>
                     <label htmlFor="id">Product id: </label>
                     <input type="text" name="id" id="id" placeholder='Enter id product'/>
@@ -33,6 +33,7 @@ const CreateProduct = () => {
                     <label htmlFor="images">Images: </label>
                     <input type="file" name="images" id="images"/>
                 </div>
+                <button type='submit'>Send</button>
             </form>
         </>
     );
