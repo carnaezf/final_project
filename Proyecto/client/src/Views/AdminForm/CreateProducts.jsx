@@ -4,9 +4,14 @@ import { Formik } from 'formik';
 const CreateProduct = () => {
     return (
         <>
-            <Formik>
-                {() => (
-                    <form className='ceateProductName'>
+            <Formik
+                onSubmit={() => {
+                    console.log('Form submitted');
+                }}
+            >
+                {(props) => (
+                    <form className='ceateProductName' >
+                    {console.log(props)}    
                     <div>
                         <label htmlFor="id">Product id: </label>
                         <input type="text" name="id" id="id" placeholder='Enter id product'/>
