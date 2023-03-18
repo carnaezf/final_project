@@ -33,12 +33,12 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-       availability: {
+      availability: {
         type: DataTypes.STRING,
-       },
-       breadcrumbs:{
+      },
+      breadcrumbs:{
         type: DataTypes.STRING,
-       },
+      },
         category: {
           type: DataTypes.STRING,
           // allowNull: false,
