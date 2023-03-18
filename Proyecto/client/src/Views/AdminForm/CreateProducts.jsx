@@ -39,8 +39,8 @@ const CreateProduct = () => {
                         return InputErrors;
                     }
                 }
-                onSubmit={(values) => {
-                    console.log(values);
+                onSubmit={(values, { resetForm }) => {
+                    resetForm()
                     console.log('Form submitted');
                 }}
             >
