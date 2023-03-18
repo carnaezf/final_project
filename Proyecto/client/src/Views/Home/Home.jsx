@@ -16,8 +16,8 @@ const Home= ()=>{
     dispatch(getProducts())
   },[dispatch]);
 
-
- const allProducts= useSelector(state=> state.products) ;
+  const allProductsCategory = useSelector(state=> state.allProductsCategory) ; 
+  const allProducts= useSelector(state=> state.products) ;
   const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
   const[productsViews, setProductsViews]= useState (10);
   const lastIndex= pageActual * productsViews; //segundo parametro
@@ -35,7 +35,7 @@ const Home= ()=>{
    <div >
     <h1 className="text-3xl font-bold underline">home</h1>
       <Link to= "/products"><button>products</button></Link>
-      <NavBar />
+      <NavBar categoy={allProductsCategory}/>
       
       {/* <Filter /> */}
 

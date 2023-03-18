@@ -5,6 +5,7 @@ import axios from "axios";
 import { func } from "prop-types";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
+export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
 
 // const array = [
 //   {
@@ -2336,4 +2337,12 @@ export const getProductsDetail = (sku) => {
       console.log(error);
     }
   };
+};
+
+export const getByCategoryHandler = (category) => {
+  return async function  (dispatch) {
+    const productCategory = await axios.get(`/products/category/${category}`);
+    const allProductsCategory = productCategory.data
+    dispatch({ type: GET_PRODUCTS_CATEGORY, payload: allProductsCategory });
+  };  
 };

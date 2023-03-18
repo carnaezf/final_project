@@ -16,16 +16,16 @@ export default function NavBar() {
       <div className='style.category'>
         <ul>
           <li>
-            <Link to='/productos'> <h3>Hombre</h3> </Link>
+            <Link to='/home/accesories'> <h3>Accesories</h3> </Link>
           </li>
           <li>
-            <Link to='/productos'> <h3>Mujer</h3> </Link>
+            <Link to='/home/shoes'> <h3>Shoes</h3> </Link>
           </li>
           <li>
-            <Link to='/productos'> <h3>Niños</h3> </Link>
+            <Link to='/home/clothing'> <h3>Clothing</h3> </Link>
           </li>
           <li>
-            <Link to='/productos'><h3>Productos</h3> </Link>
+            <Link to='/products'> <h3>Products</h3> </Link>
           </li>
         </ul>
       </div>
@@ -36,13 +36,13 @@ export default function NavBar() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder='¿Estas buscando algo?'
+            placeholder='Are you looking for something?'
             type='text'>
           </input>
           <NavLink to={`/products/detail/${name}`}>
             <button name='name' type='submit'>
               {' '}
-              Buscar <BsSearch />{' '}
+              Search <BsSearch />{' '}
             </button>
           </NavLink>
         </form>
