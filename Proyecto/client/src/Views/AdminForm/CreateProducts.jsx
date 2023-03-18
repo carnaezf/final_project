@@ -44,9 +44,10 @@ const CreateProduct = () => {
                     console.log('Form submitted');
                 }}
             >
-                {( { values, errors, handleSubmit, handleChange, handleBlur } ) => (
+                {( { values, errors, touched, handleSubmit, handleChange, handleBlur } ) => (
                     <form className='ceateProductName' onSubmit={ handleSubmit }> 
-                    {console.log(errors)}
+                    { console.log(errors) }
+                    { console.log(touched) }
                     <div>
                         <label 
                             htmlFor="id">Product id: 
@@ -59,7 +60,8 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
-                        { errors.id && <div className={style.inputError} >{errors.id}</div> }
+                        { console.log(touched) }
+                        { touched.id && errors.id && <div className={style.inputError} >{errors.id}</div> }
                     </div>
 
                     <div>
@@ -75,7 +77,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
-                        { errors.name && <div className={style.inputError} >{errors.name}</div> }
+                        { touched.name && errors.name && <div className={style.inputError} >{errors.name}</div> }
                     </div>
 
                     <div>
@@ -91,7 +93,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
-                        { errors.sellingPrice && <div className={style.inputError} >{errors.sellingPrice}</div> }
+                        {  touched.sellingPrice && errors.sellingPrice && <div className={style.inputError} >{errors.sellingPrice}</div> }
                     </div>
 
                     <div>
@@ -107,7 +109,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
-                        { errors.description && <div className={style.inputError} >{errors.description}</div> }
+                        { touched.description && errors.description && <div className={style.inputError} >{errors.description}</div> }
                     </div>
 
                     <div>
@@ -123,7 +125,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
-                        { errors.category && <div className={style.inputError} >{errors.category}</div> }
+                        { touched.category && errors.category && <div className={style.inputError} >{errors.category}</div> }
                     </div>
 
                     <div>
@@ -138,7 +140,7 @@ const CreateProduct = () => {
                             onChange={handleChange}
                             onBlur={ handleBlur }
                         />
-                        { errors.images && <div className={style.inputError} >{errors.images}</div> }
+                        { touched.images && errors.images && <div className={style.inputError} >{errors.images}</div> }
                     </div>
                     <button type='submit'>Send</button>
                 </form>
