@@ -10,7 +10,7 @@ const CreateProduct = () => {
                 }}
             >
                 {(props) => (
-                    <form className='ceateProductName' >
+                    <form className='ceateProductName' onSubmit={props.handleSubmit} >
                     {console.log(props)}    
                     <div>
                         <label htmlFor="id">Product id: </label>
