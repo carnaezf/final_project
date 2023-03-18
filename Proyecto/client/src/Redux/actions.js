@@ -2319,7 +2319,7 @@ export const getProducts = () => {
     const product = await axios.get("http://localhost:3001/products");
     const allProducts = product.data
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
-  };
+  };  
 };
 
 export const getProductsDetail = (sku) => {
