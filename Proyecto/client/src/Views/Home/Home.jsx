@@ -5,7 +5,6 @@ import { useDispatch,useSelector} from "react-redux"; //mis hooks
 import {getProducts} from "../../Redux/actions"
 import { Link } from "react-router-dom";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
-import ShoppingBag from "../../Components/ShoppingBag/ShoppingBag"
 import  "../../index.css"
 import NavBar from "../../Components/NavBar/NavBar";
 const Home= ()=>{
@@ -56,7 +55,7 @@ const Home= ()=>{
 
 
       <p>Pagina {pageActual}</p>
-   </div>
+  </div>
   )
 };
 
