@@ -14,6 +14,8 @@ const CreateProduct = () => {
                     sellingPrice: '',
                     description: '',
                     category: '',
+                    average_rating: '',
+                    reviews_count: '',
                     images: ''
                 }}
                 validate={
@@ -34,6 +36,12 @@ const CreateProduct = () => {
                         }
                         if (!values.category) {
                             InputErrors.category = 'category is required';
+                        }
+                        if (!values.average_rating) {
+                            InputErrors.average_rating = 'average_rating is required';
+                        }
+                        if (!values.reviews_count) {
+                            InputErrors.reviews_count = 'reviews_count is required';
                         }
                         if (!values.images) {
                             InputErrors.images = 'images is required';
@@ -56,7 +64,8 @@ const CreateProduct = () => {
                         </label>
                         <Field 
                             type="text" 
-                            name="id" id="id" 
+                            name="id" 
+                            id="id" 
                             placeholder='Enter id product' 
                         />
                         <ErrorMessage 
@@ -126,6 +135,38 @@ const CreateProduct = () => {
                         <ErrorMessage 
                         name="category"
                         component={ () => ( <div className={style.inputError} >{errors.category}</div> ) }
+                        />
+                    </div>
+
+                    <div>
+                        <label 
+                            htmlFor="average_rating">Product Average Rating: 
+                        </label>
+                        <Field 
+                            type="number" 
+                            name="average_rating" 
+                            id="average_rating"  
+                            placeholder='Enter product average_rating' 
+                        />
+                        <ErrorMessage 
+                        name="average_rating"
+                        component={ () => ( <div className={style.inputError} >{errors.average_rating}</div> ) }
+                        />
+                    </div>
+
+                    <div>
+                        <label 
+                            htmlFor="reviews_count">Product Reviews Count : 
+                        </label>
+                        <Field 
+                            type="number" 
+                            name="reviews_count" 
+                            id="reviews_count"  
+                            placeholder='Enter product reviews_count' 
+                        />
+                        <ErrorMessage 
+                        name="reviews_count"
+                        component={ () => ( <div className={style.inputError} >{errors.reviews_count}</div> ) }
                         />
                     </div>
 
