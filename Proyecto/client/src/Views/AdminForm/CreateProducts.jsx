@@ -50,6 +50,7 @@ const CreateProduct = () => {
                     }
                 }
                 onSubmit={(values, { resetForm }) => {
+                    console.log(values);
                     resetForm()
                     console.log('Form submitted');
                     changeSubmittedForm(true);
