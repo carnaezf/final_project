@@ -10,8 +10,9 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
       id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
+        // defaultValue: DataTypes.UUIDV4,
+        autoIncrement: true,
         primaryKey: true,
       },
       description: {
@@ -33,24 +34,24 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-       availability: {
+      availability: {
         type: DataTypes.STRING,
-       },
-       breadcrumbs:{
+      },
+      breadcrumbs: {
         type: DataTypes.STRING,
-       },
-        category: {
-          type: DataTypes.STRING,
-          // allowNull: false,
-        },
-        
-        reviews_count: {
-          type: DataTypes.FLOAT,
-        },
-        images: {
-          type: DataTypes.ARRAY(DataTypes.STRING),
-          // allowNull: false,
-        },
+      },
+      category: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+      },
+
+      reviews_count: {
+        type: DataTypes.FLOAT,
+      },
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        // allowNull: false,
+      },
 
       reviews_count: {
         type: DataTypes.FLOAT,
