@@ -40,8 +40,8 @@ console.log(myProduct)
                     
                 myProduct ?
                     <div className=" flex w-auto space-x-4"  >
-                        <img className="w-1/2 " src={myProduct.images} alt="Imagen no disponible" />
-                        <img className="m w-1/2" src={myProduct.images} alt="Imagen no disponible" />
+                        <img className="w-1/2 " src={myProduct.images[1]} alt="Imagen no disponible" />
+                        <img className="m w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" />
                         
 
                     </div> : <p>Loading ...</p>
@@ -50,10 +50,10 @@ console.log(myProduct)
                 {/* <img className=" ml-2 mt-4 flex space-x-4 w-full " src={myProduct.images} alt="Imagen no disponible" /> */}
                 <Carousel autoplay className=" ml-2 mt-4 flex space-x-4 w-full">
                     <div  >
-                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" /></h3>
+                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images[3]} alt="Imagen no disponible" /></h3>
                     </div>
                     <div  >
-                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images} alt="Imagen no disponible" /></h3>
+                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images[4]} alt="Imagen no disponible" /></h3>
                     </div>
                     <div  >
                     <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" /></h3>
