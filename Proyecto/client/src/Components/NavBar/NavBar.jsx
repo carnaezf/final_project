@@ -12,17 +12,19 @@ export default function NavBar() {
     setName('');
   }
   return (
-    <div className="navbar bg-base-100 navbar bg-neutral text-neutral-content">   
+    <div className="navbar bg-base-100 navbar bg-neutral text-neutral-content ">   
       <div className="flex-1">  
       <h1 className="case text-xl"> Haal </h1>
       <div className="dropdown">
 
-      <ul>
+      <div className='ml-[45rem]'>
+      <ul >
         <li className="btn btn-ghost normal-case text-xl"> <Link to='/home/accesories'><a>Acessories</a></Link></li>
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/shoes'><a>Shoes</a></Link></li>
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/clothing'><a>Clothing</a></Link></li>
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/products'><a>Products</a></Link></li>
       </ul>
+      </div>
     </div>
     
   </div>
@@ -34,10 +36,10 @@ export default function NavBar() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             type='text'
-            className="input input-bordered">
+            className="input input-bordered h-8 ">
           </input>
           <NavLink to={`/products/detail/${name}`}>
-            <button name='name' type='submit'>
+            <button name='name' type='submit' className=' ml-5 ' >
               {' '}
               Search {' '}
             </button>
@@ -49,8 +51,8 @@ export default function NavBar() {
         
         <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-        <div className="w-10 rounded-full">
-          <BsPersonFill/>
+        <div className="w-10 rounded-full border-trasparent hover:border">
+          <BsPersonFill className='justify-center w-full mt-2 text-xl'/>
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">

@@ -39,11 +39,11 @@ const Home= ()=>{
       {/* <h1 className="text-3xl font-bold underline">home</h1> */}
       {/* <Link to= "/products"><button>products</button></Link> */}
       <NavBar />
-        <div>
+        {/* <div>
           <Link to='shoppingBag'>
             <button>ShoppingBag</button>
           </Link>
-        </div>
+        </div> */}
       
       <div className="Testing Components">
         <div>
