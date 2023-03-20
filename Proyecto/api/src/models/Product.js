@@ -8,11 +8,14 @@ module.exports = sequelize => {
     {
       id: {
         type: DataTypes.INTEGER,
+        // defaultValue: DataTypes.UUIDV4,
         autoIncrement: true,
-        primaryKey: true
+        primaryKey: true,
+
       },
       name: {
         type: DataTypes.STRING
+
       },
       description: {
         type: DataTypes.TEXT,
@@ -32,24 +35,24 @@ module.exports = sequelize => {
         type: DataTypes.STRING,
         allowNull: false
       },
-       availability: {
+      availability: {
         type: DataTypes.STRING,
-       },
-       breadcrumbs:{
+      },
+      breadcrumbs: {
         type: DataTypes.STRING,
-       },
-        category: {
-          type: DataTypes.STRING,
-          // allowNull: false,
-        },
-        
-        reviews_count: {
-          type: DataTypes.FLOAT,
-        },
-        images: {
-          type: DataTypes.ARRAY(DataTypes.STRING),
-          // allowNull: false,
-        },
+      },
+      category: {
+        type: DataTypes.STRING,
+        // allowNull: false,
+      },
+
+      reviews_count: {
+        type: DataTypes.FLOAT,
+      },
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        // allowNull: false,
+      },
 
       reviews_count: {
         type: DataTypes.FLOAT
