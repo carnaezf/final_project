@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { useDispatch } from 'react-redux';
+import { postCreateProduct } from '../../Redux/actions/formActions/actions';
 import style from './CreateProducts.module.css';
 
 
 const CreateProduct = () => {
+    const dispatch = useDispatch();
+
     const [ formSubmitted, changeSubmittedForm ] = useState(false);
     return (
         <>
@@ -58,7 +62,10 @@ const CreateProduct = () => {
                 }}
             >
                 {( { errors } ) => (
-                    <Form className={ style.createProductName }> 
+                    <Form className={ style.createProductName }
+                    // Implementar dispatch para que envíe un objeto producto en lugar 
+                    // de un objeto Form.
+                    > 
                     <div>
                         <label 
                             htmlFor="id">Product id: 
@@ -190,6 +197,7 @@ const CreateProduct = () => {
                 </Form>
                 )}
             </Formik>
+            
         </>
     );
 }
