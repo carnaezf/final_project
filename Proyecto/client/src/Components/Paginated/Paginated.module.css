@@ -1,0 +1,33 @@
+.pagination{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    gap: 4px;
+    background-color: rgba(5, 65, 114, 0.35);
+    margin-left: 20%;
+    margin-right: 15%;
+    color: aliceblue;
+    
+}
+
+.pagination .page {
+   padding: 8px 15px;
+   cursor: pointer;
+   border-radius: 3px;
+   font-weight: 600;
+   
+}
+.pagination .page:hover{
+    background-color: rgb(19, 65, 77);
+    color: aliceblue;
+    
+}
+
+.pagination .active{
+    
+    padding-block: 8px 8px;
+    font-size: 3rem;
+}
