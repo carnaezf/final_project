@@ -31,15 +31,15 @@ const SearchBar= (props)=>{
     
 
     return(
-        <div>
-            <input type= "text" value={search} onChange={(e) => setearBusqueda(e)} />
-            <button type="submit" onClick={(e) => handleFilterName(e)}>Buscar</button>
+        <div className="flex flex-row">
+            <input type= "text" placeholder="Search" className=" transition input input-bordered focus:bg-purple-900 focus:border-white focus text-white" value={search} onChange={(e) => setearBusqueda(e)} />
+            <button class="ml-4 transition duration-150 px-16 font-roboto font-bold text-black text-white bg-transparent hover:bg-black  hover:text-white py-2 px-4 border rounded hover:border-purple-700 rounded hover:font-bold" type="submit" onClick={(e) => handleFilterName(e)}>Buscar</button>
            
-            <div>
-              <button type="submit" onClick={(e) => handleReset(e)}>Ver Todo</button>
-            </div>
+            
+                <button class="ml-4 transition duration-150 px-16 font-roboto font-bold text-black text-white bg-transparent hover:bg-black  hover:text-white py-2 px-4 border rounded hover:border-purple-700 rounded hover:font-bold" type="submit" onClick={(e) => handleReset(e)}>Ver Todo</button>
+            
         </div>
     )
 };
 
-export default SearchBar;
+export default SearchBar;

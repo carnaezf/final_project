@@ -1,48 +1,56 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { BsSearch , BsFillCartFill , BsPersonFill} from "react-icons/bs";
+import { BsSearch, BsFillCartFill, BsPersonFill } from "react-icons/bs";
 import SearchBar from "../SearchBar/SearchBar"
+
 // import style from './NavBar.module.css'
 
-export default function NavBar(props){
-   
+export default function NavBar(props) {
 
-    
-   
-  return(
-    <div className= "bg-orange">
-      <h1 className='style.tittle'> Haal </h1>
-      <div className='style.category'>
-        <ul>
-          <li>
-            <Link to='/productos'> <h3>Hombre</h3> </Link>
-            </li>
-          <li>
-            <Link to='/productos'> <h3>Mujer</h3> </Link>
-          </li>
-          <li>
-            <Link to='/productos'> <h3>Niños</h3> </Link>
-          </li>
-          <li>
-            <Link to='/productos'><h3>Productos</h3> </Link>
-          </li>
-        </ul>
+
+
+  return (
+    <div className="navbar bg-base-100 navbar bg-neutral text-neutral-content ">   
+      <div className="flex-1">  
+      <h1 className="case text-xl ml-4"> Haal </h1>
+      <div className="dropdown">
+
+        <div className='flex ml-[45rem] content-center' >
+          <ul className='content-center'>
+            <li className="btn btn-ghost normal-case text-xl"> <Link to='/home/accesories'><a>Acessories</a></Link></li>
+            <li className="btn btn-ghost normal-case text-xl"><Link to='/home/shoes'><a>Shoes</a></Link></li>
+            <li className="btn btn-ghost normal-case text-xl"><Link to='/home/clothing'><a>Clothing</a></Link></li>
+            <li className="btn btn-ghost normal-case text-xl"><Link to='/home/products'><a>Products</a></Link></li>
+          </ul>
+        </div>
       </div>
-      <div className='style.search'>
-        <SearchBar pagin={props.pagin}/>
+
+     </div>
+  
+      <div className="flex-none gap-2"> 
+        <div className="form-control">
+
+          <SearchBar className='flex justify-end' pagin={props.pagin}/>
+          
+        
+        </div>
       </div>
-      <div className='style.login'>
-        <ul>
-          <li>
-            <Link to='/order'> <h3> <BsFillCartFill/></h3></Link>
-          </li>
-          <li>
-            <Link to='/account'> <h3> <BsPersonFill/></h3></Link>
-          </li>
-        </ul>
 
-
+        
+      <div className="dropdown dropdown-end">
+       <label tabIndex={0} className="btn btn-ghost btn-circle avatar ml-4 mr-4">
+        <div className="w-10 rounded-full border-trasparent hover:border">
+          <BsPersonFill className='justify-center w-full mt-2 text-xl'/>
+        </div>
+       </label>
+       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+        <li className="justify-between"> <Link to='/login-form'> <a>Login <span className="badge">New</span> </a></Link></li>
+        <li className="justify-between"> <Link to='/createProduct'> <a>Shopping Cart</a></Link></li>
+       </ul>
       </div>
     </div>
+
+    
   )
 }
+ 

@@ -3,9 +3,9 @@ import Cookie from 'js-cookie';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { addToCart } from '../../Redux/actions/shoppingBag_actions';
-import { CreateOrder } from '../../Redux/actions/checkout_actions';
-import { deleteOrder } from '../../Redux/actions/order_actions';
+import { addToCart } from '../../Redux/actions/shoppingBagsActions/shoppingBag_actions';
+import { CreateOrder } from '../../Redux/actions/shoppingBagsActions/checkout_actions';
+import { deleteOrder } from '../../Redux/actions/shoppingBagsActions/order_actions';
 
 // shoppinBags_actions: addToCart, deleteCart, removeFromCart, updateFromCart
 // checkout_actions: CreateOrder, UpdateOrderToCreateStatus 

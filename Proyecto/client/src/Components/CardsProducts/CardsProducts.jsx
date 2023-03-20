@@ -7,15 +7,17 @@ const CardsProducts = (props) => {
 
     return (
         <>
-        <div>
+        {/* <div className="container mx-auto h-56 grid grid-cols-4 gap-4 content justify-self-auto" > */}
+        <div className="container mx-auto h-56 flex flex-wrap justify-center gap-4 content justify-self-auto" >
             {products.map((el)=>{
                 return(
                     <CardProduct
-                    sku={el.id} 
+                    id={el.id} 
                     name={el.name} 
                     sellingPrice={el.sellingPrice} 
                     images={el.images} 
-                    average_rating={el.average_rating}/>
+                    average_rating={el.average_rating}
+                    category={el.category}/>
                 )
             })}
 
