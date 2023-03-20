@@ -44,20 +44,20 @@ console.log(myProduct)
                     
                 myProduct ?
                     <div className=" flex w-auto space-x-4"  >
-                        <img className="w-1/2 " src={myProduct.images[1]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/>
-                        <img className="m w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} />
+                        <img className="w-1/2 " src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/>
+                        <img className="m w-1/2" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} />
                         
 
                     </div> : <p>Loading ...</p>
                 } 
                 
-                {/* <img className=" ml-2 mt-4 flex space-x-4 w-full " src={myProduct.images} alt="Imagen no disponible" /> */}
+                
                 <Carousel autoplay className=" ml-2 mt-4 flex space-x-4 w-full">
                     <div  >
-                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images[3]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
+                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
                     </div>
                     <div  >
-                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images[4]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
+                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
                     </div>
                     <div  >
                     <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" /></h3>
