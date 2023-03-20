@@ -20,7 +20,7 @@ const Home= ()=>{
   const allProductsCategory = useSelector(state=> state.allProductsCategory) ; 
   const allProducts= useSelector(state=> state.products) ;
   const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
-  const[productsViews, setProductsViews]= useState (8);
+  const[productsViews, setProductsViews]= useState (9);
   const lastIndex= pageActual * productsViews; //segundo parametro
   const firstIndex= lastIndex - productsViews; //primer parameto
   const maximumPage= Math.ceil(allProducts.length/productsViews); //nose si sera par o inpar
@@ -35,8 +35,9 @@ const Home= ()=>{
   return (
 
    <div className="flex flex-col">
-      <h1 className="text-3xl font-bold underline">home</h1>
-      <Link to= "/products"><button>products</button></Link>
+    
+      {/* <h1 className="text-3xl font-bold underline">home</h1> */}
+      {/* <Link to= "/products"><button>products</button></Link> */}
       <NavBar />
         <div>
           <Link to='shoppingBag'>
@@ -54,18 +55,20 @@ const Home= ()=>{
       <Jumbotron/>
     <br />
 
-      <div>
-      <Paginated maximumPage={maximumPage} pagin={pagin} />
-      </div>
 
 
 
       {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
-
       <div>
-      <CardsProducts newStateProducts ={newStateProducts} />
+      <Paginated maximumPage={maximumPage} pagin={pagin} />
       </div>
 
+        <div>
+        <CardsProducts newStateProducts ={newStateProducts} />
+        </div>
+      
+      
+      
       
 
 

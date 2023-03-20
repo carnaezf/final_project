@@ -60,10 +60,10 @@ console.log(myProduct)
                         <h3  style={contentStyle}><img className="w-full"  src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
                     </div>
                     <div  >
-                    <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" /></h3>
+                    <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/></h3>
                     </div>
                     <div  >
-                    <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" /></h3>
+                    <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/></h3>
                     </div>
                 </Carousel>
             </div>
