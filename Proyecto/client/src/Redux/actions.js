@@ -2339,6 +2339,15 @@ export const getProductsDetail = (sku) => {
   };
 };
 
+
+// export const getSearchHandler = (name) => {
+//   return async function  (dispatch) {
+//     const productSearch = await axios.get(`/products/category/${name}`);
+//     const allProductsSearch = productSearch.data
+//     dispatch({ type: GET_PRODUCTS_SEARCH, payload: allProductsSearch });
+//   };  
+// };
+
 export const getByCategoryHandler = (category) => {
   return async function  (dispatch) {
     const productCategory = await axios.get(`/products/category/${category}`);

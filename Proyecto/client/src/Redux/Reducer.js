@@ -26,6 +26,12 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         productsCategory: action.payload,
       };
+    
+    // case GET_PRODUCTS_SEARCH:
+    //   return{
+    //     ...state,
+    //     productsSearch: action.payload,
+    //   };
   }
 };
 

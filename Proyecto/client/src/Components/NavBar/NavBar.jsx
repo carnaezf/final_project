@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { BsSearch, BsFillCartFill, BsPersonFill } from "react-icons/bs";
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Raleway:wght@100&display=swap');
-</style>
+
 // import style from './NavBar.module.css'
 
 export default function NavBar() {
