@@ -13,22 +13,18 @@ const CreateProduct = ({styles}) => {
         <>
             <Formik
                 initialValues={{
-                    id: '',
                     name: '',
-                    sellingPrice: '',
+                    sellingPrice: 0,
                     description: '',
                     category: '',
-                    average_rating: '',
-                    reviews_count: '',
-                    images: ''
+                    average_rating: 0,
+                    reviews_count: 0,
+                    images: []
                 }}
                 validate={
                     (values) => {
                         let InputErrors = {};
 
-                        if (!values.id) {
-                            InputErrors.id = 'id is required';
-                        }
                         if (!values.name) {
                             InputErrors.name = 'name is required';
                         }
@@ -53,22 +49,29 @@ const CreateProduct = ({styles}) => {
                         return InputErrors;
                     }
                 }
+
+
+                // onSubmit={async (values) => {
+                //     alert(JSON.stringify(values, null, 2))
+                //     await dispatch(postCreateProduct(values))
+                // }}
+
                 onSubmit={(values, { resetForm }) => {
+                    console.log(values);
+                    // dispatch(postCreateProduct(values))
                     console.log(values);
                     resetForm()
                     console.log('Form submitted');
                     changeSubmittedForm(true);
                     setTimeout( () => changeSubmittedForm(false), 2000 )
+                    
                 }}
             >
                 {( { errors } ) => (
-                    <Form
-                    // Implementar dispatch para que envíe un objeto producto en lugar 
-                    // de un objeto Form.
-                    >
+                    <Form>
                     {/* <div> */}
                     <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto">
-                        <div>
+                        {/* <div>
                             <label
                                 className="uppercase tracking-wide text-black text-xs font-bold mb-2"
                                 htmlFor="id">Product id: 
@@ -84,7 +87,7 @@ const CreateProduct = ({styles}) => {
                             name="id"
                             component={ () => ( <div className={style.inputError} >{errors.id}</div> ) }
                             />
-                        </div>
+                        </div> */}
 
                         <div>
                             <label

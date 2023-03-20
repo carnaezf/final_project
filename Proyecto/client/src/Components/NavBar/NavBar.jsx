@@ -54,8 +54,8 @@ export default function NavBar() {
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-        <li className="justify-between"> <Link to='/home/account'> <a>Login <span className="badge">New</span> </a></Link></li>
-        <li className="justify-between"> <Link to='/home/order'> <a>Shopping Cart</a></Link></li>
+        <li className="justify-between"> <Link to='/login-form'> <a>Login <span className="badge">New</span> </a></Link></li>
+        <li className="justify-between"> <Link to='/createProduct'> <a>Shopping Cart</a></Link></li>
       </ul>
     </div>
     </div>
