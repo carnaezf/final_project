@@ -1,4 +1,4 @@
-import { GET_PRODUCTS, GET_PRODUCTS_DETAIL } from "./actions";
+import { GET_PRODUCTS, GET_PRODUCTS_DETAIL, GET_PRODUCTS_CATEGORY } from "./actions";
 
 const intialState = {
   products: [],
@@ -20,6 +20,18 @@ const rootReducer = (state = intialState, action) => {
       };
     default:
       return { ...state };
+
+    case GET_PRODUCTS_CATEGORY:
+      return{
+        ...state,
+        productsCategory: action.payload,
+      };
+    
+    // case GET_PRODUCTS_SEARCH:
+    //   return{
+    //     ...state,
+    //     productsSearch: action.payload,
+    //   };
   }
 };
 

@@ -16,7 +16,7 @@ const Home= ()=>{
     dispatch(getProducts())
   },[dispatch]);
 
-
+  const allProductsCategory = useSelector(state=> state.allProductsCategory) ; 
   const allProducts= useSelector(state=> state.products) ;
   const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
   const[productsViews, setProductsViews]= useState (10);
@@ -29,12 +29,13 @@ const Home= ()=>{
   const pagin=(pageNumber)=>{ //rendirizamos
     setPageActual(pageNumber); //pasamos los numero de las paginas para modificar el estado local
   }
+  
 
   return (
    <div >
     <h1 className="text-3xl font-bold underline">home</h1>
       <Link to= "/products"><button>products</button></Link>
-      <NavBar />
+      <NavBar categoy={allProductsCategory}/>
       
       {/* <Filter /> */}
 
@@ -44,13 +45,13 @@ const Home= ()=>{
         <button>ShoppingBag</button>
       </Link>
 
-    
+   
       <Paginated maximumPage={maximumPage} pagin={pagin}/>
       
       <CardsProducts newStateProducts ={newStateProducts} />
 
 
-      <p>Pagina {pageActual}</p>
+      <p>Pagina {pageActual}</p>  
    </div>
   )
 };
