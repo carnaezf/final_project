@@ -10,7 +10,7 @@ export default function Products(){
     
     return (
         <>
-        <h1>Products</h1>
+        <h1>Productos</h1>
         <Link to= "/home">
             <button>home</button>
         </Link>
