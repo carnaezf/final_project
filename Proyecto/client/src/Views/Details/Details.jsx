@@ -4,6 +4,8 @@ import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductsDetail } from "../../Redux/actions";
 import { Carousel } from 'antd';
+import NavBar from "../../Components/NavBar/NavBar";
+
 const contentStyle = {
     // height: '160px',
     // color: '#fff',
@@ -28,20 +30,22 @@ console.log(myProduct)
     
     return (
         <>
+        <div>
+        <NavBar />
+        </div>
         <div className="flex flex-col">
         <h1 className="font-roboto text-3xl font-light mt-6 mb-6">
 20% DE DESCUENTO EN COMPRAS DE $100 O MÁS | 25% DE DESCUENTO EN COMPRAS DE $150 O MÁS</h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
         </div>
-        
         <div className=" flex flex-row h-screen">
             <div className=" w-2/3">
                 {
                     
                 myProduct ?
                     <div className=" flex w-auto space-x-4"  >
-                        <img className="w-1/2 " src={myProduct.images[1]} alt="Imagen no disponible" />
-                        <img className="m w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" />
+                        <img className="w-1/2 " src={myProduct.images[1]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/>
+                        <img className="m w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} />
                         
 
                     </div> : <p>Loading ...</p>
@@ -50,10 +54,10 @@ console.log(myProduct)
                 {/* <img className=" ml-2 mt-4 flex space-x-4 w-full " src={myProduct.images} alt="Imagen no disponible" /> */}
                 <Carousel autoplay className=" ml-2 mt-4 flex space-x-4 w-full">
                     <div  >
-                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images[3]} alt="Imagen no disponible" /></h3>
+                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images[3]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
                     </div>
                     <div  >
-                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images[4]} alt="Imagen no disponible" /></h3>
+                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images[4]} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
                     </div>
                     <div  >
                     <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" /></h3>
@@ -64,7 +68,7 @@ console.log(myProduct)
                 </Carousel>
             </div>
         
-            <div className=" fixed  top-20 right-0 w-1/3">
+            <div className=" fixed  top-46 right-0 w-1/3">
             {
                     
                     myProduct ?
