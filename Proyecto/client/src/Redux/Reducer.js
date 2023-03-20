@@ -1,4 +1,5 @@
 import { GET_PRODUCTS, GET_PRODUCTS_DETAIL } from "./actions";
+import {FILTER_BY_NAME} from "./actions";
 
 const intialState = {
   products: [],
@@ -18,6 +19,14 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         productsDetail: action.payload,
       };
+    case FILTER_BY_NAME: 
+      const namePrudutsId= action.payload.map(c=>c.id) 
+      const numId=[];
+      
+      state.products.filter(e=>namePrudutsId.includes(e.id) && numId.push(e) )//traigo mi estado general
+           
+      return{...state, products:numId};  
+
     default:
       return { ...state };
   }

@@ -35,7 +35,7 @@ const Home= ()=>{
    <div >
       <h1 className="text-3xl font-bold underline">home</h1>
       <Link to= "/products"><button>products</button></Link>
-      <NavBar />
+      <NavBar pagin={pagin}/>
       <Jumbotron/>
       
       {/* <Filter /> */}

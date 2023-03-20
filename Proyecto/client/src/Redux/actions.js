@@ -5,6 +5,7 @@ import axios from "axios";
 import { func } from "prop-types";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
 
 // const array = [
 //   {
@@ -2336,4 +2337,19 @@ export const getProductsDetail = (sku) => {
       console.log(error);
     }
   };
+};
+export const filterByName= (payload)=>{
+  return async function (dispatch){
+    try {
+      const baseData= await axios.get(`http://localhost:3001/products/search?name=${payload}`);
+      const productsName= baseData.data;
+      dispatch({type: FILTER_BY_NAME, payload:productsName});
+          
+    } catch (error) {
+      alert("No se encontro el Producto Buscado");
+          
+    }
+    
+  }
+
 };
