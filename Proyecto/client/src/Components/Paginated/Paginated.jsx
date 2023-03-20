@@ -1,21 +1,31 @@
+import ReactPaginate from 'react-paginate';
+import styles from "./Paginated.module.css"
+
+
 
 const Paginated=(props)=>{
 
-    const allPage=[];
-    for(let i=1;i<= props.maximumPage;i++){  //se corrigio error de sintaxis antes decia "miximoPage"
-        allPage.push(i);
+    const handlePageClick = (event) => {
+        props.pagin(event.selected +1)
     };
-
+    
     return(
-        <nav>
-            <ul className="btn-group">
-                {allPage && allPage.map(n=>(
-                    <li key = {n}>  
-                    <button className="btn btn-outline" onClick={()=>props.pagin(n)}>{n}</button> 
-                    </li>
-                ))}
-            </ul>
-        </nav>
+        <div>
+            <ReactPaginate
+               breakLabel="..."
+               nextLabel="Siguiente >"
+               onPageChange={handlePageClick}
+               pageRangeDisplayed={3}
+               pageCount={props.maximumPage}
+               previousLabel="< Anterior"
+               renderOnZeroPageCount={null}
+               containerClassName= {styles.pagination}
+               pageClassName={styles.page}
+               previousLinkClassName={styles.page}
+               nextLinkClassName={styles.page}
+               activeLinkClassName={styles.active}
+            />
+        </div>
     )
 };
 
