@@ -13,7 +13,7 @@ const CreateProduct = ({styles}) => {
         <>
             <Formik
                 initialValues={{
-                    id: '',
+                    // id: '',
                     name: '',
                     sellingPrice: '',
                     description: '',
@@ -26,9 +26,9 @@ const CreateProduct = ({styles}) => {
                     (values) => {
                         let InputErrors = {};
 
-                        if (!values.id) {
-                            InputErrors.id = 'id is required';
-                        }
+                        // if (!values.id) {
+                        //     InputErrors.id = 'id is required';
+                        // }
                         if (!values.name) {
                             InputErrors.name = 'name is required';
                         }
@@ -68,7 +68,7 @@ const CreateProduct = ({styles}) => {
                     >
                     {/* <div> */}
                     <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto">
-                        <div>
+                        {/* <div>
                             <label
                                 className="uppercase tracking-wide text-black text-xs font-bold mb-2"
                                 htmlFor="id">Product id: 
@@ -84,7 +84,7 @@ const CreateProduct = ({styles}) => {
                             name="id"
                             component={ () => ( <div className={style.inputError} >{errors.id}</div> ) }
                             />
-                        </div>
+                        </div> */}
 
                         <div>
                             <label

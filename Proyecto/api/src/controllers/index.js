@@ -91,7 +91,7 @@ const createProduct = async (
   sellingPrice,
   images,
   average_rating,
-  id,
+  // id,
   category,
   reviews_count
 ) => {
@@ -101,7 +101,7 @@ const createProduct = async (
     sellingPrice,
     images,
     average_rating,
-    id,
+    // id,
     category,
     reviews_count,
   });

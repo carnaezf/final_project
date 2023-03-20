@@ -7,10 +7,13 @@ module.exports = sequelize => {
     'Product',
     {
       id: {
-        type: DataTypes.INTEGER,
-        // defaultValue: DataTypes.UUIDV4,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
+        // type: DataTypes.INTEGER,
+        // defaultValue: DataTypes.UUIDV4,
+        // autoIncrement: true,
+        // primaryKey: true,
 
       },
       name: {
@@ -35,17 +38,17 @@ module.exports = sequelize => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      availability: {
-        type: DataTypes.STRING,
-      },
+      // availability: {
+      //   type: DataTypes.STRING,
+      // },
 
       breadcrumbs:{
         type: DataTypes.STRING,
       },
-        category: {
-          type: DataTypes.STRING,
-          // allowNull: false,
-        },
+        // category: {
+        //   type: DataTypes.STRING,
+        //   // allowNull: false,
+        // },
         
         reviews_count: {
           type: DataTypes.FLOAT,
@@ -56,21 +59,21 @@ module.exports = sequelize => {
         },
 
 
-      reviews_count: {
-        type: DataTypes.FLOAT,
-      },
-      images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        // allowNull: false,
-      },
+      // reviews_count: {
+      //   type: DataTypes.FLOAT,
+      // },
+      // images: {
+      //   type: DataTypes.ARRAY(DataTypes.STRING),
+      //   // allowNull: false,
+      // },
 
-      reviews_count: {
-        type: DataTypes.FLOAT
-      },
-      images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-      }
+      // reviews_count: {
+      //   type: DataTypes.FLOAT
+      // },
+      // images: {
+      //   type: DataTypes.ARRAY(DataTypes.STRING),
+      //   allowNull: false
+      // }
     },
     {
       timestamps: false
