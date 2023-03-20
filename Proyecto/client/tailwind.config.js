@@ -17,6 +17,8 @@ module.exports = {
       "5xl": "3.052rem",
     },
   },
+
+
   plugins: [require("daisyui")],
 
   daisyui: {
@@ -29,4 +31,5 @@ module.exports = {
     prefix: "",
     darkTheme: "black",
   },
+
 };

@@ -6,6 +6,7 @@ import Products from "./Views/Products/Products";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
+import createProduct from "../src/Views/AdminForm/CreateProducts"
 
 function App() {
   //const location =useLocation();
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/home/account" component={Account} />
           <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
           <Route exact path="/shoppingBag" component={ShoppingBag} />
+          <Route exact path="/createProduct" component={createProduct} />
           <Route exact path="*" component={Home} />
         </Switch>
       </div>
