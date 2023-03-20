@@ -87,21 +87,21 @@ console.log(myProduct)
                     <a className="text-xs mb-6 underline font-bold cursor-pointer">Registrate aqui!</a></Link>
             </div>
             <div className="flex justify-around mt-6 ml-8 mr-8">
-                <button class="transition duration-150 px-12 font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-4 border rounded hover:border-transparent rounded hover:font-bold">
+                <button class="transition  duration-150  font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-10 border rounded hover:border-transparent rounded hover:font-bold">
                 S
                 </button>
-                <button class="transition duration-150 px-12 font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-4 border rounded hover:border-transparent rounded hover:font-bold">
+                <button class="transition duration-150  font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-10 border rounded hover:border-transparent rounded hover:font-bold">
                 M
                 </button>
-                <button class="transition duration-150 px-12 font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-4 border rounded hover:border-transparent rounded hover:font-bold">
+                <button class="transition duration-150  font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-10 border rounded hover:border-transparent rounded hover:font-bold">
                 X
                 </button>
-                <button class="transition duration-150 px-12 font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-4 border rounded hover:border-transparent rounded hover:font-bold">
+                <button class="transition duration-150  font-roboto font-thin text-white bg-transparent hover:bg-white  hover:text-black py-2 px-10 border rounded hover:border-transparent rounded hover:font-bold">
                 XL
                 </button>
             </div>
             <div className="flex justify-around mt-6 ml-8 mr-8">
-                <button class="transition duration-150 px-16 font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-4 border rounded hover:border-white rounded hover:font-bold">
+                <button class="transition duration-150  font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-14 border rounded hover:border-white rounded hover:font-bold">
                 AÑADIR AL CARRITO
                 </button>
             </div>

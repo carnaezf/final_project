@@ -6,13 +6,14 @@ import { func } from "prop-types";
 export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
 export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
+export const FILTER_BY_NAME = "FILTER_BY_NAME";
 
 export const getProducts = () => {
   return async function (dispatch) {
     const product = await axios.get("http://localhost:3001/products");
     const allProducts = product.data;
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
-  };  
+  };
 };
 
 export const getProductsDetail = (payload) => {
@@ -33,19 +34,32 @@ export const getProductsDetail = (payload) => {
   };
 };
 
-
 // export const getSearchHandler = (name) => {
 //   return async function  (dispatch) {
 //     const productSearch = await axios.get(`/products/category/${name}`);
 //     const allProductsSearch = productSearch.data
 //     dispatch({ type: GET_PRODUCTS_SEARCH, payload: allProductsSearch });
-//   };  
+//   };
 // };
 
 export const getByCategoryHandler = (category) => {
-  return async function  (dispatch) {
+  return async function (dispatch) {
     const productCategory = await axios.get(`/products/category/${category}`);
-    const allProductsCategory = productCategory.data
+    const allProductsCategory = productCategory.data;
     dispatch({ type: GET_PRODUCTS_CATEGORY, payload: allProductsCategory });
-  };  
+  };
+};
+
+export const filterByName = (payload) => {
+  return async function (dispatch) {
+    try {
+      const baseData = await axios.get(
+        `http://localhost:3001/products/search?name=${payload}`
+      );
+      const productsName = baseData.data;
+      dispatch({ type: FILTER_BY_NAME, payload: productsName });
+    } catch (error) {
+      alert("No se encontro el Producto Buscado");
+    }
+  };
 };

@@ -1,4 +1,9 @@
-import { GET_PRODUCTS, GET_PRODUCTS_DETAIL, GET_PRODUCTS_CATEGORY } from "./actions";
+import {
+  GET_PRODUCTS,
+  GET_PRODUCTS_DETAIL,
+  GET_PRODUCTS_CATEGORY,
+  FILTER_BY_NAME,
+} from "./actions";
 
 const intialState = {
   products: [],
@@ -22,11 +27,20 @@ const rootReducer = (state = intialState, action) => {
       return { ...state };
 
     case GET_PRODUCTS_CATEGORY:
-      return{
+      return {
         ...state,
         productsCategory: action.payload,
       };
-    
+    case FILTER_BY_NAME:
+      const namePrudutsId = action.payload.map((c) => c.id);
+      const numId = [];
+
+      state.products.filter(
+        (e) => namePrudutsId.includes(e.id) && numId.push(e)
+      ); //traigo mi estado general
+
+      return { ...state, products: numId };
+
     // case GET_PRODUCTS_SEARCH:
     //   return{
     //     ...state,
