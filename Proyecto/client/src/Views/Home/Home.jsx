@@ -34,38 +34,45 @@ const Home= ()=>{
 
   return (
 
-   <div >
-      <h1 className="text-3xl font-bold underline">home</h1>
-      <Link to= "/products"><button>products</button></Link>
+   <div className="flex flex-col">
+    
+      {/* <h1 className="text-3xl font-bold underline">home</h1> */}
+      {/* <Link to= "/products"><button>products</button></Link> */}
       <NavBar />
-      <Jumbotron/>
-
-      
-      <div className="Testing Components">
         <div>
           <Link to='shoppingBag'>
             <button>ShoppingBag</button>
           </Link>
         </div>
+      
+      <div className="Testing Components">
         <div>
           <Link to='createProduct'>
             <button>Create Product Form</button>
           </Link>
         </div>
       </div>
+      <Jumbotron/>
+    <br />
 
 
 
-      <Paginated maximumPage={maximumPage} pagin={pagin} />
 
       {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
+      <div>
+      <Paginated maximumPage={maximumPage} pagin={pagin} />
+      </div>
 
+        <div>
+        <CardsProducts newStateProducts ={newStateProducts} />
+        </div>
       
-      <CardsProducts newStateProducts ={newStateProducts} />
+      
+      
+      
 
 
-
-      <p>Pagina {pageActual}</p>
+      {/* <p>Pagina {pageActual}</p> */}
   </div>
 
   )
