@@ -20,6 +20,7 @@ const {
   updateUserHandler,
 } = require("../handlers/userHandler");
 const { updateProductHandler } = require("../handlers/updateProductHandler");
+const { allCategoryHandler } = require("../handlers/categoryHandler");
 
 const { Router } = require("express");
 const router = Router();
@@ -60,5 +61,7 @@ router.get("/products/stock/:stock", filterByStockHandler);
 router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
+
+router.get("/categories", allCategoryHandler);
 
 module.exports = router;

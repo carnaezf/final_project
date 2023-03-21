@@ -7,18 +7,19 @@ module.exports = (sequelize) => {
     "Category",
     {
       type: {
-        type: DataTypes.ENUM(
-          "clothing",
-          "shoes",
-          "accessories",
-          "sports",
-          "sustainable collection"
-        ),
+        // type: DataTypes.ENUM(
+        //   "clothing",
+        //   "shoes",
+        //   "accessories",
+        //   "sports",
+        //   "sustainable collection"
+        // ),
+        type: DataTypes.STRING,
       },
-      description: {
-        type: DataTypes.TEXT,
-        allowNull: false,
-      },
+      // description: {
+      //   type: DataTypes.TEXT,
+      //   allowNull: false,
+      // },
     },
     {
       timestamps: false,
