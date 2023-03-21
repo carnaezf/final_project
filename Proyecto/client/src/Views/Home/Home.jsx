@@ -59,13 +59,15 @@ const Home= ()=>{
 
 
       {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
-      <div>
-      <Paginated maximumPage={maximumPage} pagin={pagin} />
-      </div>
 
-        <div>
+      <div>
         <CardsProducts newStateProducts ={newStateProducts} />
+      </div>
+      <div>
+        <div>
+          <Paginated maximumPage={maximumPage} pagin={pagin} />
         </div>
+      </div>
       
       
       
