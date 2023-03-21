@@ -1,4 +1,4 @@
-const { sendEmailNotifications } = require("../../mail/sendEmailNotifications")
+const { sendEmailNotifications } = require("../../controllers/mailsControllers/sendEmailNotifications")
 
 
 const sendNotificationHandler = async(req, res) => {

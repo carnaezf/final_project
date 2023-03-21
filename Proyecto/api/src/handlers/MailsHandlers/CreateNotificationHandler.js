@@ -1,4 +1,5 @@
-const { createNotification } = require("../../mail/createNotification")
+const { createNotification } = require("../../controllers/mailsControllers/createNotification")
+
 
 const createNotificationHandler = async(req, res) => {
 
