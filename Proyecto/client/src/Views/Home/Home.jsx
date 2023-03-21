@@ -3,12 +3,11 @@ import Paginated from "../../Components/Paginated/Paginated";
 import { useEffect, useState } from "react";
 import { useDispatch,useSelector} from "react-redux"; //mis hooks
 import {getProducts} from "../../Redux/actions"
-import { Link } from "react-router-dom";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
 import  "../../index.css"
 import NavBar from "../../Components/NavBar/NavBar";
-
 import Jumbotron from "../../Components/Jumbotron/Jumbotron";
+import Category from "../../Components/Category/Category";
 
 const Home= ()=>{
 
@@ -26,44 +25,27 @@ const Home= ()=>{
   const maximumPage= Math.ceil(allProducts.length/productsViews); //nose si sera par o inpar
   const newStateProducts= allProducts.slice(firstIndex,lastIndex);
 
-
   const pagin=(pageNumber)=>{ //rendirizamos
     setPageActual(pageNumber); //pasamos los numero de las paginas para modificar el estado local
   }
   
-
   return (
 
-   <div className="flex flex-col">
+    <div className="flex flex-col">
     
-      {/* <h1 className="text-3xl font-bold underline">home</h1> */}
-      {/* <Link to= "/products"><button>products</button></Link> */}
       <NavBar pagin={pagin} />
-      
-
+      <br /><br />
       <Jumbotron/>
-    <br />
-
-
-
-
-      {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
-
-      <div>
-        <CardsProducts newStateProducts ={newStateProducts} />
-      </div>
-      <div></div>
-      <div>
-        <Paginated maximumPage={maximumPage} pagin={pagin} />
-      </div>
-      
-      
-      
-      
-
+      <br />
+      <Category/>
+      <br />
+      <CardsProducts newStateProducts ={newStateProducts} />
+      <br />
+      <Paginated maximumPage={maximumPage} pagin={pagin} />
+      <br />
 
       {/* <p>Pagina {pageActual}</p> */}
-  </div>
+    </div>
 
   )
 };

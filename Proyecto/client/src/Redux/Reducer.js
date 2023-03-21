@@ -23,9 +23,8 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         productsDetail: action.payload,
       };
-    default:
-      return { ...state };
-
+   
+      
     case GET_PRODUCTS_CATEGORY:
       return {
         ...state,
@@ -34,19 +33,13 @@ const rootReducer = (state = intialState, action) => {
     case FILTER_BY_NAME:
       const namePrudutsId = action.payload.map((c) => c.id);
       const numId = [];
-
-      state.products.filter(
-        (e) => namePrudutsId.includes(e.id) && numId.push(e)
-      ); //traigo mi estado general
-
+          
+      state.products.filter((e) => namePrudutsId.includes(e.id) && numId.push(e)); //traigo mi estado general
+            
       return { ...state, products: numId };
-
-    // case GET_PRODUCTS_SEARCH:
-    //   return{
-    //     ...state,
-    //     productsSearch: action.payload,
-    //   };
-  }
-};
-
+      
+          
+    default: return { ...state };
+  } 
+}
 export default rootReducer;
