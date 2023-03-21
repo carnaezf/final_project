@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { BsSearch, BsFillCartFill, BsPersonFill } from "react-icons/bs";
 import SearchBar from "../SearchBar/SearchBar"
+import Testing from '../Testing/Testing';
 
 // import style from './NavBar.module.css'
 
@@ -21,11 +22,9 @@ export default function NavBar(props) {
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/shoes'><a>Shoes</a></Link></li>
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/clothing'><a>Clothing</a></Link></li>
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/products'><a>Products</a></Link></li>
+        <li className="btn btn-ghost normal-case text-xl"><Link to="/testing"><a>Testing</a></Link></li>
       </ul>
-      
       </div>
-        
-       
     </div>
 
   </div>

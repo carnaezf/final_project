@@ -39,19 +39,8 @@ const Home= ()=>{
       {/* <h1 className="text-3xl font-bold underline">home</h1> */}
       {/* <Link to= "/products"><button>products</button></Link> */}
       <NavBar pagin={pagin} />
-        {/* <div>
-          <Link to='shoppingBag'>
-            <button>ShoppingBag</button>
-          </Link>
-        </div> */}
       
-      <div className="Testing Components">
-        <div>
-          <Link to='createProduct'>
-            <button>Create Product Form</button>
-          </Link>
-        </div>
-      </div>
+
       <Jumbotron/>
     <br />
 

@@ -9,6 +9,7 @@ import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
 import createProduct from "../src/Views/AdminForm/CreateProducts"
 import LoginForm from "../src/Views/LoginForm/LoginForm";
+import Testing from "./Components/Testing/Testing";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
           <Route exact path="/shoppingBag" component={ShoppingBag} />
           <Route exact path="/createProduct" component={createProduct} />
           <Route exact path="/login-form" component={LoginForm} />
+          <Route exact path="/testing" component={Testing} />
           <Route exact path="*" component={Home} />
         </Switch>
       </div>
