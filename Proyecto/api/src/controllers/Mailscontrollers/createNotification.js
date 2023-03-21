@@ -1,10 +1,6 @@
 const { Notification, User } = require("../../db.js");
 
-//Busca a User en la BD, y crea la Notifications para enviarla a User
-
-//Activar cuando un usuario se registra(evento en el front)
-//Activar cuando un usuario realiza una compra(evento en el front)
-//Activar cuando una orden fue despachada.(evento en el front)
+//Busca a User en la BD, y crea la Notification en la base de datos con el id del usuario a enviarse con el atributo sent en false
 
 const createNotification = async(userId, subject, content) => {
     try{
