@@ -18,10 +18,10 @@ export default function NavBar() {
       <div className="dropdown">
 
       <ul>
-        <li className="btn btn-ghost normal-case text-xl"> <Link to='/home/accesories'><a>Acessories</a></Link></li>
-        <li className="btn btn-ghost normal-case text-xl"><Link to='/home/shoes'><a>Shoes</a></Link></li>
-        <li className="btn btn-ghost normal-case text-xl"><Link to='/home/clothing'><a>Clothing</a></Link></li>
-        <li className="btn btn-ghost normal-case text-xl"><Link to='/home/products'><a>Products</a></Link></li>
+        <li className="btn btn-ghost normal-case text-xl"> <Link to='/home/:category'><a>Acessories</a></Link></li>
+        <li className="btn btn-ghost normal-case text-xl"><Link to='/home/:category'><a>Shoes</a></Link></li>
+        <li className="btn btn-ghost normal-case text-xl"><Link to='//home/:category'><a>Clothing</a></Link></li>
+        <li className="btn btn-ghost normal-case text-xl"><Link to='/home/:category'><a>Products</a></Link></li>
       </ul>
     </div>
     
