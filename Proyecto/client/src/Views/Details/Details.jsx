@@ -34,7 +34,7 @@ console.log(myProduct)
         <NavBar />
         </div>
         <div className="flex flex-col">
-        <h1 className="font-roboto text-3xl font-light mt-6 mb-6">
+        <h1 className="font-roboto text-3xl font-light mt-[8rem] mb-6">
 20% DE DESCUENTO EN COMPRAS DE $100 O MÁS | 25% DE DESCUENTO EN COMPRAS DE $150 O MÁS</h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
         </div>

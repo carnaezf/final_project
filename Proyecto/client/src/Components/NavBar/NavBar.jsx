@@ -11,12 +11,12 @@ export default function NavBar(props) {
 
 
   return (
-    <div className="navbar bg-base-100 navbar bg-neutral text-neutral-content ">   
+    <div className="fixed navbar bg-base-100 navbar bg-neutral text-neutral-content ">   
       <div className="flex-1">  
       <h1 className="case text-xl ml-4"> Haal </h1>
       <div className="dropdown">
 
-      <div className='flex ml-[45rem] content-center' >
+      <div className='flex ml-[20rem] mt-4 content-center ' >
       <ul className='content-center'>
         <li className="btn btn-ghost normal-case text-xl"> <Link to='/home/accesories'><a>Acessories</a></Link></li>
         <li className="btn btn-ghost normal-case text-xl"><Link to='/home/shoes'><a>Shoes</a></Link></li>
