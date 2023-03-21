@@ -9,7 +9,6 @@ import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
 import createProduct from "../src/Views/AdminForm/CreateProducts"
 import LoginForm from "../src/Views/LoginForm/LoginForm";
-=======
 
 
 function App() {
