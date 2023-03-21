@@ -1,12 +1,11 @@
 
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
 const { getByIdHandler } = require("../handlers/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
 const {filterByGenreHandler} = require("../handlers/filterByGenreHandler")
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
 const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/filterByStockHandler")
-
+const {newOrderHandler}=require("../handlers/newOrderHandler")
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
 
 
@@ -14,8 +13,6 @@ const {
   createUserHandler,
   getAllUserHandler,
 } = require("../handlers/userHandler");
-
-const { getByIdHandler } = require("../handlers/getByIdHandler");
 
 const { Router } = require("express");
 const router = Router();
@@ -50,7 +47,8 @@ router.get("/products/rating/rating",filterByRatingHandler)
 router.get("/products/reviews/reviews",filterByReviewsHandler)
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
 
-router.get("/products/stock/:stock",filterByStockHandler)
-//http://localhost:3001/products/stock/instock
+router.get("/products/stock/stock",filterByStockHandler)
+//http://localhost:3001/products/stock
+router.post("/order", newOrderHandler)
 
 module.exports = router;

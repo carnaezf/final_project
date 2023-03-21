@@ -61,6 +61,7 @@ const createProductHandler = async (req, res) => {
     id,
     category,
     reviews_count,
+    availability,
   } = req.body;
   try {
     const product = await createProduct(
@@ -71,7 +72,8 @@ const createProductHandler = async (req, res) => {
       average_rating,
       id,
       category,
-      reviews_count
+      reviews_count,
+      availability
     );
     res.status(200).json(product);
 

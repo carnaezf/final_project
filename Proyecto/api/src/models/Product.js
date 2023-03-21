@@ -26,22 +26,15 @@ module.exports = sequelize => {
         type: DataTypes.FLOAT
       },
       availability: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER,
       },
       category: {
         type: DataTypes.STRING,
         allowNull: false
       },
-       availability: {
-        type: DataTypes.STRING,
-       },
        breadcrumbs:{
         type: DataTypes.STRING,
        },
-        category: {
-          type: DataTypes.STRING,
-          // allowNull: false,
-        },
         
         reviews_count: {
           type: DataTypes.FLOAT,
@@ -51,13 +44,7 @@ module.exports = sequelize => {
           // allowNull: false,
         },
 
-      reviews_count: {
-        type: DataTypes.FLOAT
-      },
-      images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false
-      }
+
     },
     {
       timestamps: false
