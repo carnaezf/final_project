@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { postCreateProduct } from '../../Redux/actions/formActions/actions';
@@ -9,6 +9,10 @@ const CreateProduct = ({styles}) => {
     const dispatch = useDispatch();
 
     const [ formSubmitted, changeSubmittedForm ] = useState(false);
+
+    
+
+
     return (
         <>
             <Formik
@@ -19,7 +23,7 @@ const CreateProduct = ({styles}) => {
                     category: '',
                     average_rating: 0,
                     reviews_count: 0,
-                    images: []
+                    images: ['']
                 }}
                 validate={
                     (values) => {
@@ -58,7 +62,15 @@ const CreateProduct = ({styles}) => {
 
                 onSubmit={(values, { resetForm }) => {
                     console.log(values);
-                    // dispatch(postCreateProduct(values))
+                    dispatch(postCreateProduct({
+                        name: values.name,
+                        sellingPrice: values.sellingPrice,
+                        description: values.description,
+                        category: values.category,
+                        average_rating: values.average_rating,
+                        reviews_count: values.reviews_count,
+                        images: [values.images],
+                    }))
                     console.log(values);
                     resetForm()
                     console.log('Form submitted');
@@ -202,11 +214,37 @@ const CreateProduct = ({styles}) => {
                         <div>
                             <label
                                 className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                                htmlFor="images">Image: 
+                            </label>
+                            <Field
+                                className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                type="text" 
+                                name="images" 
+                                id="images"  
+                                placeholder='Enter product images' 
+                            />
+                            <ErrorMessage 
+                            name="images"
+                            component={ () => ( <div className={style.inputError} >{errors.images}</div> ) }
+                            />
+                        </div>
+
+
+
+
+
+
+
+                        {/* <div>
+                            <label
+                                className="uppercase tracking-wide text-black text-xs font-bold mb-2"
                                 htmlFor="images">Images: 
                                 </label>
+                            
                             <Field
-                                
-                                type="file" 
+
+                                // type="file" 
+                                type="text"
                                 name="images" 
                                 id="images" 
                             />
@@ -214,7 +252,7 @@ const CreateProduct = ({styles}) => {
                             name="images"
                             component={ () => ( <div className={style.inputError} >{errors.images}</div> ) }
                             />
-                        </div>
+                        </div> */}
                     </div>
                     <button
                         className="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"

@@ -17,7 +17,7 @@ export default function Testing() {
             </Link>
             <br />
             <Link to='/login-form'>
-                <button>Shopping Bags</button>
+                <button>Login Form</button>
             </Link>
         </div>
     )
