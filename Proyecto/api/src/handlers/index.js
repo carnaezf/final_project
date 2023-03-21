@@ -58,7 +58,7 @@ const createProductHandler = async (req, res) => {
     sellingPrice,
     images,
     average_rating,
-    id,
+    // id,
     category,
     reviews_count,
   } = req.body;
@@ -69,7 +69,7 @@ const createProductHandler = async (req, res) => {
       sellingPrice,
       images,
       average_rating,
-      id,
+      // id,
       category,
       reviews_count
     );

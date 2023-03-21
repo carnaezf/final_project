@@ -8,6 +8,10 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
+import createProduct from "../src/Views/AdminForm/CreateProducts";
+import LoginForm from "../src/Views/LoginForm/LoginForm";
+import Testing from "./Components/Testing/Testing";
+
 function App() {
   //const location =useLocation();
   // console.log(location);
@@ -17,9 +21,13 @@ function App() {
         <Switch>
           <Route exact path="/home" component={Home} />
           {/*   <Route exact path="/home/products" component={Products} /> */}
-          <Route exact path="/home/products/detail/:id" component={Details} />
+          <Route exact path="/home/products/:id" component={Details} />
           <Route exact path="/products" component={Products} />
+<<<<<<< HEAD
            <Route exact path="/home/:category" component={Category} /> 
+=======
+          {/* <Route exact path="/home/:category" component={Category} /> */}
+>>>>>>> 9cf9ce5de9c5f5e585bcee78e0c66d37a819ec61
           {/* <Route path="/results/:name" component={SearchBar} /> */}
           {/*   <Route exact path="/home/men" component={Men} />
           <Route exact path="/home/women" component={Women} />
@@ -28,9 +36,13 @@ function App() {
           <Route exact path="/home/account" component={Account} />
           <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
           <Route exact path="/shoppingBag" component={ShoppingBag} />
+          <Route exact path="/createProduct" component={createProduct} />
+          <Route exact path="/login-form" component={LoginForm} />
+          <Route exact path="/testing" component={Testing} />
           <Route exact path="*" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>
-  )}
+  );
+}
 export default App;

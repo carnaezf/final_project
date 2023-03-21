@@ -5,10 +5,11 @@ import { useDispatch,useSelector} from "react-redux"; //mis hooks
 import {getProducts} from "../../Redux/actions"
 import { Link } from "react-router-dom";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
-import ShoppingBag from "../../Components/ShoppingBag/ShoppingBag"
 import  "../../index.css"
-import NavBar
- from "../../Components/NavBar/NavBar";
+import NavBar from "../../Components/NavBar/NavBar";
+
+import Jumbotron from "../../Components/Jumbotron/Jumbotron";
+
 const Home= ()=>{
 
   const dispatch= useDispatch();
@@ -19,7 +20,7 @@ const Home= ()=>{
   const allProductsCategory = useSelector(state=> state.allProductsCategory) ; 
   const allProducts= useSelector(state=> state.products) ;
   const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
-  const[productsViews, setProductsViews]= useState (10);
+  const[productsViews, setProductsViews]= useState (9);
   const lastIndex= pageActual * productsViews; //segundo parametro
   const firstIndex= lastIndex - productsViews; //primer parameto
   const maximumPage= Math.ceil(allProducts.length/productsViews); //nose si sera par o inpar
@@ -32,27 +33,38 @@ const Home= ()=>{
   
 
   return (
-   <div >
-    <h1 className="text-3xl font-bold underline">home</h1>
-      <Link to= "/products"><button>products</button></Link>
-      <NavBar categoy={allProductsCategory}/>
+
+   <div className="flex flex-col">
+    
+      {/* <h1 className="text-3xl font-bold underline">home</h1> */}
+      {/* <Link to= "/products"><button>products</button></Link> */}
+      <NavBar pagin={pagin} />
       
-      {/* <Filter /> */}
 
-      {/* <ShoppingBag /> */}
+      <Jumbotron/>
+    <br />
 
-      <Link to='shoppingBag'>
-        <button>ShoppingBag</button>
-      </Link>
 
-   
-      <Paginated maximumPage={maximumPage} pagin={pagin}/>
+
+
+      {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
+
+      <div>
+        <CardsProducts newStateProducts ={newStateProducts} />
+      </div>
+      <div></div>
+      <div>
+        <Paginated maximumPage={maximumPage} pagin={pagin} />
+      </div>
       
-      <CardsProducts newStateProducts ={newStateProducts} />
+      
+      
+      
 
 
-      <p>Pagina {pageActual}</p>  
-   </div>
+      {/* <p>Pagina {pageActual}</p> */}
+  </div>
+
   )
 };
 
