@@ -23,6 +23,14 @@ server.use((req, res, next) => {
 });
 
 server.use('/', routes);
+server.use(express.json());//middleware
+
+let notification = [{ 
+    id: 0,
+    author: "",
+    title: "",
+    contents: ""
+}];
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
