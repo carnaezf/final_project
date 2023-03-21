@@ -8,7 +8,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 
 const contentStyle = {
     // height: '160px',
-    // color: '#fff',
+    color: '#fff',
     // lineHeight: '160px',
     // textAlign: 'center',
     // background: '#364d79',
@@ -19,6 +19,7 @@ const contentStyle = {
 export default function Details(props){
     console.log(props)
     const dispatch = useDispatch()
+    const defaultImage = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200';
 
     useEffect(()=>{
         dispatch(getProductsDetail(props.match.params.id))
@@ -30,45 +31,44 @@ console.log(myProduct)
     
     return (
         <>
-        <div>
         <NavBar />
-        </div>
-        <div className="flex flex-col">
-        <h1 className="font-roboto text-3xl font-light mt-6 mb-6">
+
+        <div className="flex flex-col mx-8">
+        <h1 className="font-roboto text-3xl font-light mt-[7rem] mb-6">
 20% DE DESCUENTO EN COMPRAS DE $100 O MÁS | 25% DE DESCUENTO EN COMPRAS DE $150 O MÁS</h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
         </div>
-        <div className=" flex flex-row h-screen">
+        <div className=" flex flex-row h-screen mx-8">
             <div className=" w-2/3">
-                {
-                    
-                myProduct ?
-                    <div className=" flex w-auto space-x-4"  >
-                        <img className="w-1/2 " src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/>
-                        <img className="m w-1/2" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} />
-                        
-
-                    </div> : <p>Loading ...</p>
-                } 
+                {myProduct && myProduct.images && myProduct.images.length > 0 ?
+    <div className="flex w-auto space-x-4">
+        <img className="w-1/2" src={myProduct.images[1]} alt="Imagen no disponible" />
+        <img className="w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" />
+    </div>
+    :
+    <img src={defaultImage} alt="Imagen no disponible" />
+}
                 
                 
-                <Carousel autoplay className=" ml-2 mt-4 flex space-x-4 w-full">
-                    <div  >
-                        <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
-                    </div>
-                    <div  >
-                        <h3  style={contentStyle}><img className="w-full"  src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }} /></h3>
-                    </div>
-                    <div  >
-                    <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/></h3>
-                    </div>
-                    <div  >
-                    <h3  style={contentStyle}><img className="w-full" src={myProduct.images} alt="Imagen no disponible" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/></h3>
-                    </div>
-                </Carousel>
+                    <Carousel autoplay className="mx-auto flex content-center mt-4 space-x-4 max-w-[40rem]">
+                        {
+                            myProduct && myProduct.images && myProduct.images.slice(3, 6).map((image, index) => (
+                                <div key={index} className="content-center">
+                                    <h3 className="content-center" style={contentStyle}>
+                                        <img
+                                            className="w-full"
+                                            src={image}
+                                            alt="Imagen no disponible"
+                                            onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}
+                                        />
+                                    </h3>
+                                </div>
+                            ))
+                        }
+                    </Carousel>
             </div>
         
-            <div className=" fixed  top-46 right-0 w-1/3">
+            <div className=" fixed  top-44 right-0 w-1/3">
             {
                     
                     myProduct ?
@@ -80,7 +80,7 @@ console.log(myProduct)
                                 <h4 className="font-roboto text-xl text-left">{myProduct.average_rating}</h4>
                         </div> : <p>Loading ...</p>
                     } 
-            <div class="ml-8">
+            <div class="mx-8">
                 <h1 className="font-roboto text-3xl font-normal text-left" >Envíos y devoluciones gratis</h1>
                 <p className="font-roboto text-l font-light text-left" >Envío gratuito estándar y devoluciones gratuitas durante 60 días para los usuarios registrados. Más información. Se aplican exclusiones en la política de devoluciones.</p>
                 <Link to="/account">
@@ -107,6 +107,7 @@ console.log(myProduct)
             </div>
             </div>
         </div>
+        
         </>      
     )
 }

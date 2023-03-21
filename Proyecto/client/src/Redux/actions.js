@@ -50,16 +50,18 @@ export const getByCategoryHandler = (category) => {
   };
 };
 
-export const filterByName = (payload) => {
-  return async function (dispatch) {
+export const filterByName= (payload)=>{
+  return async function (dispatch){
     try {
-      const baseData = await axios.get(
-        `http://localhost:3001/products/search?name=${payload}`
-      );
-      const productsName = baseData.data;
-      dispatch({ type: FILTER_BY_NAME, payload: productsName });
+      const baseData= await axios.get(`http://localhost:3001/products/search?name=${payload}`);
+      const productsName= baseData.data;
+      dispatch({type: FILTER_BY_NAME, payload:productsName});
+          
     } catch (error) {
       alert("No se encontro el Producto Buscado");
+          
     }
-  };
+    
+  }
+
 };

@@ -7,10 +7,12 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
-import createProduct from "../src/Views/AdminForm/CreateProducts"
+import createProduct from "../src/Views/AdminForm/CreateProducts";
 import LoginForm from "../src/Views/LoginForm/LoginForm";
-
-
+import Testing from "./Components/Testing/Testing";
+import Accessories from "./Components/Accessories/Accessories";
+import Clothing from "./Components/Clothing/Clothing";
+import Shoes from "./Components/Shoes/Shoes"
 
 function App() {
   //const location =useLocation();
@@ -22,7 +24,7 @@ function App() {
           <Route exact path="/home" component={Home} />
           {/*   <Route exact path="/home/products" component={Products} /> */}
           <Route exact path="/home/products/:id" component={Details} />
-          <Route exact path="/products" component={Products} />
+          
           {/* <Route exact path="/home/:category" component={Category} /> */}
           {/* <Route path="/results/:name" component={SearchBar} /> */}
           {/*   <Route exact path="/home/men" component={Men} />
@@ -34,6 +36,12 @@ function App() {
           <Route exact path="/shoppingBag" component={ShoppingBag} />
           <Route exact path="/createProduct" component={createProduct} />
           <Route exact path="/login-form" component={LoginForm} />
+          <Route exact path="/testing" component={Testing} />
+          <Route exact path="/products" component={Products} />
+
+          <Route exact path="/accessories" component={Accessories} />
+          <Route exact path="/clothing" component={Clothing} />
+          <Route exact path="/shoes" component={Shoes} />
           <Route exact path="*" component={Home} />
         </Switch>
       </div>
@@ -41,5 +49,3 @@ function App() {
   );
 }
 export default App;
-
-
