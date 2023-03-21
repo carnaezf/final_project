@@ -7,6 +7,8 @@ const { Product } = require("../db");
 //     }
 // })
 // return productPrice
+
+
 // }
 
 //esta funcion trae todos los productos que se encuentren dentro del rango pasado por query

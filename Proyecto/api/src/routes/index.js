@@ -16,7 +16,9 @@ const {
 const {
   createUserHandler,
   getAllUserHandler,
+  updateUserHandler,
 } = require("../handlers/userHandler");
+const { updateProductHandler } = require("../handlers/updateProductHandler");
 
 const { Router } = require("express");
 const router = Router();
@@ -37,21 +39,25 @@ router.post("/user", createUserHandler);
 
 router.get("/user", getAllUserHandler);
 
-router.post("/products/addComment", addCommentHandler)
+router.post("/products/addComment", addCommentHandler);
 
-router.get("/products/price/range",filterByPriceHandler)
+router.get("/products/price/range", filterByPriceHandler);
 //http://localhost:3001/products/price/range?sellingPriceMin=10&sellingPriceMax=50
 
-router.get("/products/genre/:genre",filterByGenreHandler)
+router.get("/products/genre/:genre", filterByGenreHandler);
 //http://localhost:3001/products/genre/kids
 
-router.get("/products/rating/rating",filterByRatingHandler)
+router.get("/products/rating/rating", filterByRatingHandler);
 //http://localhost:3001/products/rating/rating?ratingMin=3&ratingMax=5
 
-router.get("/products/reviews/reviews",filterByReviewsHandler)
+router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
 
-router.get("/products/stock/:stock",filterByStockHandler)
+router.get("/products/stock/:stock", filterByStockHandler);
 //http://localhost:3001/products/stock/instock
+
+router.put("/products/:id", updateProductHandler);
+
+router.put("/user/:id", updateUserHandler);
 
 module.exports = router;

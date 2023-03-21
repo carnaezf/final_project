@@ -1,14 +1,15 @@
 const { Product } = require("../db");
-const {getProducts} =require("./index")
+const { getProducts } = require("./");
 
 const filterByStock = async (stock) => {
-const productStock =await getProducts()
-const filterStock=productStock.filter(el=>el.dataValues.availability.toLowerCase().includes(stock.toLowerCase()))
+  const productStock = await getProducts();
+  const filterStock = productStock.filter((el) =>
+    el.dataValues.availability.toLowerCase().includes(stock.toLowerCase())
+  );
 
-return filterStock
-}
+  return filterStock;
+};
 
 module.exports = {
-    filterByStock
-  };
-  
+  filterByStock,
+};
