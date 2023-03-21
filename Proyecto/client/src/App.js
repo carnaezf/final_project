@@ -7,10 +7,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
-import createProduct from "../src/Views/AdminForm/CreateProducts"
+import createProduct from "../src/Views/AdminForm/CreateProducts";
 import LoginForm from "../src/Views/LoginForm/LoginForm";
-=======
-
 
 function App() {
   //const location =useLocation();
@@ -41,5 +39,3 @@ function App() {
   );
 }
 export default App;
-
-
