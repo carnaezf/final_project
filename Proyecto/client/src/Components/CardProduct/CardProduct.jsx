@@ -5,7 +5,7 @@ const CardProduct = (props) => {
     return (
         <div >
             <Link to ={`/home/products/${props.id}`} >
-                <div className=" transition card m-4 max-w-sm max-h-[32rem] rounded overflow-hidden shadow-lg border-slate-700 border rounded-md text-left font-roboto hover:border-purple-700 hover:border-2 hover:scale-[1.1]">
+                <div className=" transition  m-4 max-w-sm max-h-[32rem] rounded  shadow-lg border-slate-700 border rounded-md text-left font-roboto hover:border-purple-700 hover:border-2 hover:scale-[1.1] ">
                     
                         <div><img className=" min-h-[19rem] h-full " src={props.images[0]} alt="No se encontro la imagen" onError={(e) => { e.target.src = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200'; }}/></div>
                         <div className="card-body mb-8">
