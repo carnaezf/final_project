@@ -6,7 +6,7 @@ const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handl
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
 const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/filterByStockHandler")
-const {newOrderHandler}=require("../handlers/newOrderHandler")
+
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
 
 
@@ -61,7 +61,6 @@ router.get("/products/reviews/reviews", filterByReviewsHandler);
 
 router.get("/products/stock/stock",filterByStockHandler)
 //http://localhost:3001/products/stock
-router.post("/order", newOrderHandler)
 
 router.put("/products/:id", updateProductHandler);
 

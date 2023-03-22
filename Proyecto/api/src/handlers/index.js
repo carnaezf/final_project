@@ -79,7 +79,7 @@ const createProductHandler = async (req, res) => {
       category,
       reviews_count,
 
-      availability
+      availability,
 
       breadcrumbs
 
