@@ -23,11 +23,7 @@ function App() {
           {/*   <Route exact path="/home/products" component={Products} /> */}
           <Route exact path="/home/products/:id" component={Details} />
           <Route exact path="/products" component={Products} />
-<<<<<<< HEAD
-           <Route exact path="/home/:category" component={Category} /> 
-=======
           {/* <Route exact path="/home/:category" component={Category} /> */}
->>>>>>> 9cf9ce5de9c5f5e585bcee78e0c66d37a819ec61
           {/* <Route path="/results/:name" component={SearchBar} /> */}
           {/*   <Route exact path="/home/men" component={Men} />
           <Route exact path="/home/women" component={Women} />

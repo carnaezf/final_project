@@ -9,6 +9,7 @@ import  "../../index.css"
 import NavBar from "../../Components/NavBar/NavBar";
 
 import Jumbotron from "../../Components/Jumbotron/Jumbotron";
+import Footer from "../../Components/Footer/Footer";
 
 const Home= ()=>{
 
@@ -43,7 +44,7 @@ const Home= ()=>{
 
       <Jumbotron/>
     <br />
-
+    
 
 
 
@@ -55,6 +56,12 @@ const Home= ()=>{
       <div></div>
       <div>
         <Paginated maximumPage={maximumPage} pagin={pagin} />
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <div>
+        <Footer/>
       </div>
       
       
