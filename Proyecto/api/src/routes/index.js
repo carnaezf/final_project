@@ -1,7 +1,7 @@
 
 const { getByIdHandler } = require("../handlers/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
-const {filterByGenreHandler} = require("../handlers/filterByGenreHandler")
+const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/filterByGenreHandler")
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
 const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/filterByStockHandler")
@@ -40,6 +40,9 @@ router.get("/products/price/range",filterByPriceHandler)
 
 router.get("/products/genre/:genre",filterByGenreHandler)
 //http://localhost:3001/products/genre/kids
+
+router.get("/products/genre/genre/:category/:genre",filterBygenreandCategoryHandler)
+//http://localhost:3001/products/genre/genre/women/shoes
 
 router.get("/products/rating/rating",filterByRatingHandler)
 //http://localhost:3001/products/rating/rating?ratingMin=3&ratingMax=5
