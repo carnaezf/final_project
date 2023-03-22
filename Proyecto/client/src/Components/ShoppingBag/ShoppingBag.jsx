@@ -1,4 +1,7 @@
 import style from './shoppingBag.module.css'
+import { Nav } from './nav';
+
+
 import Cookie from 'js-cookie';
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -15,7 +18,11 @@ import { deleteOrder } from '../../Redux/actions/shoppingBagsActions/order_actio
 const ShoppingBag = () => {
 
     return (
+        
         <div>
+            <div>
+                <Nav />
+            </div>
             <div>
                 <div className={style.principal}>
                     <div>
