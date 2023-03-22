@@ -1,5 +1,5 @@
 //const { Product } = require("../db");
-const {getProducts} = require("./index")
+const { getProducts } = require("./");
 
 const filterByGenre=async (genre)=>{
 const productGenre= await getProducts()
@@ -7,6 +7,7 @@ const productGenre= await getProducts()
 const filterGenre=productGenre.filter(element=> element.dataValues.breadcrumbs.toLowerCase().startsWith(genre.toLowerCase()))
 return filterGenre
 }
+
 
 const filterByGenreandCategory= async(category,genre)=>{
     if(genre&&category){
