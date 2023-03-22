@@ -1,4 +1,4 @@
-/********* */
+
 
 //accessories  clothing   shoes    ml-2 mt-4 flex space-x-4 w-full    w-full
 
@@ -33,3 +33,4 @@ const Category=()=>{
     )
 }
 export default Category;
+

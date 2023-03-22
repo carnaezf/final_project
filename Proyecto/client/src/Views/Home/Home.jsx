@@ -7,7 +7,9 @@ import CardsProducts from "../../Components/CardsProducts/CardsProducts"
 import  "../../index.css"
 import NavBar from "../../Components/NavBar/NavBar";
 import Jumbotron from "../../Components/Jumbotron/Jumbotron";
+import Footer from "../../Components/Footer/Footer";
 import Category from "../../Components/Category/Category";
+
 
 const Home= ()=>{
 
@@ -36,6 +38,33 @@ const Home= ()=>{
       <NavBar pagin={pagin} />
       <br /><br />
       <Jumbotron/>
+
+    <br />
+    
+
+
+
+      {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
+
+      <div>
+        <CardsProducts newStateProducts ={newStateProducts} />
+      </div>
+      <div></div>
+      <div>
+        <Paginated maximumPage={maximumPage} pagin={pagin} />
+      </div>
+      <br/>
+      <br/>
+      <br/>
+      <div>
+        <Footer/>
+      </div>
+      
+      
+      
+      
+
+
       <br />
       <Category/>
       <br />
@@ -43,6 +72,7 @@ const Home= ()=>{
       <br />
       <Paginated maximumPage={maximumPage} pagin={pagin} />
       <br />
+
 
       {/* <p>Pagina {pageActual}</p> */}
     </div>
