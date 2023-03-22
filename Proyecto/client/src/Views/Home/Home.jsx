@@ -18,7 +18,7 @@ const Home= ()=>{
     dispatch(getProducts())
   },[dispatch]);
 
-  const allProductsCategory = useSelector(state=> state.allProductsCategory) ; 
+  // const allProductsCategory = useSelector(state=> state.allProductsCategory) ; 
   const allProducts= useSelector(state=> state.products) ;
   const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
   const[productsViews, setProductsViews]= useState (9);
@@ -33,49 +33,24 @@ const Home= ()=>{
   
   return (
 
+
+    
     <div className="flex flex-col">
-    
-      <NavBar pagin={pagin} />
-      <br /><br />
-      <Jumbotron/>
 
-    <br />
-    
-
-
-
-      {/* <Paginated maximumPage={maximumPage} pagin={pagin}/> */}
-
-      <div>
+        <NavBar pagin={pagin} />
+          <br /><br />
+        <Jumbotron/>
+        <br />
+        <Category/>
+        <br />
         <CardsProducts newStateProducts ={newStateProducts} />
-      </div>
-      <div></div>
-      <div>
+        <br />
         <Paginated maximumPage={maximumPage} pagin={pagin} />
-      </div>
-      <br/>
-      <br/>
-      <br/>
-      <div>
+        <br />
         <Footer/>
-      </div>
-      
-      
-      
-      
-
-
-      <br />
-      <Category/>
-      <br />
-      <CardsProducts newStateProducts ={newStateProducts} />
-      <br />
-      <Paginated maximumPage={maximumPage} pagin={pagin} />
-      <br />
-
-
-      {/* <p>Pagina {pageActual}</p> */}
+        {/* <p>Pagina {pageActual}</p> */}
     </div>
+
 
   )
 };
