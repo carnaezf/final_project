@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { postCreateProduct } from '../../Redux/actions/formActions/actions';
 import style from './CreateProducts.module.css';
 
 
-const CreateProduct = ({styles}) => {
+const CreateProduct = () => {
     const dispatch = useDispatch();
 
     const [ formSubmitted, changeSubmittedForm ] = useState(false);
