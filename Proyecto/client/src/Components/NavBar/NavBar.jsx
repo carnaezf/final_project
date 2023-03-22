@@ -18,10 +18,10 @@ export default function NavBar(props) {
 
           <div className='flex ml-[20rem] mt-4 content-center ' >
             <ul className='content-center'>
-              <li className="btn btn-ghost normal-case text-xl"> <Link to='/home/accesories'><a>Acessories</a></Link></li>
-              <li className="btn btn-ghost normal-case text-xl"><Link to='/home/shoes'><a>Shoes</a></Link></li>
-              <li className="btn btn-ghost normal-case text-xl"><Link to='/home/clothing'><a>Clothing</a></Link></li>
-              <li className="btn btn-ghost normal-case text-xl"><Link to='/home/products'><a>Products</a></Link></li>
+              <li className="btn btn-ghost normal-case text-xl"> <Link  to ={"/accessories"}><a>Acessories</a></Link></li>
+              <li className="btn btn-ghost normal-case text-xl"><Link  to ={"/shoes"}><a>Shoes</a></Link></li>
+              <li className="btn btn-ghost normal-case text-xl"><Link  to ={"/clothing"}><a>Clothing</a></Link></li>
+              <li className="btn btn-ghost normal-case text-xl"><Link to="/allproducts"><a> All Products</a></Link></li>
               <li className="btn btn-ghost normal-case text-xl"><Link to="/testing"><a>Testing</a></Link></li>
             </ul>
           </div>
