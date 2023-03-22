@@ -1,17 +1,22 @@
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 // const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
 // const { getByIdHandler } = require("../handlers/getByIdHandler");
 =======
 
 const { getByIdHandler } = require("../handlers/getByIdHandler");
 >>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
+=======
+
+const { getByIdHandler } = require("../handlers/getByIdHandler");
+>>>>>>> 2d5535572f986790c855b4f1b90acfaf2d6ab7de
 const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
 const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/filterByGenreHandler")
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
 const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/filterByStockHandler")
-const {newOrderHandler}=require("../handlers/newOrderHandler")
+
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
 
 
@@ -66,7 +71,6 @@ router.get("/products/reviews/reviews", filterByReviewsHandler);
 
 router.get("/products/stock/stock",filterByStockHandler)
 //http://localhost:3001/products/stock
-router.post("/order", newOrderHandler)
 
 router.put("/products/:id", updateProductHandler);
 

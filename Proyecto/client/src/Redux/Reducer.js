@@ -3,11 +3,14 @@ import {
   GET_PRODUCTS_DETAIL,
   GET_PRODUCTS_CATEGORY,
   FILTER_BY_NAME,
+  FILTER_BY_ACCESSORIES_GENRES,
+  FILTER_BY_PRICE,
 } from "./actions";
 
 const intialState = {
   products: [],
   productsDetail: [],
+  productsCategory: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -23,13 +26,13 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         productsDetail: action.payload,
       };
-   
       
     case GET_PRODUCTS_CATEGORY:
       return {
         ...state,
         productsCategory: action.payload,
       };
+
     case FILTER_BY_NAME:
       const namePrudutsId = action.payload.map((c) => c.id);
       const numId = [];
@@ -38,7 +41,11 @@ const rootReducer = (state = intialState, action) => {
             
       return { ...state, products: numId };
       
-          
+    case FILTER_BY_ACCESSORIES_GENRES:
+      
+      return {...state, productsCategory: action.payload}
+      
+    case FILTER_BY_PRICE:
     default: return { ...state };
   } 
 }

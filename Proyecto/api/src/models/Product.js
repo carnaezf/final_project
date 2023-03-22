@@ -39,6 +39,7 @@ module.exports = sequelize => {
         allowNull: false
       },
 <<<<<<< HEAD
+<<<<<<< HEAD
       // availability: {
       //   type: DataTypes.STRING,
       // },
@@ -51,11 +52,16 @@ module.exports = sequelize => {
         //   // allowNull: false,
         // },
 =======
+=======
+>>>>>>> 2d5535572f986790c855b4f1b90acfaf2d6ab7de
 
        breadcrumbs:{
         type: DataTypes.STRING,
        },
+<<<<<<< HEAD
 >>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
+=======
+>>>>>>> 2d5535572f986790c855b4f1b90acfaf2d6ab7de
         
         reviews_count: {
           type: DataTypes.FLOAT,
@@ -66,6 +72,7 @@ module.exports = sequelize => {
         },
 
 
+<<<<<<< HEAD
 <<<<<<< HEAD
       // reviews_count: {
       //   type: DataTypes.FLOAT,
@@ -84,6 +91,8 @@ module.exports = sequelize => {
       // }
 =======
 >>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
+=======
+>>>>>>> 2d5535572f986790c855b4f1b90acfaf2d6ab7de
     },
     {
       timestamps: false
