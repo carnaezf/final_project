@@ -11,9 +11,9 @@ import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 import createProduct from "../src/Views/AdminForm/CreateProducts";
 import LoginForm from "../src/Views/LoginForm/LoginForm";
 import Testing from "./Components/Testing/Testing";
-import Accessories from "./Components/Accessories/Accessories";
-import Clothing from "./Components/Clothing/Clothing";
-import Shoes from "./Components/Shoes/Shoes"
+import Accessories from "./Views/Accessories/Accessories";
+import Clothing from "./Views/Clothing/Clothing";
+import Shoes from "./Views/Shoes/Shoes"
 
 function App() {
   //const location =useLocation();
@@ -38,7 +38,7 @@ function App() {
           <Route exact path="/createProduct" component={createProduct} />
           <Route exact path="/login-form" component={LoginForm} />
           <Route exact path="/testing" component={Testing} />
-          <Route exact path="/products" component={Products} />
+          <Route exact path="/allproducts" component={Products} />
 
           <Route exact path="/accessories" component={Accessories} />
           <Route exact path="/clothing" component={Clothing} />
