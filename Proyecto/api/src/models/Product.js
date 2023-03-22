@@ -32,12 +32,13 @@ module.exports = sequelize => {
         type: DataTypes.FLOAT
       },
       availability: {
-        type: DataTypes.STRING
+        type: DataTypes.INTEGER,
       },
       category: {
         type: DataTypes.STRING,
         allowNull: false
       },
+<<<<<<< HEAD
       // availability: {
       //   type: DataTypes.STRING,
       // },
@@ -49,6 +50,12 @@ module.exports = sequelize => {
         //   type: DataTypes.STRING,
         //   // allowNull: false,
         // },
+=======
+
+       breadcrumbs:{
+        type: DataTypes.STRING,
+       },
+>>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
         
         reviews_count: {
           type: DataTypes.FLOAT,
@@ -59,6 +66,7 @@ module.exports = sequelize => {
         },
 
 
+<<<<<<< HEAD
       // reviews_count: {
       //   type: DataTypes.FLOAT,
       // },
@@ -74,6 +82,8 @@ module.exports = sequelize => {
       //   type: DataTypes.ARRAY(DataTypes.STRING),
       //   allowNull: false
       // }
+=======
+>>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
     },
     {
       timestamps: false
