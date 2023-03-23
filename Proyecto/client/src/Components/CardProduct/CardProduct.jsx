@@ -18,6 +18,7 @@ const CardProduct = (props) => {
                             <div className="inline-block card-actions justify-end  px-3 py-1">
                                 <h4 className="badge font-light">{props.category}</h4>
                             </div>
+                            <button className="badge font-light">+ Add to ShoppingBag</button>
                             </div>
                         </div>
                     
