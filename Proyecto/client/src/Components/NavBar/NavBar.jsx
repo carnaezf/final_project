@@ -62,9 +62,11 @@ export default function NavBar(props) {
       </div>
   </div>
         
+
         <div className="dropdown dropdown-end ">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar ">
         <div className="w-10 rounded-full border-trasparent ">
+
           <BsPersonFill className='justify-center w-full mt-2 text-xl'/>
         </div>
         <div>
@@ -72,8 +74,10 @@ export default function NavBar(props) {
         </div>
       </label>
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+
         <li className="justify-between"> <Link to='/login-form'> Login </Link></li>
         <li className="justify-between"> <Link to='/createProduct'> Shopping Cart</Link></li>
+
       </ul>
         </div>
             </div>
