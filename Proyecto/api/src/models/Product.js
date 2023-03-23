@@ -26,22 +26,26 @@ module.exports = (sequelize) => {
         type: DataTypes.FLOAT,
       },
       availability: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
       category: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      breadcrumbs: {
+
+       breadcrumbs:{
         type: DataTypes.STRING,
-      },
-      reviews_count: {
-        type: DataTypes.FLOAT,
-      },
-      images: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-        allowNull: false,
-      },
+
+       },
+        
+        reviews_count: {
+          type: DataTypes.FLOAT,
+        },
+        images: {
+          type: DataTypes.ARRAY(DataTypes.STRING),
+          allowNull: false,
+        },
+
     },
     {
       timestamps: false,

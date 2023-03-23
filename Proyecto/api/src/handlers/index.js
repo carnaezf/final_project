@@ -66,6 +66,7 @@ const createProductHandler = async (req, res) => {
     id,
     category,
     reviews_count,
+    availability,
     breadcrumbs,
   } = req.body;
   try {
@@ -78,7 +79,11 @@ const createProductHandler = async (req, res) => {
       id,
       category,
       reviews_count,
+
+      availability
+
       breadcrumbs
+
     );
     res.status(200).json(product);
   } catch (error) {

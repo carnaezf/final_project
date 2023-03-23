@@ -1,11 +1,10 @@
 const { Product } = require("../db");
 const { getProducts } = require("./");
 
-const filterByStock = async (stock) => {
-  const productStock = await getProducts();
-  const filterStock = productStock.filter((el) =>
-    el.dataValues.availability.toLowerCase().includes(stock.toLowerCase())
-  );
+const filterByStock = async () => {
+const productStock =await getProducts()
+const filterStock=productStock.filter(el=>Number(el.dataValues.availability) > 0)
+
 
   return filterStock;
 };
