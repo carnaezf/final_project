@@ -5,12 +5,17 @@ import CardProduct from "../CardProduct/CardProduct";
 const CardsProducts = (props) => {
     const products = props.newStateProducts
 
+    console.log(products);
+    console.log(Array.isArray (products));
+    console.log(Array.from (products));
+
     return (
         <>
 
         {/* <div className="container mx-auto h-56 flex flex-wrap justify-center gap-4 content justify-self-auto" > */}
         <div className="container mx-auto  flex flex-wrap justify-center gap-4 content justify-self-auto" >
             {products.map((el)=>{
+                console.log(el);
                 return(
                     <CardProduct
                     id={el.id} 
