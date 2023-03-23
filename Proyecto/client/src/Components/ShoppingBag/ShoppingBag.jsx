@@ -1,6 +1,6 @@
 import style from './shoppingBag.module.css'
 import React from 'react';
-import { Nav } from './nav';
+import NavBar from '../NavBar/NavBar';
 import CardsProducts from '../CardsProducts/CardsProducts';
 import CardProduct from '../CardProduct/CardProduct'
 
@@ -24,9 +24,7 @@ const ShoppingBag = () => {
 
     return (
             <div>
-                <Nav />
-                {/* <CardProduct /> */}
-                <CardsProducts />
+                <NavBar />
             </div>
     )
 

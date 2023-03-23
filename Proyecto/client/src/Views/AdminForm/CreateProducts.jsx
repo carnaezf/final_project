@@ -81,25 +81,7 @@ const CreateProduct = () => {
             >
                 {( { errors } ) => (
                     <Form>
-                    {/* <div> */}
                     <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto">
-                        {/* <div>
-                            <label
-                                className="uppercase tracking-wide text-black text-xs font-bold mb-2"
-                                htmlFor="id">Product id: 
-                            </label>
-                            <Field
-                                className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                type="text" 
-                                name="id" 
-                                id="id" 
-                                placeholder='Enter id product' 
-                            />
-                            <ErrorMessage 
-                            name="id"
-                            component={ () => ( <div className={style.inputError} >{errors.id}</div> ) }
-                            />
-                        </div> */}
 
                         <div>
                             <label
@@ -229,30 +211,6 @@ const CreateProduct = () => {
                             />
                         </div>
 
-
-
-
-
-
-
-                        {/* <div>
-                            <label
-                                className="uppercase tracking-wide text-black text-xs font-bold mb-2"
-                                htmlFor="images">Images: 
-                                </label>
-                            
-                            <Field
-
-                                // type="file" 
-                                type="text"
-                                name="images" 
-                                id="images" 
-                            />
-                            <ErrorMessage 
-                            name="images"
-                            component={ () => ( <div className={style.inputError} >{errors.images}</div> ) }
-                            />
-                        </div> */}
                     </div>
                     <button
                         className="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
