@@ -1,7 +1,31 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import {Link} from "react-router-dom"
+import { ShoppingBagContex } from '../../Contexts/ShoppingBagsContext';
 
 const CardProduct = (props) => {
+    console.log(props);
+
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContex)
+
+    const addToCart = () => {
+        setShoppingBag((currItems) => {
+            const isItemsFound =  currItems.find((item) => item.id === props.id);
+            if(isItemsFound) {
+                return currItems.map((item) => {
+                    if (item.id === props.id) {
+                        return {...item, quantity: item.quantity + 1}
+                    }
+                    else {
+                        return [{...currItems, quantity: 1}]
+                    }
+                }
+
+            )
+            }
+        })
+    }
+
+
     return (
         <div >
             <Link to ={`/home/products/${props.id}`} >
@@ -18,7 +42,13 @@ const CardProduct = (props) => {
                             <div className="inline-block card-actions justify-end  px-3 py-1">
                                 <h4 className="badge font-light">{props.category}</h4>
                             </div>
-                            <button className="badge font-light">+ Add to ShoppingBag</button>
+                                <button 
+                                    className="badge font-light"
+                                    onClick={() => props.addToCart(props.id)}
+                                    // onClick={() => addToCart}
+                                    >
+                                    + Add to ShoppingBag
+                                </button>
                             </div>
                         </div>
                     
