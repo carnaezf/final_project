@@ -18,6 +18,7 @@ const {
 } = require("../handlers/userHandler");
 
 const { updateProductHandler } = require("../handlers/updateProductHandler");
+const { allCategoryHandler } = require("../handlers/categoryHandler");
 
 
 const { Router } = require("express");
@@ -66,5 +67,7 @@ router.post("/order", newOrderHandler)
 router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
+
+router.get("/categories", allCategoryHandler);
 
 module.exports = router;
