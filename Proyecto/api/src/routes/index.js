@@ -46,7 +46,6 @@ router.get("/products/price/range", filterByPriceHandler);
 router.get("/products/genre/:genre", filterByGenreHandler);
 //http://localhost:3001/products/genre/kids
 
-
 router.get("/products/genre/genre/:category/:genre",filterBygenreandCategoryHandler)
 //http://localhost:3001/products/genre/genre/women/shoes
 
@@ -56,7 +55,6 @@ router.get("/products/rating/rating",filterByRatingHandler)
 
 router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
-
 
 router.get("/products/stock/stock",filterByStockHandler)
 //http://localhost:3001/products/stock
@@ -71,10 +69,6 @@ router.get("/order/status/:status",filterOrderSattusHandler)
 //http://localhost:3001/order/status/aceptada
 
 router.put("/order",putOrderHandler)
-
-
-
-
 
 router.put("/products/:id", updateProductHandler);
 

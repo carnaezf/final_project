@@ -1,8 +1,5 @@
-<<<<<<< HEAD:Proyecto/api/src/handlers/FiltersHandler/getByIdHandler.js
+
 const { getProductById } = require("../../controllers/index");
-=======
-const { getProductById } = require("../controllers/");
->>>>>>> f5de071f650ea1a9ed6b91d3b369a8115b04a145:Proyecto/api/src/handlers/getByIdHandler.js
 
 const getByIdHandler = async (req, res) => {
   try {
