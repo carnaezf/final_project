@@ -8,7 +8,6 @@ const {filterByReviewsHandler}= require("../handlers/FiltersHandler/filterByRevi
 const {filterByStockHandler}= require("../handlers/FiltersHandler/filterByStockHandler")
 const {newOrderHandler}=require("../handlers/OrdersHandler/newOrderHandler")
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
-const {createUserHandler,getAllUserHandler} = require("../handlers/userHandler");
 const {getAllOrdersHandler}=require("../handlers/OrdersHandler/getAllOrderHandler")
 const {orderByIdHandler}= require("../handlers/OrdersHandler/orderByIdHandler")
 const {filterOrderSattusHandler}= require ("../handlers/OrdersHandler/filterOrderSatateHandler")
