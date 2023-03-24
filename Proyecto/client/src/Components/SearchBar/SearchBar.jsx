@@ -31,10 +31,10 @@ const SearchBar= (props)=>{
     
 
     return(
-        <div className="flex flex-row">
-            <input type= "text" placeholder="Search" className=" transition input input-bordered focus:bg-purple-900 focus:border-white focus text-white" value={search} onChange={(e) => setearBusqueda(e)} />
-            <button class="ml-4 transition duration-150 px-16 font-roboto font-bold text-black text-white bg-transparent hover:bg-black  hover:text-white py-2 px-4 border rounded hover:border-purple-700 rounded hover:font-bold" type="submit" onClick={(e) => handleFilterName(e)}>Buscar</button> 
-            <button class="ml-4 transition duration-150 px-16 font-roboto font-bold text-black text-white bg-transparent hover:bg-black  hover:text-white py-2 px-4 border rounded hover:border-purple-700 rounded hover:font-bold" type="submit" onClick={(e) => handleReset(e)}>Ver Todo</button>
+        <div className="flex flex-row mr-16">
+            <input type= "text" placeholder="Search" className=" px-2 border mt-2 transition h-[2.1rem] rounded-l-lg bg-slate-200 dark:bg-slate-700 text-purple-700 dark:text-purple-300 dark:border-purple-900  border-purple-400 hover:border-purple-700 dark:hover:border-purple-400 dark:hover:bg-slate-800 hover:bg-slate-300 " value={search} onChange={(e) => setearBusqueda(e)} />
+            <button class=" px-2 rounded-r-lg mt-2 h-[2.1rem] transition font-roboto font-normal normal-case text-lg bg-purple-400 dark:bg-purple-900 hover:bg-purple-800 dark:hover:bg-purple-500 border-transparent hover:border-transparent text-current hover:text-purple-200 dark:text-slate-300 dark:hover:text-purple-100" type="submit" onClick={(e) => handleFilterName(e)}>Buscar</button> 
+            <button class="ml-2 mt-2 h-[2.1rem] transition font-roboto font-normal normal-case text-lg border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-300 dark:hover:text-purple-400" type="submit" onClick={(e) => handleReset(e)}>Ver Todo</button>
             
         </div>
     )
