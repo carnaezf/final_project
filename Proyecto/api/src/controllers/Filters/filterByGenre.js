@@ -1,5 +1,9 @@
 //const { Product } = require("../db");
+<<<<<<< HEAD:Proyecto/api/src/controllers/Filters/filterByGenre.js
 const {getProducts} = require("../index")
+=======
+const { getProducts } = require("./");
+>>>>>>> f5de071f650ea1a9ed6b91d3b369a8115b04a145:Proyecto/api/src/controllers/filterByGenre.js
 
 const filterByGenre=async (genre)=>{
 const productGenre= await getProducts()
@@ -7,6 +11,7 @@ const productGenre= await getProducts()
 const filterGenre=productGenre.filter(element=> element.dataValues.breadcrumbs.toLowerCase().startsWith(genre.toLowerCase()))
 return filterGenre
 }
+
 
 const filterByGenreandCategory= async(category,genre)=>{
     if(genre&&category){

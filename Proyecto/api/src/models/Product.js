@@ -32,6 +32,7 @@ module.exports = sequelize => {
         type: DataTypes.STRING,
         allowNull: false
       },
+
        breadcrumbs:{
         type: DataTypes.STRING,
        },

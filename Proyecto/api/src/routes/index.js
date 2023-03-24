@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 const { getByIdHandler } = require("../handlers/FiltersHandler/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/FiltersHandler/filterByPriceHandler")
 const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/FiltersHandler/filterByGenreHandler")
@@ -12,6 +13,29 @@ const {getAllOrdersHandler}=require("../handlers/OrdersHandler/getAllOrderHandle
 const {orderByIdHandler}= require("../handlers/OrdersHandler/orderByIdHandler")
 const {filterOrderSattusHandler}= require ("../handlers/OrdersHandler/filterOrderSatateHandler")
 const {putOrderHandler}= require("../handlers/OrdersHandler/putOrderHandler")
+=======
+
+const { getByIdHandler } = require("../handlers/getByIdHandler");
+const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
+const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/filterByGenreHandler")
+const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
+const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
+const {filterByStockHandler}= require("../handlers/filterByStockHandler")
+const {newOrderHandler}=require("../handlers/newOrderHandler")
+const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
+
+
+
+const {
+  createUserHandler,
+  getAllUserHandler,
+  updateUserHandler,
+} = require("../handlers/userHandler");
+
+const { updateProductHandler } = require("../handlers/updateProductHandler");
+
+
+>>>>>>> f5de071f650ea1a9ed6b91d3b369a8115b04a145
 const { Router } = require("express");
 const router = Router();
 
@@ -34,27 +58,31 @@ router.post("/user", createUserHandler);
 
 router.get("/user", getAllUserHandler);
 
-router.post("/products/addComment", addCommentHandler)
+router.post("/products/addComment", addCommentHandler);
 
-router.get("/products/price/range",filterByPriceHandler)
+router.get("/products/price/range", filterByPriceHandler);
 //http://localhost:3001/products/price/range?sellingPriceMin=10&sellingPriceMax=50
 
-router.get("/products/genre/:genre",filterByGenreHandler)
+router.get("/products/genre/:genre", filterByGenreHandler);
 //http://localhost:3001/products/genre/kids
+
 
 router.get("/products/genre/genre/:category/:genre",filterBygenreandCategoryHandler)
 //http://localhost:3001/products/genre/genre/women/shoes
 
 router.get("/products/rating/rating",filterByRatingHandler)
+
 //http://localhost:3001/products/rating/rating?ratingMin=3&ratingMax=5
 
-router.get("/products/reviews/reviews",filterByReviewsHandler)
+router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
+
 
 router.get("/products/stock/stock",filterByStockHandler)
 //http://localhost:3001/products/stock
 router.post("/order", newOrderHandler)
 
+<<<<<<< HEAD
 router.get("/order", getAllOrdersHandler)
 
 router.get("/order/detail/:idOrder",orderByIdHandler)
@@ -68,5 +96,10 @@ router.put("/order",putOrderHandler)
 
 
 
+=======
+router.put("/products/:id", updateProductHandler);
+
+router.put("/user/:id", updateUserHandler);
+>>>>>>> f5de071f650ea1a9ed6b91d3b369a8115b04a145
 
 module.exports = router;
