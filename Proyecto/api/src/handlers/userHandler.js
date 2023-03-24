@@ -5,7 +5,7 @@ const {
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
-  const { name, lastName, email, password, dni, phone, birthDate, country } =
+  const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin } =
     req.body;
 
   try {
@@ -17,7 +17,8 @@ const createUserHandler = async (req, res) => {
       dni,
       phone,
       birthDate,
-      country
+      country,
+      isAdmin
     );
     res.status(200).send(user);
   } catch (error) {

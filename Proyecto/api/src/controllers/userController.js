@@ -8,7 +8,8 @@ const createUser = async (
   dni,
   phone,
   birthDate,
-  country
+  country,
+  isAdmin
 ) => {
   const user = await User.create({
     name,
@@ -19,6 +20,7 @@ const createUser = async (
     phone,
     birthDate,
     country,
+    isAdmin
   });
 
   return "User created";
