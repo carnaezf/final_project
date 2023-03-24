@@ -13,13 +13,11 @@ const {getAllOrdersHandler}=require("../handlers/OrdersHandler/getAllOrderHandle
 const {orderByIdHandler}= require("../handlers/OrdersHandler/orderByIdHandler")
 const {filterOrderSattusHandler}= require ("../handlers/OrdersHandler/filterOrderSatateHandler")
 const {putOrderHandler}= require("../handlers/OrdersHandler/putOrderHandler")
-const {updateProductHandler}= require("../handlers/updateProductHandler")
-const {updateUserHandler}=require("../handlers/userHandler")
-
 const { Router } = require("express");
 const router = Router();
-
-
+const {createUserHandler,getAllUserHandler,updateUserHandler} = require("../handlers/userHandler");
+const { updateProductHandler } = require("../handlers/updateProductHandler");
+const { allCategoryHandler } = require("../handlers/categoryHandler");
 
 
 router.get("/products", getProductsHandler);
@@ -73,6 +71,8 @@ router.put("/order",putOrderHandler)
 router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
+
+router.get("/categories", allCategoryHandler);
 
 
 module.exports = router;
