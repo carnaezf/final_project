@@ -12,7 +12,7 @@ const {
     addCommentHandler,
     createProductHandler, 
  } = require("../handlers/index");
-
+ 
 const {
   createUserHandler,
   getAllUserHandler,
@@ -59,5 +59,17 @@ router.get("/products/stock/:stock", filterByStockHandler);
 router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
+
+
+
+
+const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
+
+// router.post("/mail/send-email", sendEmail)
+//http://localhost:3001/mail/send-email
+
+router.post("/send-email/register", mailRegister)
+//http://localhost:3001/mail/send-email/register
+
 
 module.exports = router;
