@@ -1,6 +1,7 @@
 import style from './NavBar.module.css'
+import { ShoppingBagContex } from '../../Contexts/ShoppingBagsContext'
 
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { BsSearch, BsFillCartFill, BsPersonFill } from "react-icons/bs";
 import SearchBar from "../SearchBar/SearchBar"
@@ -9,6 +10,11 @@ import SearchBar from "../SearchBar/SearchBar"
 
 
 export default function NavBar(props) {
+  const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContex)
+
+  const quantity = shoppingBag.reduce((acc, curr) => {
+    return acc + curr.quantity;
+  }, 0);
 
 
 
@@ -60,11 +66,11 @@ export default function NavBar(props) {
           <ul className={style.navList}>
 
                       <li>
-                          Items: <span className={style.cartCount}>0</span>
+                          Items: <span className={style.cartCount}>{quantity}</span>
                       </li>
 
               </ul>
-              </nav>    
+          </nav>    
     </div>
 
 
