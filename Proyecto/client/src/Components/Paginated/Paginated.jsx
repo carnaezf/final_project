@@ -1,5 +1,6 @@
 import ReactPaginate from 'react-paginate';
-import styles from "./Paginated.module.css"
+
+// import { useHistory,useLocation } from 'react-router-dom';
 
 
 
@@ -9,6 +10,17 @@ const Paginated=(props)=>{
         props.pagin(event.selected +1)
     };
     
+    // const history = useHistory()
+    // const location = useLocation()
+
+    // const handlePageClick = (event) => {
+    //     const selectedPage = event.selected + 1;
+    //     const currentPagePath = location.pathname; // obtener la ruta de la categoría actual
+    //     const pageQuery = `?page=${selectedPage}`;
+    //     history.push(`${currentPagePath}${pageQuery}`);
+    
+    // };
+
     return(
         <div className=''>
             <ReactPaginate

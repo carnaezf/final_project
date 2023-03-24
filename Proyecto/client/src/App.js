@@ -13,19 +13,19 @@ import LoginForm from "../src/Views/LoginForm/LoginForm";
 import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
 import Clothing from "./Views/Clothing/Clothing";
-import Shoes from "./Views/Shoes/Shoes"
+import Shoes from "./Views/Shoes/Shoes";
 
 function App() {
   //const location =useLocation();
   // console.log(location);
   return (
-    <BrowserRouter>
+    <BrowserRouter forceRefresh={true}>
       <div className="App">
         <Switch>
           <Route exact path="/home" component={Home} />
           {/*   <Route exact path="/home/products" component={Products} /> */}
-          <Route exact path="/home/products/:id" component={Details} />
-          
+          <Route exact path="/products/:id" component={Details} />
+
           {/* <Route exact path="/home/:category" component={Category} /> */}
           {/* <Route path="/results/:name" component={SearchBar} /> */}
           {/*   <Route exact path="/home/men" component={Men} />
