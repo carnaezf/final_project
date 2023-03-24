@@ -1,10 +1,9 @@
-
 import { useDispatch} from "react-redux";
 import { filterByGenres } from "../../Redux/actions";
 import { getCategory } from "../../Redux/actions";
 import { filterByPrice } from "../../Redux/actions";
 
-const FilterAccessories = (props) => {
+const FilterClothing = (props) => {
 
   const dispatch = useDispatch();
 
@@ -20,7 +19,7 @@ const FilterAccessories = (props) => {
 
   const handleReset= (e)=>{
     props.pagin(1);
-    dispatch(getCategory("accessories")); //le paso el valor de mi estado de busqueda
+    dispatch(getCategory("clothing")); //le paso el valor de mi estado de busqueda
     
   };
 
@@ -29,9 +28,9 @@ const FilterAccessories = (props) => {
       <nav>   
         <select onChange={(e) => handleAccessories(e)}>
           <option value="select">Select Generes</option>
-          <option value="training/accessories">Training</option>
-          <option value="men/accessories">Men</option>
-          <option value="women/accessories">Women</option>
+          <option value="men/clothing">Men</option>
+          <option value="women/clothing">Women</option>
+          <option value="kids/clothing">Kids</option>
         </select>
       </nav>
       <br />
@@ -47,10 +46,10 @@ const FilterAccessories = (props) => {
       <br />
 
       <div>
-        <button type="submit" onClick={(e) => handleReset(e)}>All Accessories</button>
+        <button type="submit" onClick={(e) => handleReset(e)}>All Clothing</button>
        </div>
     </div>
   );
 };
 
-export default FilterAccessories;
+export default FilterClothing;
