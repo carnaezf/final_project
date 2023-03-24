@@ -1,5 +1,5 @@
 //const { Product } = require("../db");
-const {getProducts} = require("./index")
+const {getProducts} = require("../index")
 
 const filterByGenre=async (genre)=>{
 const productGenre= await getProducts()
