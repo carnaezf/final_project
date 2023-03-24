@@ -6,19 +6,25 @@ import Category from "./Components/Category/Category";
 // import { Route, useLocation } from "react-router-dom"; //para poder usar el useLocation //asi venia
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
-import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
-
 import createProduct from "../src/Views/AdminForm/CreateProducts";
 import LoginForm from "../src/Views/LoginForm/LoginForm";
 import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
 import Clothing from "./Views/Clothing/Clothing";
-import Shoes from "./Views/Shoes/Shoes";
+
+import Shoes from "./Views/Shoes/Shoes"
+import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
+import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagsContext";
+
+
+
 
 function App() {
   //const location =useLocation();
   // console.log(location);
   return (
+
+   <ShoppingBagProvider>
     <BrowserRouter forceRefresh={true}>
       <div className="App">
         <Switch>
@@ -39,14 +45,16 @@ function App() {
           <Route exact path="/login-form" component={LoginForm} />
           <Route exact path="/testing" component={Testing} />
           <Route exact path="/allproducts" component={Products} />
-
-          <Route exact path="/accessories" component={Accessories} />
-          <Route exact path="/clothing" component={Clothing} />
-          <Route exact path="/shoes" component={Shoes} />
-          <Route exact path="*" component={Home} />
-        </Switch>
-      </div>
-    </BrowserRouter>
+            <Route exact path="/accessories" component={Accessories} />
+            <Route exact path="/clothing" component={Clothing} />
+            <Route exact path="/shoes" component={Shoes} />
+            <Route exact path="*" component={Home} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </ShoppingBagProvider>
   );
 }
+
+
 export default App;
