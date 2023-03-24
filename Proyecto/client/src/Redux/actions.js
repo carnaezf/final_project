@@ -5,8 +5,9 @@ export const GET_PRODUCTS = "GET_PRODUCTS";
 export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
 export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
-export const FILTER_BY_ACCESSORIES_GENRES = "FILTER_BY_ACCESSORIES_GENRES";
-export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
+export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
+export const FILTER_BY_PRICE = "FILTER_BY_ACCESSORIES_PRICE";
+
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -58,18 +59,21 @@ export const filterByName= (payload)=>{
 
 };
 
-export const filterByAccessoriesGenres= (payload)=>{
+export const filterByGenres= (payload)=>{
   return async function (dispatch){
     if(payload !=="select"){
-      try {
-        const baseData= await axios.get(`http://localhost:3001/products/genre/${payload}`);
-        const accessoriesName= baseData.data;
-        dispatch({type: FILTER_BY_ACCESSORIES_GENRES, payload: accessoriesName});
-            
-      } catch (error) {
-        alert("No se encontro el Genero Buscado");
-            
-      }
+      dispatch({type: FILTER_BY_GENRES, payload: payload});
+    }
+    else{
+      alert("Selccione un Opcion")
+    }
+    
+  }
+};
+export const filterByPrice= (payload)=>{
+  return async function (dispatch){
+    if(payload !=="select"){
+      dispatch({type: FILTER_BY_PRICE, payload: payload});
     }
     else{
       alert("Selccione un Opcion")
@@ -78,8 +82,3 @@ export const filterByAccessoriesGenres= (payload)=>{
   }
 };
 
-export const filterByPrice= (payload)=>{
-  return function (dispatch){
-    dispatch({type: FILTER_BY_PRICE, payload: payload}); 
-  }
-};
