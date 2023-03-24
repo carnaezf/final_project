@@ -213,7 +213,7 @@ const CreateProduct = () => {
 
                     </div>
                     <button
-                        className="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
+                        className="w-24 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
                         type='submit'>
                             Send
                     </button>
