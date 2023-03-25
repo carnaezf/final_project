@@ -2,11 +2,21 @@ const {
   createUser,
   getAllUser,
   updateUser,
+  signInUser,
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
-  const { name, lastName, email, password, dni, phone, birthDate, country } =
-    req.body;
+  const {
+    name,
+    lastName,
+    email,
+    password,
+    dni,
+    phone,
+    birthDate,
+    country,
+    isAdmin,
+  } = req.body;
 
   try {
     const user = await createUser(
@@ -17,7 +27,8 @@ const createUserHandler = async (req, res) => {
       dni,
       phone,
       birthDate,
-      country
+      country,
+      isAdmin
     );
     res.status(200).send(user);
   } catch (error) {
@@ -53,8 +64,20 @@ const updateUserHandler = async (req, res) => {
   }
 };
 
+const signInUserHandler = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await signInUser(email, password);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
 module.exports = {
   createUserHandler,
   getAllUserHandler,
   updateUserHandler,
+  signInUserHandler,
 };

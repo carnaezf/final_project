@@ -18,12 +18,14 @@ const {
   createUserHandler,
   getAllUserHandler,
   updateUserHandler,
+  signInUserHandler,
 } = require("../handlers/userHandler");
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 
 const { Router } = require("express");
 const router = Router();
+// const { verifyToken } = require("../Token/tokenAdmin");
 
 router.get("/products", getProductsHandler);
 
@@ -63,5 +65,7 @@ router.put("/products/:id", updateProductHandler);
 router.put("/user/:id", updateUserHandler);
 
 router.get("/categories", allCategoryHandler);
+
+router.post("/user/signin", signInUserHandler);
 
 module.exports = router;

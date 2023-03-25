@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -36,7 +37,7 @@ module.exports = (sequelize) => {
       },
       isAdmin: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        allowNull: false,
       },
       dni: {
         type: DataTypes.INTEGER,
