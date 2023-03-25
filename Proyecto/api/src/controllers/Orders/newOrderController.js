@@ -63,10 +63,10 @@ const validateOrderCreated=async(product,quantity,paymentMethod,userId)=>{
         let userByOrder= await User.findByPk(dataFront[0].User.idUser)
         //console.log("..............",userByOrder)
         const newOrdercreated= await Order.create({product,quantity,status:"aceptada",paymentMethod, totalMount:totalPrice,UserUserId:userByOrder.dataValues.userId})
-        userByOrder.set(newOrdercreated)
+        userByOrder.set(newOrdercreated).save()
         //newOrdercreated.save()
        // console.log(newOrdercreated)
-        return newOrdercreated
+      return newOrdercreated
     }else{
         return "error en crear la orden"
     }
@@ -78,6 +78,11 @@ const validateOrderCreated=async(product,quantity,paymentMethod,userId)=>{
 }
 
 //console.log(validateOrder())
+
+
+
+
+
 
 module.exports = {
     validateOrderCreated,

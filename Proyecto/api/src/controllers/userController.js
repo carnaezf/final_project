@@ -1,4 +1,4 @@
-const { User } = require("../db");
+const { User,Order } = require("../db");
 
 const createUser = async (
   name,
@@ -27,8 +27,17 @@ const createUser = async (
 };
 
 const getAllUser = async () => {
-  const users = await User.findAll();
-  return users;
+  try {
+    const users = await User.findAll({
+      include:{
+        model:Order
+      }
+    });
+    return users;
+  } catch (error) {
+    return ({error:error.message})
+  }
+
 };
 
 const updateUser = async (id, name, lastName, phone, birthDate, country) => {
