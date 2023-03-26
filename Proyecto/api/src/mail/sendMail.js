@@ -10,6 +10,8 @@
 //     GOOGLE_REDIRECT_URI 
 // } = process.env;
 
+//DESDE la api de google
+
 // const OAuth2 = google.auth.OAuth2;
 // //Obtengo el accessToken:
 //     const oAuth2Client = new OAuth2(

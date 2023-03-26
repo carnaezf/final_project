@@ -62,11 +62,12 @@ router.put("/user/:id", updateUserHandler);
 
 
 
-
+//Mails:
 const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
+const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
 
-// router.post("/mail/send-email", sendEmail)
-//http://localhost:3001/mail/send-email
+router.post("/mail/send-email", mailOrder)
+//http://localhost:3001/send-email/order
 
 router.post("/send-email/register", mailRegister)
 //http://localhost:3001/mail/send-email/register

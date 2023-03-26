@@ -15,20 +15,18 @@ const mailRegister = async (req, res) => {
             pass: EMAIL_PASSWORD 
         },       
         from: '"henry-sports" <notificaciones.sports@outlook.es>',
-        to: req.body.email, //ARRAY user.email
-        subject:`¡Bienvenido ${req.body.name} !`,// "¡Bienvenido!"
-        text: "Texto del correo acá",//`${req.body.name} gracias por registarse en Sports, ya puede disfrutar de la experiencia completa`,
-        html: "<b>Hola registro!!!</b>",
+        to: email, //ARRAY user.email
+        subject:`¡Welcome ${name} !`,// "¡Bienvenido!"
+        text: "Thanks for choosing us!",//`${req.body.name} gracias por registarse en Sports, ya puede disfrutar de la experiencia completa`,
+        html: "<b>Thanks for choosing us!</b>",
       
         onError: (e) => console.log(e),
-        onSuccess: (i) => console.log(i)
+        onSuccess: (i) => console.log("Mail sent", i)
+     
     })
-    console.log(mailRegister);
-    res.status(200).json(req.body)
-    // .then(()=>{
-    //         console.log("Mail sent");
-    //     })
-   
+
+    res.status(200).json("Registration email sent")
+
 };
 
 module.exports = {
