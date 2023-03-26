@@ -5,9 +5,9 @@ const mailRegister = async (req, res) => {
 
     const { email, name } = req.body;
 
-    const html = `<div>
-        <img src="" alt="wellcome"/>   
-    </div>`;
+    // const html = `<div>
+    //     <img src="" alt="wellcome"/>   
+    // </div>`;
 
     // console.log(req.body);
   const mailRegister = nodeoutlook.sendEmail({

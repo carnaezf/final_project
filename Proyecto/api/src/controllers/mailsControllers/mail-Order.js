@@ -29,7 +29,7 @@ const mailOrder = async (req, res) => {
     //datos del producto
 
     const { name, email } = req.body
-    const mailRegister = nodeoutlook.sendEmail({
+    const orderMail = nodeoutlook.sendEmail({
         host: "smtp.office365.com",
         port: 587,
         secure: false,
@@ -41,12 +41,12 @@ const mailOrder = async (req, res) => {
         to: email, //ARRAY user.email
         subject:`¡Thanks for choosing Sports ${name}!`,// "¡Bienvenido!"
         text: "Here are all the details of your purchase:",//`${req.body.name} gracias por registarse en Sports, ya puede disfrutar de la experiencia completa`,
-        html: "<b>Hola registro!!!</b>",
+        html: "<b>Hear details of your purchase:</b>",
       
         onError: (e) => console.log(e),
         onSuccess: (i) => console.log(i)
     })
-    console.log(mailRegister);
+    // console.log(mailRegister);
     res.status(200).json(req.body)
 
 };
