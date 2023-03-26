@@ -46,7 +46,7 @@ const mailOrder = async (req, res) => {
         onError: (e) => console.log(e),
         onSuccess: (i) => console.log(i)
     })
-    // console.log(mailRegister);
+    // console.log(orderMail);
     res.status(200).json(req.body)
 
 };

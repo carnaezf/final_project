@@ -28,7 +28,6 @@ const mailRegister = async (req, res) => {
         onSuccess: (i) => console.log("Mail sent", i)
      
     })
-
     res.status(200).json("Registration email sent")
 
 };

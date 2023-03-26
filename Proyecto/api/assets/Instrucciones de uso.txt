@@ -1,9 +1,0 @@
-Instrucciones de uso
-
-1. Personaliza la plantilla que has descargado con gráficos, texto, imágenes y demás, utilizando tu editor favorito.
-2. Asegúrate de que todas las imágenes que venían con la plantilla sean sustituidas por las tuyas.
-3. Coloca tus imágenes en tu servidor de Internet. Asegúrate de utilizar rutas absolutas en tu HTML para apuntar a esas imágenes de modo que aparezcan en tu plantilla ajustada.
-
-¿Tienes problemas para enviar tus correos electrónicos HTML? ¿No sabes muy bien cómo editar una plantilla en HTML? 
-Sólo tienes que descargar una de nuestras plantillas y personalizarla con el diseñador de emails gratuito de Benchmark Email.
-Usa tus plantillas o uno de nuestros más de 400 modelos, probados y fáciles de usar. Crea tu cuenta GRATIS copiando este enlace en tu navegador: https://bit.ly/RegistrateGratisBenchmark
