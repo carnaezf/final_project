@@ -54,6 +54,9 @@ Comment.hasOne(Product)
 Comment.hasOne(User)
 User.hasMany(Comment)
 
+Order.belongsTo(User)
+User.hasMany(Order)
+
 module.exports = {
   ...sequelize.models,
   conn: sequelize

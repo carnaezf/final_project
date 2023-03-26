@@ -2,10 +2,12 @@ const {
   createUser,
   getAllUser,
   updateUser,
+  deleteUser
+
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
-  const { name, lastName, email, password, dni, phone, birthDate, country } =
+  const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin,rol } =
     req.body;
 
   try {
@@ -17,7 +19,9 @@ const createUserHandler = async (req, res) => {
       dni,
       phone,
       birthDate,
-      country
+      country,
+      isAdmin,
+      rol
     );
     res.status(200).send(user);
   } catch (error) {
@@ -36,8 +40,8 @@ const getAllUserHandler = async (req, res) => {
 
 const updateUserHandler = async (req, res) => {
   const { id } = req.params;
-  const { name, lastName, phone, birthDate, country } = req.body;
-
+  const { name, lastName, phone, birthDate, country,rol} = req.body;
+ // console.log(id)
   try {
     const user = await updateUser(
       id,
@@ -45,7 +49,8 @@ const updateUserHandler = async (req, res) => {
       lastName,
       phone,
       birthDate,
-      country
+      country,
+      rol
     );
     res.status(200).send(user);
   } catch (error) {
@@ -53,8 +58,22 @@ const updateUserHandler = async (req, res) => {
   }
 };
 
+const deleteUserHandler=async (req,res)=>{
+try {
+  const {userId}=req.params
+  const {rol,idAdmin}= req.body
+
+  const deleteAccion= await deleteUser(userId,rol,idAdmin)
+  
+  res.status(200).json(deleteAccion)
+} catch (error) {
+  res.status(404).send({ error: error.message });
+}
+}
+
 module.exports = {
   createUserHandler,
   getAllUserHandler,
   updateUserHandler,
+  deleteUserHandler
 };

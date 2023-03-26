@@ -30,6 +30,7 @@ const getSearchHandler = async (req, res) => {
 
 const getByCategoryHandler = async (req, res) => {
   const { category } = req.params;
+  console.log(category)
   const lcCategory = category.toLowerCase();
   try {
     const products = await getByCategory(lcCategory);
@@ -65,6 +66,7 @@ const createProductHandler = async (req, res) => {
     id,
     category,
     reviews_count,
+    availability,
     breadcrumbs,
   } = req.body;
   try {
@@ -77,7 +79,9 @@ const createProductHandler = async (req, res) => {
       id,
       category,
       reviews_count,
+      availability,
       breadcrumbs
+
     );
     res.status(200).json(product);
   } catch (error) {
