@@ -62,7 +62,7 @@ const validateOrderCreated=async(product,quantity,paymentMethod,userId)=>{
         //let userByOrder= await User.findAll({where:{userId: dataFront[0].User.idUser}})
         let userByOrder= await User.findByPk(dataFront[0].User.idUser)
         //console.log("..............",userByOrder)
-        const newOrdercreated= await Order.create({product,quantity,status:"aceptada",paymentMethod, totalMount:totalPrice,UserUserId:userByOrder.dataValues.userId})
+        const newOrdercreated= await Order.create({product,quantity,status:"aceptada",paymentMethod, totalMount:totalPrice,UserUserId:userByOrder.dataValues.userId,date:"25/03/2023"})
         userByOrder.set(newOrdercreated).save()
         //newOrdercreated.save()
        // console.log(newOrdercreated)

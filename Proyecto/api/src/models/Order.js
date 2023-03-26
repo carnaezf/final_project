@@ -33,7 +33,12 @@ module.exports = (sequelize) => {
     totalMount:{
       type: DataTypes.STRING,
       //allowNull: false,
+    },
+    date:{
+      type: DataTypes.DATEONLY,
+     // allowNull: false,
     }
+
 
 
   },{

@@ -14,10 +14,10 @@ const {filterOrderSattusHandler}= require ("../handlers/OrdersHandler/filterOrde
 const {putOrderHandler}= require("../handlers/OrdersHandler/putOrderHandler")
 const { Router } = require("express");
 const router = Router();
-const {createUserHandler,getAllUserHandler,updateUserHandler} = require("../handlers/userHandler");
+const {createUserHandler,getAllUserHandler,updateUserHandler,deleteUserHandler} = require("../handlers/userHandler");
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
-
+const {optionsAdminEditUserHandler}= require("../handlers/userAdminHandler")
 
 router.get("/products", getProductsHandler);
 
@@ -34,6 +34,8 @@ router.post("/products", createProductHandler);
 router.post("/user", createUserHandler);
 
 router.get("/user", getAllUserHandler);
+
+router.delete("/user/:userId",deleteUserHandler)
 
 router.post("/products/addComment", addCommentHandler);
 
@@ -73,5 +75,8 @@ router.put("/user/:id", updateUserHandler);
 
 router.get("/categories", allCategoryHandler);
 
+//router.post("/admin", userAdminHandler);
+
+ router.put("/admin/:userId/:rol",optionsAdminEditUserHandler)
 
 module.exports = router;
