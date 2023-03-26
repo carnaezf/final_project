@@ -1,5 +1,6 @@
 
 
+
 const { getByIdHandler } = require("../handlers/FiltersHandler/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/FiltersHandler/filterByPriceHandler")
 const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/FiltersHandler/filterByGenreHandler")
@@ -73,6 +74,21 @@ router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
 
+
+//Mails:
+
+const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
+const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
+
+router.post("/mail/send-email", mailOrder)
+//http://localhost:3001/send-email/order
+
+router.post("/send-email/register", mailRegister)
+//http://localhost:3001/mail/send-email/register
+
+
+module.exports = router;
+
 router.get("/categories", allCategoryHandler);
 
 //router.post("/admin", userAdminHandler);
@@ -80,3 +96,4 @@ router.get("/categories", allCategoryHandler);
  router.put("/admin/:userId/:rol",optionsAdminEditUserHandler)
 
 module.exports = router;
+
