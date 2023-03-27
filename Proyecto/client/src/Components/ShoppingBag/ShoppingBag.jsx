@@ -1,4 +1,4 @@
-import style from './shoppingBag.module.css'
+// import style from './shoppingBag.module.css'
 import React from 'react';
 import NavBar from '../NavBar/NavBar';
 
