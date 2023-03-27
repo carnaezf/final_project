@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import {Link} from "react-router-dom"
-import { ShoppingBagContex } from '../../Contexts/ShoppingBagsContext';
+import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 
 const CardProduct = ({id, name, sellingPrice, images, average_rating, category}) => {
 
-    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContex)
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
 
     const addToCart = () => {
         setShoppingBag((currItems) => {

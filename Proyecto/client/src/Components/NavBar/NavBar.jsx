@@ -1,6 +1,6 @@
 
 import style from './NavBar.module.css'
-import { ShoppingBagContex } from '../../Contexts/ShoppingBagsContext'
+import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext'
 
 import React, { useState, useContext } from 'react';
 
@@ -13,7 +13,7 @@ import SearchBar from "../SearchBar/SearchBar"
 
 
 export default function NavBar(props) {
-  const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContex)
+  const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
 
   const quantity = shoppingBag.reduce((acc, curr) => {
     return acc + curr.quantity;

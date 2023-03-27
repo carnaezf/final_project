@@ -14,7 +14,7 @@ import Clothing from "./Views/Clothing/Clothing";
 
 import Shoes from "./Views/Shoes/Shoes"
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
-import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagsContext";
+import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 
 
 
