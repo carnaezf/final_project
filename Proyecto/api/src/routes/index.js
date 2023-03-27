@@ -1,6 +1,4 @@
 
-
-<<<<<<< HEAD
 const { getByIdHandler } = require("../handlers/FiltersHandler/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/FiltersHandler/filterByPriceHandler")
 const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/FiltersHandler/filterByGenreHandler")
@@ -8,15 +6,7 @@ const {filterByRatingHandler}= require("../handlers/FiltersHandler/filterByRatin
 const {filterByReviewsHandler}= require("../handlers/FiltersHandler/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/FiltersHandler/filterByStockHandler")
 const {newOrderHandler}=require("../handlers/OrdersHandler/newOrderHandler")
-=======
-const { getByIdHandler } = require("../handlers/getByIdHandler");
-const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
-const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/filterByGenreHandler")
-const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
-const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
-const {filterByStockHandler}= require("../handlers/filterByStockHandler")
 
->>>>>>> origin/front
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
 const {getAllOrdersHandler}=require("../handlers/OrdersHandler/getAllOrderHandler")
 const {orderByIdHandler}= require("../handlers/OrdersHandler/orderByIdHandler")
@@ -82,6 +72,21 @@ router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
 
+
+//Mails:
+
+const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
+const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
+
+router.post("/mail/send-email", mailOrder)
+//http://localhost:3001/send-email/order
+
+router.post("/send-email/register", mailRegister)
+//http://localhost:3001/mail/send-email/register
+
+
+module.exports = router;
+
 router.get("/categories", allCategoryHandler);
 
 //router.post("/admin", userAdminHandler);
@@ -89,3 +94,4 @@ router.get("/categories", allCategoryHandler);
  router.put("/admin/:userId/:rol",optionsAdminEditUserHandler)
 
 module.exports = router;
+
