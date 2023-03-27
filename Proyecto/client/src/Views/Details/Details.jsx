@@ -75,9 +75,11 @@ const handleTHemeSwitch = () =>{
 <br />
 <br />
 <br />
+<br />
+<br />
         <div className="flex flex-col mx-8 ">
         <h1 className="font-roboto text-3xl font-light mt-[1rem] mb-6 dark:text-slate-300">
-20% DE DESCUENTO EN COMPRAS DE $100 O MÁS | 25% DE DESCUENTO EN COMPRAS DE $150 O MÁS</h1>
+        20% discount on purchases of $100 or more | 25% discount on purchases of $150 or more</h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
         </div>
         <div className=" flex flex-row h-screen mx-8">
@@ -124,10 +126,10 @@ const handleTHemeSwitch = () =>{
                         </div> : <p>Loading ...</p>
                     } 
             <div class="mx-8 dark:text-slate-300">
-                <h1 className="font-roboto text-3xl font-normal text-left" >Envíos y devoluciones gratis</h1>
-                <p className="font-roboto text-l font-light text-left" >Envío gratuito estándar y devoluciones gratuitas durante 60 días para los usuarios registrados. Más información. Se aplican exclusiones en la política de devoluciones.</p>
-                <Link to="/account">
-                    <div className="text-xs mb-6 underline font-bold cursor-pointer text-purple-800 dark:text-purple-400">Registrate aqui!</div></Link>
+                <h1 className="font-roboto text-3xl font-normal text-left" >Free shipping and returns</h1>
+                <p className="font-roboto text-l font-light text-left" >Standard free shipping and free returns for 60 days for registered users. More information. Exclusions apply to the returns policy.</p>
+                <Link to="/formLogin">
+                    <div className="text-xs mb-6 underline font-bold cursor-pointer text-purple-800 dark:text-purple-400">Sign up here!</div></Link>
             </div>
             <div className="flex justify-around mt-6 ml-8 mr-8">
                 <button class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
@@ -148,7 +150,7 @@ const handleTHemeSwitch = () =>{
                 </button>
             </div>
             <div className="flex justify-around mt-6 ml-8 mr-8">
-                <button class="transition duration-150  font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-14 border border-slate-700 rounded hover:border-white rounded hover:font-bold">
+                <button class="btn-disabled transition duration-150  font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-14 border border-slate-700 rounded hover:border-white rounded hover:font-bold">
                 AÑADIR AL CARRITO
                 </button>
             </div>

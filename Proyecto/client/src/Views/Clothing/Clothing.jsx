@@ -5,6 +5,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts";
 import Paginated from "../../Components/Paginated/Paginated";
 import Filter from "../../Components/Filter/FilterClothing"
+import Footer from"../../Components/Footer/Footer.jsx"
 
 const Clothing=()=>{
 
@@ -79,7 +80,7 @@ const handleTHemeSwitch = () =>{
         <br />
         <Paginated maximumPage={maximumPage} pagin={pagin} />
         <br />
-        
+        <Footer/>
         {/* <p>Pagina {pageActual}</p> */}
       </div>
     )
