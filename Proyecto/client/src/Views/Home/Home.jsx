@@ -57,27 +57,25 @@ const handleTHemeSwitch = () =>{
 }
 /****************************Modo nocturno y claro */
   return (
-
-
     
     <div className="flex flex-col bg-slate-200 dark:bg-zinc-800">
-        <div class="relative">
+      <div class="relative">
         <NavBar pagin={pagin} />
-          <space className="absolute bottom-[30px] left-16 w-36 ml-4" onClick={handleTHemeSwitch}>
-    <Switch className="bg-purple-700 dark:bg-purple-700" checkedChildren={<BsFillMoonFill className="mt-[5px] " />} unCheckedChildren={< BsFillSunFill className="w-full text-purple-300 mt-[10px]"/>}/>
+        <space className="absolute bottom-[30px] left-16 w-36 ml-4" onClick={handleTHemeSwitch}>
+          <Switch className="bg-purple-700 dark:bg-purple-700" checkedChildren={<BsFillMoonFill className="mt-[5px] " />} unCheckedChildren={< BsFillSunFill className="w-full text-purple-300 mt-[10px]"/>}/>
         </space>
-        </div>
-          {/* <br /><br /> */}
-        {/* <Jumbotron/> */}
-        {/* <br /> */}
-        <Category/>
-        <br />
-        <CardsProducts newStateProducts ={newStateProducts} />
-        <br />
-        <Paginated maximumPage={maximumPage} pagin={pagin} />
-        <br />
-        <Footer/>
-        {/* <p>Pagina {pageActual}</p> */}
+      </div>
+    
+      <Category/>
+      <br />
+      <Jumbotron/>
+      <br />
+      <CardsProducts newStateProducts ={newStateProducts} />
+      <br />
+      <Paginated maximumPage={maximumPage} pagin={pagin} />
+      <br/>
+      <Footer/>
+      {/* <p>Pagina {pageActual}</p> */}
     </div>
 
 

@@ -16,10 +16,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      // lastName: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -30,30 +30,30 @@ module.exports = (sequelize) => {
           },
         },
       },
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
-      dni: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      phone: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      birthDate: {
-        type: DataTypes.DATEONLY,
-        // allowNull: false,
-      },
-      country: {
-        type: DataTypes.STRING,
-        // allowNull: false,
-      },
+      // password: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // isAdmin: {
+      //   type: DataTypes.BOOLEAN,
+      //   defaultValue: false,
+      // },
+      // dni: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      // },
+      // phone: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // birthDate: {
+      //   type: DataTypes.DATEONLY,
+      //   // allowNull: false,
+      // },
+      // country: {
+      //   type: DataTypes.STRING,
+      //   // allowNull: false,
+      // },
     },
     {
       timestamps: false,

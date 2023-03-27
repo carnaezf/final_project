@@ -106,8 +106,9 @@ export default function NavBar(props) {
       </label>
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
 
-        <li className="justify-between"> <Link to='/login-form'> Login </Link></li>
+        <li className="justify-between"> <Link to='/login-form'> Log </Link></li>
         <li className="justify-between"> <Link to='/createProduct'> Shopping Cart</Link></li>
+        <li className="justify-between"> <Link to="/formLogin"> Login </Link></li>
 
       </ul>
         </div>

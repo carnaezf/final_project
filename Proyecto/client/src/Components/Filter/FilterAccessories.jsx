@@ -25,7 +25,7 @@ const FilterAccessories = (props) => {
   };
 
   return (
-    <div>
+    <div >
       <nav>   
         <select onChange={(e) => handleAccessories(e)}>
           <option value="select">Select Generes</option>
@@ -47,7 +47,7 @@ const FilterAccessories = (props) => {
       <br />
 
       <div>
-        <button type="submit" onClick={(e) => handleReset(e)}>All Accessories</button>
+        <button class=" px-2 rounded-r-lg mt-2 h-[2.1rem] transition font-roboto font-normal normal-case text-lg bg-purple-400 dark:bg-purple-900 hover:bg-purple-800 dark:hover:bg-purple-500 border-transparent hover:border-transparent text-current hover:text-purple-200 dark:text-slate-300 dark:hover:text-purple-100" type="submit" onClick={(e) => handleReset(e)}>All Accessories</button>
        </div>
     </div>
   );
