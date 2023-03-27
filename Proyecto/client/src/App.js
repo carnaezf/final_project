@@ -16,7 +16,7 @@ import React from "react";
 import Shoes from "./Views/Shoes/Shoes"
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
-import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagsContext";
+import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 import FormLogin from "./Views/LoginForm/FomLogin";
 
 
@@ -57,10 +57,10 @@ function App() {
             <Route exact path="/shoes" component={Shoes} />
             <Route exact path="*" component={Home} />
           </Switch>
-
+          </div>
       </BrowserRouter>
     </ShoppingBagProvider>
-    </div>
+    
   );
 }
 
