@@ -62,6 +62,7 @@ const handleTHemeSwitch = () =>{
     
     <div className="flex flex-col bg-slate-200 dark:bg-zinc-800">
         <div class="fixed top-0 z-50 w-full">
+          {/* *****Nav***** */}
         <NavBar pagin={pagin} />
           <button className="absolute bottom-[25px] left-[8rem] w-36 ml-4 mb-2" >
             <label className="swap swap-rotate">
