@@ -1,20 +1,33 @@
 import style from './shoppingBag.module.css'
-import React from 'react';
 import NavBar from '../NavBar/NavBar';
-
-
-
-
-// shoppingBags_actions: addToCart, deleteCart, removeFromCart, updateFromCart
-// checkout_actions: CreateOrder, UpdateOrderToCreateStatus 
-// order_actions: deleteOrder, getOrders
+import React, { useContext, useState } from 'react';
+import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 
 
 const ShoppingBag = () => {
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+
+    const quantity = shoppingBag.reduce((acc, curr) => {
+        return acc + curr.quantity;
+    }, 0);
+
+    const totalPrice = shoppingBag.reduce(
+        (acc, curr) => acc + curr.quantity * curr.price,
+        0
+    );
+
     return (
+        <div>
+
             <div>
                 <NavBar />
             </div>
+            <div>
+            <div>Items in cart: {quantity}</div>
+            <div>Total: ${totalPrice}</div>
+                <button onClick={() => console.log(shoppingBag)}>Checkout</button>
+          </div>
+          </div>
     )
 
 }
