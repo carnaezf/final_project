@@ -1,4 +1,7 @@
-import style from './shoppingBag.module.css'
+
+// import style from './shoppingBag.module.css'
+import React from 'react';
+
 import NavBar from '../NavBar/NavBar';
 import React, { useContext, useState } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
