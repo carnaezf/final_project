@@ -10,11 +10,10 @@ module.exports = (sequelize) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
-<<<<<<< HEAD
       },
       name: {
         type: DataTypes.STRING,
-=======
+
         // type: DataTypes.INTEGER,
         // defaultValue: DataTypes.UUIDV4,
         // autoIncrement: true,
@@ -24,7 +23,7 @@ module.exports = (sequelize) => {
       name: {
         type: DataTypes.STRING
 
->>>>>>> origin/front
+
       },
       description: {
         type: DataTypes.TEXT,
@@ -55,12 +54,8 @@ module.exports = (sequelize) => {
         },
         images: {
           type: DataTypes.ARRAY(DataTypes.STRING),
-          allowNull: false,
+          //allowNull: false,
         },
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/front
     },
     {
       timestamps: false,

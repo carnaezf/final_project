@@ -30,39 +30,7 @@ module.exports = (sequelize) => {
           },
         },
       },
-<<<<<<< HEAD
-      password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      isAdmin: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-      },
-      dni: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
-      phone: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      birthDate: {
-        type: DataTypes.DATEONLY,
-        // allowNull: false,
-      },
-      country: {
-        type: DataTypes.STRING,
-        // allowNull: false,
-      },
-      rol:{
-        type: DataTypes.ENUM(
-          "superadmin",
-          "administrator",
-          "commonuser" ),
-          defaultValue: "commonuser",
-      }
-=======
+
       // password: {
       //   type: DataTypes.STRING,
       //   allowNull: false,
@@ -87,7 +55,39 @@ module.exports = (sequelize) => {
       //   type: DataTypes.STRING,
       //   // allowNull: false,
       // },
->>>>>>> origin/front
+      rol:{
+        type: DataTypes.ENUM(
+          "superadmin",
+          "administrator",
+          "commonuser" ),
+          defaultValue: "commonuser",
+      }
+
+      // password: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // isAdmin: {
+      //   type: DataTypes.BOOLEAN,
+      //   defaultValue: false,
+      // },
+      // dni: {
+      //   type: DataTypes.INTEGER,
+      //   allowNull: false,
+      // },
+      // phone: {
+      //   type: DataTypes.STRING,
+      //   allowNull: false,
+      // },
+      // birthDate: {
+      //   type: DataTypes.DATEONLY,
+      //   // allowNull: false,
+      // },
+      // country: {
+      //   type: DataTypes.STRING,
+      //   // allowNull: false,
+      // },
+
     },
     {
       timestamps: false,
