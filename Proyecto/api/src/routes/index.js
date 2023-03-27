@@ -18,6 +18,8 @@ const {createUserHandler,getAllUserHandler,updateUserHandler,deleteUserHandler} 
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const {optionsAdminEditUserHandler}= require("../handlers/userAdminHandler")
+const { veryfyToken } = require("../Token/tokenAdmin");
+
 
 router.get("/products", getProductsHandler);
 
@@ -29,7 +31,7 @@ router.get("/products/category/:category", getByCategoryHandler);
 
 router.put("/products/addReview", addReviewHandler);
 
-router.post("/products", createProductHandler);
+router.post("/products", veryfyToken, createProductHandler);
 
 router.post("/user", createUserHandler);
 
@@ -45,15 +47,19 @@ router.get("/products/price/range", filterByPriceHandler);
 router.get("/products/genre/:genre", filterByGenreHandler);
 //http://localhost:3001/products/genre/kids
 
+
 router.get("/products/genre/genre/:category/:genre",filterBygenreandCategoryHandler)
+
 //http://localhost:3001/products/genre/genre/women/shoes
 
-router.get("/products/rating/rating",filterByRatingHandler)
+router.get("/products/rating/rating", filterByRatingHandler);
 
 //http://localhost:3001/products/rating/rating?ratingMin=3&ratingMax=5
 
 router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
+
+// router.post("/order", newOrderHandler);
 
 router.get("/products/stock/stock",filterByStockHandler)
 //http://localhost:3001/products/stock
@@ -67,6 +73,7 @@ router.get("/order/status/:status",filterOrderSattusHandler)
 //http://localhost:3001/order/status/aceptada
 
 router.put("/order",putOrderHandler)
+
 
 router.put("/products/:id", updateProductHandler);
 
@@ -85,13 +92,17 @@ router.post("/send-email/register", mailRegister)
 //http://localhost:3001/mail/send-email/register
 
 
-module.exports = router;
-
 router.get("/categories", allCategoryHandler);
+
+
+router.post("/user/signin", signInUserHandler);
+
+router.post("/user/signin/google", googleSignInHandler);
 
 //router.post("/admin", userAdminHandler);
 
  router.put("/admin/:userId/:rol",optionsAdminEditUserHandler)
+
 
 module.exports = router;
 
