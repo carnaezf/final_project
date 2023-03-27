@@ -82,3 +82,17 @@ export const filterByPrice= (payload)=>{
   }
 };
 
+export const postUsers=(payload)=>{
+  return async function(){
+    try {
+      const baseData= await axios.post(`http://localhost:3001/user`,payload);
+      //return baseData;
+
+    } catch (error) {
+      alert({ error: error.message })
+      
+    }
+
+  }
+}
+

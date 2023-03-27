@@ -25,6 +25,7 @@ const FilterAccessories = (props) => {
   };
 
   return (
+
     <div className="flex flex-col">
       <div className="flex mx-auto font-roboto">
         <nav className="mx-2">   
@@ -49,6 +50,7 @@ const FilterAccessories = (props) => {
       </div>
       <div>
         <button className="font-roboto btn normal-case py-2 w-[17.2rem] mt-4 rounded border-slate-700 text-slate-100 dark:text-slate-300  dark:bg-purple-800 hover:border-purple-200  bg-purple-700  bg-purple-700 hover:bg-purple-900  dark:hover:bg-purple-900" type="submit" onClick={(e) => handleReset(e)}>All Accessories</button>
+
        </div>
     </div>
   );

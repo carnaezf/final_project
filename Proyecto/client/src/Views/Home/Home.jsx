@@ -57,10 +57,9 @@ const handleTHemeSwitch = () =>{
 }
 /****************************Modo nocturno y claro */
   return (
-
-
     
     <div className="flex flex-col bg-slate-200 dark:bg-zinc-800">
+
         <div class="fixed top-0 z-50 w-full">
           {/* *****Nav***** */}
         <NavBar pagin={pagin} />
@@ -85,6 +84,7 @@ const handleTHemeSwitch = () =>{
         <br />
         <Footer/>
         {/* <p>Pagina {pageActual}</p> */}
+
     </div>
 
 
