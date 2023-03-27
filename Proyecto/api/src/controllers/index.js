@@ -14,7 +14,7 @@ const obj2 = obj.map((object) => {
     category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
     breadcrumbs:object?.breadcrumbs.toLowerCase(),
-    availability: Number(object?.availability),
+    availability:object?.availability,
   };
 });
 

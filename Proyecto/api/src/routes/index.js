@@ -72,6 +72,7 @@ router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
 
+router.post("/order",newOrderHandler)
 
 //Mails:
 

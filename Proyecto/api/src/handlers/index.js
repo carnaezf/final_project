@@ -30,7 +30,7 @@ const getSearchHandler = async (req, res) => {
 
 const getByCategoryHandler = async (req, res) => {
   const { category } = req.params;
-  console.log(category)
+  //console.log(category)
   const lcCategory = category.toLowerCase();
   try {
     const products = await getByCategory(lcCategory);
