@@ -6,6 +6,7 @@ import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 
 const ShoppingBag = () => {
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+   console.log('ESTADO SHOPPING BAGS DESDE CART COMP', shoppingBag)
 
     const quantity = shoppingBag.reduce((acc, curr) => {
         return acc + curr.quantity;
@@ -32,8 +33,9 @@ const ShoppingBag = () => {
 
 }
 
-export default ShoppingBag;
 
+
+export default ShoppingBag;
 
 
 

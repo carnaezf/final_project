@@ -5,6 +5,7 @@ import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 const CardProduct = ({id, name, sellingPrice, images, average_rating, category}) => {
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+    console.log('ESTADO SHOPPING BAGS DESDE PRODUCT COMP', shoppingBag);
 
     const addToCart = () => {
         setShoppingBag((currItems) => {
