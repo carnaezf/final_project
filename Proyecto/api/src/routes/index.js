@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 const { getByIdHandler } = require("../handlers/FiltersHandler/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/FiltersHandler/filterByPriceHandler")
 const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/FiltersHandler/filterByGenreHandler")
@@ -7,6 +8,15 @@ const {filterByRatingHandler}= require("../handlers/FiltersHandler/filterByRatin
 const {filterByReviewsHandler}= require("../handlers/FiltersHandler/filterByReviewsHandler")
 const {filterByStockHandler}= require("../handlers/FiltersHandler/filterByStockHandler")
 const {newOrderHandler}=require("../handlers/OrdersHandler/newOrderHandler")
+=======
+const { getByIdHandler } = require("../handlers/getByIdHandler");
+const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
+const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/filterByGenreHandler")
+const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
+const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
+const {filterByStockHandler}= require("../handlers/filterByStockHandler")
+
+>>>>>>> origin/front
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
 const {getAllOrdersHandler}=require("../handlers/OrdersHandler/getAllOrderHandler")
 const {orderByIdHandler}= require("../handlers/OrdersHandler/orderByIdHandler")
@@ -57,7 +67,6 @@ router.get("/products/reviews/reviews", filterByReviewsHandler);
 
 router.get("/products/stock/stock",filterByStockHandler)
 //http://localhost:3001/products/stock
-router.post("/order", newOrderHandler)
 
 router.get("/order", getAllOrdersHandler)
 

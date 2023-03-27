@@ -63,7 +63,7 @@ const createProductHandler = async (req, res) => {
     sellingPrice,
     images,
     average_rating,
-    id,
+    // id,
     category,
     reviews_count,
     availability,
@@ -76,10 +76,16 @@ const createProductHandler = async (req, res) => {
       sellingPrice,
       images,
       average_rating,
-      id,
+      // id,
       category,
       reviews_count,
+<<<<<<< HEAD
       availability,
+=======
+
+      availability,
+
+>>>>>>> origin/front
       breadcrumbs
 
     );
