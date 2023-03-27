@@ -227,4 +227,4 @@ const CreateProduct = () => {
 }
 
 export default CreateProduct;
-// Revisar estilos.
+// Revisar estilos de los errores de los inputs.
