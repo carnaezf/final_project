@@ -1,11 +1,14 @@
 import React, { useContext, useState } from "react";
 import {Link} from "react-router-dom"
+
 import { ShoppingBagContex } from '../../Contexts/ShoppingBagsContext';
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 
+
 const CardProduct = ({id, name, sellingPrice, images, average_rating, category}) => {
 
-    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContex)
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+    console.log('ESTADO SHOPPING BAGS DESDE PRODUCT COMP', shoppingBag);
 
     const addToCart = () => {
         setShoppingBag((currItems) => {

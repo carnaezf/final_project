@@ -11,10 +11,11 @@ import LoginForm from "../src/Views/LoginForm/LoginForm";
 import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
 import Clothing from "./Views/Clothing/Clothing";
+import React from "react";
 
 import Shoes from "./Views/Shoes/Shoes"
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
-import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagsContext";
+import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 
 
 
@@ -23,10 +24,12 @@ function App() {
   //const location =useLocation();
   // console.log(location);
   return (
-
+    // console.log('ShoppingBagProvider')
+    <div className="App">
    <ShoppingBagProvider>
-    <BrowserRouter forceRefresh={true}>
-      <div className="App">
+    <BrowserRouter >
+    {/* <BrowserRouter forceRefresh={true}> */}
+
         <Switch>
           <Route exact path="/home" component={Home} />
           {/*   <Route exact path="/home/products" component={Products} /> */}
@@ -50,9 +53,10 @@ function App() {
             <Route exact path="/shoes" component={Shoes} />
             <Route exact path="*" component={Home} />
           </Switch>
-        </div>
+
       </BrowserRouter>
     </ShoppingBagProvider>
+    </div>
   );
 }
 

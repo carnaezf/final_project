@@ -1,5 +1,7 @@
 
+
 import { ShoppingBagContex } from '../../Contexts/ShoppingBagsContext'
+
 
 import React, { useState, useContext } from 'react';
 
@@ -13,7 +15,7 @@ import logo from "./Haal.png"
 
 
 export default function NavBar(props) {
-  const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContex)
+  const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
 
   const quantity = shoppingBag.reduce((acc, curr) => {
     return acc + curr.quantity;
