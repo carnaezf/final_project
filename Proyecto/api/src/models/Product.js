@@ -32,7 +32,6 @@ module.exports = (sequelize) => {
       },
       sellingPrice: {
         type: DataTypes.FLOAT,
-        allowNull: false,
       },
       average_rating: {
         type: DataTypes.FLOAT,
@@ -42,13 +41,11 @@ module.exports = (sequelize) => {
       },
       category: {
         type: DataTypes.STRING,
-        allowNull: false,
       },
 
-       breadcrumbs:{
+      breadcrumbs: {
         type: DataTypes.STRING,
-
-       },
+      },
         
         reviews_count: {
           type: DataTypes.FLOAT,

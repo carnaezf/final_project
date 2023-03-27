@@ -2,9 +2,10 @@ const {
   createUser,
   getAllUser,
   updateUser,
-  deleteUser
-
+  deleteUser,
+  signInUser,
 } = require("../controllers/userController.js");
+
 
 const createUserHandler = async (req, res) => {
   const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin,rol } =
@@ -58,6 +59,30 @@ const updateUserHandler = async (req, res) => {
   }
 };
 
+
+const signInUserHandler = async (req, res) => {
+  const { email, password } = req.body;
+
+  try {
+    const user = await signInUser(email, password);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
+const googleSignInHandler = async (req, res) => {
+  const { email, name, lastName, google, password } = req.body;
+
+  try {
+    const user = await googleSignIn(email, name, lastName, google, password);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
+
 const deleteUserHandler=async (req,res)=>{
 try {
   const {userId}=req.params
@@ -71,9 +96,12 @@ try {
 }
 }
 
+
 module.exports = {
   createUserHandler,
   getAllUserHandler,
   updateUserHandler,
+  signInUserHandler,
+  googleSignInHandler,
   deleteUserHandler
 };
