@@ -41,11 +41,11 @@ module.exports = (sequelize) => {
       },
       dni: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        // allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       birthDate: {
         type: DataTypes.DATEONLY,
@@ -54,6 +54,10 @@ module.exports = (sequelize) => {
       country: {
         type: DataTypes.STRING,
         // allowNull: false,
+      },
+      google: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     {

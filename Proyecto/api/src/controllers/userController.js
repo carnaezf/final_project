@@ -1,7 +1,6 @@
 const { User } = require("../db");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { createTokens } = require("../Token/tokenAdmin");
 const { encryptKey, encryptExpiration } = process.env;
 
 const createUser = async (
@@ -39,9 +38,15 @@ const createUser = async (
     country: countryCapitalized,
     isAdmin,
   });
-  const tokens = createTokens(user);
+  const Token = jwt.sign(
+    {
+      user: user,
+    },
+    encryptKey,
+    { expiresIn: encryptExpiration }
+  );
 
-  return { msg: "User created", tokens };
+  return { msg: "User created", token: Token };
 };
 
 const getAllUser = async () => {
@@ -78,9 +83,48 @@ const signInUser = async (email, password) => {
   if (!passwordMatch) {
     throw new Error(`password incorrect`);
   }
-  const tokens = createTokens(user);
+  const Token = jwt.sign(
+    {
+      user: user,
+    },
+    encryptKey,
+    { expiresIn: encryptExpiration }
+  );
 
-  return { msg: "User logged", tokens };
+  return { msg: "User logged", token: Token };
+};
+
+const googleSignIn = async (email, name, lastName, google, password) => {
+  let emailLower = email.toLowerCase();
+  const user = await User.findOne({
+    where: { email: emailLower },
+  });
+  if (!user) {
+    let passwordHash = await bcrypt.hash(password, 10);
+    const user = await User.create({
+      name,
+      lastName,
+      email: emailLower,
+      google,
+      password: passwordHash,
+    });
+    const token = jwt.sign(
+      {
+        user: user,
+      },
+      encryptKey,
+      { expiresIn: encryptExpiration }
+    );
+    return { msg: "User created", token: token };
+  }
+  const token = jwt.sign(
+    {
+      user: user,
+    },
+    encryptKey,
+    { expiresIn: encryptExpiration }
+  );
+  return { msg: "User logged", token: token };
 };
 
 module.exports = {
@@ -88,4 +132,5 @@ module.exports = {
   getAllUser,
   updateUser,
   signInUser,
+  googleSignIn,
 };

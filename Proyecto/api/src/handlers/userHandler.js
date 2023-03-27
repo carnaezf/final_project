@@ -75,9 +75,22 @@ const signInUserHandler = async (req, res) => {
   }
 };
 
+const googleSignInHandler = async (req, res) => {
+  const { email, name, lastName, google, password } = req.body;
+
+  try {
+    const user = await googleSignIn(email, name, lastName, google, password);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
+
 module.exports = {
   createUserHandler,
   getAllUserHandler,
   updateUserHandler,
   signInUserHandler,
+  googleSignInHandler,
 };
