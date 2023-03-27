@@ -10,12 +10,12 @@ import Shoes from "./shoes.jpg";
 
 const Category=()=>{
     return(
-        <div className="bg-red-500  justify-start">
+        <div className="bg-slate-500  justify-start">
             
             <Carousel autoplay className=" flex space-x-4">
                 <div className='relative'>
                     
-                            <img className="w-full" src={Accessories} alt="Imagen no disponible"/>
+                            <img className="w-[full]" src={Accessories} alt="Imagen no disponible"/>
                             <div className="absolute bottom-[15rem] left-24 h-[20rem] w-[45rem] bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 ">
                                 <h1 className='w-[25rem] text-left absolute font-bold font-roboto text-white text-4xl bottom-[12rem] left-10'>Elevate Your Style with Adidas Accessories</h1>
                                 <p className='w-[40rem] text-left absolute font-roboto text-white text-xl bottom-[6rem] left-10'>Shop our collection of Adidas accessories and take your style to the next level. From backpacks to hats, and everything in between, we have the perfect accessory to complete your look.</p>
