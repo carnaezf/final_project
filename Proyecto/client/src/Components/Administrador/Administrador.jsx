@@ -103,7 +103,7 @@ const App = () => {
     {
       title: 'Product',
       dataIndex: 'name',
-      width: '20%',
+      width: '21%',
       editable: true,
     },
     {
