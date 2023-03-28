@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect,useState } from "react";
+import { useEffect,useState, useContext } from "react";
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { getProductsDetail } from "../../Redux/actions";
@@ -7,6 +7,7 @@ import { Carousel } from 'antd';
 import NavBar from "../../Components/NavBar/NavBar";
 // import { useHistory } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
+import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
 
 const contentStyle = {
     // height: '160px',
@@ -18,14 +19,20 @@ const contentStyle = {
 
 
 
-export default function Details(props){
-    console.log(props)
+export default function Details({ match: { params: { id } } }){
+
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+
+
+
+    console.log('ID desde Detail', id)
     const dispatch = useDispatch()
     const defaultImage = 'https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200';
     // const history = useHistory()
 
     useEffect(()=>{
-        dispatch(getProductsDetail(props.match.params.id))
+        console.log('Id desde UseEffect', id)
+        dispatch(getProductsDetail(id))
     },[dispatch])
 
 const myProduct = useSelector((state)=> state.productsDetail)
