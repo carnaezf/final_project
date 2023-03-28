@@ -97,6 +97,7 @@ export default function NavBar(props) {
 
     
         <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/formLogin'> Login </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/admin'> Admin </Link></li>
         {/* <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/createProduct'> Shopping Cart</Link></li>
         <li className="justify-between"> <Link to='/login-form'> Log </Link></li> */}
 
