@@ -79,12 +79,21 @@ router.put("/user/:id", updateUserHandler);
 
 const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
 const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
+const { uploadImage } =  require("../controllers/uploads-controllers/upload-controller");
+const { uploadWidget } =  require("../controllers/uploads-controllers/widget");
 
-router.post("/mail/send-email", mailOrder)
+
+router.post("/send-email/order", mailOrder)
 //http://localhost:3001/send-email/order
 
 router.post("/send-email/register", mailRegister)
 //http://localhost:3001/mail/send-email/register
+
+router.post("/products/upload", uploadImage )
+//http://localhost:3001/products/upload
+
+router.post("/products/upload-widget", uploadWidget )
+//http://localhost:3001/products/upload
 
 
 module.exports = router;

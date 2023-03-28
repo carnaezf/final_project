@@ -22,7 +22,7 @@ const mailRegister = async (req, res) => {
         to: email, //ARRAY user.email
         subject:`¡Welcome ${name} !`,// "¡Bienvenido!"
         text: "Thanks for choosing us!",//`${req.body.name} gracias por registarse en Sports, ya puede disfrutar de la experiencia completa`,
-        html: "<div><b>Thanks for choosing us!</b><div>",
+        html: "<img src='LINK DE CLOUDINARY' />",
       
         onError: (e) => console.log(e),
         onSuccess: (i) => console.log("Mail sent", i)
