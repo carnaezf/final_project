@@ -19,7 +19,7 @@ const contentStyle = {
 
 
 
-export default function Details({ match: { params: { id } } }){
+export default function Details({ match: { params: { id } }, sellingPrice }){
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
     console.log('setShoppingBag desde Details', setShoppingBag);
@@ -70,23 +70,51 @@ const handleTHemeSwitch = () =>{
 /****************************Modo nocturno y claro */
 
 /****************************Metodos ShoppingBags */
-const addToCart = (id) => {
-    console.log("Product ID:", id);
+const addToCart = () => {
     setShoppingBag((currItems) => {
+        console.log('currItems desde CardProducts', currItems);
         const isItemsFound = currItems.find((item) => item.id === id);
+        console.log('isItemsFound', isItemsFound);
         if (isItemsFound) {
             return currItems.map((item) => {
             if (item.id === id) {
-            return { ...item, quantity: item.quantity + 1 };
+                return { ...item, quantity: item.quantity + 1 };
             } else {
-            return item;
+                return item;
             }
-        });
+            });
         } else {
-        return [...currItems, { id, quantity: 1 }];
+                return [...currItems, { id, quantity: 1, sellingPrice }];
         }
     });
-    };
+}
+
+
+    const removeItem = (id) => {
+        setShoppingBag((currItems) => {
+            console.log(currItems);
+            if (currItems.find((item) => item.id === id)?.quantity === 1) {
+                return currItems.filter((item) => item.id !== id);
+            } else {
+                return currItems.map((item) => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity - 1 };
+                    } else {
+                        return item;
+                    }
+                });
+            }
+            });
+        };
+
+        const getQuantityById = (id) => {
+            return shoppingBag.find((item) => item.id === id)?.quantity || 0;
+        };    
+    
+        const quantityPerItem = getQuantityById(id);
+
+
+
 /****************************Metodos ShoppingBag */
 
     
@@ -181,17 +209,18 @@ const addToCart = (id) => {
                 </button>
             </div>
             <div className="flex justify-around mt-6 ml-8 mr-8">
-                {/* <button
-                    onClick={() => console.log('Añadir al carrito')}
-                    className="btn-disabled transition duration-150  font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-14 border border-slate-700 rounded hover:border-white rounded hover:font-bold"
-                    >
-                AÑADIR AL CARRITO
-                </button> */}
-                <button
-                    onClick={() => addToCart()}
-                    >
-                test button
-                </button>
+
+                    {quantityPerItem === 0 ? (
+                    <button  onClick={() => addToCart()}>Añadir Carrito</button>
+                    ) : (
+                    <button onClick={() => addToCart()}>Sumar Item</button>)}
+                    {quantityPerItem > 0 && (
+                    <div>{quantityPerItem}</div>
+                    )}
+                    {quantityPerItem > 0 && (
+                    <button onClick={() => removeItem(id)}>Restar Item</button>)}
+
+
             </div>
             {/* <button onClick={handleGoBack}>Volver</button> */}
             </div>
@@ -202,3 +231,13 @@ const addToCart = (id) => {
         </div>      
     )
 }
+
+
+
+// Boton antiguo:
+                {/* <button
+                    onClick={() => console.log('Añadir al carrito')}
+                    className="btn-disabled transition duration-150  font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-14 border border-slate-700 rounded hover:border-white rounded hover:font-bold"
+                    >
+                AÑADIR AL CARRITO
+                </button> */}
