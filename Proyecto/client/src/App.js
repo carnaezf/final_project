@@ -10,6 +10,7 @@ import createProduct from "../src/Views/AdminForm/CreateProducts";
 import LoginForm from "../src/Views/LoginForm/LoginForm";
 import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
+import AdministradorPage from "./Views/Admin/AdministradorPage";
 import Clothing from "./Views/Clothing/Clothing";
 import React from "react";
 
@@ -51,7 +52,7 @@ function App() {
             <Route exact path="/formLogin" component={FormLogin} />
             <Route exact path="/testing" component={Testing} />
             <Route exact path="/allproducts" component={Products} />
-
+            <Route exact path="/admin" component={AdministradorPage} />
             <Route exact path="/accessories" component={Accessories} />
             <Route exact path="/clothing" component={Clothing} />
             <Route exact path="/shoes" component={Shoes} />
