@@ -35,9 +35,9 @@ module.exports = (sequelize) => {
       average_rating: {
         type: DataTypes.FLOAT,
       },
-      availability: {
-        type: DataTypes.INTEGER,
-      },
+      // availability: {
+      //   type: DataTypes.INTEGER,
+      // },
       category: {
         type: DataTypes.STRING,
       },

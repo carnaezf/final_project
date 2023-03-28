@@ -91,6 +91,7 @@ const createProduct = async (
   category,
   reviews_count
 ) => {
+  
   const product = await Product.create({
     name,
     description,
