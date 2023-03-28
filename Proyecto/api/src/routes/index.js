@@ -1,6 +1,4 @@
 
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
-const { getByIdHandler } = require("../handlers/getByIdHandler");
 const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
 const {filterByGenreHandler} = require("../handlers/filterByGenreHandler")
 const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
@@ -16,6 +14,8 @@ const {
 } = require("../handlers/userHandler");
 
 const { getByIdHandler } = require("../handlers/getByIdHandler");
+
+const { mercadoPago } = require("../controllers/mercadoPago")
 
 const { Router } = require("express");
 const router = Router();
@@ -52,5 +52,7 @@ router.get("/products/reviews/reviews",filterByReviewsHandler)
 
 router.get("/products/stock/:stock",filterByStockHandler)
 //http://localhost:3001/products/stock/instock
+
+router.post("/payment/",mercadoPago)
 
 module.exports = router;
