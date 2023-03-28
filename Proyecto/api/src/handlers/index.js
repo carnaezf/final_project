@@ -1,6 +1,11 @@
-
-const { getProducts, getSearch, getByCategory, addReview, addComment,createProduct, } = require("../controllers/index");
-
+const {
+  getProducts,
+  getSearch,
+  getByCategory,
+  addReview,
+  addComment,
+  createProduct,
+} = require("../controllers/");
 
 const getProductsHandler = async (req, res) => {
   try {
@@ -42,15 +47,14 @@ const addReviewHandler = async (req, res) => {
   }
 };
 
-
 const addCommentHandler = async (req, res) => {
-    try {
-      await addComment(req.body);
-      res.status(200).json('Your comment has been added. :)');
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  };
+  try {
+    await addComment(req.body);
+    res.status(200).json("Your comment has been added. :)");
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+};
 const createProductHandler = async (req, res) => {
   const {
     name,
@@ -58,9 +62,10 @@ const createProductHandler = async (req, res) => {
     sellingPrice,
     images,
     average_rating,
-    id,
     category,
     reviews_count,
+    availability,
+    breadcrumbs,
   } = req.body;
   try {
     const product = await createProduct(
@@ -69,12 +74,12 @@ const createProductHandler = async (req, res) => {
       sellingPrice,
       images,
       average_rating,
-      id,
       category,
-      reviews_count
+      reviews_count,
+      availability,
+      breadcrumbs
     );
     res.status(200).json(product);
-
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
@@ -85,10 +90,6 @@ module.exports = {
   getSearchHandler,
   getByCategoryHandler,
   addReviewHandler,
-
   addCommentHandler,
-
-
   createProductHandler,
-
 };
