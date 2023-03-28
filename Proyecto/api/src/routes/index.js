@@ -19,6 +19,7 @@ const {
   newOrderHandler,
 } = require("../handlers/OrdersHandler/newOrderHandler");
 
+
 const {
   getProductsHandler,
   getSearchHandler,
@@ -41,6 +42,7 @@ const {
 } = require("../handlers/OrdersHandler/putOrderHandler");
 const { Router } = require("express");
 const router = Router();
+
 const {
   createUserHandler,
   getAllUserHandler,
@@ -49,10 +51,17 @@ const {
   signInUserHandler,
   googleSignInHandler,
 } = require("../handlers/userHandler");
+
+
+
+
+const { mercadoPago } = require("../controllers/mercadoPago")
+
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const { optionsAdminEditUserHandler } = require("../handlers/userAdminHandler");
 const { veryfyToken } = require("../Token/tokenAdmin");
+
 
 router.get("/products", getProductsHandler);
 
@@ -146,5 +155,7 @@ router.post("/user/signin/google", googleSignInHandler);
 //router.post("/admin", userAdminHandler);
 
 router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
+
+router.post("/payment/",mercadoPago)
 
 module.exports = router;
