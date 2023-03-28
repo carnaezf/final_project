@@ -4,7 +4,6 @@ const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
 const obj2 = obj.map((object) => {
-
   return {
     name: object.name,
     description: object.description.slice(0, 12),
@@ -13,7 +12,7 @@ const obj2 = obj.map((object) => {
     average_rating: object.average_rating,
     category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
-    breadcrumbs:object?.breadcrumbs.toLowerCase(),
+    breadcrumbs: object?.breadcrumbs.toLowerCase(),
     availability: Number(object?.availability),
   };
 });
@@ -52,23 +51,21 @@ const getByCategory = async (category) => {
   return products;
 };
 
-
 const addReview = async ({ id, reviewValue }) => {
-  const product = await Product.findByPk(id)
-  await product.update(
-    {
-      average_rating: (product.average_rating * product.reviews_count + Number(reviewValue)) / (product.reviews_count + 1),
-      reviews_count: product.reviews_count + 1,
-    })
-}
+  const product = await Product.findByPk(id);
+  await product.update({
+    average_rating:
+      (product.average_rating * product.reviews_count + Number(reviewValue)) /
+      (product.reviews_count + 1),
+    reviews_count: product.reviews_count + 1,
+  });
+};
 
-const addComment = async ({ comment, userId, id, }) => {
-  const newComment = await Comment.create({comment})
-  await newComment.setUser(userId)
-  await newComment.setProduct(id)
-}
-
-
+const addComment = async ({ comment, userId, id }) => {
+  const newComment = await Comment.create({ comment });
+  await newComment.setUser(userId);
+  await newComment.setProduct(id);
+};
 
 //..........................................
 const getProductById = async (id) => {
@@ -91,7 +88,6 @@ const createProduct = async (
   sellingPrice,
   images,
   average_rating,
-  id,
   category,
   reviews_count
 ) => {
@@ -102,7 +98,6 @@ const createProduct = async (
     sellingPrice,
     images,
     average_rating,
-    id,
     category,
     reviews_count,
   });
@@ -119,5 +114,4 @@ module.exports = {
   addComment,
 
   createProduct,
-
 };

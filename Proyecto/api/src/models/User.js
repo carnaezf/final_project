@@ -1,4 +1,5 @@
 const { DataTypes } = require("sequelize");
+
 // Exportamos una funcion que define el modelo
 // Luego le injectamos la conexion a sequelize.
 module.exports = (sequelize) => {
@@ -16,10 +17,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+       lastName: {
+       type: DataTypes.STRING,
+       allowNull: false,
+       },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -30,21 +31,22 @@ module.exports = (sequelize) => {
           },
         },
       },
+
       password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
       isAdmin: {
         type: DataTypes.BOOLEAN,
-        defaultValue: false,
+        allowNull: false,
       },
       dni: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        // allowNull: false,
       },
       phone: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       birthDate: {
         type: DataTypes.DATEONLY,
@@ -54,6 +56,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         // allowNull: false,
       },
+      google: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
+
       rol:{
         type: DataTypes.ENUM(
           "superadmin",
@@ -61,6 +68,8 @@ module.exports = (sequelize) => {
           "commonuser" ),
           defaultValue: "commonuser",
       }
+
+      
     },
     {
       timestamps: false,
