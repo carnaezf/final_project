@@ -12,8 +12,9 @@ const obj2 = obj.map((object) => {
     average_rating: object.average_rating,
     category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
-    breadcrumbs: object?.breadcrumbs.toLowerCase(),
-    availability: Number(object?.availability),
+    breadcrumbs:object?.breadcrumbs.toLowerCase(),
+    availability:object?.availability,
+
   };
 });
 
