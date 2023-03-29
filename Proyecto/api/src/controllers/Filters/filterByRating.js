@@ -1,4 +1,4 @@
-const { Product } = require("../db");
+const { Product } = require("../../db");
 
 const filterByRating = async (ratingMin,ratingMax)=>{
 

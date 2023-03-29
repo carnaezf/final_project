@@ -1,4 +1,4 @@
-const {filterByGenre,filterByGenreandCategory}= require ("../controllers/filterByGenre")
+const {filterByGenre,filterByGenreandCategory}= require ("../../controllers/Filters/filterByGenre")
 
 
 const filterByGenreHandler= async (req, res)=>{

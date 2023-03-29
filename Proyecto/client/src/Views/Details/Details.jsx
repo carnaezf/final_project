@@ -39,7 +39,7 @@ export default function Details({ match: { params: { id } }, sellingPrice }){
     },[dispatch])
 
 const myProduct = useSelector((state)=> state.productsDetail)
-console.log(myProduct)
+//console.log(myProduct)
 
     // const handleGoBack = () => {
     //     history.goBack();

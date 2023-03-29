@@ -1,4 +1,4 @@
-const {filterByReviews}= require("../controllers/filterByReviews")
+const {filterByReviews}= require("../../controllers/Filters/filterByReviews")
 
 const filterByReviewsHandler= async(req, res)=>{
     const {reviewMin,reviewMax} = req.query;
