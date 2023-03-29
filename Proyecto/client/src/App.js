@@ -32,37 +32,8 @@ function App() {
         <BrowserRouter >
 
           <div className="App">
+          <Switch>
 
-<<<<<<< HEAD
-            <Switch>
-            
-              <Route exact path="/home" component={Home} />
-
-              
-              {/*   <Route exact path="/home/products" component={Products} /> */}
-               <Route exact path="/products/:id" component={Details} />
-
-              {/* <Route exact path="/home/:category" component={Category} /> */}
-              {/* <Route path="/results/:name" component={SearchBar} /> */}
-              {/*   <Route exact path="/home/men" component={Men} />
-              <Route exact path="/home/women" component={Women} />
-              <Route exact path="/home/kids" component={Kids} />
-              <Route exact path="/home/order" component={Order} />
-              <Route exact path="/home/account" component={Account} />
-              <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
-              <Route exact path="/shoppingBag" component={ShoppingBag} />
-              <Route exact path="/createProduct" component={createProduct} />
-              <Route exact path="/login-form" component={LoginForm} />
-              <Route exact path="/formLogin" component={FormLogin} />
-              <Route exact path="/testing" component={Testing} />
-              <Route exact path="/allproducts" component={Products} />
-
-              <Route exact path="/accessories" component={Accessories} />
-              <Route exact path="/clothing" component={Clothing} />
-              <Route exact path="/shoes" component={Shoes} />
-              <Route exact path="*" component={Home} />
-            </Switch>
-=======
             {/* <Route exact path="/home/:category" component={Category} /> */}
             {/* <Route path="/results/:name" component={SearchBar} /> */}
             {/*   <Route exact path="/home/men" component={Men} />
@@ -83,7 +54,6 @@ function App() {
             <Route exact path="/shoes" component={Shoes} />
             <Route exact path="*" component={Home} />
           </Switch>
->>>>>>> 3a41b4a37db08aa2a1005e3dedfe55c5d54e1f65
           </div>
         </BrowserRouter>
       </ShoppingBagProvider>
