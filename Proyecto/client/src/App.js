@@ -20,48 +20,56 @@ import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 import FormLogin from "./Views/LoginForm/FomLogin";
 
 
-
-
-
 function App() {
   //const location =useLocation();
   // console.log(location);
   return (
+    // <AuthProvider>
+      
+      <ShoppingBagProvider>
 
+        <BrowserRouter >
 
-    <ShoppingBagProvider>
-      <BrowserRouter >
-        <div className="App">
-          <Switch>
-            <Route exact path="/home" component={Home} />
-            {/*   <Route exact path="/home/products" component={Products} /> */}
-            <Route exact path="/products/:id" component={Details} />
+          <div className="App">
 
-            {/* <Route exact path="/home/:category" component={Category} /> */}
-            {/* <Route path="/results/:name" component={SearchBar} /> */}
-            {/*   <Route exact path="/home/men" component={Men} />
-            <Route exact path="/home/women" component={Women} />
-            <Route exact path="/home/kids" component={Kids} />
-            <Route exact path="/home/order" component={Order} />
-            <Route exact path="/home/account" component={Account} />
-            <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
-            <Route exact path="/shoppingBag" component={ShoppingBag} />
-            <Route exact path="/createProduct" component={createProduct} />
-            <Route exact path="/login-form" component={LoginForm} />
-            <Route exact path="/formLogin" component={FormLogin} />
-            <Route exact path="/testing" component={Testing} />
-            <Route exact path="/allproducts" component={Products} />
+            <Switch>
+            
+              <Route exact path="/home" component={Home} />
 
-            <Route exact path="/accessories" component={Accessories} />
-            <Route exact path="/clothing" component={Clothing} />
-            <Route exact path="/shoes" component={Shoes} />
-            <Route exact path="*" component={Home} />
-          </Switch>
+              
+              {/*   <Route exact path="/home/products" component={Products} /> */}
+               <Route exact path="/products/:id" component={Details} />
+
+              {/* <Route exact path="/home/:category" component={Category} /> */}
+              {/* <Route path="/results/:name" component={SearchBar} /> */}
+              {/*   <Route exact path="/home/men" component={Men} />
+              <Route exact path="/home/women" component={Women} />
+              <Route exact path="/home/kids" component={Kids} />
+              <Route exact path="/home/order" component={Order} />
+              <Route exact path="/home/account" component={Account} />
+              <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
+              <Route exact path="/shoppingBag" component={ShoppingBag} />
+              <Route exact path="/createProduct" component={createProduct} />
+              <Route exact path="/login-form" component={LoginForm} />
+              <Route exact path="/formLogin" component={FormLogin} />
+              <Route exact path="/testing" component={Testing} />
+              <Route exact path="/allproducts" component={Products} />
+
+              <Route exact path="/accessories" component={Accessories} />
+              <Route exact path="/clothing" component={Clothing} />
+              <Route exact path="/shoes" component={Shoes} />
+              <Route exact path="*" component={Home} />
+            </Switch>
           </div>
-      </BrowserRouter>
-    </ShoppingBagProvider>
+        </BrowserRouter>
+      </ShoppingBagProvider>
+    // </AuthProvider>
+
+
+
+
     
-  );
+  )
 }
 
 
