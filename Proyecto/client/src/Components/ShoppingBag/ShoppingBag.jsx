@@ -22,19 +22,9 @@ const ShoppingBag = () => {
     let totalPrice=0;
    // console.log(shoppingBag.length)
     for(let i=0; i<shoppingBag.length;i++){
-        console.log(shoppingBag[i].quantity,"quantity")
-        console.log(shoppingBag[i].unit_price,"unit_price")
-        console.log(totalPrice)
      totalPrice=Number(totalPrice)+  (Number(shoppingBag[i].quantity) * Number(shoppingBag[i].unit_price))
-
       }
-          
-      console.log(totalPrice,"typeOf FUIRA del for")
-      
  
-
-
-    
     const  redirectionRute=async()=>{
         
         const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
@@ -45,11 +35,8 @@ const ShoppingBag = () => {
         
        //.then(res=>console.log(res))
        // console.log(response)
-
-       
-    }
-   
-    
+  
+    } 
     return (
         <div className="bg-gray-100 min-h-screen">
             <NavBar />
@@ -66,19 +53,14 @@ const ShoppingBag = () => {
                     <div className="flex justify-between items-center border-b py-4 mt-4">
                         <div className="flex justify-between items-center border-b pb-4">
                         <div className="font-semibold">Products:</div>
-                        <div > {title}</div>
+                        <div > { title } </div>
                         </div>
                         <div className="flex justify-between items-center border-b pb-4">
                         <div className="font-semibold"  > </div>
                         <div>{unit_price}</div>
-                        </div>
-                        
+                        </div>     
                     </div>
-
                         )}
-                   
-                    {console.log(typeof(totalPrice),"dentro del return")}
-
                     <div className="flex justify-between items-center border-b py-4 mt-4">
                         <div className="font-semibold">Total:</div>
                         <div>{totalPrice}</div>
