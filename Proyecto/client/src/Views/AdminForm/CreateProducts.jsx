@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { useDispatch } from 'react-redux';
 import { postCreateProduct } from '../../Redux/actions/formActions/actions';
 import style from './CreateProducts.module.css';
 
 
-const CreateProduct = ({styles}) => {
+const CreateProduct = () => {
     const dispatch = useDispatch();
 
     const [ formSubmitted, changeSubmittedForm ] = useState(false);
@@ -81,25 +81,7 @@ const CreateProduct = ({styles}) => {
             >
                 {( { errors } ) => (
                     <Form>
-                    {/* <div> */}
                     <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto">
-                        {/* <div>
-                            <label
-                                className="uppercase tracking-wide text-black text-xs font-bold mb-2"
-                                htmlFor="id">Product id: 
-                            </label>
-                            <Field
-                                className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                type="text" 
-                                name="id" 
-                                id="id" 
-                                placeholder='Enter id product' 
-                            />
-                            <ErrorMessage 
-                            name="id"
-                            component={ () => ( <div className={style.inputError} >{errors.id}</div> ) }
-                            />
-                        </div> */}
 
                         <div>
                             <label
@@ -229,33 +211,9 @@ const CreateProduct = ({styles}) => {
                             />
                         </div>
 
-
-
-
-
-
-
-                        {/* <div>
-                            <label
-                                className="uppercase tracking-wide text-black text-xs font-bold mb-2"
-                                htmlFor="images">Images: 
-                                </label>
-                            
-                            <Field
-
-                                // type="file" 
-                                type="text"
-                                name="images" 
-                                id="images" 
-                            />
-                            <ErrorMessage 
-                            name="images"
-                            component={ () => ( <div className={style.inputError} >{errors.images}</div> ) }
-                            />
-                        </div> */}
                     </div>
                     <button
-                        className="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
+                        className="w-24 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
                         type='submit'>
                             Send
                     </button>
@@ -269,3 +227,4 @@ const CreateProduct = ({styles}) => {
 }
 
 export default CreateProduct;
+// Revisar estilos de los errores de los inputs.

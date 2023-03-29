@@ -3,14 +3,17 @@ import {
   GET_PRODUCTS_DETAIL,
   GET_PRODUCTS_CATEGORY,
   FILTER_BY_NAME,
-  FILTER_BY_ACCESSORIES_GENRES,
-  FILTER_BY_PRICE,
+  FILTER_BY_GENRES,
+  //FILTER_BY_ACCESSORIES_PRICE,
+  FILTER_BY_PRICE
 } from "./actions";
 
 const intialState = {
   products: [],
   productsDetail: [],
   productsCategory: [],
+  filterGenre:[],
+  filterPrice:[],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -30,7 +33,7 @@ const rootReducer = (state = intialState, action) => {
     case GET_PRODUCTS_CATEGORY:
       return {
         ...state,
-        productsCategory: action.payload,
+        productsCategory: action.payload, filterGenre:action.payload, filterPrice:action.payload
       };
 
     case FILTER_BY_NAME:
@@ -41,11 +44,51 @@ const rootReducer = (state = intialState, action) => {
             
       return { ...state, products: numId };
       
-    case FILTER_BY_ACCESSORIES_GENRES:
+    case FILTER_BY_GENRES:
+
+      const filterAccessories=[];
+      const nameAccessories= state.productsCategory.map(a=>{
+        if(a.breadcrumbs===action.payload) return a.id;  
+      })
+
+      state.productsCategory.filter(e=>nameAccessories.includes(e.id) && filterAccessories.push(e));
       
-      return {...state, productsCategory: action.payload}
+      return {...state, filterGenre: filterAccessories, filterPrice:filterAccessories};
       
     case FILTER_BY_PRICE:
+      const filterPrice=[];
+      if(action.payload==="lower price"){
+        const priceAccessories= state.filterGenre.map(a=>{
+          if(a.sellingPrice >0 && a.sellingPrice <=20){
+            filterPrice.push(a);
+          }
+        })
+      };
+
+      if(action.payload==="half price"){
+        const priceAccessories= state.filterGenre.map(a=>{
+          if(a.sellingPrice >20 && a.sellingPrice <=60){
+            filterPrice.push(a);
+          }
+        })
+      };
+
+      if(action.payload==="higher price"){
+        const priceAccessories= state.filterGenre.map(a=>{
+          if(a.sellingPrice >60 ){
+            filterPrice.push(a);
+          }
+        })
+      };
+
+      return {...state, filterPrice:filterPrice};
+      
+
+
+    
+      
+
+
     default: return { ...state };
   } 
 }

@@ -70,6 +70,7 @@ module.exports = sequelize => {
           type: DataTypes.ARRAY(DataTypes.STRING),
           // allowNull: false,
         },
+<<<<<<< HEAD
 
 
 <<<<<<< HEAD
@@ -93,6 +94,8 @@ module.exports = sequelize => {
 >>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
 =======
 >>>>>>> 2d5535572f986790c855b4f1b90acfaf2d6ab7de
+=======
+>>>>>>> fa17760a048b4141db904f30133b518a264bc823
     },
     {
       timestamps: false
