@@ -1,4 +1,4 @@
-const {filterByStock}= require("../controllers/filterByStock")
+const {filterByStock}= require("../../controllers/Filters/filterByStock")
 
 const filterByStockHandler =async (req, res)=>{
     try {

@@ -1,5 +1,6 @@
-const { Product } = require("../db");
-const { getProducts } = require("./");
+
+const { Product } = require("../../db");
+const {getProducts} =require("../index")
 
 const filterByStock = async () => {
 const productStock =await getProducts()

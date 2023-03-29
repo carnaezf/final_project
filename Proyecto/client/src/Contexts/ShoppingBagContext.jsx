@@ -8,7 +8,7 @@ export const ShoppingBagContext = createContext(null);
 
 export const ShoppingBagProvider = ({ children }) => {
   const [shoppingBag, setShoppingBag] = useState([]);
-  console.log('Estado de shoppingBag en el contexto:', shoppingBag);
+  //console.log('Estado de shoppingBag en el contexto:', shoppingBag);
 
   return (
     <ShoppingBagContext.Provider value={[shoppingBag, setShoppingBag]}>

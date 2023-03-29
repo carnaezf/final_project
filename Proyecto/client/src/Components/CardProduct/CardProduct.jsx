@@ -6,7 +6,7 @@ import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 import Details from "../../Views/Details/Details";
 
 
-const CardProduct = ({id, name, sellingPrice, images, average_rating, category}) => {
+const CardProduct = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
     console.log('ESTADO SHOPPING BAGS DESDE PRODUCT COMP', shoppingBag);
@@ -25,7 +25,7 @@ const CardProduct = ({id, name, sellingPrice, images, average_rating, category})
                 }
                 });
             } else {
-                    return [...currItems, { id, quantity: 1, sellingPrice }];
+                    return [...currItems, { id,title:name, quantity: 1, unit_price:sellingPrice, description:"description ", picture_url:images[0],currency_id:'ARS' }];
             }
         });
     }

@@ -1,4 +1,4 @@
-const { Product } = require("../db");
+const { Product } = require("../../db");
 //esta funcion trae todos los precios que coincidan con el parametro
 // const filterByPrice = async (sellingPrice) => {
 // const productPrice =await Product.findAll({
