@@ -14,6 +14,7 @@ const obj2 = obj.map((object) => {
     reviews_count: object?.reviews_count,
     breadcrumbs:object?.breadcrumbs.toLowerCase(),
     availability:object?.availability,
+    description:object?.description,
 
   };
 });
@@ -90,7 +91,9 @@ const createProduct = async (
   images,
   average_rating,
   category,
-  reviews_count
+  reviews_count,
+  
+  availability
 ) => {
   
   const product = await Product.create({
@@ -101,6 +104,8 @@ const createProduct = async (
     average_rating,
     category,
     reviews_count,
+    
+    availability
   });
   return product;
 };
