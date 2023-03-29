@@ -19,37 +19,15 @@ const {
   newOrderHandler,
 } = require("../handlers/OrdersHandler/newOrderHandler");
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 // const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
 // const { getByIdHandler } = require("../handlers/getByIdHandler");
-=======
 
-<<<<<<< HEAD
-const { getByIdHandler } = require("../handlers/getByIdHandler");
->>>>>>> c0634645bcea6eaaaa8859a79a5c62060b43c611
-=======
 
-const { getByIdHandler } = require("../handlers/getByIdHandler");
->>>>>>> 2d5535572f986790c855b4f1b90acfaf2d6ab7de
-const {filterByPriceHandler} = require("../handlers/filterByPriceHandler")
-const {filterByGenreHandler,filterBygenreandCategoryHandler} = require("../handlers/filterByGenreHandler")
-const {filterByRatingHandler}= require("../handlers/filterByRatingHandler")
-const {filterByReviewsHandler}= require("../handlers/filterByReviewsHandler")
-const {filterByStockHandler}= require("../handlers/filterByStockHandler")
 
 const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
 
 
-=======
-const {
-  getProductsHandler,
-  getSearchHandler,
-  getByCategoryHandler,
-  addReviewHandler,
-  addCommentHandler,
-  createProductHandler,
-} = require("../handlers/index");
 const {
   getAllOrdersHandler,
 } = require("../handlers/OrdersHandler/getAllOrderHandler");
@@ -64,7 +42,7 @@ const {
 } = require("../handlers/OrdersHandler/putOrderHandler");
 const { Router } = require("express");
 const router = Router();
->>>>>>> origin/back
+
 
 const {
   createUserHandler,
