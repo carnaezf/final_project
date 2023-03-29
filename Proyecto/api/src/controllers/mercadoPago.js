@@ -1,22 +1,14 @@
 const mercadopago = require('mercadopago')
+const Product = require('../models/Product')
 require('dotenv').config()
 
+
 mercadopago.configure({access_token: process.env.MERCADOPAGO_KEY})
-axios.post("http://localhost:3001/payment", producto)
+  
 const mercadoPago = (req, res) => {
-  const product = req.body
+  const products = req.body
   const preference = {
-    items: [
-      {
-        id: product.id,
-        title: product.title,
-        currency_id: 'ARS',
-        picture_url: product.image,
-        quantity: product.quantity,
-        unit_price: product.price,
-        description: product.description
-      }
-    ],
+    items: products,
     back_urls: {
       success: 'http://localhost:3000',
       failure: 'http://localhost:3000'
@@ -26,8 +18,8 @@ const mercadoPago = (req, res) => {
   }
   mercadopago.preferences
     .create(preference)
-    .then(response => res.status(200).send({ response }))
-    .catch(error => res.status(400).send({ error: error.message }))
+    .then(response => res.status(200).json({ response }))
+    .catch(error => res.status(400).json({ error: error.message }))
 }
 
 module.exports = {

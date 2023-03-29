@@ -29,7 +29,7 @@ export default function Details(props){
     },[dispatch])
 
 const myProduct = useSelector((state)=> state.productsDetail)
-console.log(myProduct)
+//console.log(myProduct)
 
     // const handleGoBack = () => {
     //     history.goBack();
