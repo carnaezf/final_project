@@ -10,6 +10,7 @@ import createProduct from "../src/Views/AdminForm/CreateProducts";
 import LoginForm from "../src/Views/LoginForm/LoginForm";
 import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
+import AdministradorPage from "./Views/Admin/AdministradorPage";
 import Clothing from "./Views/Clothing/Clothing";
 import React from "react";
 
@@ -32,6 +33,7 @@ function App() {
 
           <div className="App">
 
+<<<<<<< HEAD
             <Switch>
             
               <Route exact path="/home" component={Home} />
@@ -60,6 +62,28 @@ function App() {
               <Route exact path="/shoes" component={Shoes} />
               <Route exact path="*" component={Home} />
             </Switch>
+=======
+            {/* <Route exact path="/home/:category" component={Category} /> */}
+            {/* <Route path="/results/:name" component={SearchBar} /> */}
+            {/*   <Route exact path="/home/men" component={Men} />
+            <Route exact path="/home/women" component={Women} />
+            <Route exact path="/home/kids" component={Kids} />
+            <Route exact path="/home/order" component={Order} />
+            <Route exact path="/home/account" component={Account} />
+            <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
+            <Route exact path="/shoppingBag" component={ShoppingBag} />
+            <Route exact path="/createProduct" component={createProduct} />
+            <Route exact path="/login-form" component={LoginForm} />
+            <Route exact path="/formLogin" component={FormLogin} />
+            <Route exact path="/testing" component={Testing} />
+            <Route exact path="/allproducts" component={Products} />
+            <Route exact path="/admin" component={AdministradorPage} />
+            <Route exact path="/accessories" component={Accessories} />
+            <Route exact path="/clothing" component={Clothing} />
+            <Route exact path="/shoes" component={Shoes} />
+            <Route exact path="*" component={Home} />
+          </Switch>
+>>>>>>> 3a41b4a37db08aa2a1005e3dedfe55c5d54e1f65
           </div>
         </BrowserRouter>
       </ShoppingBagProvider>

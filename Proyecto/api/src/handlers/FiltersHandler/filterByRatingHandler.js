@@ -1,4 +1,4 @@
-const {filterByRating}= require("../controllers/filterByRating")
+const {filterByRating}= require("../../controllers/Filters/filterByRating")
 
 const filterByRatingHandler= async(req, res)=>{
     const {ratingMin,ratingMax} = req.query;

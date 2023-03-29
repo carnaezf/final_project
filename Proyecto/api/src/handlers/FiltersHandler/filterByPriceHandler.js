@@ -1,4 +1,4 @@
-const {filterByRangePrice} =require("../controllers/filterByPrice")
+const {filterByRangePrice} =require("../../controllers/Filters/filterByPrice")
 
 
 
