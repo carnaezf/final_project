@@ -12,6 +12,9 @@ import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
 import AdministradorPage from "./Views/Admin/AdministradorPage";
 import Clothing from "./Views/Clothing/Clothing";
+import TableProducts from "./Components/Administrador/TableProducts";
+import TableOrder from "./Components/Administrador/TableOrder";
+import TableUsers from "./Components/Administrador/TableUsers";
 import React from "react";
 
 import Shoes from "./Views/Shoes/Shoes"
@@ -53,6 +56,9 @@ function App() {
             <Route exact path="/testing" component={Testing} />
             <Route exact path="/allproducts" component={Products} />
             <Route exact path="/admin" component={AdministradorPage} />
+            <Route exact path="/tableproduct" component={TableProducts} />
+            <Route exact path="/tableorder" component={TableOrder} />
+            <Route exact path="/tableusers" component={TableUsers} />
             <Route exact path="/accessories" component={Accessories} />
             <Route exact path="/clothing" component={Clothing} />
             <Route exact path="/shoes" component={Shoes} />
