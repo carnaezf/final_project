@@ -34,6 +34,8 @@ const ShoppingBag = () => {
 
        //.then(res=>console.log(res))
        // console.log(response)
+
+       
     }
 
     return (
