@@ -8,10 +8,11 @@ import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 const CardProduct = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
-    console.log('ESTADO SHOPPING BAGS DESDE PRODUCT COMP', shoppingBag);
+   
 
     const addToCart = () => {
         setShoppingBag((currItems) => {
+            //console.log(currItems, "esto curr items")
             const isItemsFound = currItems.find((item) => item.id === id);
             if (isItemsFound) {
                 return currItems.map((item) => {
