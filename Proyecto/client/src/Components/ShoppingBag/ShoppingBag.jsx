@@ -13,30 +13,19 @@ const ShoppingBag = () => {
         return acc + curr.quantity;
     }, 0);
 
-   //console.log(shoppingBag)
-    // const totalPrice = shoppingBag.reduce(
-    //     (acc, curr) => acc + curr.quantity * curr.price,
-    //     0
-    // );
-    
     let totalPrice=0;
-   // console.log(shoppingBag.length)
     for(let i=0; i<shoppingBag.length;i++){
      totalPrice=Number(totalPrice)+  (Number(shoppingBag[i].quantity) * Number(shoppingBag[i].unit_price))
       }
  
-    const  redirectionRute=async()=>{
-        
+    const  redirectionRute=async()=>{ 
         const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
-        // {id: 0,title: "camisa", picture_url: "noImage",quantity: 1,price:20, description: "camisa larga"}
         const point= resp.data.response.body.init_point
-        //  console.log(point)
         window.location.replace(point)
-        
-       //.then(res=>console.log(res))
-       // console.log(response)
-  
     } 
+
+
+
     return (
         <div className="bg-gray-100 min-h-screen">
             <NavBar />
@@ -49,17 +38,24 @@ const ShoppingBag = () => {
                         <div>{quantity}</div>
                     </div>
                   
-                  {  shoppingBag.map(({picture_url,title,unit_price})=>
-                    <div className="flex justify-between items-center border-b py-4 mt-4">
-                        <div className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold">Products:</div>
-                        <div > { title } </div>
-                        </div>
-                        <div className="flex justify-between items-center border-b pb-4">
+                  {  shoppingBag.map((product)=>
+                  <ul className="flex justify-between items-center border-b py-4 mt-4">
+                         <li className="flex justify-between items-center border-b pb-4">
+                        <div className="font-semibold"> </div>
+                        <div > { product.title } </div>
+                        </li>  
+
+                        <li className="flex justify-center items-center border-b pb-4">
+                        <div className="font-semibold  justify-center items-center"  > </div>
+                        <div  className=" items-center  " >{product.unit_price}</div>
+                        </li> 
+
+                        <li className="flex justify-between items-center border-b pb-4">
                         <div className="font-semibold"  > </div>
-                        <div>{unit_price}</div>
-                        </div>     
-                    </div>
+                        <img src={product.picture_url} className="w-[5rem] h-[5rem]"/>
+                        </li>  
+                        
+                  </ul>
                         )}
                     <div className="flex justify-between items-center border-b py-4 mt-4">
                         <div className="font-semibold">Total:</div>
