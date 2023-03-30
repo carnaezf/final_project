@@ -23,19 +23,19 @@ console.log(FIREBASE_APPID);
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-//   apiKey: "AIzaSyBlMsDFLw86G_AaG_ndkt8TNQqT2m0t5FU",
-//   authDomain: "haal-auth-2.firebaseapp.com",
-//   projectId: "haal-auth-2",
-//   storageBucket: "haal-auth-2.appspot.com",
-//   messagingSenderId: "695743692562",
-//   appId: "1695743692562:web:e4c03d2c39486bcfc0bdcb",
+  //   apiKey: "AIzaSyBlMsDFLw86G_AaG_ndkt8TNQqT2m0t5FU",
+  //   authDomain: "haal-auth-2.firebaseapp.com",
+  //   projectId: "haal-auth-2",
+  //   storageBucket: "haal-auth-2.appspot.com",
+  //   messagingSenderId: "695743692562",
+  //   appId: "1695743692562:web:e4c03d2c39486bcfc0bdcb",
 
-  apiKey: "AIzaSyDaCx3rdoxaPMjPgGu_HeJ1hmwQhpLM-oY",
-  authDomain: "adi-app-f6061.firebaseapp.com",
-  projectId: "adi-app-f6061",
-  storageBucket: "adi-app-f6061.appspot.com",
-  messagingSenderId: "153399835973",
-  appId: "1:153399835973:web:380f071a8ca10cb128522c",
+  apiKey: "AIzaSyBlMsDFLw86G_AaG_ndkt8TNQqT2m0t5FU",
+  authDomain: "haal-auth-2.firebaseapp.com",
+  projectId: "haal-auth-2",
+  storageBucket: "haal-auth-2.appspot.com",
+  messagingSenderId: "695743692562",
+  appId: "1695743692562:web:e4c03d2c39486bcfc0bdcb",
 };
 
 // Initialize Firebase
