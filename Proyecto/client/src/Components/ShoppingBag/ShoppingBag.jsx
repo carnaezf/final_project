@@ -5,7 +5,18 @@ import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import axios from "axios"
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 
+
+import { useAuth } from '../../Contexts/authContext';
+
+
+
+
+
+
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
+
+const {user}=useAuth();
+
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
   // console.log('ESTADO SHOPPING BAGS DESDE carrito', shoppingBag)
    //console.log(shoppingBag[0].id,"esto es id")
@@ -72,6 +83,9 @@ const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,d
 
     return (
         <div className="bg-gray-100 min-h-screen">
+            {user && <h1 className="text-lg font-semibold mb-4">Hi!! {user.displayName? user.displayName : user.email}</h1>}
+
+            
             <NavBar />
             <div className="container mx-auto py-8">
                 <div className="bg-white p-4 shadow-md rounded-md flex-col">
