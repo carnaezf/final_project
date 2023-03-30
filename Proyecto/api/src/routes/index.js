@@ -74,7 +74,9 @@ router.get("/products/category/:category", getByCategoryHandler);
 
 router.put("/products/addReview", addReviewHandler);
 
-router.post("/products", veryfyToken, createProductHandler);
+// router.post("/products", veryfyToken, createProductHandler);
+
+router.post("/products", createProductHandler);
 
 router.post("/user", createUserHandler);
 
