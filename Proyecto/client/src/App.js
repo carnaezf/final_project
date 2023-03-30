@@ -21,7 +21,8 @@ import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 
 import Register from "./Views/Register/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
-
+import Login from "./Views/Login/Login";
+import CheckoutForm from "../src/Components/ShoppingBag/CheckoutForm";
 
 function App() {
   //const location =useLocation();
