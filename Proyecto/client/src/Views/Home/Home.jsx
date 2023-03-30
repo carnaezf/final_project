@@ -14,6 +14,10 @@ import { Switch, Space } from 'antd';
 
 const Home= ()=>{
 
+  
+
+
+
   const dispatch= useDispatch();
   const allProducts= useSelector(state=> state.products) ;
   const[productsViews, setProductsViews]= useState (8);

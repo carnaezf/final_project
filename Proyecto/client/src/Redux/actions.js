@@ -95,4 +95,17 @@ export const postUsers=(payload)=>{
 
   }
 }
+export const loginUsers=(payload)=>{
+  return async function(){
+    try {
+      const baseData= await axios.post(`http://localhost:3001/user/signin`,payload);
+      //return baseData;
+
+    } catch (error) {
+      alert({ error: error.message })
+      
+    }
+
+  }
+}
 
