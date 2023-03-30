@@ -20,14 +20,14 @@ const {
 } = require("../handlers/OrdersHandler/newOrderHandler");
 
 
-const {
-  getProductsHandler,
-  getSearchHandler,
-  getByCategoryHandler,
-  addReviewHandler,
-  addCommentHandler,
-  createProductHandler,
-} = require("../handlers/index");
+// const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
+// const { getByIdHandler } = require("../handlers/getByIdHandler");
+
+
+
+const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
+
+
 const {
   getAllOrdersHandler,
 } = require("../handlers/OrdersHandler/getAllOrderHandler");
@@ -42,6 +42,7 @@ const {
 } = require("../handlers/OrdersHandler/putOrderHandler");
 const { Router } = require("express");
 const router = Router();
+
 
 const {
   createUserHandler,
@@ -73,7 +74,9 @@ router.get("/products/category/:category", getByCategoryHandler);
 
 router.put("/products/addReview", addReviewHandler);
 
-router.post("/products", veryfyToken, createProductHandler);
+// router.post("/products", veryfyToken, createProductHandler);
+
+router.post("/products", createProductHandler);
 
 router.post("/user", createUserHandler);
 

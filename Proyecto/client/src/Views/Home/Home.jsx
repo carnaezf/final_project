@@ -12,8 +12,11 @@ import Category from "../../Components/Category/Category";
 import { BsFillSunFill,BsFillMoonFill } from 'react-icons/bs';
 import { Switch, Space } from 'antd';
 
-
 const Home= ()=>{
+
+  
+
+
 
   const dispatch= useDispatch();
   const allProducts= useSelector(state=> state.products) ;

@@ -12,33 +12,28 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+
       name: {
         type: DataTypes.STRING,
-
-        // type: DataTypes.INTEGER,
-        // defaultValue: DataTypes.UUIDV4,
-        // autoIncrement: true,
-        // primaryKey: true,
-
       },
-      name: {
-        type: DataTypes.STRING
 
-
-      },
       description: {
         type: DataTypes.TEXT,
         allowNull: false,
       },
+
       sellingPrice: {
         type: DataTypes.FLOAT,
       },
+
       average_rating: {
         type: DataTypes.FLOAT,
       },
+
       availability: {
         type:DataTypes.JSONB,
       },
+
       category: {
         type: DataTypes.STRING,
       },
@@ -46,15 +41,17 @@ module.exports = (sequelize) => {
       breadcrumbs: {
         type: DataTypes.STRING,
       },
-        
+
         reviews_count: {
           type: DataTypes.FLOAT,
         },
+
         images: {
           type: DataTypes.ARRAY(DataTypes.STRING),
           //allowNull: false,
         },
-    },
+
+      },
     {
       timestamps: false,
     }

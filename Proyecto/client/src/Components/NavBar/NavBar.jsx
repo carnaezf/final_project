@@ -10,7 +10,10 @@ import { BsPersonFill } from "react-icons/bs";
 import { AiFillShopping } from "react-icons/ai";
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "./Haal.png"
-
+  
+import { useAuth } from '../../Contexts/authContext';
+import { async } from '@firebase/util';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -20,6 +23,16 @@ export default function NavBar(props) {
   const quantity = shoppingBag.reduce((acc, curr) => {
     return acc + curr.quantity;
   }, 0);
+
+  const {logout}=useAuth();
+  const history=useHistory();
+
+  const handlerLogOut=async()=>{
+    await logout();
+    // history.push("/home");
+
+  }
+
 
 
 
@@ -96,7 +109,10 @@ export default function NavBar(props) {
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 text-roboto normal-case">
 
     
-        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/formLogin'> Login </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/login'> Login </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/admin'> Admin </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/register'> Register </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <a onClick={handlerLogOut}> Logout </a></li>
         {/* <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/createProduct'> Shopping Cart</Link></li>
         <li className="justify-between"> <Link to='/login-form'> Log </Link></li> */}
 
