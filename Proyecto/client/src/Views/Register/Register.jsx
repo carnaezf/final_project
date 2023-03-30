@@ -85,6 +85,7 @@ const Register=()=>{
                     dispatch(postUsers(values));
                     signUp(values.email,values.password,values.name);
                     props.resetForm();
+                    
                     history.push("/shoppingBag");
                     
                 }}>

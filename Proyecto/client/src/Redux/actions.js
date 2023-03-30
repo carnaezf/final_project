@@ -108,4 +108,18 @@ export const loginUsers=(payload)=>{
 
   }
 }
+// export const usersAdim=()=>{
+//   return async function(dispatch){
+//     try {
+//       const baseData= await axios.get("http://localhost:3001/user");
+//       const allProducts = product.data;
+//       dispatch({ type: GET_USER, payload: allProducts });
+
+//     } catch (error) {
+//       alert({ error: error.message })
+      
+//     }
+
+//   }
+// }
 

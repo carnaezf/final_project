@@ -15,7 +15,7 @@ import { useAuth } from '../../Contexts/authContext';
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
-const {user}=useAuth();
+    const {user}=useAuth();
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
   // console.log('ESTADO SHOPPING BAGS DESDE carrito', shoppingBag)
