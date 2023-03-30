@@ -1,43 +1,41 @@
-import React from "react";
-import { Formik, Form, Field, ErrorMessage } from 'formik'
-import * as Yup from 'yup'
-
+import React from 'react';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 
 const CheckoutForm = () => {
-    return(
-        <div>
-            <Formik
-                initialValues={{ email: '' }}
-                validationSchema={ Yup.object({
-                    email: Yup.string()
-                    .email('invalid email address')
-                    .required('Email is required')
-                })}
-
-                // onSubmit = { (values, { setSubmitting })}
-
-                >
-                {/* Estados */}
-                <Form>
-                    <div>
-                        <label htmlFor="mail">mail:</label>
-                        <Field type="text" name="mail" id="mail" />
-                        <ErrorMessage name="mail" />
-                    </div>
-                    <button
-                        type='submit'
-                        className="temp"
-                        disabled=''
-                        >
-                        
-                    </button>
-                </Form>
-                
-            </Formik>
-        </div>
-    )
-    
-}
-
+return (
+    <div>
+        <Formik
+        initialValues={{ email: '' }}
+        validationSchema={Yup.object({
+            email: Yup.string()
+            .email('Invalid email address')
+            .required('Email is required')
+        })}
+        onSubmit={(values, { setSubmitting }) => {
+            console.log(values);
+            setSubmitting(false);
+        }}
+        >
+        {({ isSubmitting }) => (
+            <Form>
+            <div className="mb-4">
+                <label htmlFor="email">Email:</label>
+                <Field type="email" name="email" className="border rounded-md p-2 w-full" />
+                <ErrorMessage name="email" component="div" className="text-red-500" />
+            </div>
+            <button
+                type="submit"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+                disabled={isSubmitting}
+            >
+                Submit
+            </button>
+            </Form>
+        )}
+        </Formik>
+    </div>
+    );
+};
 
 export default CheckoutForm;
