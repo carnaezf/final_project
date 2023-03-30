@@ -3,11 +3,12 @@ import NavBar from '../NavBar/NavBar';
 import React, { useContext } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import axios from "axios"
+import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 
-
-const ShoppingBag = () => {
+const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
-  // console.log('ESTADO SHOPPING BAGS DESDE CART COMP', shoppingBag)
+  // console.log('ESTADO SHOPPING BAGS DESDE carrito', shoppingBag)
+   //console.log(shoppingBag[0].id,"esto es id")
 
     const quantity = shoppingBag.reduce((acc, curr) => {
         return acc + curr.quantity;
@@ -23,6 +24,49 @@ const ShoppingBag = () => {
         const point= resp.data.response.body.init_point
         window.location.replace(point)
     } 
+
+
+    const addToCart = (id) => {
+        setShoppingBag((currItems) => {
+
+            console.log("click")
+            //console.log(currItems, "esto curr items")
+            const isItemsFound = currItems.find((item) => item.id === id);
+            if (isItemsFound) {
+                return currItems.map((item) => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity + 1 };
+                } else {
+                    return item;
+                }
+                });
+            } else {
+                    return [...currItems, { id,title:name, quantity: 1, unit_price:sellingPrice, description:"description ", picture_url:images[0],currency_id:'ARS' }];
+            }
+        });
+    }
+
+    const removeItem = (id) => {
+        setShoppingBag((currItems) => {
+            if (currItems.find((item) => item.id === id)?.quantity === 1) {
+                return currItems.filter((item) => item.id !== id);
+            } else {
+                return currItems.map((item) => {
+                if (item.id === id) {
+                    return { ...item, quantity: item.quantity - 1 };
+                    } else {
+                        return item;
+                    }
+                });
+            }
+            });
+        };
+
+    const getQuantityById = (id) => {
+        return shoppingBag.find((item) => item.id === id)?.quantity || 0;
+    };    
+
+    const quantityPerItem = getQuantityById(id);
 
 
 
@@ -54,7 +98,12 @@ const ShoppingBag = () => {
                         <div className="font-semibold"  > </div>
                         <img src={product.picture_url} className="w-[5rem] h-[5rem]"/>
                         </li>  
-                        
+                        <h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">   
+                          <div>
+                          <button className=" badge border-none px-[2px]  font-light hover:bg-purple-800" onClick={() => addToCart(product.id)}><AiOutlinePlus/></button>
+                          <button className="badge border-none px-[2px] hover:bg-purple-800  ml-4 font-light"onClick={() => removeItem(product.id)}><AiOutlineLine/></button> 
+                         </div>              
+                        </h4>
                   </ul>
                         )}
                     <div className="flex justify-between items-center border-b py-4 mt-4">
