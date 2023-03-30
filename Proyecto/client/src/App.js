@@ -7,7 +7,7 @@ import Category from "./Components/Category/Category";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 //import NavBar from './Components/NavBar/NavBar';
 import createProduct from "../src/Views/AdminForm/CreateProducts";
-import LoginForm from "../src/Views/LoginForm/LoginForm";
+
 import Testing from "./Components/Testing/Testing";
 import Accessories from "./Views/Accessories/Accessories";
 import AdministradorPage from "./Views/Admin/AdministradorPage";
@@ -18,11 +18,10 @@ import Shoes from "./Views/Shoes/Shoes";
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
 import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
-import FormLogin from "./Views/LoginForm/FomLogin";
 
-import FormLogin2 from "./Views/LoginForm/FormLogin2.jsx";
-import Register from "./Views/LoginForm/Register";
+import Register from "./Views/Register/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
+import Login from "./Views/Login/Login";
 
 function App() {
   //const location =useLocation();
@@ -47,10 +46,8 @@ function App() {
             <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
               <Route exact path="/shoppingBag" component={ShoppingBag} />
               <Route exact path="/createProduct" component={createProduct} />
-              <Route exact path="/login-form" component={LoginForm} />
-              <Route exact path="/formLogin" component={FormLogin} />
-              <Route exact path="/formLogin2" component={FormLogin2} />
               <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
               <Route exact path="/testing" component={Testing} />
               <Route exact path="/allproducts" component={Products} />
               <Route exact path="/admin" component={AdministradorPage} />
