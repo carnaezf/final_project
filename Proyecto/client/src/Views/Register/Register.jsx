@@ -2,16 +2,40 @@ import { Formik } from "formik";
 //import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postUsers } from "../../Redux/actions";
+import {useAuth} from "../../Contexts/authContext";
+import { useHistory} from "react-router-dom";
+
+
+// import { getAuth, updateProfile } from "firebase/auth";
+// const auth = getAuth();
+// updateProfile(auth.currentUser, {
+//   displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+// }).then(() => {
+//   // Profile updated!
+//   // ...
+// }).catch((error) => {
+//   // An error occurred
+//   // ...
+// });
+
 
 const Register=()=>{
     //const [post, setPost]= useState({});
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    
+    const {signUp}=useAuth();
+    const history=useHistory();
+
+
     return(
         <div className="w-full max-w-xs m-auto">
             <Formik
                 initialValues={{
                     name:"",
-                    email:""
+                    lastName:"",
+                    email:"",
+                    password:"",
+                    country:"",
                 }}
 
                 validate={(values)=>{
@@ -24,6 +48,14 @@ const Register=()=>{
                             error.name="name without numbers or symbols"
                         }
                     }
+                    if(!values.lastName){
+                        error.lastName="enter last name"
+                    }
+                    else{
+                        if(! /^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastName)){
+                            error.lastName="last name without numbers or symbols"
+                        }
+                    }
                     if(!values.email){
                         error.email="enter email"
                     }
@@ -32,15 +64,29 @@ const Register=()=>{
                             error.email="invalid email"
                         }
                     }
+                    if(!values.password){
+                        error.password="invalid password";
+                    }
+                    if(!values.country){
+                        error.country="enter country"
+                    }
+                    else{
+                        if(! /^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.country)){
+                            error.country="country without numbers or symbols"
+                        }
+                    }
                     return error;
 
                 }} 
 
                 onSubmit={(values,props)=>{
                     //console.log("Email Enviado");
-                    console.log(values);
+                    console.log(values.password);
                     dispatch(postUsers(values));
-                    props.resetForm()
+                    signUp(values.email,values.password,values.name);
+                    props.resetForm();
+                    history.push("/shoppingBag");
+                    
                 }}>
                 
                 {(props)=>(
@@ -53,7 +99,7 @@ const Register=()=>{
                                 type="text" 
                                 id="name" 
                                 name="name" 
-                                placeholder="  Wil" 
+                                placeholder=" ej: Wil" 
                                 value={props.values.name}
                                 onChange={props.handleChange}
                                 onBlur={props.handleBlur}
@@ -61,19 +107,60 @@ const Register=()=>{
                             {props.touched.name && props.errors.name && <span className=" bg-red text-red-700" >{props.errors.name}</span>}
                         </div>
                         <div className="mb-4">
+                            <label htmlFor="name">Last Name</label>
+                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" 
+                                id="lastName" 
+                                name="lastName" 
+                                placeholder=" ej: Smith" 
+                                value={props.values.lastName}
+                                onChange={props.handleChange}
+                                onBlur={props.handleBlur}//validar fuera del input
+                            />
+                            {props.touched.lastName && props.errors.lastName && <span className=" bg-red text-red-700">{props.errors.lastName}</span>}
+                        </div>
+                        <div className="mb-4">
                             <label htmlFor="name">Email</label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 type="text" 
                                 id="email" 
                                 name="email" 
-                                placeholder="  Wil@email.com" 
+                                placeholder=" ej: Wil@email.com" 
                                 value={props.values.email}
                                 onChange={props.handleChange}
                                 onBlur={props.handleBlur}//validar fuera del input
                             />
                             {props.touched.email && props.errors.email && <span className=" bg-red text-red-700">{props.errors.email}</span>}
                         </div>
-                        <button  type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Enviar</button>
+                        <div className="mb-4">
+                            <label htmlFor="name">Password</label>
+                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder=" ej: Smith" 
+                                value={props.values.password}
+                                onChange={props.handleChange}
+                                onBlur={props.handleBlur}//validar fuera del input
+                            />
+                            {props.touched.password && props.errors.password && <span className=" bg-red text-red-700">{props.errors.password}</span>}
+                        </div>
+                        <div className="mb-4">
+                            <label htmlFor="name">Country</label>
+                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                type="text" 
+                                id="country" 
+                                name="country" 
+                                placeholder=" ej: Argentina" 
+                                value={props.values.country}
+                                onChange={props.handleChange}
+                                onBlur={props.handleBlur}//validar fuera del input
+                            />
+                            {props.touched.country && props.errors.country && <span className=" bg-red text-red-700">{props.errors.country}</span>}
+                        </div>
+                        
+                        <button  type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
+                        
     
                     </form>
 

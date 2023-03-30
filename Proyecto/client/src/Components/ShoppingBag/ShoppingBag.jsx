@@ -4,8 +4,13 @@ import React, { useContext } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import axios from "axios"
 
+import { useAuth } from '../../Contexts/authContext';
+
 
 const ShoppingBag = () => {
+    const {user}=useAuth();
+
+
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
   // console.log('ESTADO SHOPPING BAGS DESDE CART COMP', shoppingBag)
 
@@ -39,6 +44,9 @@ const ShoppingBag = () => {
     } 
     return (
         <div className="bg-gray-100 min-h-screen">
+            {user && <h1 className="text-lg font-semibold mb-4">Hi!! {user.displayName? user.displayName : user.email}</h1>}
+
+            
             <NavBar />
             <div className="container mx-auto py-8">
                 <div className="bg-white p-4 shadow-md rounded-md flex-col">
