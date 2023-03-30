@@ -21,7 +21,7 @@ import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 
 import Register from "./Views/Register/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
-import Login from "./Views/Login/Login";
+
 
 function App() {
   //const location =useLocation();
@@ -54,6 +54,7 @@ function App() {
               <Route exact path="/accessories" component={Accessories} />
               <Route exact path="/clothing" component={Clothing} />
               <Route exact path="/shoes" component={Shoes} />
+              <Route exact path="/checkoutform" component={CheckoutForm} />
               <Route exact path="*" component={Home} />
             </Switch>
           </div>

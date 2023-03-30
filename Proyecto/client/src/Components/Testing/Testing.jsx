@@ -16,9 +16,10 @@ export default function Testing() {
                 <button>CreateProduct Form</button>
             </Link>
             <br />
-            {/* <Link to='/login-form'>
-                <button>Login Form</button>
-            </Link> */}
+            <Link to='/checkoutform'>
+                <button>Checkout Form</button>
+            </Link>
         </div>
     )
 }
+
