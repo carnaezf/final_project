@@ -3,16 +3,7 @@ import NavBar from '../NavBar/NavBar';
 import React, { useContext } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import axios from "axios"
-
-
-
-const ShoppingBag = () => {
-
 import { useAuth } from '../../Contexts/authContext';
-
-
-
-
 
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
@@ -102,7 +93,7 @@ const {user}=useAuth();
 >>>>>>> origin/front
     return (
         <div className="bg-gray-100 min-h-screen">
-            {user && <h1 className="text-lg font-semibold mb-4">Hi!! {user.displayName? user.displayName : user.email}</h1>}
+           
 
             
             <NavBar />
