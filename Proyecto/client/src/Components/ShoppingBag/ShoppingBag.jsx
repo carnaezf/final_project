@@ -3,36 +3,39 @@ import NavBar from '../NavBar/NavBar';
 import React, { useContext } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import axios from "axios"
-import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
-
-
 import { useAuth } from '../../Contexts/authContext';
-
-
-
-
 
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
 const {user}=useAuth();
 
+
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
-  // console.log('ESTADO SHOPPING BAGS DESDE carrito', shoppingBag)
-   //console.log(shoppingBag[0].id,"esto es id")
+  // console.log('ESTADO SHOPPING BAGS DESDE CART COMP', shoppingBag)
 
     const quantity = shoppingBag.reduce((acc, curr) => {
         return acc + curr.quantity;
     }, 0);
 
+   //console.log(shoppingBag)
+    // const totalPrice = shoppingBag.reduce(
+    //     (acc, curr) => acc + curr.quantity * curr.price,
+    //     0
+    // );
+    
     let totalPrice=0;
+   // console.log(shoppingBag.length)
     for(let i=0; i<shoppingBag.length;i++){
      totalPrice=Number(totalPrice)+  (Number(shoppingBag[i].quantity) * Number(shoppingBag[i].unit_price))
       }
  
-    const  redirectionRute=async()=>{ 
+    const  redirectionRute=async()=>{
+        
         const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
+        // {id: 0,title: "camisa", picture_url: "noImage",quantity: 1,price:20, description: "camisa larga"}
         const point= resp.data.response.body.init_point
+        //  console.log(point)
         window.location.replace(point)
     } 
 
@@ -40,7 +43,7 @@ const {user}=useAuth();
     const addToCart = (id) => {
         setShoppingBag((currItems) => {
 
-            //console.log("click")
+            console.log("click")
             //console.log(currItems, "esto curr items")
             const isItemsFound = currItems.find((item) => item.id === id);
             if (isItemsFound) {
@@ -83,7 +86,7 @@ const {user}=useAuth();
 
     return (
         <div className="bg-gray-100 min-h-screen">
-            {user && <h1 className="text-lg font-semibold mb-4">Hi!! {user.displayName? user.displayName : user.email}</h1>}
+           
 
             
             <NavBar />
@@ -99,17 +102,17 @@ const {user}=useAuth();
                   {  shoppingBag.map((product)=>
                   <ul className="flex justify-between items-center border-b py-4 mt-4">
                          <li className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold "> </div>
+                        <div className="font-semibold"> </div>
                         <div > { product.title } </div>
                         </li>  
 
-                        <li className="flex justify-center items-center border-b pb-4 ">
+                        <li className="flex justify-center items-center border-b pb-4">
                         <div className="font-semibold  justify-center items-center"  > </div>
                         <div  className=" items-center  " >{product.unit_price}</div>
                         </li> 
 
                         <li className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold "  > </div>
+                        <div className="font-semibold"  > </div>
                         <img src={product.picture_url} className="w-[5rem] h-[5rem]"/>
                         </li>  
                         <h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">   
@@ -120,7 +123,7 @@ const {user}=useAuth();
                         </h4>
                   </ul>
                         )}
-                    <div className="flex justify-between items-center border-b py-4 mt-4 "> 
+                    <div className="flex justify-between items-center border-b py-4 mt-4"> 
                         <div className="font-semibold ">Total:</div>
                         <div>{totalPrice}</div>
                     </div>
