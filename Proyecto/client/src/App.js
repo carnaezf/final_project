@@ -23,6 +23,7 @@ import FormLogin from "./Views/LoginForm/FomLogin";
 import FormLogin2 from "./Views/LoginForm/FormLogin2.jsx";
 import Register from "./Views/LoginForm/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
+import CheckoutForm from '../src/Components/ShoppingBag/CheckoutForm'
 
 function App() {
   //const location =useLocation();
@@ -57,6 +58,7 @@ function App() {
               <Route exact path="/accessories" component={Accessories} />
               <Route exact path="/clothing" component={Clothing} />
               <Route exact path="/shoes" component={Shoes} />
+              <Route exact path="/checkoutform" component={CheckoutForm} />
               <Route exact path="*" component={Home} />
             </Switch>
           </div>
