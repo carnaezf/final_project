@@ -7,7 +7,7 @@ export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const FILTER_BY_PRICE = "FILTER_BY_ACCESSORIES_PRICE";
-
+export const GET_USERS = "GET_USERS";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -37,62 +37,62 @@ export const getProductsDetail = (payload) => {
 
 export const getCategory = (payload) => {
   return async function (dispatch) {
-    const productCategory = await axios.get(`http://localhost:3001/products/category/${payload}`);
+    const productCategory = await axios.get(
+      `http://localhost:3001/products/category/${payload}`
+    );
     const allProductsCategory = productCategory.data;
     dispatch({ type: GET_PRODUCTS_CATEGORY, payload: allProductsCategory });
   };
 };
 
-export const filterByName= (payload)=>{
-  return async function (dispatch){
+export const filterByName = (payload) => {
+  return async function (dispatch) {
     try {
-      const baseData= await axios.get(`http://localhost:3001/products/search?name=${payload}`);
-      const productsName= baseData.data;
-      dispatch({type: FILTER_BY_NAME, payload:productsName});
-          
+      const baseData = await axios.get(
+        `http://localhost:3001/products/search?name=${payload}`
+      );
+      const productsName = baseData.data;
+      dispatch({ type: FILTER_BY_NAME, payload: productsName });
     } catch (error) {
       alert("No se encontro el Producto Buscado");
-          
     }
-    
-  }
-
+  };
 };
 
-export const filterByGenres= (payload)=>{
-  return async function (dispatch){
-    if(payload !=="select"){
-      dispatch({type: FILTER_BY_GENRES, payload: payload});
+export const filterByGenres = (payload) => {
+  return async function (dispatch) {
+    if (payload !== "select") {
+      dispatch({ type: FILTER_BY_GENRES, payload: payload });
+    } else {
+      alert("Selccione un Opcion");
     }
-    else{
-      alert("Selccione un Opcion")
-    }
-    
-  }
+  };
 };
-export const filterByPrice= (payload)=>{
-  return async function (dispatch){
-    if(payload !=="select"){
-      dispatch({type: FILTER_BY_PRICE, payload: payload});
+export const filterByPrice = (payload) => {
+  return async function (dispatch) {
+    if (payload !== "select") {
+      dispatch({ type: FILTER_BY_PRICE, payload: payload });
+    } else {
+      alert("Selccione un Opcion");
     }
-    else{
-      alert("Selccione un Opcion")
-    }
-    
-  }
+  };
 };
 
-export const postUsers=(payload)=>{
-  return async function(){
+export const postUsers = (payload) => {
+  return async function () {
     try {
-      const baseData= await axios.post(`http://localhost:3001/user`,payload);
+      const baseData = await axios.post(`http://localhost:3001/user`, payload);
       //return baseData;
-
     } catch (error) {
-      alert({ error: error.message })
-      
+      alert({ error: error.message });
     }
+  };
+};
 
-  }
-}
-
+export const getUsers = () => {
+  return async function (dispatch) {
+    const user = await axios.get("http://localhost:3001/user");
+    const allUsers = user.data;
+    dispatch({ type: GET_USERS, payload: allUsers });
+  };
+};

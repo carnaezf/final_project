@@ -1,41 +1,44 @@
 import React from "react";
-import { Space, Table, Tag } from 'antd';
+import { Space, Table, Tag } from "antd";
 
- 
 const { Column, ColumnGroup } = Table;
 const data = [
   {
-    key: '1',
-    Product: 'John',
-    S: 'Brown',
+    key: "1",
+    Product: "John",
+    S: "Brown",
     age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
+    address: "New York No. 1 Lake Park",
+    tags: ["nice", "developer"],
   },
   {
-    key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
+    key: "2",
+    firstName: "Jim",
+    lastName: "Green",
     age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
+    address: "London No. 1 Lake Park",
+    tags: ["loser"],
   },
   {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
+    key: "3",
+    firstName: "Joe",
+    lastName: "Black",
     age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
+    address: "Sydney No. 1 Lake Park",
+    tags: ["cool", "teacher"],
   },
 ];
-const App = () => (
-  <Table dataSource={data}>
+const ProductAdmin = () => (
+  <Table dataSource={data} className="w-full">
     <ColumnGroup>
       <Column title="Product" dataIndex="product" key="product" />
       <Column title="Description" dataIndex="Description" key="Description" />
     </ColumnGroup>
-    <Column title="Selling Price" dataIndex="Selling Price" key="Selling Price" />
+    <Column
+      title="Selling Price"
+      dataIndex="Selling Price"
+      key="Selling Price"
+    />
     <Column
       title="Tags"
       dataIndex="tags"
@@ -62,4 +65,4 @@ const App = () => (
   </Table>
 );
 
-export default App ;
+export default ProductAdmin;
