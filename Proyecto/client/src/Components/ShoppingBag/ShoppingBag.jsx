@@ -29,7 +29,7 @@ const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,d
     const addToCart = (id) => {
         setShoppingBag((currItems) => {
 
-            console.log("click")
+            //console.log("click")
             //console.log(currItems, "esto curr items")
             const isItemsFound = currItems.find((item) => item.id === id);
             if (isItemsFound) {
@@ -85,17 +85,17 @@ const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,d
                   {  shoppingBag.map((product)=>
                   <ul className="flex justify-between items-center border-b py-4 mt-4">
                          <li className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold"> </div>
+                        <div className="font-semibold "> </div>
                         <div > { product.title } </div>
                         </li>  
 
-                        <li className="flex justify-center items-center border-b pb-4">
+                        <li className="flex justify-center items-center border-b pb-4 ">
                         <div className="font-semibold  justify-center items-center"  > </div>
                         <div  className=" items-center  " >{product.unit_price}</div>
                         </li> 
 
                         <li className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold"  > </div>
+                        <div className="font-semibold "  > </div>
                         <img src={product.picture_url} className="w-[5rem] h-[5rem]"/>
                         </li>  
                         <h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">   
@@ -106,7 +106,7 @@ const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,d
                         </h4>
                   </ul>
                         )}
-                    <div className="flex justify-between items-center border-b py-4 mt-4"> 
+                    <div className="flex justify-between items-center border-b py-4 mt-4 "> 
                         <div className="font-semibold ">Total:</div>
                         <div>{totalPrice}</div>
                     </div>
