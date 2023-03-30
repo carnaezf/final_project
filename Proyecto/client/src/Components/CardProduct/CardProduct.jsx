@@ -9,11 +9,13 @@ import Details from "../../Views/Details/Details";
 const CardProduct = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
-    console.log('ESTADO SHOPPING BAGS DESDE PRODUCT COMP', shoppingBag);
+   
 
     const addToCart = () => {
         setShoppingBag((currItems) => {
-            console.log('currItems desde CardProducts', currItems);
+
+
+
             const isItemsFound = currItems.find((item) => item.id === id);
             console.log('isItemsFound', isItemsFound);
             if (isItemsFound) {
