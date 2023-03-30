@@ -83,7 +83,7 @@ const {user}=useAuth();
 
     return (
         <div className="bg-gray-100 min-h-screen">
-            {user && <h1 className="text-lg font-semibold mb-4">Hi!! {user.displayName? user.displayName : user.email}</h1>}
+           
 
             
             <NavBar />
