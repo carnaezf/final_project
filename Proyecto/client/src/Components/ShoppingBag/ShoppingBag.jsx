@@ -106,8 +106,8 @@ const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,d
                         </h4>
                   </ul>
                         )}
-                    <div className="flex justify-between items-center border-b py-4 mt-4">
-                        <div className="font-semibold">Total:</div>
+                    <div className="flex justify-between items-center border-b py-4 mt-4"> 
+                        <div className="font-semibold ">Total:</div>
                         <div>{totalPrice}</div>
                     </div>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={() => redirectionRute()}>Checkout</button>
