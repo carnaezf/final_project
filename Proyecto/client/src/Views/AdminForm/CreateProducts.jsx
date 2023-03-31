@@ -23,7 +23,7 @@ const CreateProduct = () => {
                     category: '',
                     average_rating: 0,
                     reviews_count: 0,
-                    images: ['']
+                    images: []
                 }}
                 validate={
                     (values) => {

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export default function Testing() {
     return (
         <div>
-            <h1>Testing</h1>
+            {/* <h1>Testing</h1> */}
 
             <Link to='/shoppingBag'>
                 <button>Shopping Bags</button>
@@ -16,9 +16,10 @@ export default function Testing() {
                 <button>CreateProduct Form</button>
             </Link>
             <br />
-            <Link to='/login-form'>
-                <button>Login Form</button>
+            <Link to='/checkoutform'>
+                <button>Checkout Form</button>
             </Link>
         </div>
     )
 }
+

@@ -10,7 +10,10 @@ import { BsPersonFill } from "react-icons/bs";
 import { AiFillShopping } from "react-icons/ai";
 import SearchBar from "../SearchBar/SearchBar"
 import logo from "./Haal.png"
-
+  
+import { useAuth } from '../../Contexts/authContext';
+import { async } from '@firebase/util';
+import { useHistory } from 'react-router-dom';
 
 
 
@@ -21,6 +24,16 @@ export default function NavBar(props) {
     return acc + curr.quantity;
   }, 0);
 
+  const {logout}=useAuth();
+  const history=useHistory();
+
+  const handlerLogOut=async()=>{
+    await logout();
+    // history.push("/home");
+
+  }
+
+  const {user}=useAuth();
 
 
 
@@ -30,9 +43,9 @@ export default function NavBar(props) {
        <Link to={"/home"}>
        <img className="ml-[px] w-[11rem] text-white "src={logo} alt = "Haal"></img>
       </Link>
-        <div className="dropdown">
+        <div className="dropdown mx-auto">
 
-          <div className='flex ml-[10rem] mt-4 content-center ' >
+          <div className='flex mt-4 content-center ' >
             <ul className='content-center mb-2'>
               <Link  to ={"/accessories"}><li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400"> Acessories</li></Link>
               <Link to ={"/shoes"}><li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">  Shoes</li></Link>
@@ -46,9 +59,9 @@ export default function NavBar(props) {
       </div>
   
     <div className="flex-none gap-2"> 
-        <div className="form-control">
+        {/* <div className="form-control">
           <SearchBar className='flex justify-end' pagin={props.pagin}/>
-        </div>
+        </div> */}
 
       
       
@@ -62,7 +75,7 @@ export default function NavBar(props) {
           <label tabIndex={0} className="btn btn-ghost btn-circle dark:hover:border-purple-200">
             <div className="indicator">
               <Link to='/shoppingBag'className='w-10 rounded-full border-trasparent '>
-                <AiFillShopping className='text-current hover:text-purple-700 dark:text-slate-300 dark:hover:text-purple-600 justify-center w-full mt-2 mb-2 text-xl'/>
+                <AiFillShopping className='text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-600 justify-center w-full mt-2 mb-2 text-xl'/>
                 <span className="transition rounded-full indicator-item mt-[9px] mr-[8px] border-none bg-purple-700 px-2 py-[4px] text-white text-[7pt] opacity-70 ">{quantity}</span>
               </Link>
             </div>
@@ -85,18 +98,21 @@ export default function NavBar(props) {
 
         
 
-        <div className="dropdown dropdown-end ">
+        <div className="flex flex-column dropdown dropdown-end ">
+          {user && <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">Hi {user.displayName? user.displayName : user.email}!</h1>}
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar mr-14 dark:hover:border-purple-200">
         <div className="w-10 rounded-full border-trasparent ">
-
-          <BsPersonFill className='transition text-current hover:text-purple-700 dark:text-slate-300 dark:hover:text-purple-600 justify-center w-full mt-[11px] text-xl'/>
+          <BsPersonFill className='transition text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-600 justify-center w-full mt-[11px] text-xl'/>
         </div>
         <div>
 
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 text-roboto normal-case">
 
     
-        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/formLogin'> Login </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/login'> Login </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/admin'> Admin </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/register'> Register </Link></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <a onClick={handlerLogOut}> Logout </a></li>
         {/* <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/createProduct'> Shopping Cart</Link></li>
         <li className="justify-between"> <Link to='/login-form'> Log </Link></li> */}
 

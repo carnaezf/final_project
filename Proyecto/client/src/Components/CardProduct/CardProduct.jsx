@@ -3,6 +3,7 @@ import {Link} from "react-router-dom"
 
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
+import Details from "../../Views/Details/Details";
 
 
 const CardProduct = ({id, name, sellingPrice, images, average_rating, category,description}) => {
@@ -12,8 +13,11 @@ const CardProduct = ({id, name, sellingPrice, images, average_rating, category,d
 
     const addToCart = () => {
         setShoppingBag((currItems) => {
-            //console.log(currItems, "esto curr items")
+
+
+
             const isItemsFound = currItems.find((item) => item.id === id);
+            console.log('isItemsFound', isItemsFound);
             if (isItemsFound) {
                 return currItems.map((item) => {
                 if (item.id === id) {
@@ -31,6 +35,7 @@ const CardProduct = ({id, name, sellingPrice, images, average_rating, category,d
 
     const removeItem = (id) => {
         setShoppingBag((currItems) => {
+            console.log(currItems);
             if (currItems.find((item) => item.id === id)?.quantity === 1) {
                 return currItems.filter((item) => item.id !== id);
             } else {
@@ -53,8 +58,8 @@ const CardProduct = ({id, name, sellingPrice, images, average_rating, category,d
     
 
     return (
+        
         <div >
-            
             
                 <div className=" transition  m-4 w-[18rem] h-[26rem] rounded  shadow-lg border-slate-300 dark:border-slate-700 border rounded-md text-left font-roboto hover:border-purple-700 dark:hover:border-purple-500 hover:border hover:translate-y-[-1rem] contrast-[.92] hover:contrast-[1.20] text-current hover:text-purple-700 dark:text-slate-300 dark:hover:text-purple-400 bg-neutral-100 dark:bg-zinc-900">
                 {/* <div className=" transition  m-4 max-w-sm max-h-[32rem] rounded  shadow-lg border-slate-300 border rounded-md text-left font-roboto hover:border-purple-700 hover:border "> */}
