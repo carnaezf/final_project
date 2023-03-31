@@ -87,7 +87,7 @@ const createProduct = async (
   name,
   description,
   sellingPrice,
-  images,
+  urlImage,
   average_rating,
   category,
   reviews_count
@@ -97,7 +97,7 @@ const createProduct = async (
     name,
     description,
     sellingPrice,
-    images,
+    images : urlImage,
     average_rating,
     category,
     reviews_count,

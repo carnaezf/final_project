@@ -64,7 +64,8 @@ router.get("/products/category/:category", getByCategoryHandler);
 
 router.put("/products/addReview", addReviewHandler);
 
-router.post("/products", veryfyToken, createProductHandler);
+// router.post("/products", veryfyToken, createProductHandler);
+router.post("/products", createProductHandler);
 
 router.post("/user", createUserHandler);
 
@@ -121,8 +122,8 @@ router.post("/order",newOrderHandler)
 
 const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
 const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
-const { uploadImage } =  require("../controllers/uploads-controllers/upload-controller");
-const { uploadWidget } =  require("../controllers/uploads-controllers/widget");
+// const { uploadImage } =  require("../controllers/upload-controller/upload-controller");
+// const { uploadWidget } =  require("../controllers/upload-controller/widget");
 
 
 router.post("/send-email/order", mailOrder)
@@ -131,10 +132,10 @@ router.post("/send-email/order", mailOrder)
 router.post("/send-email/register", mailRegister);
 //http://localhost:3001/mail/send-email/register
 
-router.post("/products/upload", uploadImage )
+// router.post("/products/upload", uploadImage )
 //http://localhost:3001/products/upload
 
-router.post("/products/upload-widget", uploadWidget )
+// router.post("/products/upload-widget", uploadWidget )
 //http://localhost:3001/products/upload
 
 router.get("/categories", allCategoryHandler);
