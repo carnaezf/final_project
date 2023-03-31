@@ -5,6 +5,7 @@ const {
   addReview,
   addComment,
   createProduct,
+  ProductBanned,
 } = require("../controllers/");
 
 const getProductsHandler = async (req, res) => {
@@ -85,6 +86,15 @@ const createProductHandler = async (req, res) => {
   }
 };
 
+const productBannedHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await ProductBanned(id);
+    res.status(200).send(product);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
 module.exports = {
   getProductsHandler,
   getSearchHandler,
@@ -92,4 +102,5 @@ module.exports = {
   addReviewHandler,
   addCommentHandler,
   createProductHandler,
+  productBannedHandler,
 };

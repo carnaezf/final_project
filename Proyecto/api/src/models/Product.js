@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
       },
 
       availability: {
-        type:DataTypes.JSONB,
+        type: DataTypes.JSONB,
       },
 
       category: {
@@ -42,16 +42,19 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
 
-        reviews_count: {
-          type: DataTypes.FLOAT,
-        },
-
-        images: {
-          type: DataTypes.ARRAY(DataTypes.STRING),
-          //allowNull: false,
-        },
-
+      reviews_count: {
+        type: DataTypes.FLOAT,
       },
+      show: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        //allowNull: false,
+      },
+    },
     {
       timestamps: false,
     }
