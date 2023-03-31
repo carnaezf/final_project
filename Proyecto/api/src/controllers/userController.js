@@ -115,6 +115,9 @@ const signInUser = async (email, password) => {
   if (!passwordMatch) {
     throw new Error(`password incorrect`);
   }
+  if (user.isBanned === true) {
+    throw new Error(`user banned`);
+  }
   const Token = jwt.sign(
     {
       user: user,
@@ -122,8 +125,10 @@ const signInUser = async (email, password) => {
     encryptKey,
     { expiresIn: encryptExpiration }
   );
-
-  return { msg: "User logged", token: Token };
+  if (user.isAdmin === true) {
+    return { msg: "User logged", token: Token, user: "admin" };
+  }
+  return { msg: "User logged", token: Token, user: "user" };
 };
 
 const googleSignIn = async (email, name, lastName, google, password) => {
