@@ -47,7 +47,7 @@ const Login = () => {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Email or password invalid!",
+        text: "Password invalid!",
       });
     }
     if (userlogin && userlogin.error === "user email not found") {

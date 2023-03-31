@@ -22,7 +22,7 @@ import rootReducer from "./reducer";
 const persistConfig = {
   key: "root",
   storage: storage,
-  whitelist: ["user"], // solo se persiste el estado de shoppingCart
+  whitelist: ["user"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
