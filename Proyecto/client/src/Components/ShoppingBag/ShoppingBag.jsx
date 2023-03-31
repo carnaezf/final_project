@@ -2,9 +2,9 @@
 import NavBar from '../NavBar/NavBar';
 import React, { useContext } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
-import axios from "axios"
 import { useAuth } from '../../Contexts/authContext';
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
+import { Link } from 'react-router-dom';
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
@@ -30,19 +30,7 @@ const {user}=useAuth();
      totalPrice=Number(totalPrice)+  (Number(shoppingBag[i].quantity) * Number(shoppingBag[i].unit_price))
       }
  
-    const  redirectionRute=async()=>{
-        
-        const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
-        // {id: 0,title: "camisa", picture_url: "noImage",quantity: 1,price:20, description: "camisa larga"}
-        const point= resp.data.response.body.init_point
-        //  console.log(point)
-        window.location.replace(point)
-        
-       //.then(res=>console.log(res))
-       // console.log(response)
-  
-    } 
-
+    
 
     const addToCart = (id) => {
         setShoppingBag((currItems) => {
@@ -143,7 +131,9 @@ const {user}=useAuth();
                         <div className="font-semibold">Total:</div>
                         <div>{totalPrice}</div>
                     </div>
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={() => redirectionRute()}>Checkout</button>
+                    <Link to="/checkoutform">
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" >Checkout</button>
+                    </Link>
                      </div>
                      </div>
                      </div>

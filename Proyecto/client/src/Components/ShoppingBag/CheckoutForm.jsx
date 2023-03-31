@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useState,useEffect } from "react";
+import { Link } from 'react-router-dom';
+import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
+
+
+
 const CheckoutForm = () => {
 
     const [emails, setEmails] = useState({});
-
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
 
 
     useEffect(async() => {
@@ -15,12 +20,19 @@ const CheckoutForm = () => {
         setEmails(data)
     },[])
 
+    const  redirectionRute=async()=>{
+        const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
+        const point= resp.data.response.body.init_point
+        window.location.replace(point)
+    } 
+
 
     const comprobation=(values)=>{
         if(emails.includes(values.email)){  
-
+          
             return alert("ustes estsa logueado")
         }else{
+          
             return alert("logueese")
         }
     }
@@ -56,8 +68,16 @@ return (
             >
                 Submit
             </button>
-            <button></button>
-            <button></button>
+            <div>
+
+            <Link to="/register">
+            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"> login </button>
+            </Link>
+            
+            <Link to="/checkoutform" >
+            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">mercado Pago</button>
+            </Link>
+            </div>
 
             </Form>
         )}
