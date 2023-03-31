@@ -84,7 +84,7 @@ const handleTHemeSwitch = () =>{
             <div className=" w-2/3">
                 {myProduct && myProduct.images && myProduct.images.length > 0 ?
     <div className="flex w-auto space-x-4">
-        <img className="w-1/2" src={myProduct.images[1]} alt="Imagen no disponible" />
+        <img className="w-1/2" src={myProduct.images[0]} alt="Imagen no disponible" />
         <img className="w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" />
     </div>
     :

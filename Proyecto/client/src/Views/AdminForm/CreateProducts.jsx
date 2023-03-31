@@ -10,8 +10,23 @@ const CreateProduct = () => {
 
     const [ formSubmitted, changeSubmittedForm ] = useState(false);
 
-    
+    const [ previewSource, setPreviewSource] = useState();
+    const [ fileInputState, setfileInputState ] = useState('');
+   
 
+    const handleInputChange = (event) => {
+        const file = event.target.files[0];
+        previewFile(file);
+    };
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);  
+        reader.onloadend = () =>{
+            setPreviewSource(reader.result)
+            setfileInputState()
+        }
+    };
+   
 
     return (
         <>
@@ -23,7 +38,7 @@ const CreateProduct = () => {
                     category: '',
                     average_rating: 0,
                     reviews_count: 0,
-                    images: ['']
+                    images: Path2D
                 }}
                 validate={
                     (values) => {
@@ -47,19 +62,13 @@ const CreateProduct = () => {
                         if (!values.reviews_count) {
                             InputErrors.reviews_count = 'reviews_count is required';
                         }
-                        if (!values.images) {
-                            InputErrors.images = 'images is required';
-                        }
+                        // if (!values.images) {
+                        //     InputErrors.images = 'images is required';
+                        // }
                         return InputErrors;
                     }
                 }
-
-
-                // onSubmit={async (values) => {
-                //     alert(JSON.stringify(values, null, 2))
-                //     await dispatch(postCreateProduct(values))
-                // }}
-
+                
                 onSubmit={(values, { resetForm }) => {
                     console.log(values);
                     dispatch(postCreateProduct({
@@ -69,7 +78,7 @@ const CreateProduct = () => {
                         category: values.category,
                         average_rating: values.average_rating,
                         reviews_count: values.reviews_count,
-                        images: [values.images],
+                        images: previewSource,//values.images,
                     }))
                     console.log(values);
                     resetForm()
@@ -200,10 +209,12 @@ const CreateProduct = () => {
                             </label>
                             <Field
                                 className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                type="text" 
+                                value={fileInputState}
+                                type="file" 
                                 name="images" 
                                 id="images"  
                                 placeholder='Enter product images' 
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage 
                             name="images"
@@ -220,6 +231,9 @@ const CreateProduct = () => {
                     { formSubmitted && <p className={style.exito}>Form successfully submitted!</p>  }
                 </Form>
                 )}
+                {/* {previewSource && (
+                    <img src={previewSource} alt="chosen"/>
+                )} */}
             </Formik>
             
         </>
