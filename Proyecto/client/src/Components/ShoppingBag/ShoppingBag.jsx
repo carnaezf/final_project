@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 import axios from "axios"
 import { useAuth } from '../../Contexts/authContext';
-
+import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
 
@@ -83,7 +83,6 @@ const {user}=useAuth();
     const quantityPerItem = getQuantityById(id);
 
 
-
     return (
         <div className="bg-gray-100 min-h-screen">
            
@@ -98,7 +97,7 @@ const {user}=useAuth();
                         <div className="font-semibold">Items in cart:</div>
                         <div>{quantity}</div>
                     </div>
-                  
+
                   {  shoppingBag.map((product)=>
                   <ul className="flex justify-between items-center border-b py-4 mt-4">
                          <li className="flex justify-between items-center border-b pb-4">
@@ -125,12 +124,29 @@ const {user}=useAuth();
                         )}
                     <div className="flex justify-between items-center border-b py-4 mt-4"> 
                         <div className="font-semibold ">Total:</div>
+
+
+                  {  shoppingBag.map(({picture_url,title,unit_price})=>
+                    <div className="flex justify-between items-center border-b py-4 mt-4">
+                        <div className="flex justify-between items-center border-b pb-4">
+                        <div className="font-semibold">Products:</div>
+                        <div > { title } </div>
+                        </div>
+                        <div className="flex justify-between items-center border-b pb-4">
+                        <div className="font-semibold"  > </div>
+                        <div>{unit_price}</div>
+                        </div>     
+                    </div>
+                        )}
+                    <div className="flex justify-between items-center border-b py-4 mt-4">
+                        <div className="font-semibold">Total:</div>
                         <div>{totalPrice}</div>
                     </div>
                     <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" onClick={() => redirectionRute()}>Checkout</button>
-                </div>
-            </div>
-        </div>
+                     </div>
+                     </div>
+                     </div>
+                     </div>
     );
 };
 
