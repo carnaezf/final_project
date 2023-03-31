@@ -62,7 +62,7 @@ const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const { optionsAdminEditUserHandler } = require("../handlers/userAdminHandler");
 const { veryfyToken } = require("../Token/tokenAdmin");
-
+const {mailsTotalityHandler}=require("../handlers/mails/mailsHandler")
 
 router.get("/products", getProductsHandler);
 
@@ -160,5 +160,7 @@ router.post("/user/signin/google", googleSignInHandler);
 router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
 
 router.post("/payment/",mercadoPago)
+
+router.get("/user/totalMails",mailsTotalityHandler)
 
 module.exports = router;

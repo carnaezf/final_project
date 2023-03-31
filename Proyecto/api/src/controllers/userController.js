@@ -52,7 +52,7 @@ const createUser = async (
     { expiresIn: encryptExpiration }
   );
 
-  return { msg: "User created", token: Token };
+  return (user,{ msg: "User created", token: Token });
 };
 
 const getAllUser = async () => {
