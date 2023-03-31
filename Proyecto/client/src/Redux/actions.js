@@ -9,6 +9,8 @@ export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const FILTER_BY_PRICE = "FILTER_BY_ACCESSORIES_PRICE";
 
 
+
+
 export const getProducts = () => {
   return async function (dispatch) {
     const product = await axios.get("http://localhost:3001/products");
@@ -96,10 +98,11 @@ export const postUsers=(payload)=>{
   }
 }
 export const loginUsers=(payload)=>{
-  return async function(){
+  return async function(dispatch){
     try {
       const baseData= await axios.post(`http://localhost:3001/user/signin`,payload);
       //return baseData;
+      
 
     } catch (error) {
       alert({ error: error.message })
@@ -108,18 +111,5 @@ export const loginUsers=(payload)=>{
 
   }
 }
-// export const usersAdim=()=>{
-//   return async function(dispatch){
-//     try {
-//       const baseData= await axios.get("http://localhost:3001/user");
-//       const allProducts = product.data;
-//       dispatch({ type: GET_USER, payload: allProducts });
 
-//     } catch (error) {
-//       alert({ error: error.message })
-      
-//     }
-
-//   }
-// }
 

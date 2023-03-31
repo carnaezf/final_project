@@ -14,10 +14,14 @@ import logo from "./Haal.png"
 import { useAuth } from '../../Contexts/authContext';
 import { async } from '@firebase/util';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
 export default function NavBar(props) {
+
+  
+
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
 
   const quantity = shoppingBag.reduce((acc, curr) => {
@@ -107,12 +111,25 @@ export default function NavBar(props) {
         <div>
 
       <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52 text-roboto normal-case">
+      <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <a onClick={handlerLogOut}> Logout </a></li>
+        
+                  
+      
 
-    
+      {/* {userAd[0]===true ? (
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <a onClick={handlerLogOut}> Logout </a></li>
+      ): (
+        <>
         <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/login'> Login </Link></li>
+        
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/register'> Register </Link></li>
+        </>
+      ) } */}
+    
+        {/* <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/login'> Login </Link></li>
         <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/admin'> Admin </Link></li>
         <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/register'> Register </Link></li>
-        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <a onClick={handlerLogOut}> Logout </a></li>
+        <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <a onClick={handlerLogOut}> Logout </a></li> */}
         {/* <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300"> <Link to='/createProduct'> Shopping Cart</Link></li>
         <li className="justify-between"> <Link to='/login-form'> Log </Link></li> */}
 

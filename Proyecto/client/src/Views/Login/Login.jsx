@@ -1,15 +1,21 @@
 import { Formik } from "formik";
 //import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useAuth } from "../../Contexts/authContext";
 import { useHistory } from "react-router-dom";
 import { loginUsers } from "../../Redux/actions";
+
 
 const Login=()=>{
     //const [post, setPost]= useState({});
     const {login , loginWithGoogle}= useAuth()
     const history = useHistory()
     const dispatch = useDispatch()
+
+    
+    const allUserAdm= useSelector(state=> state.userAdmin);
+
+    
 
     const handleGoogle= async ()=>{
         //console.log("Email Enviado");
@@ -50,12 +56,13 @@ const Login=()=>{
 
                 onSubmit={async (values,props)=>{
                     //console.log("Email Enviado");
-                    try{
+                    try{  
                         dispatch(loginUsers(values))
                         await login(values.email, values.password)
                         // console.log(user)
                         alert("Login")
-                        history.push("/shoppingBag");
+                        history.push("/shoppingBag")
+                      
                     } catch(error){
                         alert("Login invalido")
                     }
@@ -64,20 +71,7 @@ const Login=()=>{
                     // dispatch(postUsers(values));
                     props.resetForm()
                 }}>
-                {/* handleGoogle={async (values,props)=>{
-                    //console.log("Email Enviado");
-                    try{
-                        await loginWithGoogle()
-                        history.push("/shoppingBag");
-                    } catch(error){
-                        alert("Login invalido")
-                    }
-                   
-                    // console.log(values);
-                    // dispatch(postUsers(values));
-                    props.resetForm()
-                }}>
-                 */}
+              
                 {(props)=>(
                     <form  onSubmit={props.handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                         {/* {console.log(props.errors)} */}

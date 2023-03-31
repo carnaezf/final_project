@@ -121,9 +121,9 @@ const signInUser = async (email, password) => {
     },
     encryptKey,
     { expiresIn: encryptExpiration }
-  );
-
-  return { msg: "User logged", token: Token };
+    );
+   
+    return { msg: "User logged", token: Token};
 };
 
 const googleSignIn = async (email, name, lastName, google, password) => {

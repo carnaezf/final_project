@@ -5,7 +5,8 @@ import {
   FILTER_BY_NAME,
   FILTER_BY_GENRES,
   //FILTER_BY_ACCESSORIES_PRICE,
-  FILTER_BY_PRICE
+  FILTER_BY_PRICE,
+  
 } from "./actions";
 
 const intialState = {
@@ -14,6 +15,8 @@ const intialState = {
   productsCategory: [],
   filterGenre:[],
   filterPrice:[],
+  
+  
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -81,13 +84,9 @@ const rootReducer = (state = intialState, action) => {
         })
       };
 
-      return {...state, filterPrice:filterPrice};
-      
-
+      return {...state, filterPrice:filterPrice}; 
 
     
-      
-
 
     default: return { ...state };
   } 
