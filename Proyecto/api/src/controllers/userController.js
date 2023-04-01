@@ -122,8 +122,11 @@ const signInUser = async (email, password) => {
     encryptKey,
     { expiresIn: encryptExpiration }
     );
+    if (user.isAdmin === true) {
+      return { msg: "User logged", token: Token, user: "admin", name: user.name };
+    }
    
-    return { msg: "User logged", token: Token};
+    return { msg: "User logged", token: Token, name: user.name, user:"user"};
 };
 
 const googleSignIn = async (email, name, lastName, google, password) => {
