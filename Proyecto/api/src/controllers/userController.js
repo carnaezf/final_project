@@ -226,7 +226,7 @@ const doAdmin = async (id) => {
   await user.save();
   return user;
 
-  }
+  
 };
 
 module.exports = {

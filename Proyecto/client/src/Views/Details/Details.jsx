@@ -184,14 +184,6 @@ export default function Details({
               ))}
           </Carousel>
         </div>
-<<<<<<< HEAD
-        <div className=" flex flex-row h-screen mx-8">
-            <div className=" w-2/3">
-                {myProduct && myProduct.images && myProduct.images.length > 0 ?
-    <div className="flex w-auto space-x-4">
-        <img className="w-1/2" src={myProduct.images[0]} alt="Imagen no disponible" />
-        <img className="w-1/2" src={myProduct.images[2]} alt="Imagen no disponible" />
-=======
 
         <div className=" fixed  mt-[-1rem] right-0 w-1/3">
           {/* <div className=" mt-[-1rem] right-0 w-1/3"> */}
@@ -273,7 +265,6 @@ export default function Details({
       <div className="mt-[30rem]">
         <Footer />
       </div>
->>>>>>> 2e9b66997723b5c76b6b0066e2eed3209009dd98
     </div>
   );
 }
