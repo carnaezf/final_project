@@ -1,3 +1,4 @@
+const { mailRegister } = require('../controllers/mailsControllers/mail-register')
 const {
   createUser,
   getAllUser,
@@ -9,25 +10,14 @@ const {
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
-  const {
-    name,
-    lastName,
-    email,
-    password,
-    dni,
-    phone,
-    birthDate,
-    country,
-    isAdmin,
-    rol,
-  } = req.body;
-
-  try {
-    const user = await createUser(
-      name,
-      lastName,
-      email,
-      password,
+  const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin,rol } =
+    req.body;
+    try {
+      const user = await createUser(
+        name,
+        lastName,
+        email,
+        password,
       dni,
       phone,
       birthDate,
@@ -39,6 +29,7 @@ const createUserHandler = async (req, res) => {
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
+  await mailRegister(name, email)
 };
 
 const getAllUserHandler = async (req, res) => {
