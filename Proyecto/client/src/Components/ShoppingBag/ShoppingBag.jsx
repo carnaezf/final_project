@@ -6,26 +6,19 @@ import { useAuth } from '../../Contexts/authContext';
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
-const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description}) => {
+const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description,idUser,nameUser,lastNameUser}) => {
 
 const {user}=useAuth();
 
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
-  // console.log('ESTADO SHOPPING BAGS DESDE CART COMP', shoppingBag)
+
 
     const quantity = shoppingBag.reduce((acc, curr) => {
         return acc + curr.quantity;
     }, 0);
 
-   //console.log(shoppingBag)
-    // const totalPrice = shoppingBag.reduce(
-    //     (acc, curr) => acc + curr.quantity * curr.price,
-    //     0
-    // );
-    
     let totalPrice=0;
-   // console.log(shoppingBag.length)
     for(let i=0; i<shoppingBag.length;i++){
      totalPrice=Number(totalPrice)+  (Number(shoppingBag[i].quantity) * Number(shoppingBag[i].unit_price))
       }
@@ -35,8 +28,6 @@ const {user}=useAuth();
     const addToCart = (id) => {
         setShoppingBag((currItems) => {
 
-            //console.log("click")
-            //console.log(currItems, "esto curr items")
             const isItemsFound = currItems.find((item) => item.id === id);
             if (isItemsFound) {
                 return currItems.map((item) => {
@@ -77,8 +68,6 @@ const {user}=useAuth();
     return (
         <div className="bg-gray-100 min-h-screen">
            
-
-            
             <NavBar />
             <div className="container mx-auto py-8">
                 <div className="bg-white p-4 shadow-md rounded-md flex-col">
@@ -115,29 +104,15 @@ const {user}=useAuth();
                     <div className="flex justify-between items-center border-b py-4 mt-4 "> 
                         <div className="font-semibold ">Total:</div>
 
-                  {  shoppingBag.map(({picture_url,title,unit_price})=>
-                    <div className="flex justify-between items-center border-b py-4 mt-4">
-                        <div className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold">Products:</div>
-                        <div > { title } </div>
-                        </div>
-                        <div className="flex justify-between items-center border-b pb-4">
-                        <div className="font-semibold"  > </div>
-                        <div>{unit_price}</div>
-                        </div>     
-                    </div>
-                        )}
-                    <div className="flex justify-between items-center border-b py-4 mt-4">
-                        <div className="font-semibold">Total:</div>
                         <div>{totalPrice}</div>
                     </div>
                     <Link to="/checkoutform">
-                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4" >Checkout</button>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 " >Checkout</button>
                     </Link>
                      </div>
                      </div>
                      </div>
-                     </div>
+                   
     );
 };
 

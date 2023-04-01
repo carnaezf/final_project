@@ -38,9 +38,8 @@ export function AuthProvider({ children }){
     }
 
     useEffect(() => {
-        console.log("ya cargo")
+    
         onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser)
             setUser(currentUser)
         })
     },[])

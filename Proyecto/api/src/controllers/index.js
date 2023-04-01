@@ -92,7 +92,7 @@ const createProduct = async (
   average_rating,
   category,
   reviews_count,
-  
+  totalAvailability,
   availability
 ) => {
   
@@ -104,8 +104,8 @@ const createProduct = async (
     average_rating,
     category,
     reviews_count,
-    
-    availability
+    availability,
+    totalAvailability
   });
   return product;
 };
@@ -116,8 +116,6 @@ module.exports = {
   getProductById,
   getByCategory,
   addReview,
-
   addComment,
-
   createProduct,
 };

@@ -172,9 +172,8 @@ const addToCart = () => {
             </div>
         
             <div className=" fixed  mt-[-1rem] right-0 w-1/3">
-            {/* <div className=" mt-[-1rem] right-0 w-1/3"> */}
-            {
-                    
+            
+            {    
                     myProduct ?
                         <div class="ml-8 dark:text-slate-300">
                                 <h3 className="font-roboto text-3xl font-light text-left">{myProduct.description}</h3>

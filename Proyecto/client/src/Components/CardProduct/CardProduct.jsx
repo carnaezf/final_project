@@ -17,7 +17,6 @@ const CardProduct = ({id, name, sellingPrice, images, average_rating, category,d
 
 
             const isItemsFound = currItems.find((item) => item.id === id);
-            console.log('isItemsFound', isItemsFound);
             if (isItemsFound) {
                 return currItems.map((item) => {
                 if (item.id === id) {
@@ -35,7 +34,6 @@ const CardProduct = ({id, name, sellingPrice, images, average_rating, category,d
 
     const removeItem = (id) => {
         setShoppingBag((currItems) => {
-            console.log(currItems);
             if (currItems.find((item) => item.id === id)?.quantity === 1) {
                 return currItems.filter((item) => item.id !== id);
             } else {

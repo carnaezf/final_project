@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
 
-      name: {
+      nameProduct: {
         type: DataTypes.STRING,
       },
 
@@ -50,7 +50,9 @@ module.exports = (sequelize) => {
           type: DataTypes.ARRAY(DataTypes.STRING),
           //allowNull: false,
         },
-
+        totalAvailability:{
+          type: DataTypes.INTEGER,
+        },
       },
     {
       timestamps: false,
