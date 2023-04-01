@@ -30,7 +30,6 @@
     "morgan": "^1.10.0",
     "nodejs-nodemailer-outlook": "^1.2.4",
     "nodemailer": "^6.9.1",
-    "nodemailer-sendgrid": "^1.0.3",
     "pg": "^8.5.1",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.3.5",

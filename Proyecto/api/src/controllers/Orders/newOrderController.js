@@ -1,4 +1,4 @@
-
+const { mailOrder } = require('../mailsControllers/mail-Order')
 const {getProducts} = require("../index")
 const {Order,Product,User} = require("../../db")
 //aca entraria la info del front¨[{idProducto: asd, amount:6},{idProducto: 231, amount:6}]
@@ -65,7 +65,8 @@ const validateOrderCreated=async(product,quantity,paymentMethod,userId)=>{
         const newOrdercreated= await Order.create({product,quantity,status:"aceptada",paymentMethod, totalMount:totalPrice,UserUserId:userByOrder.dataValues.userId,date:"25/03/2023"})
         userByOrder.set(newOrdercreated).save()
         //newOrdercreated.save()
-       // console.log(newOrdercreated)
+       console.log(newOrdercreated)
+    //    mailOrder()
       return newOrdercreated
     }else{
         return "error en crear la orden"
@@ -74,7 +75,6 @@ const validateOrderCreated=async(product,quantity,paymentMethod,userId)=>{
 } catch (error) {
     return (error.message)
    }
-   
 }
 
 //console.log(validateOrder())

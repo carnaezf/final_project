@@ -6,14 +6,20 @@ import {
   FILTER_BY_GENRES,
   //FILTER_BY_ACCESSORIES_PRICE,
   FILTER_BY_PRICE,
+  GET_USERS,
+  BANNED,
+  GET_PRODUCTS_ADMIN,
+
 } from "./actions";
 
 const intialState = {
   products: [],
+  productsAdmin: [],
   productsDetail: [],
   productsCategory: [],
   filterGenre: [],
   filterPrice: [],
+  users: [],
   user: [],
 };
 
@@ -22,9 +28,13 @@ const rootReducer = (state = intialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.filter((e) => e.show === true),
       };
-
+    case GET_PRODUCTS_ADMIN:
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
     case GET_PRODUCTS_DETAIL:
       return {
         ...state,
@@ -55,9 +65,11 @@ const rootReducer = (state = intialState, action) => {
         if (a.breadcrumbs === action.payload) return a.id;
       });
 
+
       state.productsCategory.filter(
         (e) => nameAccessories.includes(e.id) && filterAccessories.push(e)
       );
+
 
       return {
         ...state,
@@ -91,7 +103,14 @@ const rootReducer = (state = intialState, action) => {
         });
       }
 
+
       return { ...state, filterPrice: filterPrice };
+
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
 
     case "LOGIN":
       return {
@@ -103,6 +122,16 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         user: [],
+      };
+
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case BANNED:
+      return {
+        ...state,
       };
 
     default:

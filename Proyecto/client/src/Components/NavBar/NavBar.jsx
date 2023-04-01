@@ -17,7 +17,6 @@ import { logoutUsers } from "../../Redux/actions";
 export default function NavBar(props) {
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
   const userlogin = useSelector((state) => state.user);
-  console.log(userlogin, "navbar");
 
   const dispatch = useDispatch();
   const quantity = shoppingBag.reduce((acc, curr) => {
@@ -35,7 +34,7 @@ export default function NavBar(props) {
   };
 
   const { user } = useAuth();
-  console.log(user, "user");
+
 
   return (
     <div className="navbar  h-full w-full bg-neutral-400 dark:bg-zinc-700 bg-clip-padding dark:bg-clip-padding backdrop-filter dark:backdrop-filter backdrop-blur-lg dark:backdrop-blur-lg bg-opacity-10 dark:bg-opacity-10">
@@ -52,13 +51,13 @@ export default function NavBar(props) {
             <ul className="content-center mb-2">
               <Link to={"/accessories"}>
                 <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-                  {" "}
+
                   Acessories
                 </li>
               </Link>
               <Link to={"/shoes"}>
                 <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-                  {" "}
+
                   Shoes
                 </li>
               </Link>
@@ -69,7 +68,7 @@ export default function NavBar(props) {
               </Link>
               <Link to="/allproducts">
                 <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-                  {" "}
+
                   All Products
                 </li>
               </Link>
