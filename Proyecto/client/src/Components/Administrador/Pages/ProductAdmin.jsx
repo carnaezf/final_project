@@ -1,17 +1,17 @@
 import { Space, Typography, Table, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts, productban } from "../../../Redux/actions";
+import { getProductsAdmin, productban } from "../../../Redux/actions";
 const ProductAdmin = () => {
   const dispatch = useDispatch();
-  const productsAll = useSelector((state) => state.products);
+  const productsAll = useSelector((state) => state.productsAdmin);
   const [active, setActive] = useState(false);
   const handlerban = (value) => {
     dispatch(productban(value));
     setActive(!active);
   };
   useEffect(() => {
-    dispatch(getProducts());
+    dispatch(getProductsAdmin());
   }, [dispatch, active]);
   const columns = [
     {

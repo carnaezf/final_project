@@ -9,12 +9,21 @@ export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
 export const FILTER_BY_PRICE = "FILTER_BY_ACCESSORIES_PRICE";
 export const GET_USERS = "GET_USERS";
 export const BANNED = "BANNED";
+export const GET_PRODUCTS_ADMIN = "GET_PRODUCTS_ADMIN";
 
 export const getProducts = () => {
   return async function (dispatch) {
     const product = await axios.get("http://localhost:3001/products");
     const allProducts = product.data;
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
+  };
+};
+
+export const getProductsAdmin = () => {
+  return async function (dispatch) {
+    const product = await axios.get("http://localhost:3001/products");
+    const allProducts = product.data;
+    dispatch({ type: GET_PRODUCTS_ADMIN, payload: allProducts });
   };
 };
 
@@ -138,6 +147,17 @@ export const productban = (id) => {
       const baseData = await axios.put(
         `http://localhost:3001/product/${id}/ban`
       );
+      dispatch({ type: BANNED, payload: baseData });
+    } catch (error) {
+      alert({ error: error.message });
+    }
+  };
+};
+
+export const doAdmin = (id) => {
+  return async function (dispatch) {
+    try {
+      const baseData = await axios.put(`http://localhost:3001/admin/${id}`);
       dispatch({ type: BANNED, payload: baseData });
     } catch (error) {
       alert({ error: error.message });

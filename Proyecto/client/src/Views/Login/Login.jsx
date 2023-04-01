@@ -24,16 +24,6 @@ const Login = () => {
     }
   };
 
-  // const handlerAlert = (userlogin) => {
-  //   if (userlogin.msg === "password incorrect") {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Oops...",
-  //       text: "Email or password invalid!",
-  //     });
-  //   }
-  // };
-
   useEffect(() => {
     if (userlogin && userlogin.msg === "User logged") {
       Swal.fire({
@@ -55,6 +45,13 @@ const Login = () => {
         icon: "error",
         title: "Oops...",
         text: "Email invalid!",
+      });
+    }
+    if (userlogin && userlogin.error === "user banned") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "User banned!",
       });
     }
   }, [userlogin]);

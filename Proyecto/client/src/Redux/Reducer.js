@@ -8,10 +8,12 @@ import {
   FILTER_BY_PRICE,
   GET_USERS,
   BANNED,
+  GET_PRODUCTS_ADMIN,
 } from "./actions";
 
 const intialState = {
   products: [],
+  productsAdmin: [],
   productsDetail: [],
   productsCategory: [],
   filterGenre: [],
@@ -25,9 +27,13 @@ const rootReducer = (state = intialState, action) => {
     case GET_PRODUCTS:
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.filter((e) => e.show === true),
       };
-
+    case GET_PRODUCTS_ADMIN:
+      return {
+        ...state,
+        productsAdmin: action.payload,
+      };
     case GET_PRODUCTS_DETAIL:
       return {
         ...state,

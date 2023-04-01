@@ -1,13 +1,17 @@
 import { Space, Typography, Table, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, userban } from "../../../Redux/actions";
+import { getUsers, userban, doAdmin } from "../../../Redux/actions";
 const Users = () => {
   const dispatch = useDispatch();
   const usersAll = useSelector((state) => state.users);
   const [active, setActive] = useState(false);
   const handlerban = (value) => {
     dispatch(userban(value));
+    setActive(!active);
+  };
+  const handlerAdmin = (value) => {
+    dispatch(doAdmin(value));
     setActive(!active);
   };
   useEffect(() => {
@@ -65,6 +69,20 @@ const Users = () => {
             onClick={() => handlerban(record.userId)}
           >
             {record.isBanned ? "Active" : "Ban"}
+          </Button>
+        </Space>
+      ),
+    },
+    {
+      title: "DO ADMIN",
+      key: "operation",
+      render: (text, record) => (
+        <Space>
+          <Button
+            className={record.isAdmin ? "bg-green-500" : "bg-red-500"}
+            onClick={() => handlerAdmin(record.userId)}
+          >
+            {record.isAdmin ? "No Admin" : "Admin"}
           </Button>
         </Space>
       ),

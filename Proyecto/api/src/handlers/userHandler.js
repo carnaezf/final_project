@@ -4,12 +4,23 @@ const {
   updateUser,
   deleteUser,
   signInUser,
+  userBanned,
+  doAdmin,
 } = require("../controllers/userController.js");
 
-
 const createUserHandler = async (req, res) => {
-  const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin,rol } =
-    req.body;
+  const {
+    name,
+    lastName,
+    email,
+    password,
+    dni,
+    phone,
+    birthDate,
+    country,
+    isAdmin,
+    rol,
+  } = req.body;
 
   try {
     const user = await createUser(
@@ -41,8 +52,8 @@ const getAllUserHandler = async (req, res) => {
 
 const updateUserHandler = async (req, res) => {
   const { id } = req.params;
-  const { name, lastName, phone, birthDate, country,rol} = req.body;
- // console.log(id)
+  const { name, lastName, phone, birthDate, country, rol } = req.body;
+  // console.log(id)
   try {
     const user = await updateUser(
       id,
@@ -58,7 +69,6 @@ const updateUserHandler = async (req, res) => {
     res.status(404).send({ error: error.message });
   }
 };
-
 
 const signInUserHandler = async (req, res) => {
   const { email, password } = req.body;
@@ -82,20 +92,39 @@ const googleSignInHandler = async (req, res) => {
   }
 };
 
+const deleteUserHandler = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const { rol, idAdmin } = req.body;
 
-const deleteUserHandler=async (req,res)=>{
-try {
-  const {userId}=req.params
-  const {rol,idAdmin}= req.body
+    const deleteAccion = await deleteUser(userId, rol, idAdmin);
 
-  const deleteAccion= await deleteUser(userId,rol,idAdmin)
-  
-  res.status(200).json(deleteAccion)
-} catch (error) {
-  res.status(404).send({ error: error.message });
-}
-}
+    res.status(200).json(deleteAccion);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
 
+const userBannedHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await userBanned(id);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
+const doAdminhandler = async (req, res) => {
+  const { id } = req.params;
+  console.log(id, "entro");
+  try {
+    const user = await doAdmin(id);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
 
 module.exports = {
   createUserHandler,
@@ -103,5 +132,7 @@ module.exports = {
   updateUserHandler,
   signInUserHandler,
   googleSignInHandler,
-  deleteUserHandler
+  deleteUserHandler,
+  userBannedHandler,
+  doAdminhandler,
 };

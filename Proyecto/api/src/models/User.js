@@ -17,10 +17,10 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-       lastName: {
-       type: DataTypes.STRING,
-       allowNull: false,
-       },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -61,15 +61,15 @@ module.exports = (sequelize) => {
         defaultValue: false,
       },
 
-      rol:{
-        type: DataTypes.ENUM(
-          "superadmin",
-          "administrator",
-          "commonuser" ),
-          defaultValue: "commonuser",
-      }
+      rol: {
+        type: DataTypes.ENUM("superadmin", "administrator", "commonuser"),
+        defaultValue: "commonuser",
+      },
 
-      
+      isBanned: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+      },
     },
     {
       timestamps: false,

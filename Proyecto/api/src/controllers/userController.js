@@ -115,6 +115,9 @@ const signInUser = async (email, password) => {
   if (!passwordMatch) {
     throw new Error(`password incorrect`);
   }
+  if (user.isBanned === true) {
+    throw new Error(`user banned`);
+  }
   const Token = jwt.sign(
     {
       user: user,
@@ -191,6 +194,38 @@ const deleteUser = async (userId, rol, idAdmin) => {
   }
 };
 
+const userBanned = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (user.isBanned === true) {
+    await user.set({ isBanned: false });
+    await user.save();
+    return user;
+  }
+  user.set({ isBanned: true });
+  await user.save();
+  return user;
+};
+
+const doAdmin = async (id) => {
+  const user = await User.findByPk(id);
+  console.log(user);
+  console.log(id);
+  if (!user) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (user.isAdmin === true) {
+    await user.set({ isAdmin: false });
+    await user.save();
+    return user;
+  }
+  user.set({ isAdmin: true });
+  await user.save();
+  return user;
+};
+
 module.exports = {
   createUser,
   getAllUser,
@@ -198,4 +233,6 @@ module.exports = {
   signInUser,
   googleSignIn,
   deleteUser,
+  userBanned,
+  doAdmin,
 };
