@@ -4,6 +4,8 @@ import { getProducts } from "../../Redux/actions";
 import NavBar from "../../Components/NavBar/NavBar";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
 import Paginated from "../../Components/Paginated/Paginated"
+import Footer from"../../Components/Footer/Footer.jsx"
+import SearchBar from "../../Components/SearchBar/SearchBar"
 
 const Products=()=>{
     const dispatch= useDispatch();
@@ -68,11 +70,13 @@ const handleTHemeSwitch = () =>{
         <br />
         <br />
         <br />
+        <br />
+        <br/>
         <CardsProducts newStateProducts ={newStateProducts} />
         <br />
         <Paginated maximumPage={maximumPage} pagin={pagin} />
         <br />
-  
+        <Footer/>
         {/* <p>Pagina {pageActual}</p> */}
       </div>
   

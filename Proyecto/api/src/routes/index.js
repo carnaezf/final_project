@@ -19,14 +19,15 @@ const {
   newOrderHandler,
 } = require("../handlers/OrdersHandler/newOrderHandler");
 
-const {
-  getProductsHandler,
-  getSearchHandler,
-  getByCategoryHandler,
-  addReviewHandler,
-  addCommentHandler,
-  createProductHandler,
-} = require("../handlers/index");
+
+// const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
+// const { getByIdHandler } = require("../handlers/getByIdHandler");
+
+
+
+const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
+
+
 const {
   getAllOrdersHandler,
 } = require("../handlers/OrdersHandler/getAllOrderHandler");
@@ -41,6 +42,8 @@ const {
 } = require("../handlers/OrdersHandler/putOrderHandler");
 const { Router } = require("express");
 const router = Router();
+
+
 const {
   createUserHandler,
   getAllUserHandler,
@@ -49,10 +52,17 @@ const {
   signInUserHandler,
   googleSignInHandler,
 } = require("../handlers/userHandler");
+
+
+
+
+const { mercadoPago } = require("../controllers/mercadoPago")
+
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const { optionsAdminEditUserHandler } = require("../handlers/userAdminHandler");
 const { veryfyToken } = require("../Token/tokenAdmin");
+const {mailsTotalityHandler}=require("../handlers/mails/mailsHandler")
 
 router.get("/products", getProductsHandler);
 
@@ -147,5 +157,9 @@ router.post("/user/signin/google", googleSignInHandler);
 //router.post("/admin", userAdminHandler);
 
 router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
+
+router.post("/payment/",mercadoPago)
+
+router.get("/user/totalMails",mailsTotalityHandler)
 
 module.exports = router;
