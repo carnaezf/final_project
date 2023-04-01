@@ -11,6 +11,7 @@ export const GET_USERS = "GET_USERS";
 export const BANNED = "BANNED";
 export const GET_PRODUCTS_ADMIN = "GET_PRODUCTS_ADMIN";
 
+
 export const getProducts = () => {
   return async function (dispatch) {
     const product = await axios.get("http://localhost:3001/products");
@@ -99,6 +100,7 @@ export const postUsers = (payload) => {
   };
 };
 
+
 export const getUsers = () => {
   return async function (dispatch) {
     const user = await axios.get("http://localhost:3001/user");
@@ -106,6 +108,7 @@ export const getUsers = () => {
     dispatch({ type: GET_USERS, payload: allUsers });
   };
 };
+
 export const loginUsers = (payload) => {
   return async function (dispatch) {
     try {
@@ -114,6 +117,7 @@ export const loginUsers = (payload) => {
         payload
       );
       dispatch({ type: "LOGIN", payload: baseData.data });
+
     } catch (error) {
       console.log(error.response.data);
       dispatch({ type: "LOGIN", payload: error.response.data });
@@ -127,9 +131,11 @@ export const logoutUsers = () => {
       dispatch({ type: "LOGOUT" });
     } catch (error) {
       console.log(error);
+
     }
   };
 };
+
 
 export const userban = (id) => {
   return async function (dispatch) {
@@ -161,6 +167,7 @@ export const doAdmin = (id) => {
       dispatch({ type: BANNED, payload: baseData });
     } catch (error) {
       alert({ error: error.message });
+
     }
   };
 };

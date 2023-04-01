@@ -9,6 +9,7 @@ import {
   GET_USERS,
   BANNED,
   GET_PRODUCTS_ADMIN,
+
 } from "./actions";
 
 const intialState = {
@@ -64,9 +65,11 @@ const rootReducer = (state = intialState, action) => {
         if (a.breadcrumbs === action.payload) return a.id;
       });
 
+
       state.productsCategory.filter(
         (e) => nameAccessories.includes(e.id) && filterAccessories.push(e)
       );
+
 
       return {
         ...state,
@@ -99,6 +102,7 @@ const rootReducer = (state = intialState, action) => {
           }
         });
       }
+
 
       return { ...state, filterPrice: filterPrice };
 

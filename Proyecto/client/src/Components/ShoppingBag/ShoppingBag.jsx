@@ -73,6 +73,7 @@ const ShoppingBag = ({
           },
         ];
       }
+
     });
   };
 
@@ -176,6 +177,7 @@ const ShoppingBag = ({
       </div>
     </div>
   );
+ 
 };
 
 export default ShoppingBag;

@@ -24,6 +24,7 @@ const Login = () => {
     }
   };
 
+
   useEffect(() => {
     if (userlogin && userlogin.msg === "User logged") {
       Swal.fire({
@@ -165,5 +166,6 @@ const Login = () => {
     </div>
   );
 };
+
 
 export default Login;

@@ -191,6 +191,7 @@ const deleteUser = async (userId, rol, idAdmin) => {
     }
   } catch (error) {
     return { error: error.message };
+
   }
 };
 
@@ -224,6 +225,8 @@ const doAdmin = async (id) => {
   user.set({ isAdmin: true });
   await user.save();
   return user;
+
+  }
 };
 
 module.exports = {
@@ -235,4 +238,5 @@ module.exports = {
   deleteUser,
   userBanned,
   doAdmin,
+
 };
