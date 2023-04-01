@@ -8,17 +8,12 @@ export default function Testing() {
         <div>
             {/* <h1>Testing</h1> */}
 
-            <Link to='/shoppingBag'>
-                <button>Shopping Bags</button>
-            </Link>
             <br />
             <Link to='/createProduct'>
                 <button>CreateProduct Form</button>
             </Link>
             <br />
-            <Link to='/checkoutform'>
-                <button>Checkout Form</button>
-            </Link>
+           
         </div>
     )
 }

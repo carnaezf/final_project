@@ -1,9 +1,8 @@
-
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { encryptKey, encryptExpiration } = process.env;
-const { User,Order } = require("../db");
-const {superAdmin}= require("../controllers/userAdmin")
+const { User, Order } = require("../db");
+const { superAdmin } = require("../controllers/userAdmin");
 
 const createUser = async (
   name,
@@ -16,7 +15,6 @@ const createUser = async (
   country,
   isAdmin,
   rol
-
 ) => {
   let passwordHash = await bcrypt.hash(password, 10);
   let nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
@@ -41,8 +39,7 @@ const createUser = async (
     birthDate,
     country: countryCapitalized,
     isAdmin,
-    rol
-
+    rol,
   });
   const Token = jwt.sign(
     {
@@ -52,57 +49,60 @@ const createUser = async (
     { expiresIn: encryptExpiration }
   );
 
-  return { msg: "User created", token: Token };
+  return user, { msg: "User created", token: Token };
 };
 
 const getAllUser = async () => {
   try {
     const users = await User.findAll({
-      include:{
-        model:Order
-      }
+      include: {
+        model: Order,
+      },
     });
     return users;
   } catch (error) {
-    return ({error:error.message})
+    return { error: error.message };
   }
-
 };
 
-const updateUser = async (id, name, lastName, phone, birthDate, country,rol) => {
+const updateUser = async (
+  id,
+  name,
+  lastName,
+  phone,
+  birthDate,
+  country,
+  rol
+) => {
   try {
-    
+    const user = await User.findByPk(id);
+    if (!user) {
+      throw new Error(`user id not found ${id}`);
+    }
+    // console.log(user)
+    const dataAdmin = await superAdmin(rol);
+    const rolAdmin = dataAdmin.rol;
+    //console.log(dataAdmin,"aca esta dataaaaa admin")
+    //console.log(rolAdmin)
+    if (rolAdmin !== "superadmin" && rolAdmin !== "administrator") {
+      await user.set({
+        name,
+        lastName,
+        phone,
+        birthDate,
+        country,
+      }); //lo actualiza
+      await user.save(); //lo guarda
 
-  const user = await User.findByPk(id);
-  if (!user) {
-    throw new Error(`user id not found ${id}`);
+      return user;
+    } else {
+      return "Can't edit SUPER ADMIN 😅, change ID  ";
+    }
+  } catch (error) {
+    return { error: error.message };
   }
- // console.log(user)
-  const dataAdmin= await superAdmin(rol)
-  const rolAdmin= dataAdmin.rol
-  //console.log(dataAdmin,"aca esta dataaaaa admin")
-  //console.log(rolAdmin) 
-  if( rolAdmin !== "superadmin" && rolAdmin !== "administrator" ){
-
-    await user.set({
-      name,
-      lastName,
-      phone,
-      birthDate,
-      country,
-    }); //lo actualiza
-    await user.save(); //lo guarda
-  
-    return user;
-  }else{
-    return "Can't edit SUPER ADMIN 😅, change ID  "
-  }
-} catch (error) {
-  return ({error:error.message})
-}
-  
 };
-//
+
 const signInUser = async (email, password) => {
   let emailLower = email.toLowerCase();
   const user = await User.findOne({
@@ -115,6 +115,9 @@ const signInUser = async (email, password) => {
   if (!passwordMatch) {
     throw new Error(`password incorrect`);
   }
+  if (user.isBanned === true) {
+    throw new Error(`user banned`);
+  }
   const Token = jwt.sign(
     {
       user: user,
@@ -122,8 +125,10 @@ const signInUser = async (email, password) => {
     encryptKey,
     { expiresIn: encryptExpiration }
   );
-
-  return { msg: "User logged", token: Token };
+  if (user.isAdmin === true) {
+    return { msg: "User logged", token: Token, user: "admin", name: user.name };
+  }
+  return { msg: "User logged", token: Token, user: "user", name: user.name };
 };
 
 const googleSignIn = async (email, name, lastName, google, password) => {
@@ -159,36 +164,70 @@ const googleSignIn = async (email, name, lastName, google, password) => {
   return { msg: "User logged", token: token };
 };
 
-const deleteUser=async(userId,rol,idAdmin)=>{
-try {
-  const admin= await superAdmin(rol)
-  //console.log(admin,"esto es admin")
-  //console.log(rol)
-  if(rol==="superadmin"){
-    if(admin.userId=== idAdmin){
-     // console.log(admin.userId,"----------")
-    await User.destroy({where:{userId:userId}})
-    return "The superadmin action has been executed"
-   }
-  }
-  if(rol==="administrator"){
-    const commonUserId= await User.findByPk(userId)
-    console.log(commonUserId.dataValues.rol)
-    if(commonUserId.dataValues.rol==="commonuser"){
-      await User.destroy({where:{userId:userId}})
-      return "The administrator action has been executed"
-    }else{
-      return "The requested action cannot be done with the role entered"
+const deleteUser = async (userId, rol, idAdmin) => {
+  try {
+    const admin = await superAdmin(rol);
+    //console.log(admin,"esto es admin")
+    //console.log(rol)
+    if (rol === "superadmin") {
+      if (admin.userId === idAdmin) {
+        // console.log(admin.userId,"----------")
+        await User.destroy({ where: { userId: userId } });
+        return "The superadmin action has been executed";
+      }
     }
-    // if(commonUserId)
-  }else{
-    return "Doesnt have the necessary role for the action"
+    if (rol === "administrator") {
+      const commonUserId = await User.findByPk(userId);
+      console.log(commonUserId.dataValues.rol);
+      if (commonUserId.dataValues.rol === "commonuser") {
+        await User.destroy({ where: { userId: userId } });
+        return "The administrator action has been executed";
+      } else {
+        return "The requested action cannot be done with the role entered";
+      }
+      // if(commonUserId)
+    } else {
+      return "Doesnt have the necessary role for the action";
+    }
+  } catch (error) {
+    return { error: error.message };
+
   }
-} catch (error) {
-  return ({error:error.message})
-}
+};
+
+const userBanned = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (user.isBanned === true) {
+    await user.set({ isBanned: false });
+    await user.save();
+    return user;
+  }
+  user.set({ isBanned: true });
+  await user.save();
+  return user;
+};
+
+const doAdmin = async (id) => {
+  const user = await User.findByPk(id);
+  console.log(user);
+  console.log(id);
+  if (!user) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (user.isAdmin === true) {
+    await user.set({ isAdmin: false });
+    await user.save();
+    return user;
+  }
+  user.set({ isAdmin: true });
+  await user.save();
+  return user;
+
   
-}
+};
 
 module.exports = {
   createUser,
@@ -196,6 +235,8 @@ module.exports = {
   updateUser,
   signInUser,
   googleSignIn,
-  deleteUser
+  deleteUser,
+  userBanned,
+  doAdmin,
 
 };

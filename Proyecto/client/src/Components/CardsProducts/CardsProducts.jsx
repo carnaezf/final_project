@@ -26,6 +26,7 @@ const CardsProducts = (props) => {
                // console.log(el);
                 return(
                     <CardProduct
+                    key={el.id}
                     id={el.id} 
                     name={el.name} 
                     sellingPrice={el.sellingPrice} 

@@ -1,3 +1,5 @@
+// const cloudinary = require('../../utils/cloudinary')
+const { uploadImage } = require('../controllers/upload-controller/upload')
 const {
   getProducts,
   getSearch,
@@ -5,6 +7,7 @@ const {
   addReview,
   addComment,
   createProduct,
+  ProductBanned,
 } = require("../controllers/");
 
 const getProductsHandler = async (req, res) => {
@@ -68,23 +71,37 @@ const createProductHandler = async (req, res) => {
     breadcrumbs,
   } = req.body;
   try {
-    const product = await createProduct(
+    
+  const urlImage = await uploadImage(images)
+  // const imageurl = urlImage.secure_url;
+  const image = urlImage.split(' ');
+  console.log("images en index", image);
+     const product = await createProduct(
       name,
       description,
       sellingPrice,
-      images,
+      image,
       average_rating,
       category,
       reviews_count,
       availability,
       breadcrumbs
-    );
+  );
     res.status(200).json(product);
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
 };
 
+const productBannedHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await ProductBanned(id);
+    res.status(200).send(product);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
 module.exports = {
   getProductsHandler,
   getSearchHandler,
@@ -92,4 +109,5 @@ module.exports = {
   addReviewHandler,
   addCommentHandler,
   createProductHandler,
+  productBannedHandler,
 };

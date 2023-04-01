@@ -13,13 +13,12 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
 
-      name: {
+      nameProduct: {
         type: DataTypes.STRING,
       },
-
       description: {
         type: DataTypes.TEXT,
-        allowNull: false,
+        // allowNull: false,
       },
 
       sellingPrice: {
@@ -31,7 +30,7 @@ module.exports = (sequelize) => {
       },
 
       availability: {
-        type:DataTypes.JSONB,
+        type: DataTypes.JSONB,
       },
 
       category: {
@@ -42,16 +41,25 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
 
-        reviews_count: {
-          type: DataTypes.FLOAT,
+       
+        totalAvailability:{
+          type: DataTypes.INTEGER,
         },
 
-        images: {
-          type: DataTypes.ARRAY(DataTypes.STRING),
-          //allowNull: false,
-        },
+      reviews_count: {
+        type: DataTypes.FLOAT,
+      },
+      show: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+
+      images: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        //allowNull: false,
 
       },
+    },
     {
       timestamps: false,
     }
