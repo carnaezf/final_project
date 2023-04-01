@@ -1,0 +1,13 @@
+.SideMenu {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.SideMenuVertical {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: 100%;
+  padding: 20px;
+}

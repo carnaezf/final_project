@@ -102,7 +102,7 @@ const updateUser = async (
     return { error: error.message };
   }
 };
-//
+
 const signInUser = async (email, password) => {
   let emailLower = email.toLowerCase();
   const user = await User.findOne({
@@ -114,6 +114,9 @@ const signInUser = async (email, password) => {
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
     throw new Error(`password incorrect`);
+  }
+  if (user.isBanned === true) {
+    throw new Error(`user banned`);
   }
   const Token = jwt.sign(
     {
@@ -188,6 +191,41 @@ const deleteUser = async (userId, rol, idAdmin) => {
     }
   } catch (error) {
     return { error: error.message };
+
+  }
+};
+
+const userBanned = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (user.isBanned === true) {
+    await user.set({ isBanned: false });
+    await user.save();
+    return user;
+  }
+  user.set({ isBanned: true });
+  await user.save();
+  return user;
+};
+
+const doAdmin = async (id) => {
+  const user = await User.findByPk(id);
+  console.log(user);
+  console.log(id);
+  if (!user) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (user.isAdmin === true) {
+    await user.set({ isAdmin: false });
+    await user.save();
+    return user;
+  }
+  user.set({ isAdmin: true });
+  await user.save();
+  return user;
+
   }
 };
 
@@ -198,4 +236,7 @@ module.exports = {
   signInUser,
   googleSignIn,
   deleteUser,
+  userBanned,
+  doAdmin,
+
 };
