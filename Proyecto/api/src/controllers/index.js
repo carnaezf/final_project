@@ -91,7 +91,7 @@ const createProduct = async (
   average_rating,
   category,
   reviews_count,
-
+  totalAvailability,
   availability
 ) => {
   const product = await Product.create({
@@ -102,8 +102,8 @@ const createProduct = async (
     average_rating,
     category,
     reviews_count,
-
     availability,
+    totalAvailability
   });
   return product;
 };
@@ -128,9 +128,7 @@ module.exports = {
   getProductById,
   getByCategory,
   addReview,
-
   addComment,
-
   createProduct,
   ProductBanned,
 };

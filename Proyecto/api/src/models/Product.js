@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         primaryKey: true,
       },
 
-      name: {
+      nameProduct: {
         type: DataTypes.STRING,
       },
       description: {
@@ -41,6 +41,11 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
       },
 
+       
+        totalAvailability:{
+          type: DataTypes.INTEGER,
+        },
+
       reviews_count: {
         type: DataTypes.FLOAT,
       },
@@ -52,6 +57,7 @@ module.exports = (sequelize) => {
       images: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         //allowNull: false,
+
       },
     },
     {

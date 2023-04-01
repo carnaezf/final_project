@@ -46,45 +46,86 @@ return  "there is not enough stock of some products"
     //console.log(newBuys,"aca esta compra")
    
 }
- //aca entra el metodo de pago
 
-// async(product,amount,paymentMethod)
-const validateOrderCreated=async(product,quantity,paymentMethod,userId)=>{
-   // aca iria la validacion ok del pago
-   let totalPrice= await validateOrder()
-   //console.log(totalPrice,"----------------------------------------")
-   //    let numberPrice=Number(totalPrice)
-   try {
-       
-    if(totalPrice){
-        const dataFront=[{Products:{id:13,quantity:1, id:29,quantity:1,id:33,quantity:1 ,id:62,quantity:2 },User:{idUser:"655f9235-2f7a-4240-9e78-75a238f87618",name: "German",lastName: "Maturano" }} ]
-        //console.log(dataFront[0].User.idUser)
-        //let userByOrder= await User.findAll({where:{userId: dataFront[0].User.idUser}})
-        let userByOrder= await User.findByPk(dataFront[0].User.idUser)
-        //console.log("..............",userByOrder)
-        const newOrdercreated= await Order.create({product,quantity,status:"aceptada",paymentMethod, totalMount:totalPrice,UserUserId:userByOrder.dataValues.userId,date:"25/03/2023"})
-        userByOrder.set(newOrdercreated).save()
-        //newOrdercreated.save()
-       console.log(newOrdercreated)
-    //    mailOrder()
-      return newOrdercreated
-    }else{
-        return "error en crear la orden"
+
+
+
+const validateOrderCreated = async (newOrder) => {
+    try {
+        console.log(newOrder)
+      let userBuy = [];
+      let productsFront = [];
+      for(let i=0;i<newOrder.length;i++){
+        newOrder[newOrder.length-1].userId?userBuy.push(newOrder[newOrder.length-1]):""
+        newOrder[i].id?productsFront.push(newOrder[i]):""
     }
+    console.log(productsFront,"esto es productsFront productsFront")
+    console.log(userBuy,"esto es userBuy userBuy")
+      let userByOrder = await User.findByPk(userBuy[0].userId);
+      let totalPrice = 0;
+      for (let i = 0; i < productsFront.length; i++) {
+        totalPrice =
+          totalPrice + productsFront[i].unit_price * productsFront[i].quantity;
+      }
 
-} catch (error) {
-    return (error.message)
-   }
-}
-
-//console.log(validateOrder())
-
-
-
-
-
+      console.log(productsFront,"esto es product front")
+      console.log(totalPrice)
+      const newOrdercreated = await Order.create({
+        paymentMethod: "mercadoPago",
+        status: "aceptada",
+        totalMount: totalPrice,
+        products: productsFront,
+      });
+  
+      for (let i = 0; i < productsFront.length; i++) {
+        const product = await Product.findByPk(productsFront[i].id);
+        await newOrdercreated.addProduct(product, {
+          through: { quantity: productsFront[i].quantity },
+        });
+      }
+  
+      await userByOrder.addOrder(newOrdercreated, { through: { UserUserId: userByOrder.id } });
+  
+      return newOrdercreated;
+    } catch (error) {
+      return { error: error.message };
+    }
+  };
 
 module.exports = {
     validateOrderCreated,
     
-  };
+};
+{/*
+const validateOrderCreated=async(newOrder)=>{
+   // let totalPrice= await validateOrder(product,quantity)
+    try {
+       
+        //console.log(newOrder,"esto es new order desde controller")
+        let userBuy=[]
+        let productsFront=[]
+        for(let i=0;i<newOrder.length;i++){
+            newOrder[newOrder.length-1].userId?userBuy.push(newOrder[newOrder.length-1]):""
+            newOrder[i].title?productsFront.push(newOrder[i]):""
+        }
+        //console.log(productsFront,"esto es products front ")
+        //NO TOCAR USER ESTA OK
+        let userByOrder= await User.findByPk(userBuy[0].userId)
+        let totalPrice=0
+        for(let i=0;i<productsFront.length;i++){
+            totalPrice=totalPrice+(productsFront[i].unit_price*productsFront[i].quantity)
+        }
+        
+        const newOrdercreated= await Order.create({paymentMethod:"mercadoPago",status:"aceptada",totalMount:totalPrice,products:[productsFront]})
+
+        console.log(newOrdercreated,"eto es la orden creada")
+     
+        userByOrder.addOrder(newOrdercreated)
+      
+        return newOrdercreated
+} catch (error) {
+    return ({error:error.message})
+   }
+   
+}
+*/}

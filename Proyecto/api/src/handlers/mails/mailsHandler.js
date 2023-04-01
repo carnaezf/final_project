@@ -3,7 +3,6 @@ const {mailsTotality}= require("../../controllers/mailsControllers/filterMail")
 
 const mailsTotalityHandler=async(req,res)=>{
 try {
-    console.log("hola")
     const mailsTot= await mailsTotality()
     if(mailsTot.length===0)return "vacio"
     res.status(200).json(mailsTot)
