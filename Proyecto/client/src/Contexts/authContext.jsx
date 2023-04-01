@@ -17,25 +17,6 @@ export const useAuth = () => {
   return context;
 };
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-
-  // const signUp = (email, password) =>
-  // createUserWithEmailAndPassword(auth,email,password)
-  const signUp = async (email, password, displayName) => {
-    const { user } = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-
-    // acutaliza el display name
-    await updateProfile(user, {
-      displayName: displayName,
-    });
-
-    return user;
-  };
 
 
 export function AuthProvider({ children }){

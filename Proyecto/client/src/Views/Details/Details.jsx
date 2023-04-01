@@ -40,7 +40,7 @@ export default function Details({
   //     history.goBack();
   // };
 
-  /****************************Modo nocturno y claro */
+  /**********Modo nocturno y claro */
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -62,9 +62,9 @@ export default function Details({
   const handleTHemeSwitch = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-  /****************************Modo nocturno y claro */
+  /**********Modo nocturno y claro */
 
-  /****************************Metodos ShoppingBags */
+  /**********Metodos ShoppingBags */
   const addToCart = () => {
     setShoppingBag((currItems) => {
       const isItemsFound = currItems.find((item) => item.id === id);
@@ -104,7 +104,7 @@ export default function Details({
 
   const quantityPerItem = getQuantityById(id);
 
-  /****************************Metodos ShoppingBag */
+  /**********Metodos ShoppingBag */
 
   return (
     <div className="bg-slate-200 dark:bg-zinc-800">
@@ -157,55 +157,9 @@ export default function Details({
                 alt="Imagen no disponible"
               />
             </div>
-
-            <div className=" fixed  mt-[-1rem] right-0 w-1/3">
-            
-            {    
-                    myProduct ?
-                        <div class="ml-8 dark:text-slate-300">
-                                <h3 className="font-roboto text-3xl font-light text-left">{myProduct.description}</h3>
-                                <h2 className="font-roboto text-4xl font-bold text-left">{myProduct.name}</h2>
-                                <h4 className="font-roboto font-thin text-xl text-left">{myProduct.category}</h4>
-                                <h4 className="font-roboto text-4xl font-bold text-left" >${myProduct.sellingPrice}</h4>
-                                <h4 className="font-roboto text-xl text-left">{myProduct.average_rating}</h4>
-                        </div> : <p>Loading ...</p>
-                    } 
-            <div class="mx-8 dark:text-slate-300">
-                <h1 className="font-roboto text-3xl font-normal text-left" >Free shipping and returns</h1>
-                <p className="font-roboto text-l font-light text-left" >Standard free shipping and free returns for 60 days for registered users. More information. Exclusions apply to the returns policy.</p>
-                <Link to="/formLogin">
-                    <div className="text-xs mb-6 underline font-bold cursor-pointer text-purple-800 dark:text-purple-400">Sign up here!</div></Link>
-            </div>
-            <div className="flex justify-around mt-6 ml-8 mr-8">
-                <button class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold">
-                S
-                </button>
-                <button class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold">
-                M
-                </button>
-                <button class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold">
-                X
-                </button>
-                <button class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold">
-                XL
-                </button>
-            </div>
-            <div className="flex justify-around mt-6 ml-8 mr-8">
-
-                    {quantityPerItem === 0 ? (
-                    <button  onClick={() => addToCart()}>Añadir Carrito</button>
-                    ) : (
-                    <button onClick={() => addToCart()}>Sumar Item</button>)}
-                    {quantityPerItem > 0 && (
-                    <div>{quantityPerItem}</div>
-                    )}
-                    {quantityPerItem > 0 && (
-                    <button onClick={() => removeItem(id)}>Restar Item</button>)}
-
+          ) : (
+            <img src={defaultImage} alt="Imagen no disponible" />
+          )}
 
           <Carousel
             autoplay
