@@ -14,12 +14,12 @@ const {
   FIREBASE_APPID,
 } = process.env;
 
-console.log(FIREBASE_APIKEY);
-console.log(FIREBASE_AUTHDOMAIN);
-console.log(FIREBASE_PROJECTID);
-console.log(FIREBASE_STORAGEBUCKET);
-console.log(FIREBASE_MESSAGINGSENDERID);
-console.log(FIREBASE_APPID);
+// console.log(FIREBASE_APIKEY);
+// console.log(FIREBASE_AUTHDOMAIN);
+// console.log(FIREBASE_PROJECTID);
+// console.log(FIREBASE_STORAGEBUCKET);
+// console.log(FIREBASE_MESSAGINGSENDERID);
+// console.log(FIREBASE_APPID);
 
 // Your web app's Firebase configuration
 const firebaseConfig = {

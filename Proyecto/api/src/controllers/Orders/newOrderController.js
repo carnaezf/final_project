@@ -1,4 +1,4 @@
-
+const { mailOrder } = require('../mailsControllers/mail-Order')
 const {getProducts} = require("../index")
 const {Order,Product,User} = require("../../db")
 //aca entraria la info del front¨[{idProducto: asd, amount:6},{idProducto: 231, amount:6}]
