@@ -1,16 +1,18 @@
-import { Space, Typography, Table } from "antd";
-import { useEffect } from "react";
+import { Space, Typography, Table, Button } from "antd";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers } from "../../../Redux/actions";
-
+import { getUsers, userban } from "../../../Redux/actions";
 const Users = () => {
   const dispatch = useDispatch();
   const usersAll = useSelector((state) => state.users);
-
+  const [active, setActive] = useState(false);
+  const handlerban = (value) => {
+    dispatch(userban(value));
+    setActive(!active);
+  };
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch]);
-
+  }, [dispatch, active]);
   const columns = [
     {
       title: "Name",
@@ -28,19 +30,19 @@ const Users = () => {
       key: "email",
     },
     {
-      title: "DNI",
-      dataIndex: "dni",
-      key: "dni",
-    },
-    {
       title: "Phone",
       dataIndex: "phone",
       key: "phone",
     },
     {
-      title: "Birth Date",
-      dataIndex: "birthDate",
-      key: "birthDate",
+      title: "Status",
+      dataIndex: "isBanned",
+      key: "isBanned",
+      render: (text, record) => (
+        <Space className={record.isBanned ? "text-red-500" : "text-green-500"}>
+          {record.isBanned ? "No Active" : "Active"}
+        </Space>
+      ),
     },
     {
       title: "Country",
@@ -48,13 +50,26 @@ const Users = () => {
       key: "country",
     },
     {
+      title: "Admin",
+      dataIndex: "isAdmin",
+      key: "admin",
+      render: (value) => (value ? "Admin" : "User"),
+    },
+    {
       title: "Action",
       key: "operation",
-      render: () => <a>View</a>,
-      render: () => <a>Ban</a>,
+      render: (text, record) => (
+        <Space>
+          <Button
+            className={record.isBanned ? "bg-green-500" : "bg-red-500"}
+            onClick={() => handlerban(record.userId)}
+          >
+            {record.isBanned ? "Active" : "Ban"}
+          </Button>
+        </Space>
+      ),
     },
   ];
-
   return (
     <Space direction="vertical" className="w-full">
       <Typography.Title level={5}>Users</Typography.Title>
@@ -62,5 +77,4 @@ const Users = () => {
     </Space>
   );
 };
-
 export default Users;

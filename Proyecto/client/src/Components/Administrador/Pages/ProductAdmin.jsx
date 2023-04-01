@@ -1,68 +1,85 @@
-import React from "react";
-import { Space, Table, Tag } from "antd";
-
-const { Column, ColumnGroup } = Table;
-const data = [
-  {
-    key: "1",
-    Product: "John",
-    S: "Brown",
-    age: 32,
-    address: "New York No. 1 Lake Park",
-    tags: ["nice", "developer"],
-  },
-  {
-    key: "2",
-    firstName: "Jim",
-    lastName: "Green",
-    age: 42,
-    address: "London No. 1 Lake Park",
-    tags: ["loser"],
-  },
-  {
-    key: "3",
-    firstName: "Joe",
-    lastName: "Black",
-    age: 32,
-    address: "Sydney No. 1 Lake Park",
-    tags: ["cool", "teacher"],
-  },
-];
-const ProductAdmin = () => (
-  <Table dataSource={data} className="w-full">
-    <ColumnGroup>
-      <Column title="Product" dataIndex="product" key="product" />
-      <Column title="Description" dataIndex="Description" key="Description" />
-    </ColumnGroup>
-    <Column
-      title="Selling Price"
-      dataIndex="Selling Price"
-      key="Selling Price"
-    />
-    <Column
-      title="Tags"
-      dataIndex="tags"
-      key="tags"
-      render={(tags) => (
-        <>
-          {tags.map((tag) => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </>
-      )}
-    />
-    <Column
-      title="Action"
-      key="action"
-      render={(_, record) => (
-        <Space size="middle">
-          <a>Delete</a>
+import { Space, Typography, Table, Button } from "antd";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts, productban } from "../../../Redux/actions";
+const ProductAdmin = () => {
+  const dispatch = useDispatch();
+  const productsAll = useSelector((state) => state.products);
+  const [active, setActive] = useState(false);
+  const handlerban = (value) => {
+    dispatch(productban(value));
+    setActive(!active);
+  };
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch, active]);
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+    },
+    {
+      title: "Selling Price",
+      dataIndex: "sellingPrice",
+      key: "sellingPrice",
+    },
+    {
+      title: "Availability",
+      dataIndex: "availability",
+      key: "availability",
+      render: (availability) =>
+        availability.map((item, index) =>
+          Object.entries(item).map(([size, quantity]) => (
+            <div key={index}>
+              <p>
+                {size}: {quantity}
+              </p>
+            </div>
+          ))
+        ),
+    },
+    ,
+    {
+      title: "Average Rating",
+      dataIndex: "average_rating",
+      key: "average_rating",
+    },
+    {
+      title: "Status",
+      dataIndex: "show",
+      key: "show",
+      render: (text, record) => (
+        <Space className={record.show ? "text-green-500" : "text-red-500"}>
+          {record.show ? "Active" : "No Active"}
         </Space>
-      )}
-    />
-  </Table>
-);
-
+      ),
+    },
+    {
+      title: "Breadcrumbs",
+      dataIndex: "breadcrumbs",
+      key: "breadcrumbs",
+    },
+    {
+      title: "Action",
+      key: "operation",
+      render: (text, record) => (
+        <Space>
+          <Button
+            className={record.show ? "bg-red-500" : "bg-green-500"}
+            onClick={() => handlerban(record.id)}
+          >
+            {record.show ? "No active" : "Active"}
+          </Button>
+        </Space>
+      ),
+    },
+  ];
+  return (
+    <Space direction="vertical" className="w-full">
+      <Typography.Title level={5}>Users</Typography.Title>
+      <Table columns={columns} dataSource={productsAll} />
+    </Space>
+  );
+};
 export default ProductAdmin;

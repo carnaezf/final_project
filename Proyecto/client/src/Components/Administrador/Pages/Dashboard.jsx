@@ -4,22 +4,17 @@ import {
   UserOutlined,
 } from "@ant-design/icons";
 import { Card, Space, Statistic, Typography } from "antd";
-import { useSelector } from "react-redux";
-
-const TotalProducts = () => {
-  const products = useSelector((state) => state.products);
-  const totalProducts = products.length;
-
-  return totalProducts;
-};
-
-const TotalUsers = () => {
-  const users = useSelector((state) => state.users);
-  const totalUsers = users.length;
-  return totalUsers;
-};
-
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts, getUsers } from "../../../Redux/actions";
 const Dashboard = () => {
+  const products = useSelector((state) => state.products);
+  const users = useSelector((state) => state.users);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getProducts());
+    dispatch(getUsers());
+  }, [dispatch]);
   return (
     <div>
       <Typography.Title level={5}>Dashbaord</Typography.Title>
@@ -52,7 +47,7 @@ const Dashboard = () => {
             />
           }
           title="Users"
-          value={TotalUsers()}
+          value={users.length}
         />
         <DashboardCard
           icon={
@@ -67,13 +62,12 @@ const Dashboard = () => {
             />
           }
           title="Products"
-          value={TotalProducts()}
+          value={products.length}
         />
       </Space>
     </div>
   );
 };
-
 const DashboardCard = ({ title, value, icon }) => {
   return (
     <Card style={{ marginLeft: "20px" }}>
@@ -84,5 +78,4 @@ const DashboardCard = ({ title, value, icon }) => {
     </Card>
   );
 };
-
 export default Dashboard;

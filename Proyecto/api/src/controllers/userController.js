@@ -49,7 +49,7 @@ const createUser = async (
     { expiresIn: encryptExpiration }
   );
 
-  return { msg: "User created", token: Token };
+  return user, { msg: "User created", token: Token };
 };
 
 const getAllUser = async () => {
@@ -122,8 +122,10 @@ const signInUser = async (email, password) => {
     encryptKey,
     { expiresIn: encryptExpiration }
   );
-
-  return { msg: "User logged", token: Token };
+  if (user.isAdmin === true) {
+    return { msg: "User logged", token: Token, user: "admin", name: user.name };
+  }
+  return { msg: "User logged", token: Token, user: "user", name: user.name };
 };
 
 const googleSignIn = async (email, name, lastName, google, password) => {

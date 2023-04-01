@@ -7,6 +7,7 @@ import {
   //FILTER_BY_ACCESSORIES_PRICE,
   FILTER_BY_PRICE,
   GET_USERS,
+  BANNED,
 } from "./actions";
 
 const intialState = {
@@ -16,6 +17,7 @@ const intialState = {
   filterGenre: [],
   filterPrice: [],
   users: [],
+  user: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -98,6 +100,28 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         users: action.payload,
+      };
+
+    case "LOGIN":
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+    case "LOGOUT":
+      return {
+        ...state,
+        user: [],
+      };
+
+    case GET_USERS:
+      return {
+        ...state,
+        users: action.payload,
+      };
+    case BANNED:
+      return {
+        ...state,
       };
 
     default:
