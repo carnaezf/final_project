@@ -19,6 +19,9 @@ const {
   newOrderHandler,
 } = require("../handlers/OrdersHandler/newOrderHandler");
 
+// const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
+// const { getByIdHandler } = require("../handlers/getByIdHandler");
+
 const {
   getProductsHandler,
   getSearchHandler,
@@ -26,7 +29,9 @@ const {
   addReviewHandler,
   addCommentHandler,
   createProductHandler,
+  productBannedHandler,
 } = require("../handlers/index");
+
 const {
   getAllOrdersHandler,
 } = require("../handlers/OrdersHandler/getAllOrderHandler");
@@ -41,6 +46,7 @@ const {
 } = require("../handlers/OrdersHandler/putOrderHandler");
 const { Router } = require("express");
 const router = Router();
+
 const {
   createUserHandler,
   getAllUserHandler,
@@ -48,11 +54,16 @@ const {
   deleteUserHandler,
   signInUserHandler,
   googleSignInHandler,
+  userBannedHandler,
 } = require("../handlers/userHandler");
+
+const { mercadoPago } = require("../controllers/mercadoPago");
+
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const { optionsAdminEditUserHandler } = require("../handlers/userAdminHandler");
 const { veryfyToken } = require("../Token/tokenAdmin");
+const { mailsTotalityHandler } = require("../handlers/mails/mailsHandler");
 
 router.get("/products", getProductsHandler);
 
@@ -65,6 +76,7 @@ router.get("/products/category/:category", getByCategoryHandler);
 router.put("/products/addReview", addReviewHandler);
 
 // router.post("/products", veryfyToken, createProductHandler);
+
 router.post("/products", createProductHandler);
 
 router.post("/user", createUserHandler);
@@ -114,17 +126,14 @@ router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
 
-
-router.post("/order",newOrderHandler)
+router.post("/order", newOrderHandler);
 
 //Mails:
 
-
-const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
-const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
-// const { uploadImage } =  require("../controllers/upload-controller/upload-controller");
-// const { uploadWidget } =  require("../controllers/upload-controller/widget");
-
+const { mailRegister} = require("../controllers/mailsControllers/mail-register");
+const { mailOrder } = require("../controllers/mailsControllers/mail-order");
+const { uploadImage} = require("../controllers/uploads-controllers/upload-controller");
+const { uploadWidget } = require("../controllers/uploads-controllers/widget");
 
 router.post("/send-email/order", mailOrder)
 //http://localhost:3001/send-email/order
@@ -138,6 +147,9 @@ router.post("/send-email/register", mailRegister);
 // router.post("/products/upload-widget", uploadWidget )
 //http://localhost:3001/products/upload
 
+router.post("/products/upload", uploadImage);
+//http://localhost:3001/products/upload
+
 router.get("/categories", allCategoryHandler);
 
 router.post("/user/signin", signInUserHandler);
@@ -147,5 +159,12 @@ router.post("/user/signin/google", googleSignInHandler);
 //router.post("/admin", userAdminHandler);
 
 router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
+
+router.post("/payment/", mercadoPago);
+
+router.get("/user/totalMails", mailsTotalityHandler);
+
+router.put("/user/:id/ban", userBannedHandler);
+router.put("/product/:id/ban", productBannedHandler);
 
 module.exports = router;

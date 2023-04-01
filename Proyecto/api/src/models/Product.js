@@ -12,6 +12,7 @@ module.exports = (sequelize) => {
         defaultValue: DataTypes.UUIDV4,
         primaryKey: true,
       },
+
       name: {
         type: DataTypes.STRING,
       },
@@ -19,15 +20,19 @@ module.exports = (sequelize) => {
         type: DataTypes.TEXT,
         // allowNull: false,
       },
+
       sellingPrice: {
         type: DataTypes.FLOAT,
       },
+
       average_rating: {
         type: DataTypes.FLOAT,
       },
+
       availability: {
-        type:DataTypes.JSONB,
+        type: DataTypes.JSONB,
       },
+
       category: {
         type: DataTypes.STRING,
       },
@@ -35,10 +40,15 @@ module.exports = (sequelize) => {
       breadcrumbs: {
         type: DataTypes.STRING,
       },
-        
+
       reviews_count: {
         type: DataTypes.FLOAT,
       },
+      show: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: true,
+      },
+
       images: {
         type: DataTypes.ARRAY(DataTypes.STRING),
         //allowNull: false,
