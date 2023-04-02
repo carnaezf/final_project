@@ -1,14 +1,23 @@
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
+} from "firebase/auth";
+import { auth } from "../firebase";
 
-import { createContext,useContext, useEffect,useState } from "react";
-import { createUserWithEmailAndPassword,signInWithEmailAndPassword, onAuthStateChanged, signOut, GoogleAuthProvider, signInWithPopup,updateProfile } from "firebase/auth";
-import { auth } from "../firebase"
-
-export const authContext = createContext()
+export const authContext = createContext();
 
 export const useAuth = () => {
-        const context = useContext(authContext)
-        return context
-}
+  const context = useContext(authContext);
+  return context;
+};
+
+
 
 export function AuthProvider({ children }){
 
@@ -27,27 +36,30 @@ export function AuthProvider({ children }){
         return user;
     }
 
-    const login = (email,password) => 
-    signInWithEmailAndPassword (auth, email, password)
-    
-    const logout = () => signOut(auth)  
+  const login = (email, password) =>
+    signInWithEmailAndPassword(auth, email, password);
 
-    const loginWithGoogle = () => {
-        const googleProvider = new GoogleAuthProvider()
-        return signInWithPopup(auth, googleProvider)
-    }
+  const logout = () => signOut(auth);
 
-    useEffect(() => {
-        console.log("ya cargo")
-        onAuthStateChanged(auth, currentUser => {
-            console.log(currentUser)
-            setUser(currentUser)
-        })
-    },[])
+  const loginWithGoogle = () => {
+    const googleProvider = new GoogleAuthProvider();
+    return signInWithPopup(auth, googleProvider);
+  };
 
-    return (
-        <authContext.Provider value={{ signUp, login, user, logout, loginWithGoogle}}>
-            {children}
-        </authContext.Provider>
-    )
+  useEffect(() => {
+    // console.log("ya cargo")
+    onAuthStateChanged(auth, (currentUser) => {
+      // console.log(currentUser)
+      setUser(currentUser);
+    });
+  }, []);
+
+  return (
+    <authContext.Provider
+      value={{ signUp, login, user, logout, loginWithGoogle }}
+    >
+      {children}
+    </authContext.Provider>
+  );
 }
+

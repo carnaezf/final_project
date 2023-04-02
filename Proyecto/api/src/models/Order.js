@@ -22,17 +22,12 @@ module.exports = (sequelize) => {
          "completa"
         ),
       },
-    product:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    quantity:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     totalMount:{
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       //allowNull: false,
+    },
+    products:{
+      type:DataTypes.ARRAY(DataTypes.JSONB)
     },
     date:{
       type: DataTypes.DATEONLY,

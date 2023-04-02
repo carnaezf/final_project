@@ -12,10 +12,9 @@ const obj2 = obj.map((object) => {
     average_rating: object.average_rating,
     category: object.category.toLowerCase(),
     reviews_count: object?.reviews_count,
-    breadcrumbs:object?.breadcrumbs.toLowerCase(),
-    availability:object?.availability,
-    description:object?.description,
-
+    breadcrumbs: object?.breadcrumbs.toLowerCase(),
+    availability: object?.availability,
+    description: object?.description,
   };
 });
 
@@ -88,25 +87,38 @@ const createProduct = async (
   name,
   description,
   sellingPrice,
-  images,
+  urlImage,
   average_rating,
   category,
   reviews_count,
-  
+  totalAvailability,
   availability
 ) => {
-  
   const product = await Product.create({
     name,
     description,
     sellingPrice,
-    images,
+    images : urlImage,
     average_rating,
     category,
     reviews_count,
-    
-    availability
+    availability,
+    totalAvailability
   });
+  return product;
+};
+const ProductBanned = async (id) => {
+  const product = await Product.findByPk(id);
+  if (!product) {
+    throw new Error(`user id not found ${id}`);
+  }
+  if (product.show === true) {
+    await product.set({ show: false });
+    await product.save();
+    return product;
+  }
+  product.set({ show: true });
+  await product.save();
   return product;
 };
 
@@ -116,8 +128,7 @@ module.exports = {
   getProductById,
   getByCategory,
   addReview,
-
   addComment,
-
   createProduct,
+  ProductBanned,
 };

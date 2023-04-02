@@ -19,14 +19,18 @@ const {
   newOrderHandler,
 } = require("../handlers/OrdersHandler/newOrderHandler");
 
-
 // const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler } = require("../handlers/index");
 // const { getByIdHandler } = require("../handlers/getByIdHandler");
 
-
-
-const { getProductsHandler, getSearchHandler, getByCategoryHandler, addReviewHandler, addCommentHandler,createProductHandler, } = require("../handlers/index");
-
+const {
+  getProductsHandler,
+  getSearchHandler,
+  getByCategoryHandler,
+  addReviewHandler,
+  addCommentHandler,
+  createProductHandler,
+  productBannedHandler,
+} = require("../handlers/index");
 
 const {
   getAllOrdersHandler,
@@ -43,7 +47,6 @@ const {
 const { Router } = require("express");
 const router = Router();
 
-
 const {
   createUserHandler,
   getAllUserHandler,
@@ -51,18 +54,17 @@ const {
   deleteUserHandler,
   signInUserHandler,
   googleSignInHandler,
+  userBannedHandler,
+  doAdminhandler,
 } = require("../handlers/userHandler");
 
-
-
-
-const { mercadoPago } = require("../controllers/mercadoPago")
+const { mercadoPago } = require("../controllers/mercadoPago");
 
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const { optionsAdminEditUserHandler } = require("../handlers/userAdminHandler");
 const { veryfyToken } = require("../Token/tokenAdmin");
-
+const { mailsTotalityHandler } = require("../handlers/mails/mailsHandler");
 
 router.get("/products", getProductsHandler);
 
@@ -75,7 +77,6 @@ router.get("/products/category/:category", getByCategoryHandler);
 router.put("/products/addReview", addReviewHandler);
 
 // router.post("/products", veryfyToken, createProductHandler);
-
 router.post("/products", createProductHandler);
 
 router.post("/user", createUserHandler);
@@ -106,7 +107,7 @@ router.get("/products/rating/rating", filterByRatingHandler);
 router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
 
-// router.post("/order", newOrderHandler);
+ router.post("/order", newOrderHandler);
 
 router.get("/products/stock/stock", filterByStockHandler);
 //http://localhost:3001/products/stock
@@ -125,16 +126,15 @@ router.put("/products/:id", updateProductHandler);
 
 router.put("/user/:id", updateUserHandler);
 
-
-router.post("/order",newOrderHandler)
+router.post("/order", newOrderHandler);
 
 //Mails:
 
+const {  mailRegister } = require("../controllers/mailsControllers/mail-register");
+const { mailOrder } = require("../controllers/mailsControllers/mail-Order");
+const {  uploadImage } = require("../controllers/upload-controller/upload");
+// const { uploadWidget } = require("../controllers/uploads-controllers/widget");
 
-const { mailRegister  } =  require("../controllers/mailsControllers/mail-register");
-const { mailOrder } =  require("../controllers/mailsControllers/mail-order");
-const { uploadImage } =  require("../controllers/uploads-controllers/upload-controller");
-const { uploadWidget } =  require("../controllers/uploads-controllers/widget");
 
 
 router.post("/send-email/order", mailOrder)
@@ -146,7 +146,7 @@ router.post("/send-email/register", mailRegister);
 router.post("/products/upload", uploadImage )
 //http://localhost:3001/products/upload
 
-router.post("/products/upload-widget", uploadWidget )
+// router.post("/products/upload-widget", uploadWidget )
 //http://localhost:3001/products/upload
 
 router.get("/categories", allCategoryHandler);
@@ -159,6 +159,15 @@ router.post("/user/signin/google", googleSignInHandler);
 
 router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
 
-router.post("/payment/",mercadoPago)
+router.post("/payment/", mercadoPago);
+
+router.get("/user/totalMails", mailsTotalityHandler);
+
+router.put("/user/:id/ban", userBannedHandler);
+router.put("/product/:id/ban", productBannedHandler);
+
+router.put("/admin/:id", doAdminhandler);
+
+router.get("/user/totalMails", mailsTotalityHandler);
 
 module.exports = router;
