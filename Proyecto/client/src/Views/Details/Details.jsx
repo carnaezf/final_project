@@ -8,6 +8,13 @@ import NavBar from "../../Components/NavBar/NavBar";
 // import { useHistory } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
+import { ProductSizeContext } from "../../Contexts/ProductSizeContext";
+
+// Check Tallas:
+import Checkbox from "@material-ui/core/Checkbox";
+
+
+// import { AiOutlinePlus, AiOutlineLine } from "react-icons/ai";
 //c
 const contentStyle = {
   // height: '160px',
@@ -21,9 +28,25 @@ export default function Details({
   match: {
     params: { id },
   },
-  sellingPrice,
+	name,
+	sellingPrice,
+	images,
+	average_rating,
+	category,
+	description,
+  size
 }) {
+
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
+  const [selectedSize, setSelectedSize] = useState(ProductSizeContext);
+
+
+  console.log(shoppingBag);
+  console.log(selectedSize);
+
+
+
+
   const dispatch = useDispatch();
   const defaultImage =
     "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
@@ -103,6 +126,10 @@ export default function Details({
   };
 
   const quantityPerItem = getQuantityById(id);
+
+  const handleSizeClick = (size) => {
+    setSelectedSize(size);
+  };
 
   /**********Metodos ShoppingBag */
 
@@ -222,43 +249,70 @@ export default function Details({
               </div>
             </Link>
           </div>
-          <div className="flex justify-around mt-6 ml-8 mr-8">
-            <button
-              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              S
-            </button>
-            <button
-              class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              M
-            </button>
-            <button
-              class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              X
-            </button>
-            <button
-              class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              XL
-            </button>
-          </div>
+
+
+            <div className="font-roboto text-3xl font-normal flex flex-col items-center">
+              <h3>Size:</h3>
+            </div>
+            
+            <div>
+      <Checkbox
+        checked={selectedSize === "S"}
+        onChange={() => handleSizeClick("S")}
+        disabled={selectedSize === "S"}
+        inputProps={{ "aria-label": "S" }}
+      />
+      <Checkbox
+        checked={selectedSize === "M"}
+        onChange={() => handleSizeClick("M")}
+        disabled={selectedSize === "M"}
+        inputProps={{ "aria-label": "M" }}
+      />
+      <Checkbox
+        checked={selectedSize === "L"}
+        onChange={() => handleSizeClick("L")}
+        disabled={selectedSize === "L"}
+        inputProps={{ "aria-label": "L" }}
+      />
+      {/* <button onClick={handleAddToBag} disabled={!selectedSize}>
+        Add to bag
+      </button> */}
+        </div>
+
+
+            <br/>
+
+            <div className="font-roboto text-3xl font-normal flex flex-col items-center">
+              <h3>Quantity:</h3>
+            </div>
+
           <div className="flex justify-around mt-6 ml-8 mr-8">
             {quantityPerItem === 0 ? (
-              <button onClick={() => addToCart()}>Añadir Carrito</button>
+              <button
+                className="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+                onClick={() => addToCart()}>
+                  Add to Cart
+                </button>
             ) : (
-              <button onClick={() => addToCart()}>Sumar Item</button>
+              <button 
+              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+                onClick={() => addToCart()}>
+                  Sumar Item 
+              </button>
             )}
             {quantityPerItem > 0 && <div>{quantityPerItem}</div>}
             {quantityPerItem > 0 && (
-              <button onClick={() => removeItem(id)}>Restar Item</button>
+              <button 
+              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              onClick={() => removeItem(id)}>
+                Restar Item
+              </button>
             )}
           </div>
+
           {/* <button onClick={handleGoBack}>Volver</button> */}
         </div>
       </div>
