@@ -11,8 +11,9 @@ const {
 
 const createUserHandler = async (req, res) => {
   const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin,rol } =
-    req.body;
-    try {
+  req.body;
+  try {
+      await mailRegister(name, email)
       const user = await createUser(
         name,
         lastName,
@@ -29,7 +30,6 @@ const createUserHandler = async (req, res) => {
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
-  await mailRegister(name, email)
 };
 
 const getAllUserHandler = async (req, res) => {
