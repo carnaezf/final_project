@@ -107,7 +107,7 @@ router.get("/products/rating/rating", filterByRatingHandler);
 router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
 
-// router.post("/order", newOrderHandler);
+ router.post("/order", newOrderHandler);
 
 router.get("/products/stock/stock", filterByStockHandler);
 //http://localhost:3001/products/stock

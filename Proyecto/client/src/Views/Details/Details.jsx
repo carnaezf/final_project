@@ -40,7 +40,7 @@ export default function Details({
   //     history.goBack();
   // };
 
-  /****************************Modo nocturno y claro */
+  /**********Modo nocturno y claro */
   const [theme, setTheme] = useState("light");
 
   useEffect(() => {
@@ -62,9 +62,9 @@ export default function Details({
   const handleTHemeSwitch = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-  /****************************Modo nocturno y claro */
+  /**********Modo nocturno y claro */
 
-  /****************************Metodos ShoppingBags */
+  /**********Metodos ShoppingBags */
   const addToCart = () => {
     setShoppingBag((currItems) => {
       const isItemsFound = currItems.find((item) => item.id === id);
@@ -104,7 +104,7 @@ export default function Details({
 
   const quantityPerItem = getQuantityById(id);
 
-  /****************************Metodos ShoppingBag */
+  /**********Metodos ShoppingBag */
 
   return (
     <div className="bg-slate-200 dark:bg-zinc-800">
