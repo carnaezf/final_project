@@ -28,7 +28,7 @@ const CardsProducts = (props) => {
                     <CardProduct
                     key={el.id}
                     id={el.id} 
-                    name={el.name} 
+                    nameProduct={el.nameProduct} 
                     sellingPrice={el.sellingPrice} 
                     images={el.images} 
                     average_rating={el.average_rating}

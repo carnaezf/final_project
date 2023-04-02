@@ -193,7 +193,7 @@ export default function Details({
                 {myProduct.description}
               </h3>
               <h2 className="font-roboto text-4xl font-bold text-left">
-                {myProduct.name}
+                {myProduct.nameProduct}
               </h2>
               <h4 className="font-roboto font-thin text-xl text-left">
                 {myProduct.category}

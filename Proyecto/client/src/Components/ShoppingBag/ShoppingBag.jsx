@@ -7,11 +7,13 @@ import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description,idUser,nameUser,lastNameUser}) => {
+    
 
 const {user}=useAuth();
 
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+    console.log('Estado de shoppingBag en shoppingbag:', shoppingBag);
 
 
     const quantity = shoppingBag.reduce((acc, curr) => {
