@@ -17,13 +17,15 @@ const contentStyle = {
   // background: '#364d79',
 };
 
-export default function Details({
-  match: {
-    params: { id },
-  },
-  sellingPrice,
-}) {
+export default function Details({match: {params: { id } }, nameProduct, sellingPrice, images, average_rating, category,description, size } ) {
+  console.log(id, nameProduct);
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
+  const [selectedSize, setSelectedSize] = useState(ShoppingBagContext);
+
+  console.log("Estado de shoppingBag desde Details:", shoppingBag);
+  console.log("Estado de selectedSize desde Details:", selectedSize);
+
+
   const dispatch = useDispatch();
   const defaultImage =
     "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
