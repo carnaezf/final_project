@@ -79,9 +79,7 @@ const Home = () => {
             </svg>
           </label>
         </button>
-        <div className="absolute bottom-[] left-[41%]">
-          <SearchBar className="  mx-auto" pagin={pagin} />
-        </div>
+
       </div>
 
       <br />
@@ -89,6 +87,8 @@ const Home = () => {
       <Category />
       <br />
       <Jumbotron />
+      <br />
+      <SearchBar pagin={pagin} />
       <br />
       <CardsProducts newStateProducts={newStateProducts} />
       <br />
