@@ -6,19 +6,6 @@ import {useAuth} from "../../Contexts/authContext";
 import { useHistory} from "react-router-dom";
 
 
-// import { getAuth, updateProfile } from "firebase/auth";
-// const auth = getAuth();
-// updateProfile(auth.currentUser, {
-//   displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
-// }).then(() => {
-//   // Profile updated!
-//   // ...
-// }).catch((error) => {
-//   // An error occurred
-//   // ...
-// });
-
-
 const Register=()=>{
     //const [post, setPost]= useState({});
     const dispatch = useDispatch();

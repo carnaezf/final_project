@@ -1,11 +1,10 @@
 import { Formik } from "formik";
-//import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../Contexts/authContext";
 import { useHistory } from "react-router-dom";
 import { loginUsers } from "../../Redux/actions";
 import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Login = () => {
   const { login, loginWithGoogle } = useAuth();
