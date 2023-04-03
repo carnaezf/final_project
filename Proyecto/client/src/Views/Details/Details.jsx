@@ -8,8 +8,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 // import { useHistory } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
-
-
+import Comments from "../../Components/Comments/Comments"
+import { SelectedSizeContext } from "../../Contexts/SelectedSizeContext";
 //c
 const contentStyle = {
   // height: '160px',
