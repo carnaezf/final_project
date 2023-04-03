@@ -2,6 +2,8 @@ import axios from "axios";
 // import { combineReducers } from "redux";
 // import { GET_PRODUCTS } from "./actionType";
 export const GET_PRODUCTS = "GET_PRODUCTS";
+export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
+export const INIT_UPDATE_PRODUCT = "INIT_UPDATE_PRODUCT";
 export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
 export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
@@ -14,6 +16,16 @@ export const getProducts = () => {
     const product = await axios.get("http://localhost:3001/products");
     const allProducts = product.data;
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
+  };
+};
+
+export const updateProduct = (product) => {
+  return async function (dispatch) {
+    dispatch({ type: INIT_UPDATE_PRODUCT, payload: 'loading' });
+    const { id, ...restProduct } = product;
+    const updatedProduct = await axios.put(`http://localhost:3001/products/${id}`, restProduct);
+    dispatch({ type: UPDATE_PRODUCT, payload: updatedProduct });
+    dispatch({ type: INIT_UPDATE_PRODUCT, payload: 'none' });
   };
 };
 
@@ -43,54 +55,54 @@ export const getCategory = (payload) => {
   };
 };
 
-export const filterByName= (payload)=>{
-  return async function (dispatch){
+export const filterByName = (payload) => {
+  return async function (dispatch) {
     try {
-      const baseData= await axios.get(`http://localhost:3001/products/search?name=${payload}`);
-      const productsName= baseData.data;
-      dispatch({type: FILTER_BY_NAME, payload:productsName});
-          
+      const baseData = await axios.get(`http://localhost:3001/products/search?name=${payload}`);
+      const productsName = baseData.data;
+      dispatch({ type: FILTER_BY_NAME, payload: productsName });
+
     } catch (error) {
       alert("No se encontro el Producto Buscado");
-          
+
     }
-    
+
   }
 
 };
 
-export const filterByGenres= (payload)=>{
-  return async function (dispatch){
-    if(payload !=="select"){
-      dispatch({type: FILTER_BY_GENRES, payload: payload});
+export const filterByGenres = (payload) => {
+  return async function (dispatch) {
+    if (payload !== "select") {
+      dispatch({ type: FILTER_BY_GENRES, payload: payload });
     }
-    else{
+    else {
       alert("Selccione un Opcion")
     }
-    
+
   }
 };
-export const filterByPrice= (payload)=>{
-  return async function (dispatch){
-    if(payload !=="select"){
-      dispatch({type: FILTER_BY_PRICE, payload: payload});
+export const filterByPrice = (payload) => {
+  return async function (dispatch) {
+    if (payload !== "select") {
+      dispatch({ type: FILTER_BY_PRICE, payload: payload });
     }
-    else{
+    else {
       alert("Selccione un Opcion")
     }
-    
+
   }
 };
 
-export const postUsers=(payload)=>{
-  return async function(){
+export const postUsers = (payload) => {
+  return async function () {
     try {
-      const baseData= await axios.post(`http://localhost:3001/user`,payload);
+      const baseData = await axios.post(`http://localhost:3001/user`, payload);
       //return baseData;
 
     } catch (error) {
       alert({ error: error.message })
-      
+
     }
 
   }

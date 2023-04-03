@@ -4,6 +4,7 @@ import {
   GET_PRODUCTS_CATEGORY,
   FILTER_BY_NAME,
   FILTER_BY_GENRES,
+  INIT_UPDATE_PRODUCT,
   //FILTER_BY_ACCESSORIES_PRICE,
   FILTER_BY_PRICE
 } from "./actions";
@@ -14,10 +15,16 @@ const intialState = {
   productsCategory: [],
   filterGenre:[],
   filterPrice:[],
+  updateState: 'none',
 };
 
 const rootReducer = (state = intialState, action) => {
   switch (action.type) {
+    case INIT_UPDATE_PRODUCT: 
+      return {
+        ...state,
+        updateState: action.payload
+      }
     case GET_PRODUCTS:
       return {
         ...state,

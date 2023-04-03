@@ -1,105 +1,123 @@
-import { Button, Form, Input, Popconfirm, Table } from 'antd';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { Space, Typography, Table, Modal, Input, Form, Button } from "antd";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getProducts, updateProduct } from '../../Redux/actions';
 
+const Products = () => {
+  const dispatch = useDispatch();
+  const productsAll = useSelector((state) => state.products);
+  const updateState = useSelector((state) => state.updateState);
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [open, setOpen] = useState(false);
+  const [form] = Form.useForm()
 
-
-const App = () => {
-  const [dataSource, setDataSource] = useState([
-    {
-      key: '0',
-      name: 'Edward King 0',
-      age: '32',
-      address: 'London, Park Lane no. 0',
-    },
-    {
-      key: '1',
-      name: 'Edward King 1',
-      age: '32',
-      address: 'London, Park Lane no. 1',
-    },
-  ]);
-  const [count, setCount] = useState(2);
-  const handleDelete = (key) => {
-    const newData = dataSource.filter((item) => item.key !== key);
-    setDataSource(newData);
+  const showModal = (record) => {
+    console.log('testing');
+    setEditingProduct(record);
+    setOpen(true);
   };
-  const defaultColumns = [
+
+  const handleOk = (e) => {
+    console.log(e);
+    setOpen(false);
+  };
+
+  const handleCancel = (e) => {
+    console.log(e);
+    setOpen(false);
+  };
+
+  useEffect(() => {
+    dispatch(getProducts());
+  }, [dispatch]);
+
+  useEffect(() => {
+    form.resetFields();
+    form.setFieldsValue(editingProduct);
+    console.log(editingProduct);
+  }, [form, editingProduct])
+
+  const save = () => {
+    console.log(form.getFieldsValue());
+    dispatch(updateProduct(form.getFieldsValue()));
+  }
+
+  const columns = [
     {
-      title: 'Product',
+      title: "Name",
       dataIndex: 'name',
+      key: 'name',
       width: '21%',
     },
     {
-        title: 'Description',
-        dataIndex: 'age',
-        width: '20%',
+      title: "Description",
+      dataIndex: "description",
+      key: "description",
+      width: '21%',
     },
     {
-        title: 'Selling Price',
-        dataIndex: 'age',
-        width: '20%',
+      title: "SellingPrice",
+      dataIndex: "sellingPrice",
+      key: "sellingPrice",
+      width: '21%',
     },
     {
-      title: 'Action',
-      dataIndex: 'operation',
-      render: (_, record) =>
-        dataSource.length >= 1 ? (
-          <Popconfirm title="Sure to delete?" onConfirm={() => handleDelete(record.key)}>
-            <a>Delete</a>
-          </Popconfirm>
-        ) : null,
+      title: "Category",
+      dataIndex: "category",
+      key: "Category",
+      width: '21%',
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      width: '21%',
+      render: (text, record, index) => (
+        <button onClick={() => showModal(record)}>Editar</button>
+      )
     },
   ];
-  const handleAdd = () => {
-    const newData = {
-      key: count,
-      name: `Edward King ${count}`,
-      age: '32',
-      address: `London, Park Lane no. ${count}`,
-    };
-    setDataSource([...dataSource, newData]);
-    setCount(count + 1);
-  };
-  const handleSave = (row) => {
-    const newData = [...dataSource];
-    const index = newData.findIndex((item) => row.key === item.key);
-    const item = newData[index];
-    newData.splice(index, 1, {
-      ...item,
-      ...row,
-    });
-    setDataSource(newData);
-  };
-  
-  const columns = defaultColumns.map((col) => {
-    if (!col.editable) {
-      return col;
-    }
-    return {
-      ...col,
-      onCell: (record) => ({
-        record,
-        editable: col.editable,
-        dataIndex: col.dataIndex,
-        title: col.title,
-        handleSave,
-      }),
-    };
-  });
+
   return (
-    <div> 
-      <Table
-       
-        rowClassName={() => 'editable-row'}
-        bordered
-        dataSource={dataSource}
-        columns={columns}
-      />
-      <button className="btn" 
-         onClick={handleAdd}
-         type="primary" > Add a row 
-         </button>
-    </div>
-  );
+    <Space direction="vertical" className="w-full">
+      <Typography.Title level={5}>Products</Typography.Title>
+      <Table columns={columns} dataSource={productsAll} />
+      <Modal
+        title={"Editando " + editingProduct?.name}
+        open={open}
+        footer={
+          <Button type="primary" block onClick={save} loading={updateState === 'loading' ? true : false}>Save</Button>
+        }
+      >
+        <Form
+          form={form}
+          name="basic"
+          layout="vertical"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          style={{ maxWidth: 600 }}
+          initialValues={editingProduct}
+          autoComplete="off"
+        >
+          <Form.Item
+            name="id"
+            hidden={true}
+          >
+            <Input />
+          </Form.Item>
+          <Form.Item
+            label="Nombre"
+            name="name"
+            rules={[{ required: true, message: 'Please input your username!' }]}
+          >
+            <Input />
+          </Form.Item>
+        </Form>
+      </Modal>
+    </Space>
+  )
+
 };
-export default App;
+
+
+export default Products;
