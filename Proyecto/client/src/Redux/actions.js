@@ -11,6 +11,7 @@ export const GET_USERS = "GET_USERS";
 export const BANNED = "BANNED";
 export const GET_PRODUCTS_ADMIN = "GET_PRODUCTS_ADMIN";
 export const GET_ORDERS = "GET_ORDERS";
+export const GET_USER_ID = "GET_USER_ID";
 
 export const getProducts = () => {
   return async function (dispatch) {
@@ -34,7 +35,6 @@ export const getProductsDetail = (payload) => {
       const product = await axios.get(
         `http://localhost:3001/products/${payload}`
       );
-      console.log(product);
       const detailProduct = product.data;
       dispatch({
         type: GET_PRODUCTS_DETAIL,
@@ -172,5 +172,29 @@ export const getOrders = () => {
     const order = await axios.get("http://localhost:3001/order");
     const allOrders = order.data;
     dispatch({ type: "GET_ORDERS", payload: allOrders });
+  };
+};
+
+export const getUserbyId = (id) => {
+  return async function (dispatch) {
+    try {
+      const baseData = await axios.get(`http://localhost:3001/user/${id}`);
+      dispatch({ type: "GET_USER_ID", payload: baseData.data });
+    } catch (error) {
+      alert({ error: error.message });
+    }
+  };
+};
+
+export const postComment = (payload) => {
+  return async function () {
+    try {
+      const baseData = await axios.post(
+        `http://localhost:3001/products/addComment`,
+        payload
+      );
+    } catch (error) {
+      alert({ error: error.message });
+    }
   };
 };

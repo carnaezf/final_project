@@ -1,5 +1,5 @@
 // const cloudinary = require('../../utils/cloudinary')
-const { uploadImage } = require('../controllers/upload-controller/upload')
+const { uploadImage } = require("../controllers/upload-controller/upload");
 const {
   getProducts,
   getSearch,
@@ -71,12 +71,11 @@ const createProductHandler = async (req, res) => {
     breadcrumbs,
   } = req.body;
   try {
-    
-  const urlImage = await uploadImage(images)
-  // const imageurl = urlImage.secure_url;
-  const image = urlImage.split(' ');
-  console.log("images en index", image);
-     const product = await createProduct(
+    const urlImage = await uploadImage(images);
+    // const imageurl = urlImage.secure_url;
+    const image = urlImage.split(" ");
+    console.log("images en index", image);
+    const product = await createProduct(
       name,
       description,
       sellingPrice,
@@ -86,7 +85,7 @@ const createProductHandler = async (req, res) => {
       reviews_count,
       availability,
       breadcrumbs
-  );
+    );
     res.status(200).json(product);
   } catch (error) {
     res.status(400).json({ msg: error.message });

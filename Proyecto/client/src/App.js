@@ -26,10 +26,7 @@ import { useSelector } from "react-redux";
 
 function App() {
   //const location =useLocation();
-  // console.log(location);
   const userlogin = useSelector((state) => state.user);
-  console.log(userlogin.user);
-
   return (
     <AuthProvider>
       <ShoppingBagProvider>
