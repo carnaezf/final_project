@@ -8,7 +8,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 // import { useHistory } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
-import Comments from "../../Components/Comments/Comments";
+
+
 //c
 const contentStyle = {
   // height: '160px',
@@ -18,13 +19,23 @@ const contentStyle = {
   // background: '#364d79',
 };
 
-export default function Details({
-  match: {
-    params: { id },
-  },
-  sellingPrice,
-}) {
+export default function Details( props ) {
+  const {
+    match: {params: { id } }, name, images, sellingPrice, average_rating, category, description, size } = props;
+
+
+
+  const [QuantityEnabled, SetQuantityEnabled] = useState(false);
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
+  const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
+
+
+  console.log('Estado shoppingBag desde Details', shoppingBag);
+  console.log('Estado selectedSize desde Details', selectedSize);
+
+
+
+
   const dispatch = useDispatch();
   const defaultImage =
     "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
@@ -80,7 +91,17 @@ export default function Details({
           }
         });
       } else {
-        return [...currItems, { id, quantity: 1, sellingPrice }];
+        return [...currItems, 
+          { 
+						id,
+						title: myProduct.name,
+						quantity: 1,
+						unit_price: myProduct.sellingPrice,
+						description: "description ",
+						picture_url: myProduct.images[0],
+						currency_id: "ARS",
+            size: selectedSize,
+          }];
       }
     });
   };
@@ -110,6 +131,10 @@ export default function Details({
   };
 
   const quantityPerItem = getQuantityById(id);
+
+  const handleSizeClick = (e) => {
+    setSelectedSize(e.target.value);
+  };
 
   /**********Metodos ShoppingBag */
 
@@ -229,43 +254,79 @@ export default function Details({
               </div>
             </Link>
           </div>
-          <div className="flex justify-around mt-6 ml-8 mr-8">
+
+
+            <div className="font-roboto text-3xl font-normal flex flex-col items-center">
+              <h3>Size:</h3>
+            </div>
+            
+            <div>
+      {/* <Checkbox
+        checked={selectedSize === "S"}
+        onChange={() => handleSizeClick("S")}
+        disabled={selectedSize === "S"}
+        inputProps={{ "aria-label": "S" }}
+      />
+      <Checkbox
+        checked={selectedSize === "M"}
+        onChange={() => handleSizeClick("M")}
+        disabled={selectedSize === "M"}
+        inputProps={{ "aria-label": "M" }}
+      />
+      <Checkbox
+        checked={selectedSize === "L"}
+        onChange={() => handleSizeClick("L")}
+        disabled={selectedSize === "L"}
+        inputProps={{ "aria-label": "L" }}
+      /> */}
+
+<select value={selectedSize} onChange={handleSizeClick}>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+      </select>
+      <button onClick={addToCart}>Agregar al carrito</button>
+
+
+        </div>
+
+
+            <br/>
+
+            <div className="font-roboto text-3xl font-normal flex flex-col items-center">
+              <h3>Quantity:</h3>
+            </div>
+
+
+
+            {selectedSize !== '' && (
+        <div className="flex justify-around mt-6 ml-8 mr-8">
+          {quantityPerItem === 0 ? (
             <button
-              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              S
+              className="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              onClick={() => addToCart()}>
+                Add to Cart
+              </button>
+          ) : (
+            <button 
+            class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              onClick={() => addToCart()}>
+                Sumar Item 
             </button>
-            <button
-              class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              M
-            </button>
-            <button
-              class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              X
-            </button>
-            <button
-              class="transition duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            >
-              XL
-            </button>
-          </div>
-          <div className="flex justify-around mt-6 ml-8 mr-8">
-            {quantityPerItem === 0 ? (
-              <button onClick={() => addToCart()}>Añadir Carrito</button>
-            ) : (
-              <button onClick={() => addToCart()}>Sumar Item</button>
+          )}
+          {quantityPerItem > 0 && <div>{quantityPerItem}</div>}
+          {quantityPerItem > 0 && (
+            <button 
+            class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+            onClick={() => removeItem(id)}>
+              Restar Item
+              </button>
             )}
-            {quantityPerItem > 0 && <div>{quantityPerItem}</div>}
-            {quantityPerItem > 0 && (
-              <button onClick={() => removeItem(id)}>Restar Item</button>
-            )}
           </div>
+  )}
           {/* <button onClick={handleGoBack}>Volver</button> */}
         </div>
       </div>
