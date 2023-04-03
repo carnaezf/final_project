@@ -1,7 +1,9 @@
 import { useDispatch  } from "react-redux";
 import { filterByGenres } from "../../Redux/actions";
 import { filterByPrice } from "../../Redux/actions";
+import { filterBySize } from "../../Redux/actions";
 import { getCategory } from "../../Redux/actions";
+
 
 
 const FilterShoes=(props)=>{
@@ -18,6 +20,10 @@ const FilterShoes=(props)=>{
     props.pagin(1);
     dispatch(filterByPrice(e.target.value));
   };
+  // const handleSize= (e) => {
+  //   props.pagin(1);
+  //   dispatch(filterBySize(e.target.value));
+  // };
 
   const handleReset= (e)=>{
     props.pagin(1);
@@ -47,11 +53,19 @@ const FilterShoes=(props)=>{
         <nav>   
           <select onChange={(e) => handlePrice(e)} className="select select-bordered select-sm w-full max-w-xs rounded text-current dark:text-slate-300 dark:bg-zinc-700 hover:border-purple-600">
             <option  value="select">Select Price</option>
-            <option  value="lower price">Entre $ 0 - 20</option>
-            <option  value="half price">Entre $ 20 - 60</option>
-            <option  value="higher price">Mayor a $ 60</option>
+            <option  value="lower price">Up to $ 20</option>
+            <option  value="half price">$ 20 to 60</option>
+            <option  value="higher price">$ 60 & above</option>
           </select>
         </nav>
+        {/* <nav>   
+          <select onChange={(e) => handleSize(e)} className="select select-bordered select-sm w-full max-w-xs rounded text-current dark:text-slate-300 dark:bg-zinc-700 hover:border-purple-600">
+            <option  value="select">Select Shoe Width</option>
+            <option  value="small">S</option>
+            <option  value="medium">M</option>
+            <option  value="large">L</option>
+          </select>
+        </nav> */}
       </div>    
       <div>
         <button className="font-roboto btn normal-case py-2 w-[17rem] ml-2 mt-4 rounded border-slate-700 text-slate-100 dark:text-slate-300  dark:bg-purple-800 hover:border-purple-200  bg-purple-700  bg-purple-700 hover:bg-purple-900  dark:hover:bg-purple-900 mx-auto" type="submit" onClick={(e) => handleReset(e)}>All Shoes</button>
