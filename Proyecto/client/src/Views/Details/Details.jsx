@@ -10,6 +10,7 @@ import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
 import { SelectedSizeContext } from "../../Contexts/SelectedSizeContext";
 
+
 // Check Tallas:
 import Checkbox from "@material-ui/core/Checkbox";
 
@@ -29,6 +30,8 @@ export default function Details( props ) {
     match: {params: { id } }, name, images, sellingPrice, average_rating, category, description, size } = props;
 
 
+
+  const [QuantityEnabled, SetQuantityEnabled] = useState(false);
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
   const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
 
@@ -294,41 +297,36 @@ export default function Details( props ) {
               <h3>Quantity:</h3>
             </div>
 
-          <div className="flex justify-around mt-6 ml-8 mr-8">
-            {quantityPerItem === 0 ? (
-              <button
-                className="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-                onClick={() => addToCart()}>
-                  Add to Cart
-                </button>
-            ) : (
-              <button 
-              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-                onClick={() => addToCart()}>
-                  Sumar Item 
-              </button>
-            )}
-            {quantityPerItem > 0 && <div>{quantityPerItem}</div>}
-            {quantityPerItem > 0 && (
-              <button 
-              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-              onClick={() => removeItem(id)}>
-                Restar Item
-              </button>
-            )}
-          </div>
-          <div>
-            <button
-                className="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-                  hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-              >
-                S
-            </button>
-          </div>
 
+
+            {selectedSize !== '' && (
+        <div className="flex justify-around mt-6 ml-8 mr-8">
+          {quantityPerItem === 0 ? (
+            <button
+              className="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              onClick={() => addToCart()}>
+                Add to Cart
+              </button>
+          ) : (
+            <button 
+            class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              onClick={() => addToCart()}>
+                Sumar Item 
+            </button>
+          )}
+          {quantityPerItem > 0 && <div>{quantityPerItem}</div>}
+          {quantityPerItem > 0 && (
+            <button 
+            class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+            onClick={() => removeItem(id)}>
+              Restar Item
+              </button>
+            )}
+          </div>
+  )}
           {/* <button onClick={handleGoBack}>Volver</button> */}
         </div>
       </div>
