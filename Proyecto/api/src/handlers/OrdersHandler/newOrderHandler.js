@@ -1,6 +1,6 @@
 
 const {validateOrderCreated}= require("../../controllers/Orders/newOrderController")
-const newOrderHandler=async()=>{  
+const newOrderHandler=async(req, res)=>{  
     try {
         const newOrder = ([] = req.body);
        const newOrdercreated= await validateOrderCreated(newOrder)
