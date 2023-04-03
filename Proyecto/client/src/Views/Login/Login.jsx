@@ -3,9 +3,9 @@ import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../Contexts/authContext";
 import { useHistory } from "react-router-dom";
-import { loginUsers } from "../../Redux/actions";
+import { loginUsers, logoutUsers } from "../../Redux/actions";
 import Swal from "sweetalert2";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 const Login = () => {
   const { login, loginWithGoogle } = useAuth();
@@ -13,7 +13,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const userlogin = useSelector((state) => state.user);
   // const [loggedIn, setLoggedIn] = useState(false);
-  console.log(userlogin, "userlogin");
 
   const handleGoogle = async () => {
     try {
@@ -24,28 +23,38 @@ const Login = () => {
     }
   };
 
-
   useEffect(() => {
     if (userlogin && userlogin.msg === "User logged") {
       Swal.fire({
         icon: "success",
         title: "Welcome!",
         text: "You are logged in!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push("/shoppingBag");
+        }
       });
-      history.push("/shoppingBag");
     }
     if (userlogin && userlogin.error === "password incorrect") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Password invalid!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logoutUsers());
+        }
       });
     }
     if (userlogin && userlogin.error === "user email not found") {
       Swal.fire({
-        icon: "error",
         title: "Oops...",
+        icon: "error",
         text: "Email invalid!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logoutUsers());
+        }
       });
     }
     if (userlogin && userlogin.error === "user banned") {
@@ -53,6 +62,10 @@ const Login = () => {
         icon: "error",
         title: "Oops...",
         text: "User banned!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logoutUsers());
+        }
       });
     }
   }, [userlogin]);
@@ -84,23 +97,14 @@ const Login = () => {
           return error;
         }}
         onSubmit={async (values, props) => {
-          //console.log("Email Enviado");
           try {
             dispatch(loginUsers(values));
-            // await login(values.email, values.password);
-            // if (!userlogin.msg) {
-            //   Swal.fire({
-            //     title: "Waiting for confirmation...",
-            //     didOpen: () => {
-            //       Swal.showLoading();
-            //     },
-            //   });
-            // }
-
-            // alert("Login");
-            // history.push("/shoppingBag");
           } catch (error) {
-            // alert("Login invalido");
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+            });
           }
 
           props.resetForm();
@@ -166,6 +170,5 @@ const Login = () => {
     </div>
   );
 };
-
 
 export default Login;
