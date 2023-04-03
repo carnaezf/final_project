@@ -101,6 +101,7 @@ export default function Details( props ) {
 						description: "description ",
 						picture_url: myProduct.images[0],
 						currency_id: "ARS",
+            size: selectedSize,
           }];
       }
     });
