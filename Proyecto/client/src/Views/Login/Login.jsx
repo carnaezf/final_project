@@ -17,6 +17,11 @@ const Login = () => {
   const handleGoogle = async () => {
     try {
       await loginWithGoogle();
+      Swal.fire({
+        icon: "success",
+        title: "Welcome!",
+        text: "Login with Google successful",
+      });
       history.push("/shoppingBag");
     } catch (error) {
       alert("Login invalido");
