@@ -65,7 +65,7 @@ const Comments = ({ product, setRender, render }) => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <Button type="submit">Comment</Button>
+        <Button type="submit">Send</Button>
         <Input
           placeholder="Leave your comment"
           type="text"

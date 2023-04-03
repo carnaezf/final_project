@@ -123,11 +123,11 @@ export default function NavBar(props) {
         </div>
 
         <div className="flex flex-column dropdown dropdown-end ">
-          {user && (
+          {/* {user && (
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {user.displayName ? user.displayName : user.email}!
             </h1>
-          )}
+          )} */}
           {userlogin && (
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {userlogin.name}!

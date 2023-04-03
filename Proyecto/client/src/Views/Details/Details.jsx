@@ -174,35 +174,64 @@ export default function Details( props ) {
         </h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
       </div>
-      <div className=" flex flex-row h-screen mx-8">
+      <div className=" flex flex-row mx-8">
         <div className=" w-2/3">
           {myProduct && myProduct.images && myProduct.images.length > 0 ? (
             <div className="flex w-auto space-x-4">
+              <div className="w-2/3 ">
               <img
-                className="w-1/2"
+                className="mb-[1rem]"
+                src={myProduct.images[0]}
+                alt="Imagen no disponible"
+                onError={(e) => {
+                  e.target.src =
+                    "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
+                }}
+                
+              />
+              <img
                 src={myProduct.images[1]}
                 alt="Imagen no disponible"
+                onError={(e) => {
+                  e.target.src =
+                    "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
+                }}
               />
+            </div>
+              <div className="w-2/3">
               <img
-                className="w-1/2"
+                className="mb-[1rem]"
                 src={myProduct.images[2]}
                 alt="Imagen no disponible"
+                onError={(e) => {
+                  e.target.src =
+                    "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
+                }}
               />
+              <img
+                src={myProduct.images[3]}
+                alt="Imagen no disponible"
+                onError={(e) => {
+                  e.target.src =
+                    "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
+                }}
+              />
+            </div>
             </div>
           ) : (
             <img src={defaultImage} alt="Imagen no disponible" />
           )}
 
-          <Carousel
+          {/* <Carousel
             autoplay
-            className="mx-auto flex content-center mt-4 space-x-4 max-w-[40rem]"
+            className="mx-auto flex flex-row content-center mt-4 space-x-4 max-w-[40rem]"
           >
             {myProduct &&
               myProduct.images &&
-              myProduct.images.slice(3, 6).map((image, index) => (
+              myProduct.images.slice(2, 6).map((image, index) => (
                 <div key={index} className="content-center">
                   <h3 className="content-center" style={contentStyle}>
-                    {/* <img
+                    <img
                       className="w-full"
                       src={image}
                       alt="Imagen no disponible"
@@ -210,26 +239,27 @@ export default function Details( props ) {
                         e.target.src =
                           "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
                       }}
-                    /> */}
+                    />
                   </h3>
                 </div>
               ))}
-          </Carousel>
+          </Carousel> */}
         </div>
 
-        <div className=" fixed  mt-[-1rem] right-0 w-1/3">
-          {/* <div className=" mt-[-1rem] right-0 w-1/3"> */}
+        {/* <div className=" fixed  mt-[-1rem] right-[5rem] w-2/5"> */}
+          <div className=" mt-[-1rem] right-[0rem] w-1/2">
+          <div className=" ">
           {myProduct ? (
             <div class="ml-8 dark:text-slate-300">
-              <h3 className="font-roboto text-3xl font-light text-left">
-                {myProduct.description}
-              </h3>
               <h2 className="font-roboto text-4xl font-bold text-left">
                 {myProduct.name}
               </h2>
-              <h4 className="font-roboto font-thin text-xl text-left">
+              <h3 className="font-roboto text-xl font-light text-left">
+                {myProduct.description}
+              </h3>
+              {/* <h4 className="font-roboto font-thin text-base text-left border px-4 w-24 rounded-full my-2 text-sm ">
                 {myProduct.category}
-              </h4>
+              </h4> */}
               <h4 className="font-roboto text-4xl font-bold text-left">
                 ${myProduct.sellingPrice}
               </h4>
@@ -240,6 +270,7 @@ export default function Details( props ) {
           ) : (
             <p>Loading ...</p>
           )}
+          </div>
           <div class="mx-8 dark:text-slate-300">
             <h1 className="font-roboto text-3xl font-normal text-left">
               Free shipping and returns
@@ -248,53 +279,29 @@ export default function Details( props ) {
               Standard free shipping and free returns for 60 days for registered
               users. More information. Exclusions apply to the returns policy.
             </p>
-            <Link to="/formLogin">
+            {/* <Link to="/formLogin">
               <div className="text-xs mb-6 underline font-bold cursor-pointer text-purple-800 dark:text-purple-400">
                 Sign up here!
               </div>
-            </Link>
+            </Link> */}
           </div>
 
 
-            <div className="font-roboto text-3xl font-normal flex flex-col items-center">
+            <div className=" font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300 mt-6">
               <h3>Size:</h3>
+              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-purple-800" value={selectedSize} onChange={handleSizeClick}>
+                      <option selected className="darl:text-slate200">Size</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+              </select>
+                    {/* <button onClick={addToCart}>Agregar al carrito</button> */}
             </div>
-            
-            <div>
-      {/* <Checkbox
-        checked={selectedSize === "S"}
-        onChange={() => handleSizeClick("S")}
-        disabled={selectedSize === "S"}
-        inputProps={{ "aria-label": "S" }}
-      />
-      <Checkbox
-        checked={selectedSize === "M"}
-        onChange={() => handleSizeClick("M")}
-        disabled={selectedSize === "M"}
-        inputProps={{ "aria-label": "M" }}
-      />
-      <Checkbox
-        checked={selectedSize === "L"}
-        onChange={() => handleSizeClick("L")}
-        disabled={selectedSize === "L"}
-        inputProps={{ "aria-label": "L" }}
-      /> */}
-
-<select value={selectedSize} onChange={handleSizeClick}>
-        <option value="S">S</option>
-        <option value="M">M</option>
-        <option value="L">L</option>
-      </select>
-      <button onClick={addToCart}>Agregar al carrito</button>
-
-
-        </div>
-
 
             <br/>
 
-            <div className="font-roboto text-3xl font-normal flex flex-col items-center">
-              <h3>Quantity:</h3>
+            <div className=" font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300 ">
+              <h3 >Quantity:</h3>
             </div>
 
 
@@ -309,34 +316,38 @@ export default function Details( props ) {
                 Add to Cart
               </button>
           ) : (
+
             <button 
-            class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-              onClick={() => addToCart()}>
-                Sumar Item 
+              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              onClick={() => removeItem(id)}>
+                Restar Item
             </button>
           )}
-          {quantityPerItem > 0 && <div>{quantityPerItem}</div>}
+          {quantityPerItem > 0 && <div className="font-roboto dark:text-slate-300 text-xl border rounded px-2 border-slate-600">{quantityPerItem}</div>}
           {quantityPerItem > 0 && (
             <button 
-            class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
-              hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
-            onClick={() => removeItem(id)}>
-              Restar Item
-              </button>
+              class="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+                hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+                onClick={() => addToCart()}>
+                  Sumar Item 
+            </button>
             )}
+
+
+            
           </div>
   )}
           {/* <button onClick={handleGoBack}>Volver</button> */}
-        </div>
-      </div>
-      <div>
-        <label className="font-roboto text-3xl font-bold text-left">
-          Yours comments
+      <div className="flex flex-row w-full">
+        <label className="ml-[2rem]  font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300">
+          Comments
         </label>
         <Comments product={myProduct} setRender={setRender} render={render} />
       </div>
-      <div className="mt-[30rem]">
+        </div>
+      </div>
+      <div className="mt-[20rem]">
         <Footer />
       </div>
     </div>
@@ -344,11 +355,11 @@ export default function Details( props ) {
 }
 
 // Boton antiguo:
-{
+
   /* <button
                     onClick={() => console.log('Añadir al carrito')}
                     className="btn-disabled transition duration-150  font-roboto font-bold text-black bg-white hover:bg-black  hover:text-white py-2 px-14 border border-slate-700 rounded hover:border-white rounded hover:font-bold"
                     >
                 AÑADIR AL CARRITO
                 </button> */
-}
+
