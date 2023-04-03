@@ -6,9 +6,9 @@ import { useState,useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 
-
-
 const CheckoutForm = () => {
+
+
 
     const [emails, setEmails] = useState({});
     const [user, setUser] = useState({});
@@ -61,43 +61,68 @@ const CheckoutForm = () => {
             
         } 
 
-return (
+
+  const redirectionRute = async () => {
+    //NO TOCAR EL BUY!!
+    //console.log(buy," esto es buy dentro de redireccion para back")
+    await axios.post("http://localhost:3001/order", buy);
+    const resp = await axios.post("http://localhost:3001/payment", shoppingBag);
+    const point = resp.data.response.body.init_point;
+    window.location.replace(point);
+  };
+
+  return (
     <div>
-        <Formik
-        initialValues={{ email: '' }}
+      <Formik
+        initialValues={{ email: "" }}
         validationSchema={Yup.object({
-            email: Yup.string()
-            .email('Invalid email address')
-            .required('Email is required')
+          email: Yup.string()
+            .email("Invalid email address")
+            .required("Email is required"),
         })}
         onSubmit={(values, { setSubmitting }) => {
-            comprobation(values)
-            setSubmitting(false);
+          comprobation(values);
+          setSubmitting(false);
         }}
-        >
+      >
         {({ isSubmitting }) => (
-                
-            <Form>
+          <Form>
             <div className="mb-4 m-10">
-                <label htmlFor="email">Email:</label>
-                <div className="m-2">
-                <Field type="email" name="email" className="border rounded-md p-2 w-15rem m-2" />
+              <label htmlFor="email">Email:</label>
+              <div className="m-2">
+                <Field
+                  type="email"
+                  name="email"
+                  className="border rounded-md p-2 w-15rem m-2"
+                />
+              </div>
 
-                </div>
-            
-                <ErrorMessage name="email" component="div" className="text-red-500" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-red-500"
+              />
             </div>
             <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                disabled={isSubmitting}
-                
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              disabled={isSubmitting}
             >
-                Submit
+              Submit
             </button>
-            <div className='m-10'>
-
-            
+            <div className="m-10">
+              <Link to="/register">
+                <button
+                  id="BotonLogin"
+                  disabled={loginEnabled}
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+                    loginEnabled ? "" : "opacity-50 cursor-not-allowed"
+                  }`}
+                >
+                  {" "}
+                  login{" "}
+                </button>
+              </Link>
 
             <Link to="/register">
             <button  id="BotonLogin"  disabled={loginEnabled} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
@@ -115,13 +140,17 @@ return (
             <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
             </Link>
 
+              <Link to="/shoppingBag">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">
+                  Return to Carrito
+                </button>
+              </Link>
             </div>
-
-            </Form>
+          </Form>
         )}
-        </Formik>
+      </Formik>
     </div>
-    );
+  );
 };
 
 export default CheckoutForm;

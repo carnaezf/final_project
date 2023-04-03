@@ -9,7 +9,8 @@ import {
   GET_USERS,
   BANNED,
   GET_PRODUCTS_ADMIN,
-
+  GET_ORDERS,
+  GET_USER_ID,
 } from "./actions";
 
 const intialState = {
@@ -21,6 +22,8 @@ const intialState = {
   filterPrice: [],
   users: [],
   user: [],
+  orders: [],
+  userId: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -65,11 +68,9 @@ const rootReducer = (state = intialState, action) => {
         if (a.breadcrumbs === action.payload) return a.id;
       });
 
-
       state.productsCategory.filter(
         (e) => nameAccessories.includes(e.id) && filterAccessories.push(e)
       );
-
 
       return {
         ...state,
@@ -103,7 +104,6 @@ const rootReducer = (state = intialState, action) => {
         });
       }
 
-
       return { ...state, filterPrice: filterPrice };
 
     case GET_USERS:
@@ -133,7 +133,16 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
       };
-
+    case GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    case GET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
     default:
       return { ...state };
   }

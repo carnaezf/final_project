@@ -1,22 +1,59 @@
 import { Space, Typography, Table, Button } from "antd";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getUsers, userban, doAdmin } from "../../../Redux/actions";
+import { getUsers, userban, doModerator } from "../../../Redux/actions";
+import Swal from "sweetalert2";
+
 const Users = () => {
   const dispatch = useDispatch();
   const usersAll = useSelector((state) => state.users);
   const [active, setActive] = useState(false);
+  const [moderator, setModerator] = useState(false);
+
+  const confirmBan = (value) => {
+    Swal.fire({
+      title: "Are you sure you want to do this?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handlerban(value);
+      }
+    });
+  };
+
+  const confirmModerator = (value) => {
+    Swal.fire({
+      title: "Are you sure you want to do this?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes!",
+      cancelButtonText: "Cancel",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        handlerModerator(value);
+      }
+    });
+  };
+
   const handlerban = (value) => {
     dispatch(userban(value));
     setActive(!active);
   };
-  const handlerAdmin = (value) => {
-    dispatch(doAdmin(value));
-    setActive(!active);
+  const handlerModerator = (value) => {
+    dispatch(doModerator(value));
+    setModerator(!moderator);
   };
   useEffect(() => {
     dispatch(getUsers());
-  }, [dispatch, active]);
+  }, [dispatch, active, moderator]);
+
   const columns = [
     {
       title: "Name",
@@ -54,10 +91,12 @@ const Users = () => {
       key: "country",
     },
     {
-      title: "Admin",
+      title: "Role",
       dataIndex: "isAdmin",
       key: "admin",
-      render: (value) => (value ? "Admin" : "User"),
+      render: (value, record) => (
+        <>{record.isModerator ? "Moderator" : value ? "Admin" : "User"}</>
+      ),
     },
     {
       title: "Action",
@@ -66,7 +105,8 @@ const Users = () => {
         <Space>
           <Button
             className={record.isBanned ? "bg-green-500" : "bg-red-500"}
-            onClick={() => handlerban(record.userId)}
+            onClick={() => confirmBan(record.userId)}
+            disabled={record.isAdmin ? true : false}
           >
             {record.isBanned ? "Active" : "Ban"}
           </Button>
@@ -74,15 +114,16 @@ const Users = () => {
       ),
     },
     {
-      title: "DO ADMIN",
+      title: "Do Moderator",
       key: "operation",
       render: (text, record) => (
         <Space>
           <Button
-            className={record.isAdmin ? "bg-green-500" : "bg-red-500"}
-            onClick={() => handlerAdmin(record.userId)}
+            className={record.isModerator ? "bg-red-500" : "bg-green-500"}
+            onClick={() => confirmModerator(record.userId)}
+            disabled={record.isAdmin ? true : false}
           >
-            {record.isAdmin ? "No Admin" : "Admin"}
+            {record.isModerator ? "No Moderator" : "Moderator"}
           </Button>
         </Space>
       ),

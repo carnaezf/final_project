@@ -1,17 +1,25 @@
 // import style from './shoppingBag.module.css'
 import NavBar from '../NavBar/NavBar';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
+import { SelectedSizeContext } from '../../Contexts/SelectedSizeContext';
 import { useAuth } from '../../Contexts/authContext';
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 import { Link } from 'react-router-dom';
 
-const ShoppingBag = ({id, name, sellingPrice, images, average_rating, category,description,idUser,nameUser,lastNameUser}) => {
+
+const ShoppingBag = ({id, name, sellingPrice, images, average_rating, size, category,description,idUser,nameUser,lastNameUser}) => {
 
 const {user}=useAuth();
 
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+    const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext)
+
+    console.log('Estado shoppingBag desde ShoppingBag', shoppingBag);
+    console.log('Estado selectedSize desde ShoppingBag', selectedSize);
+
+
 
 
     const quantity = shoppingBag.reduce((acc, curr) => {
@@ -21,8 +29,8 @@ const {user}=useAuth();
     let totalPrice=0;
     for(let i=0; i<shoppingBag.length;i++){
      totalPrice=Number(totalPrice)+  (Number(shoppingBag[i].quantity) * Number(shoppingBag[i].unit_price))
-      }
- 
+        }
+
     
 
     const addToCart = (id) => {
@@ -32,13 +40,25 @@ const {user}=useAuth();
             if (isItemsFound) {
                 return currItems.map((item) => {
                 if (item.id === id) {
-                    return { ...item, quantity: item.quantity + 1 };
+                    return { ...item, quantity: item.quantity + 1, size: selectedSize };
                 } else {
                     return item;
                 }
                 });
             } else {
-                    return [...currItems, { id,title:name, quantity: 1, unit_price:sellingPrice, description:"description ", picture_url:images[0],currency_id:'ARS' }];
+                    return [
+                        ...currItems, 
+                        {   
+                        id,
+                        title:name, 
+                        quantity: 1, 
+                        unit_price:sellingPrice, 
+                        description:"description ", 
+                        picture_url:images[0],
+                        currency_id:'ARS',
+                        size: selectedSize, 
+                    }
+                ];
             }
         });
     }
@@ -67,7 +87,7 @@ const {user}=useAuth();
 
     return (
         <div className="bg-gray-100 min-h-screen">
-           
+
             <NavBar />
             <div className="container mx-auto py-8">
                 <div className="bg-white p-4 shadow-md rounded-md flex-col">
@@ -77,9 +97,9 @@ const {user}=useAuth();
                         <div className="font-semibold">Items in cart:</div>
                         <div>{quantity}</div>
                     </div>
-                  {  shoppingBag.map((product)=>
-                  <ul className="flex justify-between items-center border-b py-4 mt-4">
-                         <li className="flex justify-between items-center border-b pb-4">
+                    {  shoppingBag.map((product)=>
+                    <ul className="flex justify-between items-center border-b py-4 mt-4">
+                        <li className="flex justify-between items-center border-b pb-4">
                         <div className="font-semibold "> </div>
                         <div > { product.title } </div>
                         </li>  
@@ -94,10 +114,10 @@ const {user}=useAuth();
                         <img src={product.picture_url} className="w-[5rem] h-[5rem]"/>
                         </li>  
                         <h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">   
-                          <div>
-                          <button className=" badge border-none px-[2px]  font-light hover:bg-purple-800" onClick={() => addToCart(product.id)}><AiOutlinePlus/></button>
-                          <button className="badge border-none px-[2px] hover:bg-purple-800  ml-4 font-light"onClick={() => removeItem(product.id)}><AiOutlineLine/></button> 
-                         </div>              
+                            <div>
+                            <button className=" badge border-none px-[2px]  font-light hover:bg-purple-800" onClick={() => addToCart(product.id)}><AiOutlinePlus/></button>
+                            <button className="badge border-none px-[2px] hover:bg-purple-800  ml-4 font-light"onClick={() => removeItem(product.id)}><AiOutlineLine/></button> 
+                            </div>              
                         </h4>
                   </ul>
                         )}
