@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { postUsers } from "../../Redux/actions";
 import {useAuth} from "../../Contexts/authContext";
 import { useHistory} from "react-router-dom";
-
 import {loginUsers} from "../../Redux/actions";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 const Register=()=>{
@@ -16,169 +16,11 @@ const Register=()=>{
     const {signUp}=useAuth();
     const history=useHistory();
 
-
-    // return(
-    //     <div className="w-full max-w-xs m-auto">
-            
-    //         <Formik
-    //             initialValues={{
-    //                 name:"",
-    //                 lastName:"",
-    //                 email:"",
-    //                 password:"",
-    //                 country:"",
-    //             }}
-
-    //             validate={(values)=>{
-    //                 let error={};
-    //                 if(!values.name){
-    //                     error.name="enter name"
-    //                 }
-    //                 else{
-    //                     if(! /^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.name)){
-    //                         error.name="name without numbers or symbols"
-    //                     }
-    //                 }
-    //                 if(!values.lastName){
-    //                     error.lastName="enter last name"
-    //                 }
-    //                 else{
-    //                     if(! /^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.lastName)){
-    //                         error.lastName="last name without numbers or symbols"
-    //                     }
-    //                 }
-    //                 if(!values.email){
-    //                     error.email="enter email"
-    //                 }
-    //                 else{
-    //                     if(! /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email)){
-    //                         error.email="invalid email"
-    //                     }
-    //                 }
-    //                 if(!values.password){
-    //                     error.password="invalid password";
-    //                 }
-    //                 else{
-    //                     if(! /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}/.test(values.password)){
-    //                         error.password="between 9-15 characters with @,A,a,1 NO #"
-    //                     }
-    //                 }
-    //                 if(!values.country){
-    //                     error.country="enter country"
-    //                 }
-    //                 else{
-    //                     if(! /^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(values.country)){
-    //                         error.country="country without numbers or symbols"
-    //                     }
-    //                 }
-    //                 return error;
-
-    //             }} 
-
-    //             onSubmit={(values,props)=>{
-    //                 //console.log("Email Enviado");
-    //                 //console.log(values.password);
-    //                 dispatch(postUsers(values));
-    //                 signUp(values.email,values.password,values.name);
-    //                 dispatch(loginUsers(values.email,values.password,values.name))//!agregado
-    //                 props.resetForm();
-    //                 Swal.fire({
-    //                     icon: "success",
-    //                     title: "Registered Welcome!",
-    //                     text: "you are already part of Haal!",
-    //                     backdrop:true,
-    //                 });
-                    
-    //                 history.push("/shoppingBag");
-                    
-    //             }}>
-                
-    //             {(props)=>(
-    //                 <form  onSubmit={props.handleSubmit} className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-    //                     {/* {console.log(props.errors)} */}
-    //                     {/* {console.log(props.touched)} */}
-    //                     <div className="mb-4">
-    //                         <label htmlFor="name" >Name</label>
-    //                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                             type="text" 
-    //                             id="name" 
-    //                             name="name" 
-    //                             placeholder=" ej: Wil" 
-    //                             value={props.values.name}
-    //                             onChange={props.handleChange}
-    //                             onBlur={props.handleBlur}
-    //                         />
-    //                         {props.touched.name && props.errors.name && <span className=" bg-red text-red-700" >{props.errors.name}</span>}
-    //                     </div>
-    //                     <div className="mb-4">
-    //                         <label htmlFor="name">Last Name</label>
-    //                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                             type="text" 
-    //                             id="lastName" 
-    //                             name="lastName" 
-    //                             placeholder=" ej: Smith" 
-    //                             value={props.values.lastName}
-    //                             onChange={props.handleChange}
-    //                             onBlur={props.handleBlur}//validar fuera del input
-    //                         />
-    //                         {props.touched.lastName && props.errors.lastName && <span className=" bg-red text-red-700">{props.errors.lastName}</span>}
-    //                     </div>
-    //                     <div className="mb-4">
-    //                         <label htmlFor="name">Email</label>
-    //                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                             type="text" 
-    //                             id="email" 
-    //                             name="email" 
-    //                             placeholder=" ej: Wil@email.com" 
-    //                             value={props.values.email}
-    //                             onChange={props.handleChange}
-    //                             onBlur={props.handleBlur}//validar fuera del input
-    //                         />
-    //                         {props.touched.email && props.errors.email && <span className=" bg-red text-red-700">{props.errors.email}</span>}
-    //                     </div>
-    //                     <div className="mb-4">
-    //                         <label htmlFor="name">Password</label>
-    //                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                             type="password" 
-    //                             id="password" 
-    //                             name="password" 
-    //                             placeholder=" ej: Smith" 
-    //                             value={props.values.password}
-    //                             onChange={props.handleChange}
-    //                             onBlur={props.handleBlur}//validar fuera del input
-    //                         />
-    //                         {props.touched.password && props.errors.password && <span className=" bg-red text-red-700">{props.errors.password}</span>}
-    //                     </div>
-    //                     <div className="mb-4">
-    //                         <label htmlFor="name">Country</label>
-    //                         <input className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-    //                             type="text" 
-    //                             id="country" 
-    //                             name="country" 
-    //                             placeholder=" ej: Argentina" 
-    //                             value={props.values.country}
-    //                             onChange={props.handleChange}
-    //                             onBlur={props.handleBlur}//validar fuera del input
-    //                         />
-    //                         {props.touched.country && props.errors.country && <span className=" bg-red text-red-700">{props.errors.country}</span>}
-    //                     </div>
-                        
-    //                     <button  type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
-                        
-    
-    //                 </form>
-
-    //             )}
-    //         </Formik>
-            
-    //     </div>
-    // )
-
     return(
         <div className="flex w-full h-screen">
             <div className="w-full flex items-center justify-center lg:w-1/2 bg-slate-50">
                 <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-                    <h1 className="text-2xl font-semibold">Registration in Haal</h1>
+                    <h1 className="text-2xl text-purple-500 font-roboto text-lg font-black">Registration in Haal</h1>
                     <Formik
                         initialValues={{
                             name:"",
@@ -255,7 +97,7 @@ const Register=()=>{
                             <form  onSubmit={props.handleSubmit} className="mt-4">
                                 {/* {console.log(props.errors)} */}
                                 {/* {console.log(props.touched)} */}
-                                <div className="mb-4"> 
+                                <div className="mb-4 "> 
                                     <label htmlFor="name" className="text-lg font-medium" >Name</label>
                                     <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                                         type="text" 
@@ -324,6 +166,7 @@ const Register=()=>{
                                     <div>
                                         <input type="checkbox" id="remember" />
                                         <label for="remember" className="ml-2 font-medium text-base text-violet-500">  I accept the terms and conditions</label>
+                                        <Link to="/home" className="flex mt-8 text-violet-500 text-lg font-small no-underline hover:underline">I do not accept the terms and conditions, Back to Home</Link>
                                     </div>
                                 </div>
                                 <div className="mt-8 flex flex-col gap-y-4">
@@ -343,7 +186,7 @@ const Register=()=>{
 
             <div className="hidden relative lg:flex h-full w-1/2 items-center justify-center bg-slate-50 ">
                 <div className="w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-ping " />
-                <div className="w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg" />
+                <div className="w-full h-1/2 absolute bottom-0 " />
 
             </div>
             
