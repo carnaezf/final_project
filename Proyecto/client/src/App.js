@@ -22,10 +22,14 @@ import Register from "./Views/Register/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
 import Login from "./Views/Login/Login";
 import CheckoutForm from "../src/Components/ShoppingBag/CheckoutForm";
+import { useSelector } from "react-redux";
 
 function App() {
   //const location =useLocation();
   // console.log(location);
+  const userlogin = useSelector((state) => state.user);
+  console.log(userlogin.user);
+
   return (
     <AuthProvider>
       <ShoppingBagProvider>
@@ -48,18 +52,21 @@ function App() {
               {/* <Route exact path="/createProduct" component={createProduct} /> */}
               <Route exact path="/testing" component={Testing} />
               <Route exact path="/allproducts" component={Products} />
-              <Route
-                exact
-                path={[
-                  "/admin",
-                  "/users",
-                  "/createProduct",
-                  "/orders",
-                  "/logout",
-                  "/products",
-                ]}
-                component={AdministradorPage}
-              />
+              {userlogin.user && userlogin.user === "admin" ? (
+                <Route
+                  exact
+                  path={[
+                    "/admin",
+                    "/users",
+                    "/createProduct",
+                    "/orders",
+                    "/logout",
+                    "/products",
+                  ]}
+                  component={AdministradorPage}
+                />
+              ) : null}
+
               <Route exact path="/checkoutform" component={CheckoutForm} />
               <Route exact path="/accessories" component={Accessories} />
               <Route exact path="/clothing" component={Clothing} />

@@ -14,6 +14,7 @@ const createUser = async (
   birthDate,
   country,
   isAdmin,
+  isModerator,
   rol
 ) => {
   let passwordHash = await bcrypt.hash(password, 10);
@@ -29,6 +30,14 @@ const createUser = async (
     isAdmin !== true
   )
     isAdmin = false;
+  if (
+    isModerator === undefined ||
+    isModerator === null ||
+    isModerator === "" ||
+    isModerator !== true
+  ) {
+    isModerator = false;
+  }
   const user = await User.create({
     name: nameCapitalized,
     lastName: lastNameCapitalized,
@@ -39,6 +48,7 @@ const createUser = async (
     birthDate,
     country: countryCapitalized,
     isAdmin,
+    isModerator,
     rol,
   });
   const Token = jwt.sign(
@@ -109,7 +119,7 @@ const signInUser = async (email, password) => {
     where: { email: emailLower },
   });
   if (!user) {
-    throw new Error(`user email not found ${email}`);
+    throw new Error(`user email not found`);
   }
   const passwordMatch = await bcrypt.compare(password, user.password);
   if (!passwordMatch) {
@@ -127,6 +137,14 @@ const signInUser = async (email, password) => {
   );
   if (user.isAdmin === true) {
     return { msg: "User logged", token: Token, user: "admin", name: user.name };
+  }
+  if (user.isModerator === true) {
+    return {
+      msg: "User logged",
+      token: Token,
+      user: "moderator",
+      name: user.name,
+    };
   }
   return { msg: "User logged", token: Token, user: "user", name: user.name };
 };
@@ -191,7 +209,6 @@ const deleteUser = async (userId, rol, idAdmin) => {
     }
   } catch (error) {
     return { error: error.message };
-
   }
 };
 
@@ -210,23 +227,20 @@ const userBanned = async (id) => {
   return user;
 };
 
-const doAdmin = async (id) => {
+const doModerator = async (id) => {
   const user = await User.findByPk(id);
   console.log(user);
-  console.log(id);
   if (!user) {
     throw new Error(`user id not found ${id}`);
   }
-  if (user.isAdmin === true) {
-    await user.set({ isAdmin: false });
+  if (user.isModerator === true) {
+    await user.set({ isModerator: false });
     await user.save();
     return user;
   }
-  user.set({ isAdmin: true });
+  user.set({ isModerator: true });
   await user.save();
   return user;
-
-  
 };
 
 module.exports = {
@@ -237,6 +251,5 @@ module.exports = {
   googleSignIn,
   deleteUser,
   userBanned,
-  doAdmin,
-
+  doModerator,
 };

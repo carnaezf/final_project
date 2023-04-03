@@ -40,6 +40,10 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      isModerator: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
       dni: {
         type: DataTypes.INTEGER,
         // allowNull: false,

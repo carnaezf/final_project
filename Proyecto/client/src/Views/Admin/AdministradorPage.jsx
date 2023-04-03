@@ -7,6 +7,7 @@ import Users from "../../Components/Administrador/Pages/Users";
 import { Route } from "react-router";
 import Orders from "../../Components/Administrador/Pages/Orders";
 import Dashboard from "../../Components/Administrador/Pages/Dashboard";
+import Logout from "../../Components/Administrador/Pages/Logout";
 
 export default function AdministradorPage() {
   return (
@@ -22,6 +23,7 @@ export default function AdministradorPage() {
           <Route path="/createProduct" exact component={CreateProduct} />
           <Route path="/orders" exact component={Orders} />
           <Route path="/admin" exact component={Dashboard} />
+          <Route path="/logout" exact component={Logout} />
         </div>
       </div>
     </div>
