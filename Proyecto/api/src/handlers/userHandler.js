@@ -1,4 +1,6 @@
-const { mailRegister } = require('../controllers/mailsControllers/mail-register')
+const {
+  mailRegister,
+} = require("../controllers/mailsControllers/mail-register");
 const {
   createUser,
   getAllUser,
@@ -6,30 +8,43 @@ const {
   deleteUser,
   signInUser,
   userBanned,
-  doAdmin,
+  doModerator,
+  getUserbyId,
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
-  const { name, lastName, email, password, dni, phone, birthDate, country,isAdmin,rol } =
-    req.body;
-    try {
-      const user = await createUser(
-        name,
-        lastName,
-        email,
-        password,
+  const {
+    name,
+    lastName,
+    email,
+    password,
+    dni,
+    phone,
+    birthDate,
+    country,
+    isAdmin,
+    rol,
+    isModerator,
+  } = req.body;
+  try {
+    const user = await createUser(
+      name,
+      lastName,
+      email,
+      password,
       dni,
       phone,
       birthDate,
       country,
       isAdmin,
+      isModerator,
       rol
     );
     res.status(200).send(user);
   } catch (error) {
     res.status(404).send({ error: error.message });
   }
-  await mailRegister(name, email)
+  await mailRegister(name, email);
 };
 
 const getAllUserHandler = async (req, res) => {
@@ -106,11 +121,21 @@ const userBannedHandler = async (req, res) => {
   }
 };
 
-const doAdminhandler = async (req, res) => {
+const doModeratorhandler = async (req, res) => {
   const { id } = req.params;
   console.log(id, "entro");
   try {
-    const user = await doAdmin(id);
+    const user = await doModerator(id);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
+const getUserbyIdHandler = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await getUserbyId(userId);
     res.status(200).send(user);
   } catch (error) {
     res.status(404).send({ error: error.message });
@@ -125,5 +150,6 @@ module.exports = {
   googleSignInHandler,
   deleteUserHandler,
   userBannedHandler,
-  doAdminhandler,
+  doModeratorhandler,
+  getUserbyIdHandler,
 };

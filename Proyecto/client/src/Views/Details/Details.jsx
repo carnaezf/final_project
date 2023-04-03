@@ -8,14 +8,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 // import { useHistory } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
-import { SelectedSizeContext } from "../../Contexts/SelectedSizeContext";
 
 
-// Check Tallas:
-import Checkbox from "@material-ui/core/Checkbox";
-
-
-// import { AiOutlinePlus, AiOutlineLine } from "react-icons/ai";
 //c
 const contentStyle = {
   // height: '160px',
@@ -47,9 +41,11 @@ export default function Details( props ) {
     "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
   // const history = useHistory()
 
+  const [render, setRender] = useState(false);
+
   useEffect(() => {
     dispatch(getProductsDetail(id));
-  }, [dispatch]);
+  }, [dispatch, render]);
 
   const myProduct = useSelector((state) => state.productsDetail);
   //console.log(myProduct)
@@ -109,6 +105,10 @@ export default function Details( props ) {
       }
     });
   };
+
+  // useEffect(() => {
+  //   setRender(true);
+  // }, [render]);
 
   const removeItem = (id) => {
     setShoppingBag((currItems) => {
@@ -202,7 +202,7 @@ export default function Details( props ) {
               myProduct.images.slice(3, 6).map((image, index) => (
                 <div key={index} className="content-center">
                   <h3 className="content-center" style={contentStyle}>
-                    <img
+                    {/* <img
                       className="w-full"
                       src={image}
                       alt="Imagen no disponible"
@@ -210,7 +210,7 @@ export default function Details( props ) {
                         e.target.src =
                           "https://thebrandinquirer.files.wordpress.com/2022/04/cover-adidas-new-logo-removes-name-before-after.png?w=1200";
                       }}
-                    />
+                    /> */}
                   </h3>
                 </div>
               ))}
@@ -329,6 +329,12 @@ export default function Details( props ) {
   )}
           {/* <button onClick={handleGoBack}>Volver</button> */}
         </div>
+      </div>
+      <div>
+        <label className="font-roboto text-3xl font-bold text-left">
+          Yours comments
+        </label>
+        <Comments product={myProduct} setRender={setRender} render={render} />
       </div>
       <div className="mt-[30rem]">
         <Footer />
