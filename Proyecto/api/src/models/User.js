@@ -74,6 +74,11 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
       },
+      profilePicture: {
+        type: DataTypes.TEXT,
+        defaultValue:
+          "https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg",
+      },
     },
     {
       timestamps: false,
