@@ -47,45 +47,46 @@ return  "there is not enough stock of some products"
    
 }
 
-
-
-
 const validateOrderCreated = async (newOrder) => {
-    try {
-        console.log(newOrder)
-      let userBuy = [];
-      let productsFront = [];
-      for(let i=0;i<newOrder.length;i++){
-        newOrder[newOrder.length-1].userId?userBuy.push(newOrder[newOrder.length-1]):""
-        newOrder[i].id?productsFront.push(newOrder[i]):""
-    }
-    console.log(productsFront,"esto es productsFront productsFront")
-    console.log(userBuy,"esto es userBuy userBuy")
-      let userByOrder = await User.findByPk(userBuy[0].userId);
-      let totalPrice = 0;
-      for (let i = 0; i < productsFront.length; i++) {
-        totalPrice =
+  try {
+   
+    let userBuy = [];
+    let productsFront = [];
+    for(let i=0;i<newOrder.length;i++){
+      newOrder[newOrder.length-1].userId?userBuy.push(newOrder[newOrder.length-1]):""
+          newOrder[i].id?productsFront.push(newOrder[i]):""
+        }
+        // console.log(productsFront,"esto es productsFront productsFront")
+        // console.log(userBuy,"esto es userBuy userBuy")
+        let userByOrder = await User.findByPk(userBuy[0].userId);
+        let totalPrice = 0;
+        for (let i = 0; i < productsFront.length; i++) {
+          totalPrice =
           totalPrice + productsFront[i].unit_price * productsFront[i].quantity;
-      }
-
-      console.log(productsFront,"esto es product front")
-      console.log(totalPrice)
-      const newOrdercreated = await Order.create({
-        paymentMethod: "mercadoPago",
-        status: "aceptada",
+        }
+        
+        // console.log(productsFront,"esto es product front")
+        // console.log(totalPrice)
+        const newOrdercreated = await Order.create({
+          paymentMethod: "mercadoPago",
+          status: "aceptada",
         totalMount: totalPrice,
         products: productsFront,
+        notification: false
       });
   
+  // console.log("NEWORDERCREATED", newOrdercreated);
+
       for (let i = 0; i < productsFront.length; i++) {
         const product = await Product.findByPk(productsFront[i].id);
         await newOrdercreated.addProduct(product, {
           through: { quantity: productsFront[i].quantity },
         });
       }
-  
       await userByOrder.addOrder(newOrdercreated, { through: { UserUserId: userByOrder.id } });
-  
+      
+      await mailOrder(newOrdercreated, newOrder);
+      
       return newOrdercreated;
     } catch (error) {
       return { error: error.message };
