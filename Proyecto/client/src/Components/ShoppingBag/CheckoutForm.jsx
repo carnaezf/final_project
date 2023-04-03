@@ -61,16 +61,6 @@ const CheckoutForm = () => {
             
         } 
 
-
-  const redirectionRute = async () => {
-    //NO TOCAR EL BUY!!
-    //console.log(buy," esto es buy dentro de redireccion para back")
-    await axios.post("http://localhost:3001/order", buy);
-    const resp = await axios.post("http://localhost:3001/payment", shoppingBag);
-    const point = resp.data.response.body.init_point;
-    window.location.replace(point);
-  };
-
   return (
     <div>
       <Formik
