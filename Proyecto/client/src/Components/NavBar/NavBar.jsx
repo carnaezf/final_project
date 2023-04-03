@@ -132,7 +132,17 @@ export default function NavBar(props) {
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {userlogin.name}!
             </h1>
-          )}
+          )} */}
+          {user ? (
+            <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
+              Hi {user.displayName ? user.displayName : user.email}!
+            </h1>
+          ) : (
+            <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
+              Hi {userlogin.name}!
+            </h1>
+          )
+          }
           <label
             tabIndex={0}
             className="btn btn-ghost btn-circle avatar mr-14 dark:hover:border-purple-200"
