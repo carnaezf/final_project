@@ -24,25 +24,30 @@ const contentStyle = {
   // background: '#364d79',
 };
 
-export default function Details({
-  match: {
-    params: { id },
-  },
-	name,
-	sellingPrice,
-	images,
-	average_rating,
-	category,
-	description,
-  size
-}) {
+export default function Details( props ) {
+  const {
+    match: {params: { id } }, name, images, sellingPrice, average_rating, category, description, size } = props;
+
+
+  // {
+  //   match: {
+  //     params: { id },
+  //   },
+  //   name,
+  //   sellingPrice,
+  //   images,
+  //   average_rating,
+  //   category,
+  //   description,
+  //   size
+  // }
 
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
-  const [selectedSize, setSelectedSize] = useState(ProductSizeContext);
+  const [selectedSize, setSelectedSize] = useContext(ProductSizeContext);
 
 
-  console.log(shoppingBag);
-  console.log(selectedSize);
+  console.log('Estado shoppingBag desde Details', shoppingBag);
+  console.log('Estado selectedSize desde Details', selectedSize);
 
 
 
@@ -100,7 +105,16 @@ export default function Details({
           }
         });
       } else {
-        return [...currItems, { id, quantity: 1, sellingPrice }];
+        return [...currItems, 
+          { 
+						id,
+						title: myProduct.name,
+						quantity: 1,
+						unit_price: myProduct.sellingPrice,
+						description: "description ",
+						picture_url: myProduct.images[0],
+						currency_id: "ARS",
+          }];
       }
     });
   };

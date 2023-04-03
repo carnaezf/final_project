@@ -6,7 +6,7 @@ export const ProductSizeProvider = ({ children }) => {
     const [selectedSize, setSelectedSize] = useState("");
 
     return (
-        <ProductSizeContext.Provider value={{ selectedSize, setSelectedSize }}>
+        <ProductSizeContext.Provider value={ [selectedSize, setSelectedSize] }>
             {children}
         </ProductSizeContext.Provider>
     );
