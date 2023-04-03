@@ -35,7 +35,6 @@ export default function NavBar(props) {
 
   const { user } = useAuth();
 
-
   return (
     <div className="navbar  h-full w-full bg-neutral-400 dark:bg-zinc-700 bg-clip-padding dark:bg-clip-padding backdrop-filter dark:backdrop-filter backdrop-blur-lg dark:backdrop-blur-lg bg-opacity-10 dark:bg-opacity-10">
       <div className="flex-1 ">
@@ -51,13 +50,11 @@ export default function NavBar(props) {
             <ul className="content-center mb-2">
               <Link to={"/accessories"}>
                 <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-
                   Acessories
                 </li>
               </Link>
               <Link to={"/shoes"}>
                 <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-
                   Shoes
                 </li>
               </Link>
@@ -68,7 +65,6 @@ export default function NavBar(props) {
               </Link>
               <Link to="/allproducts">
                 <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-
                   All Products
                 </li>
               </Link>
@@ -164,7 +160,15 @@ export default function NavBar(props) {
                     <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
                       <a onClick={handlerLogOut}> Logout </a>
                     </li>
+                    <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
+                      <Link to="/profile"> Profile </Link>
+                    </li>
                     {userlogin.user === "admin" && (
+                      <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
+                        <Link to="/admin"> Admin </Link>
+                      </li>
+                    )}
+                    {userlogin.user === "moderator" && (
                       <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
                         <Link to="/admin"> Admin </Link>
                       </li>

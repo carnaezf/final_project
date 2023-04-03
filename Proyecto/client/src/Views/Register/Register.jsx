@@ -2,11 +2,29 @@ import { Formik } from "formik";
 //import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postUsers } from "../../Redux/actions";
+
 import {useAuth} from "../../Contexts/authContext";
 import { useHistory} from "react-router-dom";
 import {loginUsers} from "../../Redux/actions";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+
+
+
+
+// import { getAuth, updateProfile } from "firebase/auth";
+// const auth = getAuth();
+// updateProfile(auth.currentUser, {
+//   displayName: "Jane Q. User", photoURL: "https://example.com/jane-q-user/profile.jpg"
+// }).then(() => {
+//   // Profile updated!
+//   // ...
+// }).catch((error) => {
+//   // An error occurred
+//   // ...
+// });
+
+
 
 
 const Register=()=>{
@@ -89,7 +107,7 @@ const Register=()=>{
                                 backdrop:true,
                             });
                     
-                            history.push("/shoppingBag");
+                            history.push("/login");
                     
                         }}>
                 
@@ -195,5 +213,6 @@ const Register=()=>{
         </div>
     )
 }
+
 
 export default Register;

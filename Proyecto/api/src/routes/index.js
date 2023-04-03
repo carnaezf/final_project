@@ -55,7 +55,8 @@ const {
   signInUserHandler,
   googleSignInHandler,
   userBannedHandler,
-  doAdminhandler,
+  doModeratorhandler,
+  getUserbyIdHandler,
 } = require("../handlers/userHandler");
 
 const { mercadoPago } = require("../controllers/mercadoPago");
@@ -85,6 +86,8 @@ router.get("/user", getAllUserHandler);
 
 router.delete("/user/:userId", deleteUserHandler);
 
+router.get("/user/:userId", getUserbyIdHandler);
+
 router.post("/products/addComment", addCommentHandler);
 
 router.get("/products/price/range", filterByPriceHandler);
@@ -107,7 +110,7 @@ router.get("/products/rating/rating", filterByRatingHandler);
 router.get("/products/reviews/reviews", filterByReviewsHandler);
 //http://localhost:3001/products/reviews/reviews?reviewMin=10&reviewMax=30
 
- router.post("/order", newOrderHandler);
+router.post("/order", newOrderHandler);
 
 router.get("/products/stock/stock", filterByStockHandler);
 //http://localhost:3001/products/stock
@@ -124,26 +127,26 @@ router.put("/order", putOrderHandler);
 
 router.put("/products/:id", updateProductHandler);
 
-router.put("/user/:id", updateUserHandler);
+router.put("/user/update", updateUserHandler);
 
 router.post("/order", newOrderHandler);
 
 //Mails:
 
-const {  mailRegister } = require("../controllers/mailsControllers/mail-register");
+const {
+  mailRegister,
+} = require("../controllers/mailsControllers/mail-register");
 const { mailOrder } = require("../controllers/mailsControllers/mail-Order");
-const {  uploadImage } = require("../controllers/upload-controller/upload");
+const { uploadImage } = require("../controllers/upload-controller/upload");
 // const { uploadWidget } = require("../controllers/uploads-controllers/widget");
 
-
-
-router.post("/send-email/order", mailOrder)
+router.post("/send-email/order", mailOrder);
 //http://localhost:3001/send-email/order
 
 router.post("/send-email/register", mailRegister);
 //http://localhost:3001/mail/send-email/register
 
-router.post("/products/upload", uploadImage )
+router.post("/products/upload", uploadImage);
 //http://localhost:3001/products/upload
 
 // router.post("/products/upload-widget", uploadWidget )
@@ -161,13 +164,13 @@ router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
 
 router.post("/payment/", mercadoPago);
 
-router.get("/user/totalMails", mailsTotalityHandler);
+router.get("/user/totalMail/m", mailsTotalityHandler);
 
 router.put("/user/:id/ban", userBannedHandler);
 router.put("/product/:id/ban", productBannedHandler);
 
-router.put("/admin/:id", doAdminhandler);
+router.put("/admin/:id", doModeratorhandler);
 
-router.get("/user/totalMails", mailsTotalityHandler);
+// router.get("/user/totalMails", mailsTotalityHandler);
 
 module.exports = router;

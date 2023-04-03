@@ -3,7 +3,7 @@ const obj = [
     url: "https://www.adidas.com/us/beach-shorts/FJ5089.html",
     name: "Beach Shorts",
     sku: "FJ5089",
-    selling_price: 40,
+    selling_price: 1,
     original_price: "",
     currency: "USD",
     availability: [{S:5},{M:3},{L:2}],

@@ -2,10 +2,12 @@ import { Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../Contexts/authContext";
 import { useHistory } from "react-router-dom";
-import { loginUsers } from "../../Redux/actions";
+import { loginUsers, logoutUsers } from "../../Redux/actions";
 import Swal from "sweetalert2";
 import { useEffect } from "react";
+
 import { Link } from "react-router-dom";
+
 
 const Login = () => {
   const { login, loginWithGoogle } = useAuth();
@@ -13,7 +15,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const userlogin = useSelector((state) => state.user);
   // const [loggedIn, setLoggedIn] = useState(false);
-  console.log(userlogin, "userlogin");
 
   const handleGoogle = async () => {
     try {
@@ -35,21 +36,32 @@ const Login = () => {
         icon: "success",
         title: "Welcome!",
         text: "You are logged in!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          history.push("/shoppingBag");
+        }
       });
-      history.push("/shoppingBag");
     }
     if (userlogin && userlogin.error === "password incorrect") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Password invalid!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logoutUsers());
+        }
       });
     }
     if (userlogin && userlogin.error === "user email not found") {
       Swal.fire({
-        icon: "error",
         title: "Oops...",
+        icon: "error",
         text: "Email invalid!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logoutUsers());
+        }
       });
     }
     if (userlogin && userlogin.error === "user banned") {
@@ -57,6 +69,10 @@ const Login = () => {
         icon: "error",
         title: "Oops...",
         text: "User banned!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(logoutUsers());
+        }
       });
     }
   }, [userlogin]);
@@ -74,27 +90,33 @@ const Login = () => {
             }}
             validate={(values) => {
               let error = {};
+        if (!values.email) {
+            error.email = "enter email";
+          } else {
+            if (
+              !/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
+                values.email
+              )
+            ) {
+              error.email = "invalid email";
+            }
+          }
+          if (!values.password) {
+            error.password = "invalid password";
+          }
+          return error;
+        }}
+        onSubmit={async (values, props) => {
+          try {
+            dispatch(loginUsers(values));
+          } catch (error) {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+            });
+          }
 
-              if (!values.email) {
-                error.email = "enter email";
-              } else {
-                if (!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(values.email)){
-                  error.email = "invalid email";
-                }
-              }
-              if (!values.password) {
-                error.password = "invalid password";
-              }
-              return error;
-            }}
-            onSubmit={async (values, props) => {
-       
-              try {
-                dispatch(loginUsers(values));
-            
-              } catch (error) {
-                alert("Login invalido");
-              }
 
               props.resetForm();
             }}>
@@ -158,6 +180,7 @@ const Login = () => {
         <div className="w-60 h-60 bg-gradient-to-tr from-violet-500 to-pink-500 rounded-full animate-bounce " />
         <div className="w-full h-1/2 absolute bottom-0 bg-white/10 backdrop-blur-lg" />
       </div>
+
 
     </div>
   );

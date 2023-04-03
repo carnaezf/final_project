@@ -40,6 +40,10 @@ module.exports = (sequelize) => {
         type: DataTypes.BOOLEAN,
         allowNull: false,
       },
+      isModerator: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
       dni: {
         type: DataTypes.INTEGER,
         // allowNull: false,
@@ -69,6 +73,11 @@ module.exports = (sequelize) => {
       isBanned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      profilePicture: {
+        type: DataTypes.TEXT,
+        defaultValue:
+          "https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg",
       },
     },
     {

@@ -6,17 +6,19 @@ import { useState,useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
 
-
-
 const CheckoutForm = () => {
+
+
 
     const [emails, setEmails] = useState({});
     const [user, setUser] = useState({});
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
    const [buy,setBuy]=useState({});
+   const [mercadoPagoEnabled, setMercadoPagoEnabled] = useState(false)
+   const [loginEnabled, setLoginEnabled] = useState(false)
 
     useEffect(async() => {
-        const users= await axios("http://localhost:3001/user/totalMails")
+        const users= await axios("http://localhost:3001/user/totalMail/m")
         const totalUser=await axios("http://localhost:3001/user")
         const data= users.data
         const totaluser=totalUser.data
@@ -26,6 +28,9 @@ const CheckoutForm = () => {
         
         
         const comprobation=(values)=>{
+            console.log(values.email);
+            console.log(emails, " Estos es BBDD");
+
             if(emails.includes(values.email)){  
                let userBuy=[]
                 for(let i=0;i<user.length;i++){
@@ -35,15 +40,19 @@ const CheckoutForm = () => {
                         }
                     }
                     //NO TOCAR NADA DE ACA!!!
-                    console.log(userBuy,"esto es el ususario que compra")
                     let datos=[...shoppingBag,...userBuy]
-                    console.log(datos,"esto es order datosdatosdatos") 
                     setBuy(datos) 
+                    setMercadoPagoEnabled(true)
+                    setLoginEnabled(false)
+                    return alert("¡You are already logged in!Proceed with your payment...")
                 }
                 else{
-                return alert("logueese")
+                    setMercadoPagoEnabled(false)
+                    setLoginEnabled(true)
+                return alert("¡You must login!")
               }
     }
+   
    
     const  redirectionRute=async()=>{
             //NO TOCAR EL BUY!!
@@ -55,60 +64,80 @@ const CheckoutForm = () => {
             
         } 
 
-return (
+  return (
     <div>
-        <Formik
-        initialValues={{ email: '' }}
+      <Formik
+        initialValues={{ email: "" }}
         validationSchema={Yup.object({
-            email: Yup.string()
-            .email('Invalid email address')
-            .required('Email is required')
+          email: Yup.string()
+            .email("Invalid email address")
+            .required("Email is required"),
         })}
         onSubmit={(values, { setSubmitting }) => {
-            comprobation(values)
-            setSubmitting(false);
+          comprobation(values);
+          setSubmitting(false);
         }}
-        >
+      >
         {({ isSubmitting }) => (
-                
-            <Form>
+          <Form>
             <div className="mb-4 m-10">
-                <label htmlFor="email">Email:</label>
-                <div className="m-2">
-                <Field type="email" name="email" className="border rounded-md p-2 w-15rem m-2" />
+              <label htmlFor="email">Email:</label>
+              <div className="m-2">
+                <Field
+                  type="email"
+                  name="email"
+                  className="border rounded-md p-2 w-15rem m-2"
+                />
+              </div>
 
-                </div>
-            
-                <ErrorMessage name="email" component="div" className="text-red-500" />
+              <ErrorMessage
+                name="email"
+                component="div"
+                className="text-red-500"
+              />
             </div>
             <button
-                type="submit"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
-                disabled={isSubmitting}
-                
+              type="submit"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              disabled={isSubmitting}
             >
-                Submit
+              Submit
             </button>
-            <div className='m-10'>
+            <div className="m-10">
+              <Link to="/register">
+                <button
+                  id="BotonLogin"
+                  disabled={loginEnabled}
+                  className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+                    loginEnabled ? "" : "opacity-50 cursor-not-allowed"
+                  }`}
+                >
+                
+                  login
+                </button>
+              </Link>
 
-            <Link to="/register">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5" > login </button>
-            </Link>
-            
-            
-            <button onClick={()=>redirectionRute()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">mercado Pago</button>
+
+                    
+            <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+    mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
+  }`}>mercado Pago</button>
             
             <Link to="/shoppingBag">
             <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
             </Link>
 
+              <Link to="/shoppingBag">
+                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">
+                  Return to Carrito
+                </button>
+              </Link>
             </div>
-
-            </Form>
+          </Form>
         )}
-        </Formik>
+      </Formik>
     </div>
-    );
+  );
 };
 
 export default CheckoutForm;

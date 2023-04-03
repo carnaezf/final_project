@@ -10,7 +10,8 @@ import {
   GET_USERS,
   BANNED,
   GET_PRODUCTS_ADMIN,
-
+  GET_ORDERS,
+  GET_USER_ID,
 } from "./actions";
 
 const intialState = {
@@ -24,6 +25,8 @@ const intialState = {
   // filterSize: [],
   users: [],
   user: [],
+  orders: [],
+  userId: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -70,11 +73,9 @@ const rootReducer = (state = intialState, action) => {
         if (a.breadcrumbs === action.payload) return a.id;
       });
 
-
       state.productsCategory.filter(
         (e) => nameGenres.includes(e.id) && filterGenres.push(e)
       );
-
 
       return {
         ...state,
@@ -108,6 +109,7 @@ const rootReducer = (state = intialState, action) => {
           }
         });
       }
+
 
 
       return { ...state, filterPrice: filterPrice,  filterSize: filterPrice};
@@ -163,6 +165,7 @@ const rootReducer = (state = intialState, action) => {
     
 
 
+
     case GET_USERS:
       return {
         ...state,
@@ -190,7 +193,16 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
       };
-
+    case GET_ORDERS:
+      return {
+        ...state,
+        orders: action.payload,
+      };
+    case GET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
     default:
       return { ...state };
   }

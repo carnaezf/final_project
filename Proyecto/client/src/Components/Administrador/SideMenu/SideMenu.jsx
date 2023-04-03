@@ -9,12 +9,9 @@ import { Button, Menu, Space } from "antd";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import "./SideMenu.css";
-import { logoutUsers } from "../../../Redux/actions";
-import { useDispatch } from "react-redux";
 
 function SideMenu() {
   const location = useLocation();
-  const dispatch = useDispatch();
   const [selectedKeys, setSelectedKeys] = useState("/");
 
   useEffect(() => {
@@ -60,20 +57,8 @@ function SideMenu() {
           },
           {
             label: "Logout",
-            // key: "/logout",
+            key: "/logout",
             icon: <ImportOutlined />,
-            // render: (text, record) => (
-            //   <Space>
-            //     <Button
-            //       onClick={() => {
-            //         dispatch(logoutUsers());
-            //         history.push("/");
-            //       }}
-            //     >
-            //       Logout
-            //     </Button>
-            //   </Space>
-            // ),
           },
         ]}
       ></Menu>
