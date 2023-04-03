@@ -2,10 +2,11 @@
 import NavBar from '../NavBar/NavBar';
 import React, { useContext, useState } from 'react';
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
-import { ProductSizeContext } from '../../Contexts/ProductSizeContext';
+import { SelectedSizeContext } from '../../Contexts/SelectedSizeContext';
 import { useAuth } from '../../Contexts/authContext';
 import { AiOutlinePlus,AiOutlineLine } from "react-icons/ai";
 import { Link } from 'react-router-dom';
+
 
 const ShoppingBag = ({id, name, sellingPrice, images, average_rating, size, category,description,idUser,nameUser,lastNameUser}) => {
 
@@ -13,7 +14,7 @@ const {user}=useAuth();
 
 
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
-    const [selectedSize, setSelectedSize] = useState(ProductSizeContext)
+    const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext)
 
     console.log('Estado shoppingBag desde ShoppingBag', shoppingBag);
     console.log('Estado selectedSize desde ShoppingBag', selectedSize);
@@ -39,13 +40,25 @@ const {user}=useAuth();
             if (isItemsFound) {
                 return currItems.map((item) => {
                 if (item.id === id) {
-                    return { ...item, quantity: item.quantity + 1 };
+                    return { ...item, quantity: item.quantity + 1, size: selectedSize };
                 } else {
                     return item;
                 }
                 });
             } else {
-                    return [...currItems, { id,title:name, quantity: 1, unit_price:sellingPrice, description:"description ", picture_url:images[0],currency_id:'ARS' }];
+                    return [
+                        ...currItems, 
+                        {   
+                        id,
+                        title:name, 
+                        quantity: 1, 
+                        unit_price:sellingPrice, 
+                        description:"description ", 
+                        picture_url:images[0],
+                        currency_id:'ARS',
+                        size: selectedSize, 
+                    }
+                ];
             }
         });
     }

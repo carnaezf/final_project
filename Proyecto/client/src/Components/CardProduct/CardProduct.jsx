@@ -9,7 +9,7 @@ import Rating from "../Rating/Rating";
 
 const CardProduct = ( props ) => {
 
-	const { id, name, images, sellingPrice, average_rating, category, description, size } = props;
+	const { id, name, images, sellingPrice, average_rating, category, description, size, selectedSize, setSelectedSize } = props;
 
 	const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
 	console.log("Estado shoppingBag desde CardProduct", shoppingBag);
@@ -20,7 +20,7 @@ const CardProduct = ( props ) => {
 			if (isItemsFound) {
 				return currItems.map((item) => {
 					if (item.id === id) {
-						return { ...item, quantity: item.quantity + 1 };
+						return { ...item, quantity: item.quantity + 1, size: selectedSize };
 					} else {
 						return item;
 					}
@@ -36,6 +36,7 @@ const CardProduct = ( props ) => {
 						description: "description ",
 						picture_url: images[0],
 						currency_id: "ARS",
+						size: selectedSize
 					},
 				];
 			}

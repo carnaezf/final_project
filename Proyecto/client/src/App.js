@@ -17,7 +17,7 @@ import Shoes from "./Views/Shoes/Shoes";
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
 
 import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
-import { ProductSizeProvider } from  "../src/Contexts/ProductSizeContext";
+import { SelectedSizeSizeProvider } from  "../src/Contexts/SelectedSizeContext";
 
 import Register from "./Views/Register/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
@@ -29,7 +29,7 @@ function App() {
   // console.log(location);
   return (
     <AuthProvider>
-      <ProductSizeProvider>
+      <SelectedSizeSizeProvider>
         <ShoppingBagProvider>
           <BrowserRouter>
             <div className="App">
@@ -73,7 +73,7 @@ function App() {
             </div>
           </BrowserRouter>
         </ShoppingBagProvider>
-      </ProductSizeProvider>
+      </SelectedSizeSizeProvider>
     </AuthProvider>
   );
 }

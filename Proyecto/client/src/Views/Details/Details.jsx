@@ -8,7 +8,7 @@ import NavBar from "../../Components/NavBar/NavBar";
 // import { useHistory } from "react-router-dom";
 import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
-import { ProductSizeContext } from "../../Contexts/ProductSizeContext";
+import { SelectedSizeContext } from "../../Contexts/SelectedSizeContext";
 
 // Check Tallas:
 import Checkbox from "@material-ui/core/Checkbox";
@@ -29,21 +29,8 @@ export default function Details( props ) {
     match: {params: { id } }, name, images, sellingPrice, average_rating, category, description, size } = props;
 
 
-  // {
-  //   match: {
-  //     params: { id },
-  //   },
-  //   name,
-  //   sellingPrice,
-  //   images,
-  //   average_rating,
-  //   category,
-  //   description,
-  //   size
-  // }
-
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
-  const [selectedSize, setSelectedSize] = useContext(ProductSizeContext);
+  const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
 
 
   console.log('Estado shoppingBag desde Details', shoppingBag);
@@ -141,8 +128,8 @@ export default function Details( props ) {
 
   const quantityPerItem = getQuantityById(id);
 
-  const handleSizeClick = (size) => {
-    setSelectedSize(size);
+  const handleSizeClick = (e) => {
+    setSelectedSize(e.target.value);
   };
 
   /**********Metodos ShoppingBag */
@@ -270,7 +257,7 @@ export default function Details( props ) {
             </div>
             
             <div>
-      <Checkbox
+      {/* <Checkbox
         checked={selectedSize === "S"}
         onChange={() => handleSizeClick("S")}
         disabled={selectedSize === "S"}
@@ -287,10 +274,16 @@ export default function Details( props ) {
         onChange={() => handleSizeClick("L")}
         disabled={selectedSize === "L"}
         inputProps={{ "aria-label": "L" }}
-      />
-      {/* <button onClick={handleAddToBag} disabled={!selectedSize}>
-        Add to bag
-      </button> */}
+      /> */}
+
+<select value={selectedSize} onChange={handleSizeClick}>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+      </select>
+      <button onClick={addToCart}>Agregar al carrito</button>
+
+
         </div>
 
 
@@ -325,6 +318,14 @@ export default function Details( props ) {
                 Restar Item
               </button>
             )}
+          </div>
+          <div>
+            <button
+                className="transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+                  hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px-10 border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold"
+              >
+                S
+            </button>
           </div>
 
           {/* <button onClick={handleGoBack}>Volver</button> */}
