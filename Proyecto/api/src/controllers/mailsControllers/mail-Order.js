@@ -76,7 +76,10 @@ findOrder.forEach(async(order) => {
       onError: (e) => console.log(e),
       onSuccess: (i) => console.log("Order mail sent", i),
     });
-   
+      
+   findOrder.notification = true;
+   await findOrder.save();
+      
   } catch (error) {
     console.log(error);
   }})
