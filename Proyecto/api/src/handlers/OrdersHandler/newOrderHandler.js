@@ -1,6 +1,6 @@
 
 const {validateOrderCreated}= require("../../controllers/Orders/newOrderController")
-
+const newOrderHandler=async()=>{  
     try {
         const newOrder = ([] = req.body);
        const newOrdercreated= await validateOrderCreated(newOrder)
@@ -8,7 +8,7 @@ const {validateOrderCreated}= require("../../controllers/Orders/newOrderControll
     } catch (error) {
         res.status(400).json({error:error.message})
     }
-
+}
 module.exports = {
   newOrderHandler,
 };
