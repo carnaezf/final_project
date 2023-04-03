@@ -98,6 +98,7 @@ const addComment = async ({ comment, userId, id }) => {
 //..........................................
 const getProductById = async (id) => {
   try {
+    console.log(id, "id");
     // buscamos el producto y que incluya el modelo de los comentarios
     const products = await Product.findOne({
       where: { id: id },
