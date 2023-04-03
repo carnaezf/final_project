@@ -101,7 +101,7 @@ const validateOrderCreated = async (
       userByOrder.set(newOrdercreated).save();
       //newOrdercreated.save()
       console.log(newOrdercreated);
-      //    mailOrder()
+         mailOrder()
       return newOrdercreated;
     } else {
       return "error en crear la orden";
