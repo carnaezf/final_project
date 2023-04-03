@@ -2,6 +2,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { encryptKey, encryptExpiration } = process.env;
 const { User, Order } = require("../db");
+const { Comment } = require("../db");
 const { superAdmin } = require("../controllers/userAdmin");
 
 const createUser = async (
@@ -18,10 +19,12 @@ const createUser = async (
   rol
 ) => {
   let passwordHash = await bcrypt.hash(password, 10);
-  let nameCapitalized = name.charAt(0).toUpperCase() + name.slice(1);
+  let nameCapitalized =
+    name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
   let lastNameCapitalized =
-    lastName.charAt(0).toUpperCase() + lastName.slice(1);
-  let countryCapitalized = country.charAt(0).toUpperCase() + country.slice(1);
+    lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+  let countryCapitalized =
+    country.charAt(0).toUpperCase() + country.slice(1).toLowerCase();
   let emailLower = email.toLowerCase();
   if (
     isAdmin === undefined ||
@@ -62,6 +65,28 @@ const createUser = async (
   return user, { msg: "User created", token: Token };
 };
 
+const getUserbyId = async (id) => {
+  try {
+    // te trae el usuario y los modelos asociados
+    const user = await User.findByPk(id, {
+      include: [
+        {
+          model: Comment,
+        },
+        {
+          model: Order,
+        },
+      ],
+    });
+    if (!user) {
+      throw new Error(`user id not found ${id}`);
+    }
+    return user;
+  } catch (error) {
+    return { error: error.message };
+  }
+};
+
 const getAllUser = async () => {
   try {
     const users = await User.findAll({
@@ -75,39 +100,36 @@ const getAllUser = async () => {
   }
 };
 
-const updateUser = async (
-  id,
-  name,
-  lastName,
-  phone,
-  birthDate,
-  country,
-  rol
-) => {
+const updateUser = async (id, name, lastName, password, profilePicture) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
       throw new Error(`user id not found ${id}`);
     }
-    // console.log(user)
-    const dataAdmin = await superAdmin(rol);
-    const rolAdmin = dataAdmin.rol;
-    //console.log(dataAdmin,"aca esta dataaaaa admin")
-    //console.log(rolAdmin)
-    if (rolAdmin !== "superadmin" && rolAdmin !== "administrator") {
-      await user.set({
-        name,
-        lastName,
-        phone,
-        birthDate,
-        country,
-      }); //lo actualiza
-      await user.save(); //lo guarda
-
-      return user;
-    } else {
-      return "Can't edit SUPER ADMIN 😅, change ID  ";
+    if (name !== undefined && name !== null && name !== "") {
+      let nameCapitalized =
+        name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      user.name = nameCapitalized;
     }
+    if (lastName !== undefined && lastName !== null && lastName !== "") {
+      let lastNameCapitalized =
+        lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+      user.lastName = lastNameCapitalized;
+    }
+    if (password !== undefined && password !== null && password !== "") {
+      let passwordHash = await bcrypt.hash(password, 10);
+      user.password = passwordHash;
+    }
+    if (
+      profilePicture !== undefined &&
+      profilePicture !== null &&
+      profilePicture !== ""
+    ) {
+      user.profilePicture = profilePicture.toString();
+    }
+    await user.set(user);
+    await user.save();
+    return user;
   } catch (error) {
     return { error: error.message };
   }
@@ -136,7 +158,13 @@ const signInUser = async (email, password) => {
     { expiresIn: encryptExpiration }
   );
   if (user.isAdmin === true) {
-    return { msg: "User logged", token: Token, user: "admin", name: user.name };
+    return {
+      msg: "User logged",
+      token: Token,
+      user: "admin",
+      name: user.name,
+      id: user.userId,
+    };
   }
   if (user.isModerator === true) {
     return {
@@ -144,9 +172,16 @@ const signInUser = async (email, password) => {
       token: Token,
       user: "moderator",
       name: user.name,
+      id: user.userId,
     };
   }
-  return { msg: "User logged", token: Token, user: "user", name: user.name };
+  return {
+    msg: "User logged",
+    token: Token,
+    user: "user",
+    name: user.name,
+    id: user.userId,
+  };
 };
 
 const googleSignIn = async (email, name, lastName, google, password) => {
@@ -252,4 +287,5 @@ module.exports = {
   deleteUser,
   userBanned,
   doModerator,
+  getUserbyId,
 };

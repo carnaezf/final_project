@@ -4,12 +4,14 @@ import {
   GET_PRODUCTS_CATEGORY,
   FILTER_BY_NAME,
   FILTER_BY_GENRES,
-  //FILTER_BY_ACCESSORIES_PRICE,
   FILTER_BY_PRICE,
+  FILTER_BY_PRICE_ALL_PRODUCTS,
+  // FILTER_BY_SIZE,
   GET_USERS,
   BANNED,
   GET_PRODUCTS_ADMIN,
   GET_ORDERS,
+  GET_USER_ID,
 } from "./actions";
 
 const intialState = {
@@ -19,9 +21,12 @@ const intialState = {
   productsCategory: [],
   filterGenre: [],
   filterPrice: [],
+  filterPriceAllProducts: [],
+  // filterSize: [],
   users: [],
   user: [],
   orders: [],
+  userId: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -30,6 +35,7 @@ const rootReducer = (state = intialState, action) => {
       return {
         ...state,
         products: action.payload.filter((e) => e.show === true),
+        filterPriceAllProducts:action.payload.filter((e) => e.show === true) 
       };
     case GET_PRODUCTS_ADMIN:
       return {
@@ -48,6 +54,7 @@ const rootReducer = (state = intialState, action) => {
         productsCategory: action.payload,
         filterGenre: action.payload,
         filterPrice: action.payload,
+        // filterSize: action.payload,
       };
 
     case FILTER_BY_NAME:
@@ -61,25 +68,26 @@ const rootReducer = (state = intialState, action) => {
       return { ...state, products: numId };
 
     case FILTER_BY_GENRES:
-      const filterAccessories = [];
-      const nameAccessories = state.productsCategory.map((a) => {
+      const filterGenres = [];
+      const nameGenres = state.productsCategory.map((a) => {
         if (a.breadcrumbs === action.payload) return a.id;
       });
 
       state.productsCategory.filter(
-        (e) => nameAccessories.includes(e.id) && filterAccessories.push(e)
+        (e) => nameGenres.includes(e.id) && filterGenres.push(e)
       );
 
       return {
         ...state,
-        filterGenre: filterAccessories,
-        filterPrice: filterAccessories,
+        filterGenre: filterGenres,
+        filterPrice: filterGenres,
+        // filterSize: filterGenres,
       };
 
     case FILTER_BY_PRICE:
       const filterPrice = [];
       if (action.payload === "lower price") {
-        const priceAccessories = state.filterGenre.map((a) => {
+        const priceProduct = state.filterGenre.map((a) => {
           if (a.sellingPrice > 0 && a.sellingPrice <= 20) {
             filterPrice.push(a);
           }
@@ -87,7 +95,7 @@ const rootReducer = (state = intialState, action) => {
       }
 
       if (action.payload === "half price") {
-        const priceAccessories = state.filterGenre.map((a) => {
+        const priceProduct = state.filterGenre.map((a) => {
           if (a.sellingPrice > 20 && a.sellingPrice <= 60) {
             filterPrice.push(a);
           }
@@ -95,14 +103,68 @@ const rootReducer = (state = intialState, action) => {
       }
 
       if (action.payload === "higher price") {
-        const priceAccessories = state.filterGenre.map((a) => {
+        const priceProduct = state.filterGenre.map((a) => {
           if (a.sellingPrice > 60) {
             filterPrice.push(a);
           }
         });
       }
 
-      return { ...state, filterPrice: filterPrice };
+
+
+      return { ...state, filterPrice: filterPrice,  filterSize: filterPrice};
+
+    // case FILTER_BY_SIZE:
+    //   const filterSize = [];
+    //   if (action.payload === "small") {
+    //     const priceProduct = state.filterPrice.map((a) => {
+    //       if (a.availability[0]){
+    //         filterSize.push(a);
+    //       }
+    //     });
+    //   }
+    //   return { ...state,filterSize: filterSize};
+    case FILTER_BY_PRICE_ALL_PRODUCTS:
+      //const filterPrice = [];
+      const filterPriceAllProducts = [];
+      if (action.payload === "lower price") {
+        const priceProduct = state.products.map((a) => {
+          if (a.sellingPrice > 0 && a.sellingPrice <= 20) {
+            filterPriceAllProducts.push(a);
+          }
+        });
+      }
+
+      if (action.payload === "half price") {
+        const priceProduct = state.products.map((a) => {
+          if (a.sellingPrice > 20 && a.sellingPrice <= 60) {
+            filterPriceAllProducts.push(a);
+          }
+        });
+      }
+      if (action.payload === "medium high price") {
+        const priceProduct = state.products.map((a) => {
+          if (a.sellingPrice > 60 && a.sellingPrice <= 100) {
+            filterPriceAllProducts.push(a);
+          }
+        });
+      }
+
+      if (action.payload === "higher price") {
+        const priceProduct = state.products.map((a) => {
+          if (a.sellingPrice > 100) {
+            filterPriceAllProducts.push(a);
+          }
+        });
+      }
+
+
+      return { ...state, filterPriceAllProducts: filterPriceAllProducts};
+
+      
+    
+
+
 
     case GET_USERS:
       return {
@@ -136,7 +198,11 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         orders: action.payload,
       };
-
+    case GET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
     default:
       return { ...state };
   }

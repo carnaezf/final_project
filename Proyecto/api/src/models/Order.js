@@ -31,6 +31,10 @@ module.exports = (sequelize) => {
     },
     date:{
       type: DataTypes.DATEONLY,
+      defaultValue: sequelize.fn('now'),
+    },
+    notification:{
+      type: DataTypes.BOOLEAN,
      // allowNull: false,
     },
 

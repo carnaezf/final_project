@@ -56,6 +56,7 @@ const {
   googleSignInHandler,
   userBannedHandler,
   doModeratorhandler,
+  getUserbyIdHandler,
 } = require("../handlers/userHandler");
 
 const { mercadoPago } = require("../controllers/mercadoPago");
@@ -84,6 +85,8 @@ router.post("/user", createUserHandler);
 router.get("/user", getAllUserHandler);
 
 router.delete("/user/:userId", deleteUserHandler);
+
+router.get("/user/:userId", getUserbyIdHandler);
 
 router.post("/products/addComment", addCommentHandler);
 
@@ -124,7 +127,7 @@ router.put("/order", putOrderHandler);
 
 router.put("/products/:id", updateProductHandler);
 
-router.put("/user/:id", updateUserHandler);
+router.put("/user/update", updateUserHandler);
 
 router.post("/order", newOrderHandler);
 
@@ -161,13 +164,13 @@ router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
 
 router.post("/payment/", mercadoPago);
 
-router.get("/user/totalMails", mailsTotalityHandler);
+router.get("/user/totalMail/m", mailsTotalityHandler);
 
 router.put("/user/:id/ban", userBannedHandler);
 router.put("/product/:id/ban", productBannedHandler);
 
 router.put("/admin/:id", doModeratorhandler);
 
-router.get("/user/totalMails", mailsTotalityHandler);
+// router.get("/user/totalMails", mailsTotalityHandler);
 
 module.exports = router;

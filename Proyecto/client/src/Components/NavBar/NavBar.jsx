@@ -123,7 +123,7 @@ export default function NavBar(props) {
         </div>
 
         <div className="flex flex-column dropdown dropdown-end ">
-          {user && (
+          {/* {user && (
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {user.displayName ? user.displayName : user.email}!
             </h1>
@@ -132,7 +132,17 @@ export default function NavBar(props) {
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {userlogin.name}!
             </h1>
-          )}
+          )} */}
+          {user ? (
+            <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
+              Hi {user.displayName ? user.displayName : user.email}!
+            </h1>
+          ) : (
+            <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
+              Hi {userlogin.name}!
+            </h1>
+          )
+          }
           <label
             tabIndex={0}
             className="btn btn-ghost btn-circle avatar mr-14 dark:hover:border-purple-200"
@@ -149,6 +159,9 @@ export default function NavBar(props) {
                   <ul>
                     <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
                       <a onClick={handlerLogOut}> Logout </a>
+                    </li>
+                    <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
+                      <Link to="/profile"> Profile </Link>
                     </li>
                     {userlogin.user === "admin" && (
                       <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">

@@ -4,7 +4,6 @@ const { Order, User } = require("../../db");
 const getAllOrders = async () => {
   try {
     const getOrders = await Order.findAll();
-    // console.log(getOrders.map((order) => order.UserUserId));
 
     for (const order of getOrders) {
       const userOrder = await User.findOne({
