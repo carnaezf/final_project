@@ -14,6 +14,8 @@ const CheckoutForm = () => {
     const [user, setUser] = useState({});
     const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
    const [buy,setBuy]=useState({});
+   const [mercadoPagoEnabled, setMercadoPagoEnabled] = useState(false)
+   const [loginEnabled, setLoginEnabled] = useState(false)
 
     useEffect(async() => {
         const users= await axios("http://localhost:3001/user/totalMails")
@@ -35,15 +37,19 @@ const CheckoutForm = () => {
                         }
                     }
                     //NO TOCAR NADA DE ACA!!!
-                    console.log(userBuy,"esto es el ususario que compra")
                     let datos=[...shoppingBag,...userBuy]
-                    console.log(datos,"esto es order datosdatosdatos") 
                     setBuy(datos) 
+                    setMercadoPagoEnabled(true)
+                    setLoginEnabled(false)
+                    return alert("¡You are already logged in!Proceed with your payment...")
                 }
                 else{
-                return alert("logueese")
+                    setMercadoPagoEnabled(false)
+                    setLoginEnabled(true)
+                return alert("¡You must login!")
               }
     }
+   
    
     const  redirectionRute=async()=>{
             //NO TOCAR EL BUY!!
@@ -91,12 +97,19 @@ return (
             </button>
             <div className='m-10'>
 
+            
+
             <Link to="/register">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5" > login </button>
+            <button  id="BotonLogin"  disabled={loginEnabled} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+      loginEnabled ? "" : "opacity-50 cursor-not-allowed"
+            }`}
+    > login </button>
             </Link>
             
             
-            <button onClick={()=>redirectionRute()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">mercado Pago</button>
+            <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+    mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
+  }`}>mercado Pago</button>
             
             <Link to="/shoppingBag">
             <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
