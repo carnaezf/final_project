@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -64,6 +65,7 @@ const CheckoutForm = () => {
             
         } 
 
+
   return (
     <div>
       <Formik
@@ -112,6 +114,7 @@ const CheckoutForm = () => {
                     loginEnabled ? "" : "opacity-50 cursor-not-allowed"
                   }`}
                 >
+
                 
                   login
                 </button>
@@ -126,6 +129,7 @@ const CheckoutForm = () => {
             <Link to="/shoppingBag">
             <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
             </Link>
+
 
               <Link to="/shoppingBag">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">
