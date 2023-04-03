@@ -9,6 +9,7 @@ const {
   signInUser,
   userBanned,
   doModerator,
+  getUserbyId,
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
@@ -131,6 +132,16 @@ const doModeratorhandler = async (req, res) => {
   }
 };
 
+const getUserbyIdHandler = async (req, res) => {
+  const { userId } = req.params;
+  try {
+    const user = await getUserbyId(userId);
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
+
 module.exports = {
   createUserHandler,
   getAllUserHandler,
@@ -140,4 +151,5 @@ module.exports = {
   deleteUserHandler,
   userBannedHandler,
   doModeratorhandler,
+  getUserbyIdHandler,
 };

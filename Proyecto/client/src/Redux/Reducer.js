@@ -10,6 +10,7 @@ import {
   BANNED,
   GET_PRODUCTS_ADMIN,
   GET_ORDERS,
+  GET_USER_ID,
 } from "./actions";
 
 const intialState = {
@@ -22,6 +23,7 @@ const intialState = {
   users: [],
   user: [],
   orders: [],
+  userId: [],
 };
 
 const rootReducer = (state = intialState, action) => {
@@ -136,7 +138,11 @@ const rootReducer = (state = intialState, action) => {
         ...state,
         orders: action.payload,
       };
-
+    case GET_USER_ID:
+      return {
+        ...state,
+        userId: action.payload,
+      };
     default:
       return { ...state };
   }

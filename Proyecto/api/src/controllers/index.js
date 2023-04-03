@@ -1,5 +1,6 @@
 const { Product } = require("../db");
 const { Comment } = require("../db");
+const { User } = require("../db");
 const obj = require("../../Data.js");
 const { Op } = require("sequelize");
 
@@ -63,17 +64,68 @@ const addReview = async ({ id, reviewValue }) => {
 };
 
 const addComment = async ({ comment, userId, id }) => {
-  const newComment = await Comment.create({ comment });
-  await newComment.setUser(userId);
-  await newComment.setProduct(id);
+  console.log(comment, userId, id);
+  //nos asegurammos que los datos no esten vacios
+  if (comment && userId && id) {
+    try {
+      // lo creamos
+      const nComment = await Comment.create({
+        comments: comment,
+      });
+      // lo asociamos
+      const user = await User.findOne({
+        where: {
+          userId: userId,
+        },
+      });
+      //esto agrega el comentario al usuario
+      await user?.addComment(nComment);
+
+      //esto agrega el comentario al producto
+      const product = await Product.findOne({
+        where: {
+          id: id,
+        },
+      });
+
+      await product?.addComment(nComment);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 };
 
 //..........................................
 const getProductById = async (id) => {
   try {
+    // buscamos el producto y que incluya el modelo de los comentarios
     const products = await Product.findOne({
       where: { id: id },
+      include: [
+        {
+          model: Comment,
+        },
+      ],
     });
+    // buscamos los usuarios que hicieron comentarios (nos devuelve un array de id de usuarios)
+    const users = products.dataValues.Comments.map(
+      (e) => e.dataValues.UserUserId
+    );
+    //buscamos al usuario que hizo el comentario
+    for (const user of users) {
+      const userOrder = await User.findOne({
+        where: {
+          userId: user,
+        },
+      });
+      // buscamos que coincida el id del usuario y a dataValues en la parte de
+      //comentarios le agregamos el nombre y apellido
+      products.dataValues.Comments.map((e) => {
+        if (e.dataValues.UserUserId === user) {
+          e.dataValues.user = `${userOrder.name} ${userOrder.lastName}`;
+        }
+      });
+    }
 
     const detail = products.dataValues;
 
@@ -98,12 +150,12 @@ const createProduct = async (
     name,
     description,
     sellingPrice,
-    images : urlImage,
+    images: urlImage,
     average_rating,
     category,
     reviews_count,
     availability,
-    totalAvailability
+    totalAvailability,
   });
   return product;
 };
