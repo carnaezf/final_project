@@ -24,6 +24,7 @@ import { AuthProvider } from "./Contexts/authContext.jsx";
 import Login from "./Views/Login/Login";
 import CheckoutForm from "../src/Components/ShoppingBag/CheckoutForm";
 import { useSelector } from "react-redux";
+import ProfileUser from "./Components/ProfileUser/ProfileUser";
 
 function App() {
   //const location =useLocation();
@@ -68,13 +69,13 @@ function App() {
                 <Route exact path="/shoes" component={Shoes} />
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
+                <Route exact path="/profile" component={ProfileUser} />
                 <Route exact path="*" component={Home} />
               </Switch>
             </div>
           </BrowserRouter>
         </ShoppingBagProvider>
       </SelectedSizeSizeProvider>
-
     </AuthProvider>
   );
 }

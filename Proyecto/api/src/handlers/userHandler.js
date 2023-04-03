@@ -57,19 +57,10 @@ const getAllUserHandler = async (req, res) => {
 };
 
 const updateUserHandler = async (req, res) => {
-  const { id } = req.params;
-  const { name, lastName, phone, birthDate, country, rol } = req.body;
-  // console.log(id)
+  const { id, name, lastName, password, profilePicture } = req.body;
+
   try {
-    const user = await updateUser(
-      id,
-      name,
-      lastName,
-      phone,
-      birthDate,
-      country,
-      rol
-    );
+    const user = await updateUser(id, name, lastName, password, profilePicture);
     res.status(200).send(user);
   } catch (error) {
     res.status(404).send({ error: error.message });

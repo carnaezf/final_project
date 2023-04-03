@@ -32,14 +32,14 @@ const Comments = ({ product, setRender, render }) => {
         order.products?.map((product) => product.id)
       );
       //se fija si el producto coincide con alguno de los productos de las orders del usuario
-      if (product?.id == ordersId.map((order) => order)) {
+      if (ordersId?.flat().includes(product.id)) {
         const newComment = {
           comment: comment,
           userId: user.id,
           id: product.id,
         };
         dispatch(postComment(newComment));
-        setRender(!render);
+
         setComment("");
         Swal.fire({
           position: "top-end",
@@ -47,6 +47,8 @@ const Comments = ({ product, setRender, render }) => {
           title: "Your comment has been posted!",
           showConfirmButton: false,
           timer: 1500,
+        }).then(() => {
+          setRender(!render);
         });
       } else {
         Swal.fire({

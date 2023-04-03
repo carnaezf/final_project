@@ -100,39 +100,36 @@ const getAllUser = async () => {
   }
 };
 
-const updateUser = async (
-  id,
-  name,
-  lastName,
-  phone,
-  birthDate,
-  country,
-  rol
-) => {
+const updateUser = async (id, name, lastName, password, profilePicture) => {
   try {
     const user = await User.findByPk(id);
     if (!user) {
       throw new Error(`user id not found ${id}`);
     }
-    // console.log(user)
-    const dataAdmin = await superAdmin(rol);
-    const rolAdmin = dataAdmin.rol;
-    //console.log(dataAdmin,"aca esta dataaaaa admin")
-    //console.log(rolAdmin)
-    if (rolAdmin !== "superadmin" && rolAdmin !== "administrator") {
-      await user.set({
-        name,
-        lastName,
-        phone,
-        birthDate,
-        country,
-      }); //lo actualiza
-      await user.save(); //lo guarda
-
-      return user;
-    } else {
-      return "Can't edit SUPER ADMIN 😅, change ID  ";
+    if (name !== undefined && name !== null && name !== "") {
+      let nameCapitalized =
+        name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
+      user.name = nameCapitalized;
     }
+    if (lastName !== undefined && lastName !== null && lastName !== "") {
+      let lastNameCapitalized =
+        lastName.charAt(0).toUpperCase() + lastName.slice(1).toLowerCase();
+      user.lastName = lastNameCapitalized;
+    }
+    if (password !== undefined && password !== null && password !== "") {
+      let passwordHash = await bcrypt.hash(password, 10);
+      user.password = passwordHash;
+    }
+    if (
+      profilePicture !== undefined &&
+      profilePicture !== null &&
+      profilePicture !== ""
+    ) {
+      user.profilePicture = profilePicture.toString();
+    }
+    await user.set(user);
+    await user.save();
+    return user;
   } catch (error) {
     return { error: error.message };
   }

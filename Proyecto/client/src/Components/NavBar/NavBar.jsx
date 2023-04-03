@@ -150,6 +150,9 @@ export default function NavBar(props) {
                     <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
                       <a onClick={handlerLogOut}> Logout </a>
                     </li>
+                    <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
+                      <Link to="/profile"> Profile </Link>
+                    </li>
                     {userlogin.user === "admin" && (
                       <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
                         <Link to="/admin"> Admin </Link>
