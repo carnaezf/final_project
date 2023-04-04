@@ -38,7 +38,11 @@ const Register=()=>{
         <div className="flex w-full h-screen">
             <div className="w-full flex items-center justify-center lg:w-1/2 bg-slate-50">
                 <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-                    <h1 className="text-2xl text-purple-500 font-roboto text-lg font-black">Registration in Haal</h1>
+                    <div class="text-4xl font-extrabold ...">
+                        <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+                        Registration in Haal
+                        </span>
+                    </div>
                     <Formik
                         initialValues={{
                             name:"",
@@ -116,7 +120,7 @@ const Register=()=>{
                                 {/* {console.log(props.errors)} */}
                                 {/* {console.log(props.touched)} */}
                                 <div className="mb-4 "> 
-                                    <label htmlFor="name" className="text-lg font-medium" >Name</label>
+                                    <label htmlFor="name" className="text-lg text-current" >Name</label>
                                     <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                                         type="text" 
                                         id="name" 
@@ -129,7 +133,7 @@ const Register=()=>{
                                     {props.touched.name && props.errors.name && <span className=" bg-red text-sm text-red-700" >{props.errors.name}</span>}
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="name" className="text-lg font-medium">Last Name</label>
+                                    <label htmlFor="name" className="text-lg text-current">Last Name</label>
                                     <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                                         type="text" 
                                         id="lastName" 
@@ -142,7 +146,7 @@ const Register=()=>{
                                     {props.touched.lastName && props.errors.lastName && <span className=" bg-red text-sm text-red-700">{props.errors.lastName}</span>}
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="name" className="text-lg font-medium">Email</label>
+                                    <label htmlFor="name" className="text-lg text-current">Email</label>
                                     <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                                         type="text" 
                                         id="email" 
@@ -155,7 +159,7 @@ const Register=()=>{
                                     {props.touched.email && props.errors.email && <span className=" bg-red text-sm text-red-700">{props.errors.email}</span>}
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="name" className="text-lg font-medium">Password</label>
+                                    <label htmlFor="name" className="text-lg text-current">Password</label>
                                     <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                                         type="password" 
                                         id="password" 
@@ -168,7 +172,7 @@ const Register=()=>{
                                     {props.touched.password && props.errors.password && <span className=" bg-red text-sm text-red-700">{props.errors.password}</span>}
                                 </div>
                                 <div className="mb-4">
-                                    <label htmlFor="name" className="text-lg font-medium">Country</label>
+                                    <label htmlFor="name" className="text-lg text-current">Country</label>
                                     <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                                         type="text" 
                                         id="country" 
