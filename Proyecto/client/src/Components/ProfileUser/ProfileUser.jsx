@@ -87,21 +87,6 @@ function Profile() {
       key: "idOrder",
     },
     {
-      title: "Payment Method",
-      dataIndex: "paymentMethod",
-      key: "paymentMethod",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-    },
-    {
-      title: "Total Mount",
-      dataIndex: "totalMount",
-      key: "totalMount",
-    },
-    {
       title: "Products",
       dataIndex: "products",
       key: "products",
@@ -177,22 +162,19 @@ function Profile() {
       ),
     },
     {
-      title: "Products",
-      dataIndex: "products",
-      key: "products",
-      render: (products) => (
-        <div>
-          {products.map((product) => {
-            return (
-              <div>
-                <Space direction="vertical" className="w-full">
-                  <h1>{product.unit_price}</h1>
-                </Space>
-              </div>
-            );
-          })}
-        </div>
-      ),
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+    },
+    {
+      title: "Payment Method",
+      dataIndex: "paymentMethod",
+      key: "paymentMethod",
+    },
+    {
+      title: "Total Mount",
+      dataIndex: "totalMount",
+      key: "totalMount",
     },
   ];
 
