@@ -111,7 +111,7 @@ const validateOrderCreated = async (newOrder) => {
         status: "aceptada",
         totalMount: totalPrice,
         products: productsFront,
-        notification: false,
+        
 
       });
   

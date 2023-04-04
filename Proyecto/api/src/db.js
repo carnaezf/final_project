@@ -2,7 +2,7 @@ require("dotenv").config();
 const { Sequelize } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST, PGPASSWORD } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 
 const category = require("./models/Category");
 const comment = require("./models/Comment");
@@ -10,11 +10,13 @@ const order = require("./models/Order");
 const product = require("./models/Product");
 const user = require("./models/User");
 
-const sequelize = new Sequelize( PGPASSWORD,{
-  logging: false,
-  native: false,
-})
-
+const sequelize = new Sequelize(
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/products`,
+  {
+    logging: false,
+    native: false,
+  }
+);
 
 const basename = path.basename(__filename);
 const modelDefiners = [product, user, comment, category, order];
