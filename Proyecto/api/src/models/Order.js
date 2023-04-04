@@ -10,47 +10,34 @@ module.exports = (sequelize) => {
         allowNull:false,
         primaryKey:true,
     },
-    city: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    address:{
-        type: DataTypes.STRING,
-      allowNull: false,
-    },
-    phone:{
-      type: DataTypes.INTEGER,
-    allowNull: false,
-    },
-    postalCode:{
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
     paymentMethod:{
       type: DataTypes.STRING,
     allowNull: false,
     },
-    total:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    subTotal:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    iva:{
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
       status:{
         type: DataTypes.ENUM(
           "rechazada",
-          "preparacion",
-          "enviada"
-        
+          "procesando",
+          "aceptada",
+         "completa"
         ),
-      }
-    
+      },
+    totalMount:{
+      type: DataTypes.INTEGER,
+      //allowNull: false,
+    },
+    products:{
+      type:DataTypes.ARRAY(DataTypes.JSONB)
+    },
+    date:{
+      type: DataTypes.DATEONLY,
+      defaultValue: sequelize.fn('now'),
+    },
+    notification:{
+      type: DataTypes.BOOLEAN,
+     // allowNull: false,
+    },
+
 
 
   },{

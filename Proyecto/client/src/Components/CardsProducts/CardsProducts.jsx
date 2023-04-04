@@ -1,17 +1,32 @@
 import React from "react";
 // import {Link} from "react-router-dom";
 import CardProduct from "../CardProduct/CardProduct";
+//  import { useHistory } from "react-router-dom"; //Para evitar el problema que me devuelve a la pagina 1 al entrar en un producto
+
 
 const CardsProducts = (props) => {
-    const products = props.newStateProducts
+    const products = props.newStateProducts;
+    // const history = useHistory();
+
+    // const handleClick = () => {
+    //     history.push({
+    //         pathname: `/products/${props.id}`,
+    //         state: {from: history.location.pathname}
+    //     })
+    // }
+
+ 
 
     return (
-        <>
-        {/* <div className="container mx-auto h-56 grid grid-cols-4 gap-4 content justify-self-auto" > */}
-        <div className="container mx-auto h-56 flex flex-wrap justify-center gap-4 content justify-self-auto" >
+        <div  >
+
+        {/* <div className="container mx-auto h-56 flex flex-wrap justify-center gap-4 content justify-self-auto" > */}
+        <div className="container mx-auto my-auto  flex flex-wrap justify-center gap-4 content justify-self-auto" >
             {products.map((el)=>{
+               // console.log(el);
                 return(
                     <CardProduct
+                    key={el.id}
                     id={el.id} 
                     name={el.name} 
                     sellingPrice={el.sellingPrice} 
@@ -22,7 +37,7 @@ const CardsProducts = (props) => {
             })}
 
         </div>
-        </>
+        </div>
         
     )
 }

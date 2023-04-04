@@ -5,30 +5,45 @@ import { postCreateProduct } from '../../Redux/actions/formActions/actions';
 import style from './CreateProducts.module.css';
 
 
-const CreateProduct = ({styles}) => {
+const CreateProduct = () => {
     const dispatch = useDispatch();
 
     const [ formSubmitted, changeSubmittedForm ] = useState(false);
+
+    const [ previewSource, setPreviewSource] = useState();
+    const [ fileInputState, setfileInputState ] = useState('');
+   
+
+    const handleInputChange = (event) => {
+        const file = event.target.files[0];
+        previewFile(file);
+    };
+    const previewFile = (file) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);  
+        reader.onloadend = () =>{
+            setPreviewSource(reader.result)
+            setfileInputState()
+        }
+    };
+   
+
     return (
         <>
             <Formik
                 initialValues={{
-                    id: '',
                     name: '',
-                    sellingPrice: '',
+                    sellingPrice: 0,
                     description: '',
                     category: '',
-                    average_rating: '',
-                    reviews_count: '',
-                    images: ''
+                    average_rating: 0,
+                    reviews_count: 0,
+                    images: Path2D
                 }}
                 validate={
                     (values) => {
                         let InputErrors = {};
 
-                        if (!values.id) {
-                            InputErrors.id = 'id is required';
-                        }
                         if (!values.name) {
                             InputErrors.name = 'name is required';
                         }
@@ -47,44 +62,35 @@ const CreateProduct = ({styles}) => {
                         if (!values.reviews_count) {
                             InputErrors.reviews_count = 'reviews_count is required';
                         }
-                        if (!values.images) {
-                            InputErrors.images = 'images is required';
-                        }
+                        // if (!values.images) {
+                        //     InputErrors.images = 'images is required';
+                        // }
                         return InputErrors;
                     }
                 }
+                
                 onSubmit={(values, { resetForm }) => {
+                    console.log(values);
+                    dispatch(postCreateProduct({
+                        name: values.name,
+                        sellingPrice: values.sellingPrice,
+                        description: values.description,
+                        category: values.category,
+                        average_rating: values.average_rating,
+                        reviews_count: values.reviews_count,
+                        images: previewSource,//values.images,
+                    }))
                     console.log(values);
                     resetForm()
                     console.log('Form submitted');
                     changeSubmittedForm(true);
                     setTimeout( () => changeSubmittedForm(false), 2000 )
+                    
                 }}
             >
                 {( { errors } ) => (
-                    <Form
-                    // Implementar dispatch para que envíe un objeto producto en lugar 
-                    // de un objeto Form.
-                    >
-                    {/* <div> */}
+                    <Form>
                     <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto">
-                        <div>
-                            <label
-                                className="uppercase tracking-wide text-black text-xs font-bold mb-2"
-                                htmlFor="id">Product id: 
-                            </label>
-                            <Field
-                                className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
-                                type="text" 
-                                name="id" 
-                                id="id" 
-                                placeholder='Enter id product' 
-                            />
-                            <ErrorMessage 
-                            name="id"
-                            component={ () => ( <div className={style.inputError} >{errors.id}</div> ) }
-                            />
-                        </div>
 
                         <div>
                             <label
@@ -199,28 +205,35 @@ const CreateProduct = ({styles}) => {
                         <div>
                             <label
                                 className="uppercase tracking-wide text-black text-xs font-bold mb-2"
-                                htmlFor="images">Images: 
-                                </label>
+                                htmlFor="images">Image: 
+                            </label>
                             <Field
-                                
+                                className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                                value={fileInputState}
                                 type="file" 
                                 name="images" 
-                                id="images" 
+                                id="images"  
+                                placeholder='Enter product images' 
+                                onChange={handleInputChange}
                             />
                             <ErrorMessage 
                             name="images"
                             component={ () => ( <div className={style.inputError} >{errors.images}</div> ) }
                             />
                         </div>
+
                     </div>
                     <button
-                        className="md:w-full bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
+                        className="w-24 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
                         type='submit'>
                             Send
                     </button>
                     { formSubmitted && <p className={style.exito}>Form successfully submitted!</p>  }
                 </Form>
                 )}
+                {/* {previewSource && (
+                    <img src={previewSource} alt="chosen"/>
+                )} */}
             </Formik>
             
         </>
@@ -228,3 +241,4 @@ const CreateProduct = ({styles}) => {
 }
 
 export default CreateProduct;
+// Revisar estilos de los errores de los inputs.

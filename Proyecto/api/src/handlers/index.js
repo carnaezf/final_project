@@ -1,6 +1,14 @@
-
-const { getProducts, getSearch, getByCategory, addReview, addComment,createProduct, } = require("../controllers/index");
-
+// const cloudinary = require('../../utils/cloudinary')
+const { uploadImage } = require("../controllers/upload-controller/upload");
+const {
+  getProducts,
+  getSearch,
+  getByCategory,
+  addReview,
+  addComment,
+  createProduct,
+  ProductBanned,
+} = require("../controllers/");
 
 const getProductsHandler = async (req, res) => {
   try {
@@ -42,15 +50,14 @@ const addReviewHandler = async (req, res) => {
   }
 };
 
-
 const addCommentHandler = async (req, res) => {
-    try {
-      await addComment(req.body);
-      res.status(200).json('Your comment has been added. :)');
-    } catch (error) {
-      res.status(400).json({ msg: error.message });
-    }
-  };
+  try {
+    await addComment(req.body);
+    res.status(200).json("Your comment has been added. :)");
+  } catch (error) {
+    res.status(400).json({ msg: error.message });
+  }
+};
 const createProductHandler = async (req, res) => {
   const {
     name,
@@ -58,37 +65,48 @@ const createProductHandler = async (req, res) => {
     sellingPrice,
     images,
     average_rating,
-    id,
     category,
     reviews_count,
+    availability,
+    breadcrumbs,
   } = req.body;
   try {
+    const urlImage = await uploadImage(images);
+    // const imageurl = urlImage.secure_url;
+    const image = urlImage.split(" ");
+    console.log("images en index", image);
     const product = await createProduct(
       name,
       description,
       sellingPrice,
-      images,
+      image,
       average_rating,
-      id,
       category,
-      reviews_count
+      reviews_count,
+      availability,
+      breadcrumbs
     );
     res.status(200).json(product);
-
   } catch (error) {
     res.status(400).json({ msg: error.message });
   }
 };
 
+const productBannedHandler = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const product = await ProductBanned(id);
+    res.status(200).send(product);
+  } catch (error) {
+    res.status(404).send({ error: error.message });
+  }
+};
 module.exports = {
   getProductsHandler,
   getSearchHandler,
   getByCategoryHandler,
   addReviewHandler,
-
   addCommentHandler,
-
-
   createProductHandler,
-
+  productBannedHandler,
 };
