@@ -1,6 +1,6 @@
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Link, NavLink } from "react-router-dom";
 import { BsPersonFill } from "react-icons/bs";
@@ -12,7 +12,7 @@ import { useAuth } from "../../Contexts/authContext";
 import { async } from "@firebase/util";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUsers } from "../../Redux/actions";
+import { loginGoogle, logoutUsers } from "../../Redux/actions";
 
 export default function NavBar(props) {
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
@@ -34,6 +34,9 @@ export default function NavBar(props) {
   };
 
   const { user } = useAuth();
+  useEffect(() => {
+    dispatch(loginGoogle(user));
+  }, [user]);
 
   return (
     <div className="navbar  h-full w-full bg-neutral-400 dark:bg-zinc-700 bg-clip-padding dark:bg-clip-padding backdrop-filter dark:backdrop-filter backdrop-blur-lg dark:backdrop-blur-lg bg-opacity-10 dark:bg-opacity-10">
@@ -131,8 +134,7 @@ export default function NavBar(props) {
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {userlogin.name}!
             </h1>
-          )
-          }
+          )}
           <label
             tabIndex={0}
             className="btn btn-ghost btn-circle avatar mr-14 dark:hover:border-purple-200"

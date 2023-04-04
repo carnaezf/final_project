@@ -184,37 +184,74 @@ const signInUser = async (email, password) => {
   };
 };
 
-const googleSignIn = async (email, name, lastName, google, password) => {
+const googleSignIn = async (email, displayName, uid, isAdmin, isModerator) => {
+  displayName = displayName.split(" ");
+  let name = displayName[0];
+  let lastName = displayName[1];
   let emailLower = email.toLowerCase();
   const user = await User.findOne({
     where: { email: emailLower },
   });
   if (!user) {
-    let passwordHash = await bcrypt.hash(password, 10);
+    let passwordHash = await bcrypt.hash(uid, 10);
     const user = await User.create({
       name,
       lastName,
       email: emailLower,
-      google,
       password: passwordHash,
+      isAdmin,
+      isModerator,
     });
-    const token = jwt.sign(
+    const Token = jwt.sign(
       {
         user: user,
       },
       encryptKey,
       { expiresIn: encryptExpiration }
     );
-    return { msg: "User created", token: token };
+    return {
+      msg: "User created",
+      token: Token,
+      name: user.name,
+      id: user.userId,
+      user: "user",
+    };
   }
-  const token = jwt.sign(
+  const Token = jwt.sign(
     {
       user: user,
     },
     encryptKey,
     { expiresIn: encryptExpiration }
   );
-  return { msg: "User logged", token: token };
+  if (user.isBanned === true) {
+    throw new Error("user banned");
+  }
+  if (user.isAdmin === true) {
+    return {
+      msg: "User logged",
+      token: Token,
+      user: "admin",
+      name: user.name,
+      id: user.userId,
+    };
+  }
+  if (user.isModerator === true) {
+    return {
+      msg: "User logged",
+      token: Token,
+      user: "moderator",
+      name: user.name,
+      id: user.userId,
+    };
+  }
+  return {
+    msg: "User logged",
+    token: Token,
+    user: "user",
+    name: user.name,
+    id: user.userId,
+  };
 };
 
 const deleteUser = async (userId, rol, idAdmin) => {

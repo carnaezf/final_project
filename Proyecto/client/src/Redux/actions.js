@@ -218,3 +218,17 @@ export const postComment = (payload) => {
     }
   };
 };
+export const loginGoogle = (payload) => {
+  return async function (dispatch) {
+    try {
+      const baseData = await axios.post(
+        `http://localhost:3001/user/signin/google`,
+        payload
+      );
+      dispatch({ type: "LOGIN", payload: baseData.data });
+    } catch (error) {
+      console.log(error.response.data);
+      //   dispatch({ type: "LOGIN", payload: error.response.data });
+    }
+  };
+};
