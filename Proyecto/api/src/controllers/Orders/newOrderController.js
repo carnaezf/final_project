@@ -6,45 +6,85 @@ const {mailOrder}=require("../../controllers/mailsControllers/mail-Order")
 
 
 
-const validateOrder=async(newOrdercreated)=>{
-    try{ 
-  const idOrdenEntrante=[]
-    const infoProducts= await getProducts ()
-    //console.log(infoProducts[0].dataValues,"acaaaaaaaaaaaaaaaaaaaaaaaaa")
-    //console.log(infoProducts)
-    const dataFront=newOrdercreated
-        for (let prod of dataFront){
-            idOrdenEntrante.push(prod?.id)
-        }
+const validateOrder = async (newOrder) => {
+  //newOrder
+  console.log(newOrder, "esta es la orden que ingresa del front ");
+  try {
+    const idOrdenEntrante = [];
+    const infoProducts = await getProducts();
+    let validate = true;
+    let cont = 0;
+    let i =0
+    for (let prod of newOrder) {
+      prod.id !== undefined?idOrdenEntrante.push(prod?.id ): ""
+    }
+    console.log(idOrdenEntrante,"esto son los ids del front")
+    searchId = infoProducts.find(
+      (el) => el.dataValues.id === idOrdenEntrante[i]
+    );
     
     
-    const newBuys=[]
-    let searchId;
-    let i=0
-    let validate= true
     
-    while(i < idOrdenEntrante.length && validate){
-        searchId= infoProducts.find(el=>el.dataValues.id=== idOrdenEntrante[i])
-        
-        if(searchId.dataValues.availability>=dataFront[i].quantity){
-          Product.update({availability: {S: dataValues.availability.S - dataFront[i].quantity}}, {where: {sku: idOrdenEntrante[i]}});
-       
-        }else{
-            validate=false
-            return `One of the products is out of stock: ${idOrdenEntrante[i]}`
-        }
 
-        i++
+    while (i < idOrdenEntrante.length && cont===0) {
+      searchId = infoProducts.find(
+        (el) => el.dataValues.id === idOrdenEntrante[i]
+      );
+      if (newOrder[i].size === 'L') {
+        cont = cont + 1;
+        if (searchId.dataValues.availability[2].L >= newOrder[i].quantity) {
+          cont = cont - 1;
+        }
       }
-   // console.log(totalPrice)
-    return totalPrice
-}catch(error){
-return  "there is not enough stock of some products"
-}
-    //console.log(totalPrice,"aca esta total precio")
-    //console.log(newBuys,"aca esta compra")
-   
-}
+      if (newOrder[i].size === 'M') {
+        cont = cont + 1;
+        if (searchId.dataValues.availability[1].M >= newOrder[i].quantity) {
+          cont = cont - 1;
+        }
+      }
+      if (newOrder[i].size === 'S') {
+        cont = cont + 1;
+        if (searchId.dataValues.availability[0].S >= newOrder[i].quantity) {
+          cont = cont - 1;
+        }
+      }
+      i++;
+    }
+    if (cont === 0) {
+      let j = 0;
+      for (let i = 0; i < idOrdenEntrante.length; i++) {
+        let productcreated = await Product.findOne({
+          where: { id: idOrdenEntrante[i] },
+        });
+        let AuxAvailability= productcreated.dataValues.availability
+        
+        if (newOrder[j].size === "L") {
+          AuxAvailability[2].L -= newOrder[j].quantity;
+        } else if (newOrder[j].size === "M") {
+          AuxAvailability[1].M -= newOrder[j].quantity;
+        } else if (newOrder[j].size === "S") {
+          AuxAvailability[0].S -= newOrder[j].quantity;
+        }
+        
+        await productcreated.update({availability:[ AuxAvailability  ]});
+       
+        j++;
+      }
+      validateOrderCreated(newOrder);
+    } else {
+  
+      return "Stock insuficiente en la base de datos";
+    }
+
+    return "Orden completa y creada con exito" ;
+  } catch (error) {
+    return ({ error: error.message });
+  }
+
+};
+
+
+
 
 const validateOrderCreated = async (newOrder) => {
 
@@ -96,6 +136,6 @@ const validateOrderCreated = async (newOrder) => {
   };
 
 module.exports = {
-    validateOrderCreated,
+  validateOrder,
     
 };
