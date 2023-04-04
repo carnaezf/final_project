@@ -106,6 +106,7 @@ const CheckoutForm = () => {
               Submit
             </button>
             <div className="m-10">
+
               <Link to="/register">
                 <button
                   id="BotonLogin"
@@ -121,14 +122,12 @@ const CheckoutForm = () => {
               </Link>
 
 
+
                     
             <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
     mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
   }`}>mercado Pago</button>
             
-            <Link to="/shoppingBag">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
-            </Link>
 
 
               <Link to="/shoppingBag">
