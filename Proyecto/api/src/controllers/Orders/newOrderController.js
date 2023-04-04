@@ -65,13 +65,9 @@ const validateOrder = async (newOrder) => {
         } else if (newOrder[j].size === "S") {
           AuxAvailability[0].S -= newOrder[j].quantity;
         }
-        console.log(AuxAvailability,"auxavaidkldlkd")
-        console.log(productcreated,"esto es productCreated")
+        
         await productcreated.update({availability:[ AuxAvailability  ]});
-        let productoActualizado = await Product.findOne({
-          where: { id: idOrdenEntrante[i] },
-        })
-        console.log(productoActualizado.dataValues.availability,"este es el producto actualizado")
+       
         j++;
       }
       validateOrderCreated(newOrder);
