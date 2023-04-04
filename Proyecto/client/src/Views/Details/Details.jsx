@@ -131,7 +131,9 @@ export default function Details( props ) {
   };
 
   const quantityPerItem = getQuantityById(id);
-
+  const handleSizeClick = (e) => {
+    setSelectedSize(e.target.value);
+  };
   /****************************Metodos ShoppingBag */
 
   return (
