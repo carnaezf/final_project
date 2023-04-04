@@ -10,7 +10,7 @@ import Footer from "../../Components/Footer/Footer";
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
 import Comments from "../../Components/Comments/Comments"
 import { SelectedSizeContext } from "../../Contexts/SelectedSizeContext";
-//c
+//cc
 const contentStyle = {
   // height: '160px',
   color: "#fff",
