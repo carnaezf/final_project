@@ -193,8 +193,8 @@ function Profile() {
             <h1>LASTNAME : {userId.lastName}</h1>
             <h1>EMAIL : {userId.email ? userId.email : "-"}</h1>
             <h1>COUNTRY : {userId.country ? userId.country : "-"}</h1>
-            <h1>PHONE : {userId.phone ? userId.phone : "-"}</h1>
-            <h1>DNI : {userId.dni ? userId.dni : "-"}</h1>
+            {/* <h1>PHONE : {userId.phone ? userId.phone : "-"}</h1>
+            <h1>DNI : {userId.dni ? userId.dni : "-"}</h1> */}
             <Space direction="vertical" className="w-full">
               <Typography.Title level={5}>ORDERS</Typography.Title>
               <Table columns={columns} dataSource={userId.Orders} />
