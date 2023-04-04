@@ -233,6 +233,19 @@ function Profile() {
       </div>
       <div className="flex mx-auto">
         {userId && (
+
+          <div>
+            <img src={userId.profilePicture} alt={userId.name} />
+            <h1>NAME : {userId.name}</h1>
+            <h1>LASTNAME : {userId.lastName}</h1>
+            <h1>EMAIL : {userId.email ? userId.email : "-"}</h1>
+            <h1>COUNTRY : {userId.country ? userId.country : "-"}</h1>
+            {/* <h1>PHONE : {userId.phone ? userId.phone : "-"}</h1>
+            <h1>DNI : {userId.dni ? userId.dni : "-"}</h1> */}
+            <Space direction="vertical" className="w-full">
+              <Typography.Title level={5}>ORDERS</Typography.Title>
+              <Table columns={columns} dataSource={userId.Orders} />
+
           <div className="flex flex-col">
             <div className="mx-auto">
                   <img  className="drop-shadow-md ml-[0rem] mt-[10rem] max-w-[14rem]" src={userId.profilePicture} alt={userId.name} />
@@ -271,6 +284,7 @@ function Profile() {
             <Space direction="vertical" className="w-full ">
               <Typography.Title className="dark:text-slate-300" level={5}>ORDERS</Typography.Title>
               <Table  columns={columns} dataSource={userId.Orders} />
+
             </Space>
             <Modal
               title="Editar usuario"

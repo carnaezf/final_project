@@ -48,7 +48,7 @@ const ProductAdmin = () => {
       dataIndex: "availability",
       key: "availability",
       render: (availability) =>
-        availability.map((item, index) =>
+        availability?.map((item, index) =>
           Object.entries(item).map(([size, quantity]) => (
             <div key={index}>
               <p>

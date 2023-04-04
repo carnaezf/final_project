@@ -6,15 +6,17 @@ import {
 import { Card, Space, Statistic, Typography } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsAdmin, getUsers } from "../../../Redux/actions";
+import { getOrders, getProductsAdmin, getUsers } from "../../../Redux/actions";
 import LineChart from "./Charts/Chart";
 const Dashboard = () => {
   const products = useSelector((state) => state.productsAdmin);
   const users = useSelector((state) => state.users);
+  const orders = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsAdmin());
     dispatch(getUsers());
+    dispatch(getOrders());
   }, [dispatch]);
   return (
     <div className="w-full">
@@ -34,7 +36,7 @@ const Dashboard = () => {
               />
             }
             title="Orders"
-            value={1234}
+            value={orders.length}
           />
           <DashboardCard
             icon={
