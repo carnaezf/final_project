@@ -5,7 +5,8 @@ import NavBar from "../../Components/NavBar/NavBar";
 import CardsProducts from "../../Components/CardsProducts/CardsProducts"
 import Paginated from "../../Components/Paginated/Paginated"
 import Footer from"../../Components/Footer/Footer.jsx"
-import SearchBar from "../../Components/SearchBar/SearchBar"
+import Filter from "../../Components/Filter/FilterAllProducts"
+
 
 const Products=()=>{
     const dispatch= useDispatch();
@@ -14,7 +15,7 @@ const Products=()=>{
     },[dispatch]);
   
    
-    const allProducts= useSelector(state=> state.products) ;
+    const allProducts= useSelector(state=> state.filterPriceAllProducts) ;
     const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
     const[productsViews, setProductsViews]= useState (9);
     const lastIndex= pageActual * productsViews; //segundo parametro
@@ -70,8 +71,10 @@ const handleTHemeSwitch = () =>{
         <br />
         <br />
         <br />
+
+        <Filter pagin={pagin}/>
         <br />
-        <br/>
+
         <CardsProducts newStateProducts ={newStateProducts} />
         <br />
         <Paginated maximumPage={maximumPage} pagin={pagin} />

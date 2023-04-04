@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       },
       lastName: {
         type: DataTypes.STRING,
-        allowNull: false,
+        // allowNull: false,
       },
       email: {
         type: DataTypes.STRING,
@@ -73,6 +73,11 @@ module.exports = (sequelize) => {
       isBanned: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+      },
+      profilePicture: {
+        type: DataTypes.TEXT,
+        defaultValue:
+          "https://www.ipnie.com/wp-content/uploads/2021/02/profile.jpeg",
       },
     },
     {

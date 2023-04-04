@@ -111,7 +111,7 @@ const {user}=useAuth();
 
                         <li className="flex justify-between items-center border-b pb-4">
                         <div className="font-semibold "  > </div>
-                        <img src={product.picture_url} className="w-[5rem] h-[5rem]"/>
+                        <img src={product.picture_url} className="w-[5rem] h-[5rem]" alt='imge'/>
                         </li>  
                         <h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">   
                             <div>

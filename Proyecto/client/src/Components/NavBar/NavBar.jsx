@@ -1,6 +1,6 @@
 import { ShoppingBagContext } from "../../Contexts/ShoppingBagContext";
 
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 
 import { Link, NavLink } from "react-router-dom";
 import { BsPersonFill } from "react-icons/bs";
@@ -12,7 +12,7 @@ import { useAuth } from "../../Contexts/authContext";
 import { async } from "@firebase/util";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { logoutUsers } from "../../Redux/actions";
+import { loginGoogle, logoutUsers } from "../../Redux/actions";
 
 export default function NavBar(props) {
   const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
@@ -34,6 +34,9 @@ export default function NavBar(props) {
   };
 
   const { user } = useAuth();
+  useEffect(() => {
+    dispatch(loginGoogle(user));
+  }, [user]);
 
   return (
     <div className="navbar  h-full w-full bg-neutral-400 dark:bg-zinc-700 bg-clip-padding dark:bg-clip-padding backdrop-filter dark:backdrop-filter backdrop-blur-lg dark:backdrop-blur-lg bg-opacity-10 dark:bg-opacity-10">
@@ -123,12 +126,11 @@ export default function NavBar(props) {
         </div>
 
         <div className="flex flex-column dropdown dropdown-end ">
-          {user && (
+          {user ? (
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {user.displayName ? user.displayName : user.email}!
             </h1>
-          )}
-          {userlogin && (
+          ) : (
             <h1 className="text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {userlogin.name}!
             </h1>
@@ -149,6 +151,9 @@ export default function NavBar(props) {
                   <ul>
                     <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
                       <a onClick={handlerLogOut}> Logout </a>
+                    </li>
+                    <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
+                      <Link to="/profile"> Profile </Link>
                     </li>
                     {userlogin.user === "admin" && (
                       <li className="justify-between bg-purple-900 hover:bg-purple-700 text-slate-300">
