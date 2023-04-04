@@ -178,9 +178,9 @@ export default function Details( props ) {
         <div className=" w-2/3">
           {myProduct && myProduct.images && myProduct.images.length > 0 ? (
             <div className="flex w-auto space-x-4">
-              <div className="w-2/3 ">
+              <div className="w-2/3 shadow-md">
               <img
-                className="mb-[1rem]"
+                className="mb-[1rem] "
                 src={myProduct.images[0]}
                 alt="Imagen no disponible"
                 onError={(e) => {
@@ -198,7 +198,7 @@ export default function Details( props ) {
                 }}
               />
             </div>
-              <div className="w-2/3">
+              <div className="w-2/3 shadow-md">
               <img
                 className="mb-[1rem]"
                 src={myProduct.images[2]}
@@ -339,11 +339,13 @@ export default function Details( props ) {
           </div>
   )}
           {/* <button onClick={handleGoBack}>Volver</button> */}
-      <div className="flex flex-row w-full">
-        <label className="ml-[2rem]  font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300">
+      <div className="flex flex-col w-full">
+        {/* <label className="mr-auto  font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300">
           Comments
-        </label>
+        </label> */}
+        
         <Comments product={myProduct} setRender={setRender} render={render} />
+        
       </div>
         </div>
       </div>
