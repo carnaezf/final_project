@@ -18,7 +18,7 @@ const CheckoutForm = () => {
    const [loginEnabled, setLoginEnabled] = useState(false)
 
     useEffect(async() => {
-        const users= await axios("http://localhost:3001/user/totalMails")
+        const users= await axios("http://localhost:3001/user/totalMail/m")
         const totalUser=await axios("http://localhost:3001/user")
         const data= users.data
         const totaluser=totalUser.data
@@ -101,18 +101,7 @@ const CheckoutForm = () => {
               Submit
             </button>
             <div className="m-10">
-              <Link to="/register">
-                <button
-                  id="BotonLogin"
-                  disabled={loginEnabled}
-                  className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
-                    loginEnabled ? "" : "opacity-50 cursor-not-allowed"
-                  }`}
-                >
-                  {" "}
-                  login{" "}
-                </button>
-              </Link>
+              
 
             <Link to="/register">
             <button  id="BotonLogin"  disabled={loginEnabled} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
@@ -126,9 +115,6 @@ const CheckoutForm = () => {
     mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
   }`}>mercado Pago</button>
             
-            <Link to="/shoppingBag">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
-            </Link>
 
               <Link to="/shoppingBag">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">
