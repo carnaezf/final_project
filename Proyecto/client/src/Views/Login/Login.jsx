@@ -15,7 +15,10 @@ const Login = () => {
   const dispatch = useDispatch();
   const userlogin = useSelector((state) => state.user);
   // const [loggedIn, setLoggedIn] = useState(false);
-
+  const nombre = useSelector(state => state.user)
+  console.log(nombre)
+  const { user } = useAuth() 
+  console.log(user,"aqui")
   const handleGoogle = async () => {
     try {
       await loginWithGoogle();
@@ -107,6 +110,7 @@ const Login = () => {
           return error;
         }}
         onSubmit={async (values, props) => {
+          console.log(values, "ver aca")
           try {
             dispatch(loginUsers(values));
           } catch (error) {
