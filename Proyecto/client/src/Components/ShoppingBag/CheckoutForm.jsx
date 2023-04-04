@@ -1,3 +1,4 @@
+
 import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
@@ -18,7 +19,7 @@ const CheckoutForm = () => {
    const [loginEnabled, setLoginEnabled] = useState(false)
 
     useEffect(async() => {
-        const users= await axios("http://localhost:3001/user/totalMails")
+        const users= await axios("http://localhost:3001/user/totalMail/m")
         const totalUser=await axios("http://localhost:3001/user")
         const data= users.data
         const totaluser=totalUser.data
@@ -28,6 +29,9 @@ const CheckoutForm = () => {
         
         
         const comprobation=(values)=>{
+            console.log(values.email);
+            console.log(emails, " Estos es BBDD");
+
             if(emails.includes(values.email)){  
                let userBuy=[]
                 for(let i=0;i<user.length;i++){
@@ -60,6 +64,7 @@ const CheckoutForm = () => {
              window.location.replace(point)
             
         } 
+
 
   return (
     <div>
@@ -101,6 +106,7 @@ const CheckoutForm = () => {
               Submit
             </button>
             <div className="m-10">
+
               <Link to="/register">
                 <button
                   id="BotonLogin"
@@ -109,26 +115,20 @@ const CheckoutForm = () => {
                     loginEnabled ? "" : "opacity-50 cursor-not-allowed"
                   }`}
                 >
-                  {" "}
-                  login{" "}
+
+                
+                  login
                 </button>
               </Link>
 
-            <Link to="/register">
-            <button  id="BotonLogin"  disabled={loginEnabled} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
-      loginEnabled ? "" : "opacity-50 cursor-not-allowed"
-            }`}
-    > login </button>
-            </Link>
-            
-            
+
+
+                    
             <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
     mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
   }`}>mercado Pago</button>
             
-            <Link to="/shoppingBag">
-            <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">Return to Carrito</button>
-            </Link>
+
 
               <Link to="/shoppingBag">
                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">

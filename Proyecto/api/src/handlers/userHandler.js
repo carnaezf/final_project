@@ -10,6 +10,7 @@ const {
   userBanned,
   doModerator,
   getUserbyId,
+  googleSignIn,
 } = require("../controllers/userController.js");
 
 const createUserHandler = async (req, res) => {
@@ -57,19 +58,10 @@ const getAllUserHandler = async (req, res) => {
 };
 
 const updateUserHandler = async (req, res) => {
-  const { id } = req.params;
-  const { name, lastName, phone, birthDate, country, rol } = req.body;
-  // console.log(id)
+  const { id, name, lastName, password, profilePicture } = req.body;
+
   try {
-    const user = await updateUser(
-      id,
-      name,
-      lastName,
-      phone,
-      birthDate,
-      country,
-      rol
-    );
+    const user = await updateUser(id, name, lastName, password, profilePicture);
     res.status(200).send(user);
   } catch (error) {
     res.status(404).send({ error: error.message });
@@ -88,10 +80,17 @@ const signInUserHandler = async (req, res) => {
 };
 
 const googleSignInHandler = async (req, res) => {
-  const { email, name, lastName, google, password } = req.body;
-
+  const { email, displayName, uid } = req.body;
+  const isAdmin = false;
+  const isModerator = false;
   try {
-    const user = await googleSignIn(email, name, lastName, google, password);
+    const user = await googleSignIn(
+      email,
+      displayName,
+      uid,
+      isAdmin,
+      isModerator
+    );
     res.status(200).send(user);
   } catch (error) {
     res.status(404).send({ error: error.message });

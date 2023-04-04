@@ -127,7 +127,7 @@ router.put("/order", putOrderHandler);
 
 router.put("/products/:id", updateProductHandler);
 
-router.put("/user/:id", updateUserHandler);
+router.put("/user/update", updateUserHandler);
 
 router.post("/order", newOrderHandler);
 
@@ -164,7 +164,7 @@ router.put("/admin/:userId/:rol", optionsAdminEditUserHandler);
 
 router.post("/payment/", mercadoPago);
 
-router.get("/user/totalMails", mailsTotalityHandler);
+router.get("/user/totalMail/m", mailsTotalityHandler);
 
 router.put("/user/:id/ban", userBannedHandler);
 router.put("/product/:id/ban", productBannedHandler);

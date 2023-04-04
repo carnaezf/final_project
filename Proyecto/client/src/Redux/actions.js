@@ -6,7 +6,9 @@ export const GET_PRODUCTS_DETAIL = "GET_PRODUCTS_DETAIL";
 export const GET_PRODUCTS_CATEGORY = "GET_PRODUCTS_CATEGORY";
 export const FILTER_BY_NAME = "FILTER_BY_NAME";
 export const FILTER_BY_GENRES = "FILTER_BY_GENRES";
-export const FILTER_BY_PRICE = "FILTER_BY_ACCESSORIES_PRICE";
+export const FILTER_BY_PRICE = "FILTER_BY_PRICE";
+export const FILTER_BY_PRICE_ALL_PRODUCTS = "FILTER_BY_PRICE_ALL_PRODUCTS";
+// export const FILTER_BY_SIZE = "FILTER_BY_SIZE";
 export const GET_USERS = "GET_USERS";
 export const BANNED = "BANNED";
 export const GET_PRODUCTS_ADMIN = "GET_PRODUCTS_ADMIN";
@@ -88,6 +90,24 @@ export const filterByPrice = (payload) => {
     }
   };
 };
+export const filterByPriceAllProducts = (payload) => {
+  return async function (dispatch) {
+    if (payload !== "select") {
+      dispatch({ type: FILTER_BY_PRICE_ALL_PRODUCTS, payload: payload });
+    } else {
+      alert("Selccione un Opcion");
+    }
+  };
+};
+// export const filterBySize = (payload) => {
+//   return async function (dispatch) {
+//     if (payload !== "select") {
+//       dispatch({ type: FILTER_BY_SIZE, payload: payload });
+//     } else {
+//       alert("Selccione un Opcion");
+//     }
+//   };
+// };
 
 export const postUsers = (payload) => {
   return async function () {
@@ -195,6 +215,20 @@ export const postComment = (payload) => {
       );
     } catch (error) {
       alert({ error: error.message });
+    }
+  };
+};
+export const loginGoogle = (payload) => {
+  return async function (dispatch) {
+    try {
+      const baseData = await axios.post(
+        `http://localhost:3001/user/signin/google`,
+        payload
+      );
+      dispatch({ type: "LOGIN", payload: baseData.data });
+    } catch (error) {
+      console.log(error.response.data);
+      //   dispatch({ type: "LOGIN", payload: error.response.data });
     }
   };
 };
