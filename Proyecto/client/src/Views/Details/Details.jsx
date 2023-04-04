@@ -131,12 +131,10 @@ export default function Details( props ) {
   };
 
   const quantityPerItem = getQuantityById(id);
-
   const handleSizeClick = (e) => {
     setSelectedSize(e.target.value);
   };
-
-  /**********Metodos ShoppingBag */
+  /****************************Metodos ShoppingBag */
 
   return (
     <div className="bg-slate-200 dark:bg-zinc-800">
@@ -364,4 +362,3 @@ export default function Details( props ) {
                     >
                 AÑADIR AL CARRITO
                 </button> */
-
