@@ -35,8 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "deployVercel": "push-dir --dir=dist --branch=vercel --cleanup",
-    "build": "postcss css/tailwind.css -o public/build/tailwind.css",
+    "build": "react-scripts build"",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
