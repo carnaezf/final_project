@@ -90,10 +90,8 @@ const validateOrder = async (newOrder) => {
 
 
 
-
-
-
 const validateOrderCreated = async (newOrder) => {
+
     try {
         
       let userBuy = [];
@@ -118,17 +116,23 @@ const validateOrderCreated = async (newOrder) => {
         totalMount: totalPrice,
         products: productsFront,
         notification: false,
+
       });
   
+  // console.log("NEWORDERCREATED", newOrdercreated);
+
       for (let i = 0; i < productsFront.length; i++) {
         const product = await Product.findByPk(productsFront[i].id);
         await newOrdercreated.addProduct(product, {
           through: { quantity: productsFront[i].quantity },
         });
       }
-  
       await userByOrder.addOrder(newOrdercreated, { through: { UserUserId: userByOrder.id } });
-      mailOrder()
+
+      
+      await mailOrder(newOrdercreated, newOrder);
+      
+
       return newOrdercreated;
     } catch (error) {
       return { error: error.message };

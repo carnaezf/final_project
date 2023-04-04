@@ -1,32 +1,29 @@
+
+// const nodemailer = require("nodemailer");
+
 const nodeoutlook = require("nodejs-nodemailer-outlook");
 const { EMAIL_USERNAME, EMAIL_PASSWORD } = process.env;
 const { Order, Product, User } = require("../../db");
 
-const mailOrder = async () => {
-    
-let orderByEmail = [];
-    const findOrder = await Order.findAll({
-            where:{ 
-               notification: false,
-            },
-            include: [ User ],
-    });
- findOrder.push(orderByEmail)
-  
- let title, img;
-  
-orderByEmail.forEach(async(order) => {
 
-  if (order.status.tolowerCase() === "rechazada") {
-    title = "We're sorry, we were unable to process your order",
-    img ="https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680279173/l5gma9mcfyscse4ndn1b.webp";
+const mailOrder = async (newOrdercreated, newOrder) => {
+
+            const user = newOrder.pop()
+            console.log("USER", user);
+            const order =  newOrdercreated.dataValues
+            console.log("ORDER", order);
+// findOrder.forEach(async(order) => {
+
+//   if (order.status.tolowerCase() === "rechazada") {
+//     title = "We're sorry, we were unable to process your order",
+//     img ="https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680279173/l5gma9mcfyscse4ndn1b.webp";
   
-  } else if (order.status.tolowerCase() === "aceptada") {
-    title = "Your order has been accepted",
-    img ="https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680280275/bzz9osazvrbgz41qh1ox.webp";
-  }
+//   } else if (order.status.tolowerCase() === "aceptada") {
+//     title = "Your order has been accepted",
+//     img ="https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680280275/bzz9osazvrbgz41qh1ox.webp";
+//   }
   //order de compra
-  // img ='https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680279390/skbf16gfx3at5vbh2ex8.webp'
+ let img ='https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680279390/skbf16gfx3at5vbh2ex8.webp'
   // img = 'https://res.cloudinary.com/dtf2uzukd/image/upload/v1680279390/skbf16gfx3at5vbh2ex8.png'
 
   try {
@@ -40,14 +37,14 @@ orderByEmail.forEach(async(order) => {
       },
 
       from: '"Haal" <notificaciones.sports@outlook.es>',
-      to: User.email, //ARRAY user.email
-      subject:`¡Thanks for your purchase ${User.name} ${User.lastName}!`,
+      to: user.email, //ARRAY user.email
+      subject:`¡Thanks for your purchase ${user.name} ${user.lastName}!`,
       text:`Your order id: ${order.idOrder}`,
       html:`<div style="color:grey; text-align:center"
       <div>
           <img src=${img} alt='Imagen encabezado compra aceptada'/>
       </div>
-      <h1 style='color:white'>${title}</h1>
+      <h1 style='color:white'>Your order has been accepted</h1>
       <img style='background-color:purple' src='https://res.cloudinary.com/dtf2uzukd/image/upload/q_auto/v1680279390/skbf16gfx3at5vbh2ex8.webp' alt='imagen adidas'/>
       <h2 style='color:white'>Your Order:</h2>
       <table  style='text-align:left: padding:10px;min-width:80%'>
@@ -77,15 +74,15 @@ orderByEmail.forEach(async(order) => {
       onError: (e) => console.log(e),
       onSuccess: (i) => console.log("Order mail sent", i),
     });
-
-   findOrder.notification = true;
-   await findOrder.save();
    
   } catch (error) {
     console.log(error);
-  }})
+  }
+// })
 };
 
 module.exports = {
   mailOrder,
 };
+
+

@@ -127,7 +127,7 @@ router.put("/order", putOrderHandler);
 
 router.put("/products/:id", updateProductHandler);
 
-router.put("/user/:id", updateUserHandler);
+router.put("/user/update", updateUserHandler);
 
 router.post("/order", newOrderHandler);
 
