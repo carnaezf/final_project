@@ -35,7 +35,7 @@ function Profile() {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.put(`http://localhost:3001/user/update`, edit);
+          axios.put(`/user/update`, edit);
           Swal.fire("Change successfully", "", "success").then(() => {
             setModalPassword(!modalPassword);
           });
@@ -58,7 +58,7 @@ function Profile() {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.put(`http://localhost:3001/user/update`, edit);
+          axios.put(`/user/update`, edit);
           Swal.fire({
             title: `Change successfully`,
             icon: "success",

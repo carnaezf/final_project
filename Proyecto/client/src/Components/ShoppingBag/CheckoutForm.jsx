@@ -19,8 +19,8 @@ const CheckoutForm = () => {
    const [loginEnabled, setLoginEnabled] = useState(false)
 
     useEffect(async() => {
-        const users= await axios("http://localhost:3001/user/totalMail/m")
-        const totalUser=await axios("http://localhost:3001/user")
+        const users= await axios("/user/totalMail/m")
+        const totalUser=await axios("/user")
         const data= users.data
         const totaluser=totalUser.data
         setEmails(data)
@@ -58,8 +58,8 @@ const CheckoutForm = () => {
     const  redirectionRute=async()=>{
             //NO TOCAR EL BUY!!
             //console.log(buy," esto es buy dentro de redireccion para back")
-            await axios.post("http://localhost:3001/order",buy)
-             const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
+            await axios.post("/order",buy)
+             const resp= await  axios.post("/payment", shoppingBag)
              const point= resp.data.response.body.init_point
              window.location.replace(point)
             
