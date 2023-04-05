@@ -231,6 +231,8 @@ function Profile() {
         </button>
 
       </div>
+        <br />
+        <br />
       <div className="flex mx-auto">
         {userId && (
 
@@ -245,7 +247,6 @@ function Profile() {
           //   <Space direction="vertical" className="w-full">
           //     <Typography.Title level={5}>ORDERS</Typography.Title>
           //     <Table columns={columns} dataSource={userId.Orders} />
-
           <div className="flex flex-col">
             <div className="mx-auto">
                   <img  className="drop-shadow-md ml-[0rem] mt-[10rem] max-w-[14rem]" src={userId.profilePicture} alt={userId.name} />
@@ -360,9 +361,10 @@ function Profile() {
       </div>
       <Space>
 
-        <div><Footer /></div>
       </Space>
-      
+      <br />
+      <br />
+        <div className="flex"><Footer /></div>
     </div>
   );
 }

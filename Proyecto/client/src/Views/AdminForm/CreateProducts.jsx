@@ -27,7 +27,7 @@ const CreateProduct = () => {
   };
 
   return (
-    <>
+    <div className="font-roboto ">
       <Formik
         initialValues={{
           name: "",
@@ -94,16 +94,16 @@ const CreateProduct = () => {
       >
         {({ errors }) => (
           <Form>
-            <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto">
-              <div>
+            <div className="md:w-1/2 px-3 mb-6 md:mb-0 mx-auto ml-[25rem]">
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="name"
                 >
                   Product Name:
                 </label>
                 <Field
-                  className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   type="text"
                   name="name"
                   id="name"
@@ -117,19 +117,20 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div>
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="sellingPrice"
                 >
                   Selling Price:
                 </label>
                 <Field
-                  className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   type="number"
                   name="sellingPrice"
                   id="sellingPrice"
                   placeholder="Enter selling price"
+                  min="0"
                 />
                 <ErrorMessage
                   name="sellingPrice"
@@ -141,15 +142,15 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div>
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="description"
                 >
                   Product Description:
                 </label>
                 <Field
-                  className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   type="text"
                   name="description"
                   id="description"
@@ -163,15 +164,15 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div>
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="category"
                 >
                   Product Category:
                 </label>
                 <Field
-                  className="w-full bg-gray-200 border border-gray-200 text-black text-xs py-3 px-4 pr-8 mb-3 rounded"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   name="category"
                   as="select"
                 >
@@ -187,19 +188,21 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div>
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="average_rating"
                 >
                   Product Average Rating:
                 </label>
                 <Field
-                  className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   type="number"
                   name="average_rating"
                   id="average_rating"
                   placeholder="Enter product average_rating"
+                  min="0"
+                  max="5"
                 />
                 <ErrorMessage
                   name="average_rating"
@@ -211,19 +214,20 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div>
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="reviews_count"
                 >
                   Product Reviews Count :
                 </label>
                 <Field
-                  className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   type="number"
                   name="reviews_count"
                   id="reviews_count"
                   placeholder="Enter product reviews_count"
+                  min="0"
                 />
                 <ErrorMessage
                   name="reviews_count"
@@ -235,15 +239,15 @@ const CreateProduct = () => {
                 />
               </div>
 
-              <div>
+              <div className="mx-auto flex mb-4">
                 <label
-                  className="uppercase tracking-wide text-black text-xs font-bold mb-2"
+                  className="uppercase text-slate-800 text-xs font-bold mb-2 dark:text-slate-200 mr-2 w-[20rem]"
                   htmlFor="images"
                 >
                   Image:
                 </label>
                 <Field
-                  className="w-full bg-gray-200 text-black border border-gray-200 rounded py-3 px-4 mb-3"
+                  className="w-full bg-gray-200 text-slate-800 border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                   value={fileInputState}
                   type="file"
                   name="images"
@@ -260,7 +264,7 @@ const CreateProduct = () => {
               </div>
             </div>
             <button
-              className="w-24 bg-gray-900 text-white font-bold py-2 px-4 border-b-4 hover:border-b-2 border-gray-500 hover:border-gray-100 rounded-full"
+              className="mt-2 h-[2.1rem] w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 rounded ml-[25rem]"
               type="submit"
             >
               Send
@@ -274,7 +278,7 @@ const CreateProduct = () => {
                     <img src={previewSource} alt="chosen"/>
                 )} */}
       </Formik>
-    </>
+    </div>
   );
 };
 
