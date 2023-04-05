@@ -47,8 +47,14 @@ const handleTHemeSwitch = () =>{
 }
   return(
     <div className="flex flex-col bg-slate-200 dark:bg-zinc-800">
-        
-        <div class="fixed top-0 z-50 w-full">
+      <div >
+        <div>
+          <h1 >No Eliminar</h1>
+        </div>
+
+      </div>
+         
+      <div class="fixed top-0 z-50 w-full">
         <NavBar pagin={pagin} />
         <button className="absolute bottom-[25px] left-[8rem] w-36 ml-4 mb-2" >
             <label className="swap swap-rotate">
@@ -58,16 +64,16 @@ const handleTHemeSwitch = () =>{
             </label>
     
         </button>
-        </div>
-      <br /><br /><br /><br />
-
-      <div className= "bg-orange">
-        <h1>
-          ACCESSORIES
-        </h1>
       </div>
-      <br />
+      <br /><br /><br />
 
+      <div className="flex justify-between text-4xl  h-full w-full  dark:bg-zinc-700 bg-clip-padding dark:bg-clip-padding backdrop-filter dark:backdrop-filter backdrop-blur-lg dark:backdrop-blur-lg bg-opacity-10 dark:bg-opacity-10">
+        <div >
+          <h1 className="btn  font-normal  text-m  text-sky-400 animate-bounce">ACCESSORIES</h1>
+        </div>
+
+      </div>
+    
       <Filter pagin={pagin}/>
       <br />
   

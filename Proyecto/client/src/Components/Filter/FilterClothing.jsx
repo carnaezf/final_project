@@ -25,13 +25,13 @@ const FilterClothing = (props) => {
 
   return (
     <div className="flex flex-col">
-      <div className="flex mx-auto font-roboto">
+      <div className="flex mx-auto font-roboto animate-pulse space-x-8 ">
         <nav className="mx-2">   
           <select onChange={(e) => handleAccessories(e)} className="select select-bordered select-sm w-full max-w-xs rounded text-current dark:text-slate-300 dark:bg-zinc-700 hover:border-purple-600">
             <option value="select">Select Generes</option>
-            <option value="men/clothing">Men</option>
-            <option value="women/clothing">Women</option>
-            <option value="kids/clothing">Kids</option>
+            <option value="men/clothing" className="ml-2 font-medium text-base text-purple-400">Men</option>
+            <option value="women/clothing" className="ml-2 font-medium text-base text-purple-400">Women</option>
+            <option value="kids/clothing" className="ml-2 font-medium text-base text-purple-400">Kids</option>
           </select>
         </nav>
         <br />
@@ -39,16 +39,16 @@ const FilterClothing = (props) => {
         <nav className="mx-2">   
           <select onChange={(e) => handlePrice(e)} className="select select-bordered select-sm w-full max-w-xs rounded text-current dark:text-slate-300 dark:bg-zinc-700 hover:border-purple-600">
             <option  value="select">Select Price</option>
-            <option  value="lower price">Entre $ 0 - 20</option>
-            <option  value="half price">Entre $ 20 - 60</option>
-            <option  value="higher price">Mayor a $ 60</option>
+            <option  value="lower price" className="ml-2 font-medium text-base text-purple-400">Entre $ 0 - 20</option>
+            <option  value="half price" className="ml-2 font-medium text-base text-purple-400">Entre $ 20 - 60</option>
+            <option  value="higher price" className="ml-2 font-medium text-base text-purple-400">Mayor a $ 60</option>
           </select>
         </nav>
       </div>
 
 
       <div>
-        <button className="font-roboto btn normal-case py-2 w-[17.2rem]  mt-4 rounded border-slate-700 text-slate-100 dark:text-slate-300  dark:bg-purple-800 hover:border-purple-200  bg-purple-700  bg-purple-700 hover:bg-purple-900  dark:hover:bg-purple-900 mx-auto" type="submit" onClick={(e) => handleReset(e)}>All Clothing</button>
+        <button className="font-roboto btn normal-case py-2 w-[17.2rem]  mt-4 rounded border-slate-700 text-slate-100 dark:text-slate-300  dark:bg-purple-800 hover:border-purple-200  bg-purple-700  bg-purple-700 hover:bg-purple-900  dark:hover:bg-purple-900 mx-auto hover:animate-pulse" type="submit" onClick={(e) => handleReset(e)}>All Clothing</button>
        </div>
     </div>
   );
