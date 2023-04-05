@@ -15,16 +15,17 @@ import React from "react";
 
 import Shoes from "./Views/Shoes/Shoes";
 import ShoppingBag from "../src/Components/ShoppingBag/ShoppingBag.jsx";
-
+import CreateProductOrder from "../src/Components/ShoppingBag/CreateProduct"
 import { ShoppingBagProvider } from "../src/Contexts/ShoppingBagContext";
 import { SelectedSizeSizeProvider } from  "../src/Contexts/SelectedSizeContext";
-
+import {CreateOrderPayContextProvider} from "../src/Contexts/CreateContext"
 import Register from "./Views/Register/Register";
 import { AuthProvider } from "./Contexts/authContext.jsx";
 import Login from "./Views/Login/Login";
 import CheckoutForm from "../src/Components/ShoppingBag/CheckoutForm";
 import { useSelector } from "react-redux";
 import ProfileUser from "./Components/ProfileUser/ProfileUser";
+import ErrorCreateProductOrder from "../src/Components/ShoppingBag/Error"
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
     <AuthProvider>
       <SelectedSizeSizeProvider>
         <ShoppingBagProvider>
+      <CreateOrderPayContextProvider>
           <BrowserRouter>
             <div className="App">
               <Switch>
@@ -49,9 +51,10 @@ function App() {
                 <Route exact path="/home/account" component={Account} />
                 <Route exact path="/home/shoppingBag" component={ShoppingBag} /> */}
                 <Route exact path="/shoppingBag" component={ShoppingBag} />
-                {/* <Route exact path="/createProduct" component={createProduct} /> */}
+                 <Route exact path="/createProductOrder" component={CreateProductOrder} />
                 <Route exact path="/testing" component={Testing} />
                 <Route exact path="/allproducts" component={Products} />
+                <Route exact path="/errorOrder" component={ErrorCreateProductOrder} />
                 <Route
                 exact
                 path={[
@@ -75,6 +78,7 @@ function App() {
               </Switch>
             </div>
           </BrowserRouter>
+      </CreateOrderPayContextProvider>
         </ShoppingBagProvider>
       </SelectedSizeSizeProvider>
     </AuthProvider>

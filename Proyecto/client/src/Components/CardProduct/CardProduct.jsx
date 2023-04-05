@@ -12,7 +12,7 @@ const CardProduct = ( props ) => {
 	const { id, name, images, sellingPrice, average_rating, category, description, size, selectedSize, setSelectedSize } = props;
 
 	const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext);
-	console.log("Estado shoppingBag desde CardProduct", shoppingBag);
+	
 
 	const addToCart = () => {
 		setShoppingBag((currItems) => {
