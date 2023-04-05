@@ -30,8 +30,7 @@ export default function Details( props ) {
   const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
 
 
-  console.log('Estado shoppingBag desde Details', shoppingBag);
-  console.log('Estado selectedSize desde Details', selectedSize);
+
 
 
 
@@ -80,9 +79,9 @@ export default function Details( props ) {
 
   /**********Metodos ShoppingBags */
   const addToCart = () => {
-    setShoppingBag((currItems) => {
+    setShoppingBag(( currItems) => {
       const isItemsFound = currItems.find((item) => item.id === id);
-      if (isItemsFound) {
+      if (isItemsFound ) {
         return currItems.map((item) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
@@ -167,8 +166,8 @@ export default function Details( props ) {
       <br />
       <div className="flex flex-col mx-8 ">
         <h1 className="font-roboto text-3xl font-light mt-[1rem] mb-6 dark:text-slate-300">
-          20% discount on purchases of $100 or more | 25% discount on purchases
-          of $150 or more
+          20% discount on purchases of $1000 or more | 25% discount on purchases
+          of $2500 or more
         </h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
       </div>
@@ -287,7 +286,7 @@ export default function Details( props ) {
 
             <div className=" font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300 mt-6">
               <h3>Size:</h3>
-              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-purple-800" value={selectedSize} onChange={handleSizeClick}>
+              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-slate-700" value={selectedSize} onChange={handleSizeClick}>
                       <option selected className="darl:text-slate200">Size</option>
                       <option value="S">S</option>
                       <option value="M">M</option>

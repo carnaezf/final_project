@@ -1,3 +1,5 @@
+
+
 require('dotenv').config()
 const { Sequelize } = require('sequelize')
 const fs = require('fs')
@@ -6,11 +8,13 @@ const path = require('path')
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT } = process.env
 
 
+
 const category = require('./models/Category')
 const comment = require('./models/Comment')
 const order = require('./models/Order')
 const product = require('./models/Product')
 const user = require('./models/User')
+
 
 const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:${DB_PORT}/${DB_NAME}`,
@@ -40,6 +44,7 @@ let capsEntries = entries.map(entry => [
   entry[1]
 ])
 
+
 sequelize.models = Object.fromEntries(capsEntries)
 
 const { Category, Comment, Order, Product, User } = sequelize.models
@@ -56,11 +61,14 @@ Comment.hasOne(Product)
 Comment.hasOne(User)
 User.hasMany(Comment)
 
+
 Order.belongsTo(User)
 User.hasMany(Order)
 
 module.exports = {
   ...sequelize.models,
   conn: sequelize
+
 }
+
 
