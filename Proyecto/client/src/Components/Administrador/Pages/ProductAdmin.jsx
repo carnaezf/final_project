@@ -43,22 +43,7 @@ const ProductAdmin = () => {
       dataIndex: "sellingPrice",
       key: "sellingPrice",
     },
-    {
-      title: "Availability",
-      dataIndex: "availability",
-      key: "availability",
-      render: (availability) =>
-        availability?.map((item, index) =>
-          Object.entries(item).map(([size, quantity]) => (
-            <div key={index}>
-              <p>
-                {size}: {quantity}
-              </p>
-            </div>
-          ))
-        ),
-    },
-    ,
+
     {
       title: "Average Rating",
       dataIndex: "average_rating",
