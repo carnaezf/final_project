@@ -183,26 +183,26 @@ const {user}=useAuth();
                     <Link to="/checkoutform">
                     <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 " >Checkout</button>
                     </Link>
-                     </div>
-                     </div>
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <br />
-                     <Footer/>
-                     </div>
-                   
+                        </div>
+                        </div>
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <Footer/>
+                        </div>
+                    
     );
 };
 

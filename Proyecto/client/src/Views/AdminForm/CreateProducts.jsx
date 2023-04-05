@@ -260,7 +260,7 @@ const CreateProduct = () => {
               </div>
             </div>
             <button
-              className="  mt-2 h-[2.1rem] w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 rounded ml-[25rem]"
+              className="mt-2 h-[2.1rem] w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 rounded ml-[25rem]"
               type="submit"
             >
               Send
