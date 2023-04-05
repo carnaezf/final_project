@@ -8,7 +8,7 @@ const {mailOrder}=require("../../controllers/mailsControllers/mail-Order")
 
 const validateOrder = async (newOrder) => {
   //newOrder
-  console.log(newOrder, "esta es la orden que ingresa del front ");
+  //console.log(newOrder, "esta es la orden que ingresa del front ");
   try {
     const idOrdenEntrante = [];
     const infoProducts = await getProducts();
@@ -18,7 +18,7 @@ const validateOrder = async (newOrder) => {
     for (let prod of newOrder) {
       prod.id !== undefined?idOrdenEntrante.push(prod?.id ): ""
     }
-    console.log(idOrdenEntrante,"esto son los ids del front")
+    //console.log(idOrdenEntrante,"esto son los ids del front")
     searchId = infoProducts.find(
       (el) => el.dataValues.id === idOrdenEntrante[i]
     );
@@ -111,7 +111,7 @@ const validateOrderCreated = async (newOrder) => {
         status: "aceptada",
         totalMount: totalPrice,
         products: productsFront,
-        notification: false,
+  
 
       });
   
