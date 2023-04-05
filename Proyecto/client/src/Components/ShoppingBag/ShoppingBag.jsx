@@ -140,7 +140,7 @@ const {user}=useAuth();
         <br />
             <div className="container mx-auto py-8">
                 <div className="bg-white p-4 shadow-md rounded-md flex-col">
-                    <div className="text-lg font-semibold mb-4">Shopping Bag</div>
+                    <div className="text-xl font-semibold mb-4">Shopping Bag</div>
                     
                     <div className="flex justify-between items-center border-b pb-4">
                         <div className="font-semibold">Items in cart:</div>
@@ -169,8 +169,8 @@ const {user}=useAuth();
 
                         <h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">   
                             <div>
-                            <button className=" badge border-none px-[2px]  font-light hover:bg-purple-800" onClick={() => addToCart(product.id)}><AiOutlinePlus/></button>
-                            <button className="badge border-none px-[2px] hover:bg-purple-800  ml-4 font-light"onClick={() => removeItem(product.id)}><AiOutlineLine/></button> 
+                            <button className=" badge border-none px-[2px]  font-light hover:bg-purple-800" onClick={() => removeItem(product.id)}><AiOutlineLine/></button>
+                            <button className="badge border-none px-[2px] hover:bg-purple-800  ml-4 font-light" onClick={() => addToCart(product.id)}><AiOutlinePlus/></button> 
                             </div>              
                         </h4>
                   </ul>

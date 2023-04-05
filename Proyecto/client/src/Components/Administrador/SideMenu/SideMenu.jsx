@@ -29,11 +29,13 @@ function SideMenu() {
           history.push(item.key);
         }}
         selectedKeys={[selectedKeys]}
+        
         items={[
           {
             label: "Dashbaord",
             icon: <AppstoreOutlined />,
             key: "/admin",
+            
           },
           {
             label: "Users",

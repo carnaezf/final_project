@@ -38,7 +38,7 @@ const Dashboard = () => {
             title="Orders"
             value={orders.length}
           />
-          <DashboardCard
+          <DashboardCard 
             icon={
               <UserOutlined
                 style={{
@@ -47,11 +47,13 @@ const Dashboard = () => {
                   borderRadius: 20,
                   fontSize: 24,
                   padding: 8,
+                  
                 }}
               />
             }
             title="Users"
             value={users.length}
+            
           />
           <DashboardCard
             icon={
@@ -84,8 +86,8 @@ const DashboardCard = ({ title, value, icon }) => {
     <div>
       <Card className="dark:bg-zinc-700 border-transparent" style={{ marginLeft: "20px"}}>
         {icon}
-        <Space direction="horizontal" className="text-slate-700 dark:text-slate-200">
-          <Statistic  title={title} value={value} />
+        <Space direction="horizontal" >
+          <Statistic className=" fill-red-700 dark:fill-slate-200"  title={title} value={value} />
         </Space>
       </Card>
     </div>
