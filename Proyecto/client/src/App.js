@@ -29,7 +29,7 @@ import ProfileUser from "./Components/ProfileUser/ProfileUser";
 // // Deploy
 import axios from "axios";
 // axios.defaults.baseURL = 'http://localhost:3001/'
-axios.defaults.baseURL='http://finalproject-production-58fc.up.railway.app'
+axios.defaults.baseURL='https://finalproject-production-58fc.up.railway.app'
 
 function App() {
   //const location =useLocation();
