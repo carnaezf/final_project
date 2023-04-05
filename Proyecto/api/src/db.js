@@ -1,66 +1,63 @@
-require("dotenv").config();
-const { Sequelize } = require("sequelize");
-const fs = require("fs");
-const path = require("path");
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
+require('dotenv').config()
+const { Sequelize } = require('sequelize')
+const fs = require('fs')
+const path = require('path')
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env
 
-const category = require("./models/Category");
-const comment = require("./models/Comment");
-const order = require("./models/Order");
-const product = require("./models/Product");
-const user = require("./models/User");
+const category = require('./models/Category')
+const comment = require('./models/Comment')
+const order = require('./models/Order')
+const product = require('./models/Product')
+const user = require('./models/User')
 
 const sequelize = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/products`,
+  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
   {
     logging: false,
-    native: false,
+    native: false
   }
-);
+)
 
-const basename = path.basename(__filename);
-const modelDefiners = [product, user, comment, category, order];
+const basename = path.basename(__filename)
+const modelDefiners = [product, user, comment, category, order]
 
-fs.readdirSync(path.join(__dirname, "/models"))
+fs.readdirSync(path.join(__dirname, '/models'))
   .filter(
-    (file) =>
-      file.indexOf(".") !== 0 && file !== basename && file.slice(-3) === ".js"
+    file =>
+      file.indexOf('.') !== 0 && file !== basename && file.slice(-3) === '.js'
   )
-  .forEach((file) => {
-    modelDefiners.push(require(path.join(__dirname, "/models", file)));
-  });
+  .forEach(file => {
+    modelDefiners.push(require(path.join(__dirname, '/models', file)))
+  })
 
-modelDefiners.forEach((model) => model(sequelize));
+modelDefiners.forEach(model => model(sequelize))
 
-let entries = Object.entries(sequelize.models);
-let capsEntries = entries.map((entry) => [
+let entries = Object.entries(sequelize.models)
+let capsEntries = entries.map(entry => [
   entry[0][0].toUpperCase() + entry[0].slice(1),
-  entry[1],
-]);
+  entry[1]
+])
 
-sequelize.models = Object.fromEntries(capsEntries);
+sequelize.models = Object.fromEntries(capsEntries)
 
-const { Category, Comment, Order, Product, User } = sequelize.models;
+const { Category, Comment, Order, Product, User } = sequelize.models
 
-Category.hasMany(Product);
-Product.hasOne(Category);
+Category.hasMany(Product)
+Product.hasOne(Category)
 
-Order.belongsToMany(Product, { through: "OrderProduct" });
-Product.belongsToMany(Order, { through: "OrderProduct" });
+Order.belongsToMany(Product, { through: 'OrderProduct' })
+Product.belongsToMany(Order, { through: 'OrderProduct' }) 
 
-Product.hasMany(Comment);
-Comment.hasOne(Product);
+Product.hasMany(Comment) 
+Comment.hasOne(Product) 
 
-Comment.hasOne(User);
-User.hasMany(Comment);
+Comment.hasOne(User)
+User.hasMany(Comment)
 
-Product.hasMany(Comment);
-Comment.hasOne(Product);
-
-Order.belongsTo(User);
-User.hasMany(Order);
+Order.belongsTo(User)
+User.hasMany(Order)
 
 module.exports = {
   ...sequelize.models,
-  conn: sequelize,
-};
+  conn: sequelize
+}

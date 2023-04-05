@@ -17,7 +17,7 @@ export const GET_USER_ID = "GET_USER_ID";
 
 export const getProducts = () => {
   return async function (dispatch) {
-    const product = await axios.get("http://localhost:3001/products");
+    const product = await axios.get("/products");
     const allProducts = product.data;
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
   };
@@ -25,7 +25,7 @@ export const getProducts = () => {
 
 export const getProductsAdmin = () => {
   return async function (dispatch) {
-    const product = await axios.get("http://localhost:3001/products");
+    const product = await axios.get("/products");
     const allProducts = product.data;
     dispatch({ type: GET_PRODUCTS_ADMIN, payload: allProducts });
   };
@@ -35,7 +35,7 @@ export const getProductsDetail = (payload) => {
   return async function (dispatch) {
     try {
       const product = await axios.get(
-        `http://localhost:3001/products/${payload}`
+        `/products/${payload}`
       );
       const detailProduct = product.data;
       dispatch({
@@ -51,7 +51,7 @@ export const getProductsDetail = (payload) => {
 export const getCategory = (payload) => {
   return async function (dispatch) {
     const productCategory = await axios.get(
-      `http://localhost:3001/products/category/${payload}`
+      `/products/category/${payload}`
     );
     const allProductsCategory = productCategory.data;
     dispatch({ type: GET_PRODUCTS_CATEGORY, payload: allProductsCategory });
@@ -62,7 +62,7 @@ export const filterByName = (payload) => {
   return async function (dispatch) {
     try {
       const baseData = await axios.get(
-        `http://localhost:3001/products/search?name=${payload}`
+        `/products/search?name=${payload}`
       );
       const productsName = baseData.data;
       dispatch({ type: FILTER_BY_NAME, payload: productsName });
@@ -112,7 +112,7 @@ export const filterByPriceAllProducts = (payload) => {
 export const postUsers = (payload) => {
   return async function () {
     try {
-      const baseData = await axios.post(`http://localhost:3001/user`, payload);
+      const baseData = await axios.post(`/user`, payload);
       //return baseData;
     } catch (error) {
       alert({ error: error.message });
@@ -122,7 +122,7 @@ export const postUsers = (payload) => {
 
 export const getUsers = () => {
   return async function (dispatch) {
-    const user = await axios.get("http://localhost:3001/user");
+    const user = await axios.get("/user");
     const allUsers = user.data;
     dispatch({ type: GET_USERS, payload: allUsers });
   };
@@ -132,7 +132,7 @@ export const loginUsers = (payload) => {
   return async function (dispatch) {
     try {
       const baseData = await axios.post(
-        `http://localhost:3001/user/signin`,
+        `/user/signin`,
         payload
       );
       dispatch({ type: "LOGIN", payload: baseData.data });
@@ -156,7 +156,7 @@ export const logoutUsers = () => {
 export const userban = (id) => {
   return async function (dispatch) {
     try {
-      const baseData = await axios.put(`http://localhost:3001/user/${id}/ban`);
+      const baseData = await axios.put(`/user/${id}/ban`);
       dispatch({ type: BANNED, payload: baseData });
     } catch (error) {
       alert({ error: error.message });
@@ -167,7 +167,7 @@ export const productban = (id) => {
   return async function (dispatch) {
     try {
       const baseData = await axios.put(
-        `http://localhost:3001/product/${id}/ban`
+        `/product/${id}/ban`
       );
       dispatch({ type: BANNED, payload: baseData });
     } catch (error) {
@@ -179,7 +179,7 @@ export const productban = (id) => {
 export const doModerator = (id) => {
   return async function (dispatch) {
     try {
-      const baseData = await axios.put(`http://localhost:3001/admin/${id}`);
+      const baseData = await axios.put(`/admin/${id}`);
       dispatch({ type: BANNED, payload: baseData });
     } catch (error) {
       alert({ error: error.message });
@@ -189,7 +189,7 @@ export const doModerator = (id) => {
 
 export const getOrders = () => {
   return async function (dispatch) {
-    const order = await axios.get("http://localhost:3001/order");
+    const order = await axios.get("/order");
     const allOrders = order.data;
     dispatch({ type: "GET_ORDERS", payload: allOrders });
   };
@@ -198,7 +198,7 @@ export const getOrders = () => {
 export const getUserbyId = (id) => {
   return async function (dispatch) {
     try {
-      const baseData = await axios.get(`http://localhost:3001/user/${id}`);
+      const baseData = await axios.get(`/user/${id}`);
       dispatch({ type: "GET_USER_ID", payload: baseData.data });
     } catch (error) {
       alert({ error: error.message });
@@ -210,7 +210,7 @@ export const postComment = (payload) => {
   return async function () {
     try {
       const baseData = await axios.post(
-        `http://localhost:3001/products/addComment`,
+        `/products/addComment`,
         payload
       );
     } catch (error) {
@@ -222,7 +222,7 @@ export const loginGoogle = (payload) => {
   return async function (dispatch) {
     try {
       const baseData = await axios.post(
-        `http://localhost:3001/user/signin/google`,
+        `/user/signin/google`,
         payload
       );
       dispatch({ type: "LOGIN", payload: baseData.data });
