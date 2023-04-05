@@ -6,7 +6,7 @@ import { getOrders } from "../../../Redux/actions";
 const Orders = () => {
   const dispatch = useDispatch();
   const ordersAll = useSelector((state) => state.orders);
-  console.log(ordersAll);
+ 
 
   useEffect(() => {
     dispatch(getOrders());
