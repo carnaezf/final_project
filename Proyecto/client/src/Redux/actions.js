@@ -17,7 +17,7 @@ export const GET_USER_ID = "GET_USER_ID";
 
 export const getProducts = () => {
   return async function (dispatch) {
-    const product = await axios.get("http://finalproject-production-58fc.up.railway.app/products/help");
+    const product = await axios.get("http://finalproject-production-58fc.up.railway.app/products/hola");
     const allProducts = product.data;
     dispatch({ type: GET_PRODUCTS, payload: allProducts });
   };
