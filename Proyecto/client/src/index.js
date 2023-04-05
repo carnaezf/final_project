@@ -34,6 +34,10 @@ import { store, persistor } from "./Redux/store";
 import { BrowserRouter } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
 
+import  axios  from "axios";
+axios.defaults.baseURL='finalproject-production-58fc.up.railway.app'
+// axios.defaults.baseURL='http://localhost:3000'
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
