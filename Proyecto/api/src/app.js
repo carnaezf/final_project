@@ -27,7 +27,7 @@ server.use((req, res, next) => {
 });
 
 server.use(cors({
-  origin: ["http://localhost:3000/", 'https://final-project-inqc.vercel.app/'],
+  origin: ["http://localhost:3000/", 'https://final-project-inqc.vercel.app/', 'https://final-project-carnaezf.vercel.app/'],
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
 
