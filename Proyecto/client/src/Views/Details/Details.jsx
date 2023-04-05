@@ -79,9 +79,9 @@ export default function Details( props ) {
 
   /**********Metodos ShoppingBags */
   const addToCart = () => {
-    setShoppingBag((currItems) => {
+    setShoppingBag(( currItems) => {
       const isItemsFound = currItems.find((item) => item.id === id);
-      if (isItemsFound) {
+      if (isItemsFound ) {
         return currItems.map((item) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
