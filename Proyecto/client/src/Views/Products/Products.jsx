@@ -23,8 +23,8 @@ const Products=()=>{
     const maximumPage= Math.ceil(allProducts.length/productsViews); //nose si sera par o inpar
     const newStateProducts= allProducts.slice(firstIndex,lastIndex);
   
-    const pagin=(pageNumber)=>{ //rendirizamos
-      setPageActual(pageNumber); //pasamos los numero de las paginas para modificar el estado local
+    const pagin=(pageNumber)=>{ 
+      setPageActual(pageNumber);
     }
   
           /****************************Modo nocturno y claro */
