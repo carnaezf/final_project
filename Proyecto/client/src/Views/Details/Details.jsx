@@ -30,8 +30,7 @@ export default function Details( props ) {
   const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
 
 
-  console.log('Estado shoppingBag desde Details', shoppingBag);
-  console.log('Estado selectedSize desde Details', selectedSize);
+
 
 
 
@@ -80,9 +79,9 @@ export default function Details( props ) {
 
   /**********Metodos ShoppingBags */
   const addToCart = () => {
-    setShoppingBag((currItems) => {
+    setShoppingBag(( currItems) => {
       const isItemsFound = currItems.find((item) => item.id === id);
-      if (isItemsFound) {
+      if (isItemsFound ) {
         return currItems.map((item) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };

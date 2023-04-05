@@ -1,8 +1,8 @@
-require('dotenv').config()
-const { Sequelize } = require('sequelize')
-const fs = require('fs')
-const path = require('path')
-const { DB_USER, DB_PASSWORD, DB_HOST } = process.env
+require("dotenv").config();
+const { Sequelize } = require("sequelize");
+const fs = require("fs");
+const path = require("path");
+const { DB_USER, DB_PASSWORD, DB_HOST} = process.env;
 
 const category = require('./models/Category')
 const comment = require('./models/Comment')
@@ -14,12 +14,9 @@ const sequelize = new Sequelize(
   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/products`,
   {
     logging: false,
-    native: false
+    native: false,
   }
-)
-
-const basename = path.basename(__filename)
-const modelDefiners = [product, user, comment, category, order]
+);
 
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter(

@@ -17,14 +17,14 @@ const Products=()=>{
    
     const allProducts= useSelector(state=> state.filterPriceAllProducts) ;
     const[pageActual, setPageActual]= useState (1); //numero de pagina donde estoy
-    const[productsViews, setProductsViews]= useState (9);
+    const[productsViews, setProductsViews]= useState (8);
     const lastIndex= pageActual * productsViews; //segundo parametro
     const firstIndex= lastIndex - productsViews; //primer parameto
     const maximumPage= Math.ceil(allProducts.length/productsViews); //nose si sera par o inpar
     const newStateProducts= allProducts.slice(firstIndex,lastIndex);
   
-    const pagin=(pageNumber)=>{ //rendirizamos
-      setPageActual(pageNumber); //pasamos los numero de las paginas para modificar el estado local
+    const pagin=(pageNumber)=>{ 
+      setPageActual(pageNumber);
     }
   
           /****************************Modo nocturno y claro */

@@ -234,17 +234,17 @@ function Profile() {
       <div className="flex mx-auto">
         {userId && (
 
-          <div>
-            <img src={userId.profilePicture} alt={userId.name} />
-            <h1>NAME : {userId.name}</h1>
-            <h1>LASTNAME : {userId.lastName}</h1>
-            <h1>EMAIL : {userId.email ? userId.email : "-"}</h1>
-            <h1>COUNTRY : {userId.country ? userId.country : "-"}</h1>
-            {/* <h1>PHONE : {userId.phone ? userId.phone : "-"}</h1>
-            <h1>DNI : {userId.dni ? userId.dni : "-"}</h1> */}
-            <Space direction="vertical" className="w-full">
-              <Typography.Title level={5}>ORDERS</Typography.Title>
-              <Table columns={columns} dataSource={userId.Orders} />
+          // <div>
+          //   <img src={userId.profilePicture} alt={userId.name} />
+          //   <h1>NAME : {userId.name}</h1>
+          //   <h1>LASTNAME : {userId.lastName}</h1>
+          //   <h1>EMAIL : {userId.email ? userId.email : "-"}</h1>
+          //   <h1>COUNTRY : {userId.country ? userId.country : "-"}</h1>
+          //   {/* <h1>PHONE : {userId.phone ? userId.phone : "-"}</h1>
+          //   <h1>DNI : {userId.dni ? userId.dni : "-"}</h1> */}
+          //   <Space direction="vertical" className="w-full">
+          //     <Typography.Title level={5}>ORDERS</Typography.Title>
+          //     <Table columns={columns} dataSource={userId.Orders} />
 
           <div className="flex flex-col">
             <div className="mx-auto">
@@ -358,7 +358,11 @@ function Profile() {
           </div>
         )}
       </div>
-      <div><Footer /></div>
+      <Space>
+
+        <div><Footer /></div>
+      </Space>
+      
     </div>
   );
 }
