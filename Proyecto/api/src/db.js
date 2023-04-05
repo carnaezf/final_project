@@ -18,6 +18,9 @@ const sequelize = new Sequelize(
   }
 );
 
+const basename = path.basename(__filename);
+const modelDefiners = [product, user, comment, category, order];
+
 fs.readdirSync(path.join(__dirname, '/models'))
   .filter(
     file =>

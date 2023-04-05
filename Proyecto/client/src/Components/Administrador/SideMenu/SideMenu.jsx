@@ -21,9 +21,9 @@ function SideMenu() {
 
   const history = useHistory();
   return (
-    <div className="SideMenu">
+    <div className="SideMenu ">
       <Menu
-        className="SideMenuVertical"
+        className="SideMenuVertical bg-slate-200 dark:bg-zinc-800 font-roboto dark:text-slate-200"
         mode="vertical"
         onClick={(item) => {
           history.push(item.key);
