@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
+const cors = require('cors');
 
 const routes = require("./routes/index.js");
 
@@ -24,6 +25,12 @@ server.use((req, res, next) => {
 
   next();
 });
+
+server.use(cors({
+  origin: ["http://localhost:3000/", 'https://final-project-ashy.vercel.app/'],
+  methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
+
 
 server.use("/", routes);
 
