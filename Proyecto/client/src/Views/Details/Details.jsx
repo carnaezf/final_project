@@ -166,8 +166,8 @@ export default function Details( props ) {
       <br />
       <div className="flex flex-col mx-8 ">
         <h1 className="font-roboto text-3xl font-light mt-[1rem] mb-6 dark:text-slate-300">
-          20% discount on purchases of $100 or more | 25% discount on purchases
-          of $150 or more
+          20% discount on purchases of $1000 or more | 25% discount on purchases
+          of $2500 or more
         </h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
       </div>
