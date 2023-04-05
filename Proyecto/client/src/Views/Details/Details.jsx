@@ -30,8 +30,7 @@ export default function Details( props ) {
   const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
 
 
-  console.log('Estado shoppingBag desde Details', shoppingBag);
-  console.log('Estado selectedSize desde Details', selectedSize);
+
 
 
 
