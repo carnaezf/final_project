@@ -27,7 +27,7 @@ import { useSelector } from "react-redux";
 import ProfileUser from "./Components/ProfileUser/ProfileUser";
 
 // // Deploy
-import axios from "axios";
+// import axios from "axios";
 // axios.defaults.baseURL = 'http://localhost:3001/'
 axios.defaults.baseURL='https://finalproject-production-58fc.up.railway.app'
 
