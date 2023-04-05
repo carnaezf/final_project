@@ -5,39 +5,37 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { useState,useEffect } from "react";
 import { Link } from 'react-router-dom';
-import {SelectedOrderContext} from "../../Contexts/CreateContext"
 import { ShoppingBagContext } from '../../Contexts/ShoppingBagContext';
-//import {AuthProvider} from("../../Contexts/authContext")
+import {SelectedOrderContext} from "../../Contexts/CreateContext"
+import Swal from "sweetalert2";
 
 const CheckoutForm = () => {
 
-  
-  const [emails, setEmails] = useState({});
-  const [user, setUser] = useState({});
-  const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
 
-  const [mercadoPagoEnabled, setMercadoPagoEnabled] = useState(false)
-  const [loginEnabled, setLoginEnabled] = useState(false)
-  const [createOrderPay, setcreateOrderPay] =  useContext(SelectedOrderContext);
-  
+
+    const [emails, setEmails] = useState({});
+    const [user, setUser] = useState({});
+    const [shoppingBag, setShoppingBag] = useContext(ShoppingBagContext)
+    const [buy,setBuy]=useState({});
+    const [mercadoPagoEnabled, setMercadoPagoEnabled] = useState(false)
+    const [loginEnabled, setLoginEnabled] = useState(false)
+    const [createOrderPay, setcreateOrderPay] =  useContext(SelectedOrderContext);
+
     useEffect(async() => {
         const users= await axios("/user/totalMail/m")
         const totalUser=await axios("/user")
         const data= users.data
         const totaluser=totalUser.data
-
-       setEmails(data)
+        setEmails(data)
         setUser(totaluser)
     },[])
         
+        
         const comprobation=(values)=>{
-          try {
-          console.log(values.email);
+            console.log(values.email);
             console.log(emails, " Estos es BBDD");
 
-            if(emails.includes(values.email)){ 
-              console.log(emails, " Estos es emails  BBDD dentro del if");
- 
+            if(emails.includes(values.email)){  
                let userBuy=[]
                 for(let i=0;i<user.length;i++){
                     if(user[i].email===values.email){
@@ -47,40 +45,31 @@ const CheckoutForm = () => {
                     }
                     //NO TOCAR NADA DE ACA!!!
                     let datos=[...shoppingBag,...userBuy]
-                  
+                    setBuy(datos) 
                     setMercadoPagoEnabled(true)
                     setLoginEnabled(false)
-
-                    setcreateOrderPay(datos)
-                   // console.log(createOrderPay," esto es buy dentro de createOrderPay createOrderPay back")
-                   return alert("hola")
+                    return Swal.fire({
+                      icon: "success",
+                      title: "You have been logged in successfully",
+                      backdrop:true,
+                  });
                 }
                 else{
                     setMercadoPagoEnabled(false)
                     setLoginEnabled(true)
                 return alert("¡You must login!")
               }
-            } catch (error) {
-            return ({error:error.message})
-            }
     }
    
- 
+   
     const  redirectionRute=async()=>{
             //NO TOCAR EL BUY!!
-
-            console.log(createOrderPay,"createOrderPaycreateOrderPaycreateOrderPay")
-            //localStorage.setItem('estado', JSON.stringify(createOrderPay))
-             //const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
-             //console.log(resp, "responseeeeee")
-
             //console.log(buy," esto es buy dentro de redireccion para back")
-            await axios.post("/order",buy)
+            // await axios.post("/order",buy)
+            localStorage.setItem('estado', JSON.stringify(createOrderPay))
              const resp= await  axios.post("/payment", shoppingBag)
-
              const point= resp.data.response.body.init_point
              window.location.replace(point)
-           //  window.open(point,"mercado Pago",undefined)
             
         } 
 
@@ -119,7 +108,7 @@ const CheckoutForm = () => {
             </div>
             <button
               type="submit"
-              className=" m-2 w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded "
+              className="m-2 w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded"
               disabled={isSubmitting}
             >
               Verify
@@ -136,36 +125,29 @@ const CheckoutForm = () => {
                 >
 
                 
-                  Login
+                  login
                 </button>
               </Link>
 
 
 
                     
-            <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={` m-2 w-[8rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded ${
+            <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={`m-2 w-[8rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded ${
     mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
-  }`}>Mercado Pago</button>
+  }`}>mercado Pago</button>
             
 
 
               <Link to="/shoppingBag">
-
-                <button className=" m-2 w-[10rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded">
-
-                  Shopping Bag
+                <button className="m-2 w-[10rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded">
+                Shopping Bag
                 </button>
               </Link>
-
-                
               <Link to="/createProductOrder">
-
                 <button className="m-2 w-[10rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded">
                 Check Payment
-
                 </button>
               </Link>
-
             </div>
           </Form>
         )}
