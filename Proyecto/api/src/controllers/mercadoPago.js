@@ -15,8 +15,8 @@ const mercadoPago = (req, res) => {
       //failure: "http://localhost:3000/errorOrder",
 
 
-      success: "https://finalproject-production-58fc.up.railway.app/createProductOrder",
-      failure: "https://finalproject-production-58fc.up.railway.app/errorOrder",
+      success: "https://final-project-carnaezf.vercel.app/createProductOrder",
+      failure: "https://final-project-carnaezf.vercel.app/errorOrder",
 
     },
     auto_return: "approved",
