@@ -10,8 +10,14 @@ const mercadoPago = (req, res) => {
   const preference = {
     items: products,
     back_urls: {
-      success: "http://localhost:3000/createProductOrder",
-      failure: "http://localhost:3000/errorOrder",
+
+      //success: "http://localhost:3000/createProductOrder",
+      //failure: "http://localhost:3000/errorOrder",
+
+
+      success: "https://finalproject-production-58fc.up.railway.app/createProductOrder",
+      failure: "https://finalproject-production-58fc.up.railway.app/errorOrder",
+
     },
     auto_return: "approved",
     binary_mode: true,

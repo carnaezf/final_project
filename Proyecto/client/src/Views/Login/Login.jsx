@@ -150,7 +150,7 @@ const Login = () => {
                 <div className="mb-4">
                   <label htmlFor="name" className="text-lg text-current">Password</label>
                   <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
-                    type="text"
+                    type="password"
                     id="password"
                     name="password"
                     placeholder=" **********"

@@ -64,7 +64,7 @@ const { mercadoPago } = require("../controllers/mercadoPago");
 const { updateProductHandler } = require("../handlers/updateProductHandler");
 const { allCategoryHandler } = require("../handlers/categoryHandler");
 const { optionsAdminEditUserHandler } = require("../handlers/userAdminHandler");
-const { veryfyToken } = require("../Token/tokenAdmin");
+
 const { mailsTotalityHandler } = require("../handlers/mails/mailsHandler");
 
 router.get("/products", getProductsHandler);
@@ -77,7 +77,7 @@ router.get("/products/category/:category", getByCategoryHandler);
 
 router.put("/products/addReview", addReviewHandler);
 
-// router.post("/products", veryfyToken, createProductHandler);
+
 router.post("/products", createProductHandler);
 
 router.post("/user", createUserHandler);
