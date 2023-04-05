@@ -35,7 +35,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "postcss css/tailwind.css -o public/build/tailwind.css",
+    "build": "CI=false node --max_old_space_size=2048 ./node_modules/react-scripts/bin/react-scripts.js build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -5,7 +5,7 @@ import { getUserbyId } from "../../Redux/actions";
 import NavBar from "../NavBar/NavBar";
 import Swal from "sweetalert2";
 import axios from "axios";
-import Footer from "../Footer/Footer"
+import Footer from "../Footer/Footer";
 
 function Profile() {
   let user = useSelector((state) => state.user);
@@ -36,7 +36,7 @@ function Profile() {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.put(`http://localhost:3001/user/update`, edit);
+          axios.put(`/user/update`, edit);
           Swal.fire("Change successfully", "", "success").then(() => {
             setModalPassword(!modalPassword);
           });
@@ -59,7 +59,7 @@ function Profile() {
     })
       .then((result) => {
         if (result.isConfirmed) {
-          axios.put(`http://localhost:3001/user/update`, edit);
+          axios.put(`/user/update`, edit);
           Swal.fire({
             title: `Change successfully`,
             icon: "success",
@@ -209,7 +209,7 @@ function Profile() {
     <div className="flex flex-col bg-slate-200 dark:bg-zinc-800 font-roboto dark:text-slate-200">
       <div class="fixed top-0 z-50 w-full">
         {/* *****Nav***** */}
-        <NavBar  />
+        <NavBar />
         <button className="absolute bottom-[1.8rem] left-[8rem] w-36 ml-4 mb-2">
           <label className="swap swap-rotate">
             <input type="checkbox" onClick={handleTHemeSwitch} />
@@ -229,52 +229,73 @@ function Profile() {
             </svg>
           </label>
         </button>
-
       </div>
       <div className="flex mx-auto">
         {userId && (
 
-          // <div>
-          //   <img src={userId.profilePicture} alt={userId.name} />
-          //   <h1>NAME : {userId.name}</h1>
-          //   <h1>LASTNAME : {userId.lastName}</h1>
-          //   <h1>EMAIL : {userId.email ? userId.email : "-"}</h1>
-          //   <h1>COUNTRY : {userId.country ? userId.country : "-"}</h1>
-          //   {/* <h1>PHONE : {userId.phone ? userId.phone : "-"}</h1>
-          //   <h1>DNI : {userId.dni ? userId.dni : "-"}</h1> */}
-          //   <Space direction="vertical" className="w-full">
-          //     <Typography.Title level={5}>ORDERS</Typography.Title>
-          //     <Table columns={columns} dataSource={userId.Orders} />
-
           <div className="flex flex-col">
             <div className="mx-auto">
-                  <img  className="drop-shadow-md ml-[0rem] mt-[10rem] max-w-[14rem]" src={userId.profilePicture} alt={userId.name} />
-                <div className="flex flex-col  mt-[-13.5rem] ml-[14rem] text-left">
-                  <h1 className="ml-4 flex font-bold text-purple-600">NAME : <p className="font-light text-slate-900 dark:text-slate-300">{userId.name}</p></h1>
-                  <h1 className="ml-4 flex font-bold text-purple-600">LASTNAME : <p className="font-light  text-slate-900 dark:text-slate-300">{userId.lastName}</p></h1>
-                  <h1 className="ml-4 flex font-bold text-purple-600">EMAIL : <p className="font-light text-slate-900 dark:text-slate-300">{userId.email ? userId.email : "-"}</p></h1>
-                  <h1 className="ml-4 flex font-bold text-purple-600">COUNTRY : <p className="font-light text-slate-900 dark:text-slate-300">{userId.country ? userId.country : "-"}</p></h1>
-                  <h1 className="ml-4 flex font-bold text-purple-600">PHONE : <p className="font-light text-slate-900 dark:text-slate-300">{userId.phone ? userId.phone : "-"}</p></h1>
-                  <h1 className="ml-4 flex font-bold text-purple-600">DNI : <p className="font-light text-slate-900 dark:text-slate-300">{userId.dni ? userId.dni : "-"}</p></h1>
-                    <button
-                      className="ml-4 transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
+              <img
+                className="drop-shadow-md ml-[0rem] mt-[10rem] max-w-[14rem]"
+                src={userId.profilePicture}
+                alt={userId.name}
+              />
+              <div className="flex flex-col  mt-[-13.5rem] ml-[14rem] text-left">
+                <h1 className="ml-4 flex font-bold text-purple-600">
+                  NAME :{" "}
+                  <p className="font-light text-slate-900 dark:text-slate-300">
+                    {userId.name}
+                  </p>
+                </h1>
+                <h1 className="ml-4 flex font-bold text-purple-600">
+                  LASTNAME :{" "}
+                  <p className="font-light  text-slate-900 dark:text-slate-300">
+                    {userId.lastName}
+                  </p>
+                </h1>
+                <h1 className="ml-4 flex font-bold text-purple-600">
+                  EMAIL :{" "}
+                  <p className="font-light text-slate-900 dark:text-slate-300">
+                    {userId.email ? userId.email : "-"}
+                  </p>
+                </h1>
+                <h1 className="ml-4 flex font-bold text-purple-600">
+                  COUNTRY :{" "}
+                  <p className="font-light text-slate-900 dark:text-slate-300">
+                    {userId.country ? userId.country : "-"}
+                  </p>
+                </h1>
+                <h1 className="ml-4 flex font-bold text-purple-600">
+                  PHONE :{" "}
+                  <p className="font-light text-slate-900 dark:text-slate-300">
+                    {userId.phone ? userId.phone : "-"}
+                  </p>
+                </h1>
+                <h1 className="ml-4 flex font-bold text-purple-600">
+                  DNI :{" "}
+                  <p className="font-light text-slate-900 dark:text-slate-300">
+                    {userId.dni ? userId.dni : "-"}
+                  </p>
+                </h1>
+                <button
+                  className="ml-4 transition  duration-150  font-roboto font-thin dark:text-slate-300 hover:bg-slate-700
                       hover:text-slate-200 dark:bg-transparent dark:hover:bg-white  dark:hover:text-black py-2 px- border border-slate-700 dark:border-slate-200 rounded hover:border-transparent rounded hover:font-bold text-sm"
-                      onClick={() => {
-                        setModalEdit(!modalEdit);
-                      }}
-                    >
-                      Edit your profile
-                    </button>
-                    <button
-                      className="ml-4 transition  duration-150  font-roboto font-thin dark:text-slate-300
+                  onClick={() => {
+                    setModalEdit(!modalEdit);
+                  }}
+                >
+                  Edit your profile
+                </button>
+                <button
+                  className="ml-4 transition  duration-150  font-roboto font-thin dark:text-slate-300
                       hover:text-slate-400   dark:hover:text-black py-2 px-    rounded dark:hover:text-slate-500 text-sm"
-                      onClick={() => {
-                        setModalPassword(!modalPassword);
-                      }}
-                    >
-                      Change your password
-                    </button>
-                </div>
+                  onClick={() => {
+                    setModalPassword(!modalPassword);
+                  }}
+                >
+                  Change your password
+                </button>
+              </div>
             </div>
             <br />
             <br />
@@ -282,9 +303,10 @@ function Profile() {
             <br />
             <br />
             <Space direction="vertical" className="w-full ">
-              <Typography.Title className="dark:text-slate-300" level={5}>ORDERS</Typography.Title>
-              <Table  columns={columns} dataSource={userId.Orders} />
-
+              <Typography.Title className="dark:text-slate-300" level={5}>
+                ORDERS
+              </Typography.Title>
+              <Table columns={columns} dataSource={userId.Orders} />
             </Space>
             <Modal
               title="Editar usuario"
@@ -328,7 +350,6 @@ function Profile() {
               </Form>
             </Modal>
 
-
             <Modal
               title="Cambiar contraseÃ±a"
               visible={modalPassword}
@@ -359,10 +380,10 @@ function Profile() {
         )}
       </div>
       <Space>
-
-        <div><Footer /></div>
+        <div>
+          <Footer />
+        </div>
       </Space>
-      
     </div>
   );
 }

@@ -28,6 +28,11 @@ import ProfileUser from "./Components/ProfileUser/ProfileUser";
 import ErrorCreateProductOrder from "../src/Components/ShoppingBag/Error"
 
 
+// // Deploy
+import axios from "axios";
+// axios.defaults.baseURL = 'http://localhost:3001/'
+axios.defaults.baseURL='https://finalproject-production-58fc.up.railway.app'
+
 function App() {
   //const location =useLocation();
   const userlogin = useSelector((state) => state.user);

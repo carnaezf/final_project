@@ -21,8 +21,8 @@ const CheckoutForm = () => {
   const [createOrderPay, setcreateOrderPay] =  useContext(SelectedOrderContext);
   
     useEffect(async() => {
-        const users= await axios("http://localhost:3001/user/totalMail/m")
-        const totalUser=await axios("http://localhost:3001/user")
+        const users= await axios("/user/totalMail/m")
+        const totalUser=await axios("/user")
         const data= users.data
         const totaluser=totalUser.data
 
@@ -68,10 +68,16 @@ const CheckoutForm = () => {
  
     const  redirectionRute=async()=>{
             //NO TOCAR EL BUY!!
+
             console.log(createOrderPay,"createOrderPaycreateOrderPaycreateOrderPay")
-            localStorage.setItem('estado', JSON.stringify(createOrderPay))
-             const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
-             console.log(resp, "responseeeeee")
+            //localStorage.setItem('estado', JSON.stringify(createOrderPay))
+             //const resp= await  axios.post("http://localhost:3001/payment", shoppingBag)
+             //console.log(resp, "responseeeeee")
+
+            //console.log(buy," esto es buy dentro de redireccion para back")
+            await axios.post("/order",buy)
+             const resp= await  axios.post("/payment", shoppingBag)
+
              const point= resp.data.response.body.init_point
              window.location.replace(point)
            //  window.open(point,"mercado Pago",undefined)
