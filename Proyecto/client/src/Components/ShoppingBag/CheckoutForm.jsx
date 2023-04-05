@@ -86,7 +86,7 @@ const CheckoutForm = () => {
 
 
   return (
-    <div>
+    <div className='flex flex-col bg-slate-200 dark:bg-zinc-800 h-screen'>
       <Formik
         initialValues={{ email: "" }}
         validationSchema={Yup.object({
@@ -101,13 +101,13 @@ const CheckoutForm = () => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <div className="mb-4 m-10">
+            <div className="mb-4 m-10 dark:text-slate-200">
               <label htmlFor="email">Email:</label>
               <div className="m-2">
                 <Field
                   type="email"
                   name="email"
-                  className="border rounded-md p-2 w-15rem m-2"
+                  className="w-[18rem] bg-gray-200 text-black border border-purple-600 hover:border-purple-800 rounded py-2 px-4 mb-2 dark:bg-zinc-600 dark:text-slate-200"
                 />
               </div>
 
@@ -119,10 +119,10 @@ const CheckoutForm = () => {
             </div>
             <button
               type="submit"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+              className=" m-2 w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded "
               disabled={isSubmitting}
             >
-              Submit
+              Verify
             </button>
             <div className="m-10">
 
@@ -130,7 +130,7 @@ const CheckoutForm = () => {
                 <button
                   id="BotonLogin"
                   disabled={loginEnabled}
-                  className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+                  className={`m-2  w-[5rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 rounded ${
                     loginEnabled ? "" : "opacity-50 cursor-not-allowed"
                   }`}
                 >
@@ -143,22 +143,26 @@ const CheckoutForm = () => {
 
 
                     
-            <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5 ${
+            <button id="BotonMercado" disabled={console.log(mercadoPagoEnabled)} onClick={()=>redirectionRute()} className={` m-2 w-[8rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded ${
     mercadoPagoEnabled ? "" : "opacity-50 cursor-not-allowed"
-  }`}>mercado Pago</button>
+  }`}>Mercado Pago</button>
             
 
 
               <Link to="/shoppingBag">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">
+
+                <button className=" m-2 w-[10rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded">
+
                   Shopping Bag
                 </button>
               </Link>
 
                 
               <Link to="/createProductOrder">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 m-5">
-                  Create
+
+                <button className="m-2 w-[10rem] transition font-roboto font-normal normal-case text-lg bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded  rounded">
+                Check Payment
+
                 </button>
               </Link>
 

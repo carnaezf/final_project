@@ -286,7 +286,7 @@ export default function Details( props ) {
 
             <div className=" font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300 mt-6">
               <h3>Size:</h3>
-              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-purple-800" value={selectedSize} onChange={handleSizeClick}>
+              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-slate-700" value={selectedSize} onChange={handleSizeClick}>
                       <option selected className="darl:text-slate200">Size</option>
                       <option value="S">S</option>
                       <option value="M">M</option>

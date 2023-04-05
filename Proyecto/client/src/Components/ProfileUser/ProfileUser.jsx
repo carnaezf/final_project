@@ -230,8 +230,11 @@ function Profile() {
           </label>
         </button>
       </div>
+        <br />
+        <br />
       <div className="flex mx-auto">
         {userId && (
+
 
           <div className="flex flex-col">
             <div className="mx-auto">
@@ -380,10 +383,12 @@ function Profile() {
         )}
       </div>
       <Space>
+
         <div>
           <Footer />
         </div>
       </Space>
+
     </div>
   );
 }
