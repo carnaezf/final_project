@@ -85,7 +85,11 @@ const Login = () => {
     <div className="flex w-full h-screen">
       <div className="w-full flex items-center justify-center lg:w-1/2 bg-slate-50">
         <div className="bg-white px-10 py-20 rounded-3xl border-2 border-gray-100">
-          <h1 className="text-2xl text-purple-500 font-roboto text-lg font-black">Welcome back to Haal</h1>
+          <div class="text-3xl font-extrabold ...">
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">
+              Welcome back to Haal
+            </span>
+          </div>
           <Formik
             initialValues={{
               email: "",
@@ -130,7 +134,7 @@ const Login = () => {
               
                 <div className="mb-4">
                   {/* {handlerAlert(userlogin)} */}
-                  <label htmlFor="name" className="text-lg font-medium">Email</label>
+                  <label htmlFor="name" className="text-lg text-current">Email</label>
                   <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                     type="text"
                     id="email"
@@ -144,7 +148,7 @@ const Login = () => {
                 </div>
 
                 <div className="mb-4">
-                  <label htmlFor="name" className="text-lg font-medium">Password</label>
+                  <label htmlFor="name" className="text-lg text-current">Password</label>
                   <input className="w-full border-2 border-gray-100 rounded-xl p-3 mt-1 bg-transparent"
                     type="text"
                     id="password"

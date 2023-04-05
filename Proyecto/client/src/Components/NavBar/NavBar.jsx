@@ -52,30 +52,26 @@ export default function NavBar(props) {
           <div className="flex mt-4 content-center ">
             <ul className="content-center mb-2">
               <Link to={"/accessories"}>
-                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
+                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400  hover:animate-pulse">
                   Acessories
                 </li>
               </Link>
               <Link to={"/shoes"}>
-                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
+                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400  hover:animate-pulse">
                   Shoes
                 </li>
               </Link>
               <Link to={"/clothing"}>
-                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
+                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400  hover:animate-pulse">
                   Clothing
                 </li>
               </Link>
               <Link to="/allproducts">
-                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
+                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400 hover:animate-pulse">
                   All Products
                 </li>
               </Link>
-              <Link to="/testing">
-                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400">
-                  Testing
-                </li>
-              </Link>
+              
             </ul>
           </div>
         </div>

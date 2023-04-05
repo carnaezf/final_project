@@ -101,7 +101,7 @@ const CardProduct = ( props ) => {
 						<div className="inline-block card-actions justify-end  px-3 py-1">
 							<h4 className="badge font-light text-[8pt]">{category}</h4>
 						</div>
-						<div className="absolute bottom-[2rem] left-[11rem]">
+						{/* <div className="absolute bottom-[2rem] left-[11rem]">
 							<h4 className="ml-4 badge p-0 font-light text-[8pt] mt-[px]  text-white bg-slate-600">
 								{quantityPerItem === 0 ? (
 									<button
@@ -130,7 +130,7 @@ const CardProduct = ( props ) => {
 									</button>
 								)}
 							</h4>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</div>
