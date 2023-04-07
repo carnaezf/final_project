@@ -30,8 +30,7 @@ export default function Details( props ) {
   const [selectedSize, setSelectedSize] = useContext(SelectedSizeContext);
 
 
-  console.log('Estado shoppingBag desde Details', shoppingBag);
-  console.log('Estado selectedSize desde Details', selectedSize);
+
 
 
 
@@ -80,9 +79,9 @@ export default function Details( props ) {
 
   /**********Metodos ShoppingBags */
   const addToCart = () => {
-    setShoppingBag((currItems) => {
+    setShoppingBag(( currItems) => {
       const isItemsFound = currItems.find((item) => item.id === id);
-      if (isItemsFound) {
+      if (isItemsFound ) {
         return currItems.map((item) => {
           if (item.id === id) {
             return { ...item, quantity: item.quantity + 1 };
@@ -131,12 +130,10 @@ export default function Details( props ) {
   };
 
   const quantityPerItem = getQuantityById(id);
-
   const handleSizeClick = (e) => {
     setSelectedSize(e.target.value);
   };
-
-  /**********Metodos ShoppingBag */
+  /****************************Metodos ShoppingBag */
 
   return (
     <div className="bg-slate-200 dark:bg-zinc-800">
@@ -169,8 +166,8 @@ export default function Details( props ) {
       <br />
       <div className="flex flex-col mx-8 ">
         <h1 className="font-roboto text-3xl font-light mt-[1rem] mb-6 dark:text-slate-300">
-          20% discount on purchases of $100 or more | 25% discount on purchases
-          of $150 or more
+          20% discount on purchases of $1000 or more | 25% discount on purchases
+          of $2500 or more
         </h1>
         {/* <a className="text-xs mb-6 underline font-bold cursor-pointer">REGISTRATE AQUI</a> */}
       </div>
@@ -178,9 +175,9 @@ export default function Details( props ) {
         <div className=" w-2/3">
           {myProduct && myProduct.images && myProduct.images.length > 0 ? (
             <div className="flex w-auto space-x-4">
-              <div className="w-2/3 ">
+              <div className="w-2/3 shadow-md">
               <img
-                className="mb-[1rem]"
+                className="mb-[1rem] "
                 src={myProduct.images[0]}
                 alt="Imagen no disponible"
                 onError={(e) => {
@@ -198,7 +195,7 @@ export default function Details( props ) {
                 }}
               />
             </div>
-              <div className="w-2/3">
+              <div className="w-2/3 shadow-md">
               <img
                 className="mb-[1rem]"
                 src={myProduct.images[2]}
@@ -289,7 +286,7 @@ export default function Details( props ) {
 
             <div className=" font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300 mt-6">
               <h3>Size:</h3>
-              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-purple-800" value={selectedSize} onChange={handleSizeClick}>
+              <select className="text-xl text-slate-200 select rounded select-sm w-[5rem] max-w-xs bg-slate-700" value={selectedSize} onChange={handleSizeClick}>
                       <option selected className="darl:text-slate200">Size</option>
                       <option value="S">S</option>
                       <option value="M">M</option>
@@ -339,11 +336,13 @@ export default function Details( props ) {
           </div>
   )}
           {/* <button onClick={handleGoBack}>Volver</button> */}
-      <div className="flex flex-row w-full">
-        <label className="ml-[2rem]  font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300">
+      <div className="flex flex-col w-full">
+        {/* <label className="mr-auto  font-roboto text-3xl font-normal flex flex-col items-center dark:text-slate-300">
           Comments
-        </label>
+        </label> */}
+        
         <Comments product={myProduct} setRender={setRender} render={render} />
+        
       </div>
         </div>
       </div>
@@ -362,4 +361,3 @@ export default function Details( props ) {
                     >
                 AÑADIR AL CARRITO
                 </button> */
-

@@ -48,7 +48,7 @@ const ProductAdmin = () => {
       dataIndex: "availability",
       key: "availability",
       render: (availability) =>
-        availability.map((item, index) =>
+        availability?.map((item, index) =>
           Object.entries(item).map(([size, quantity]) => (
             <div key={index}>
               <p>
@@ -95,8 +95,8 @@ const ProductAdmin = () => {
     },
   ];
   return (
-    <Space direction="vertical" className="w-full">
-      <Typography.Title level={5}>Users</Typography.Title>
+    <Space direction="vertical" className="w-full mx-4">
+      <Typography.Title className="dark:text-slate-300" level={5}>Users</Typography.Title>
       <Table columns={columns} dataSource={productsAll} />
     </Space>
   );

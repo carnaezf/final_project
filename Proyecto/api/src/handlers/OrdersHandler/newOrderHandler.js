@@ -5,7 +5,7 @@ const newOrderHandler=async(req,res)=>{
     try {
         const newOrder = ([] = req.body);
        const newOrdercreated= await validateOrder(newOrder)
-       await mailOrder(newOrdercreated)
+     
 
        res.status(200).json(newOrdercreated);
     } catch (error) {

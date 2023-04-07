@@ -6,27 +6,29 @@ import {
 import { Card, Space, Statistic, Typography } from "antd";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductsAdmin, getUsers } from "../../../Redux/actions";
+import { getOrders, getProductsAdmin, getUsers } from "../../../Redux/actions";
 import LineChart from "./Charts/Chart";
 const Dashboard = () => {
   const products = useSelector((state) => state.productsAdmin);
   const users = useSelector((state) => state.users);
+  const orders = useSelector((state) => state.orders);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getProductsAdmin());
     dispatch(getUsers());
+    dispatch(getOrders());
   }, [dispatch]);
   return (
-    <div className="w-full">
-      <Typography.Title level={5}>Dashbaord</Typography.Title>
+    <div className="w-full flex flex-col bg-slate-200 dark:bg-zinc-800" >
+      <Typography.Title className="dark:text-slate-300" level={5}>Dashbaord</Typography.Title>
       <div className="flex w-full justify-center">
-        <Space direction="horizontal">
-          <DashboardCard
+        <Space direction="horizontal" className="bg-slate-200 dark:bg-zinc-800">
+          <DashboardCard class="bg-black"
             icon={
-              <ShoppingCartOutlined
+              <ShoppingCartOutlined className="dark:fill-white"
                 style={{
-                  color: "green",
-                  backgroundColor: "rgba(0,255,0,0.25)",
+                  color: "white",
+                  backgroundColor: "#5b21b6",
                   borderRadius: 20,
                   fontSize: 24,
                   padding: 8,
@@ -34,29 +36,31 @@ const Dashboard = () => {
               />
             }
             title="Orders"
-            value={1234}
+            value={orders.length}
           />
-          <DashboardCard
+          <DashboardCard 
             icon={
               <UserOutlined
                 style={{
-                  color: "purple",
-                  backgroundColor: "rgba(0,255,255,0.25)",
+                  color: "white",
+                  backgroundColor: "#5b21b6",
                   borderRadius: 20,
                   fontSize: 24,
                   padding: 8,
+                  
                 }}
               />
             }
             title="Users"
             value={users.length}
+            
           />
           <DashboardCard
             icon={
               <ShopOutlined
                 style={{
-                  color: "blue",
-                  backgroundColor: "rgba(0,0,255,0.25)",
+                  color: "white",
+                  backgroundColor: "#5b21b6",
                   borderRadius: 20,
                   fontSize: 24,
                   padding: 8,
@@ -80,10 +84,10 @@ const Dashboard = () => {
 const DashboardCard = ({ title, value, icon }) => {
   return (
     <div>
-      <Card style={{ marginLeft: "20px" }}>
+      <Card className="dark:bg-zinc-700 border-transparent" style={{ marginLeft: "20px"}}>
         {icon}
-        <Space direction="horizontal">
-          <Statistic title={title} value={value} />
+        <Space direction="horizontal" >
+          <Statistic className=" fill-red-700 dark:fill-slate-200"  title={title} value={value} />
         </Space>
       </Card>
     </div>

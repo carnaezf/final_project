@@ -6,7 +6,7 @@ import { getOrders } from "../../../Redux/actions";
 const Orders = () => {
   const dispatch = useDispatch();
   const ordersAll = useSelector((state) => state.orders);
-  console.log(ordersAll);
+ 
 
   useEffect(() => {
     dispatch(getOrders());
@@ -105,7 +105,7 @@ const Orders = () => {
   ];
 
   return (
-    <Space direction="vertical" className="w-full">
+    <Space direction="vertical" className="w-full mx-4">
       <Typography.Title level={5}>Orders</Typography.Title>
       <Table columns={columns} dataSource={ordersAll} />
     </Space>

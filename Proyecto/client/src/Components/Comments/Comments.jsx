@@ -65,30 +65,34 @@ const Comments = ({ product, setRender, render }) => {
   }, [product]);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <Button type="submit">Send</Button>
-        <Input
-          placeholder="Leave your comment"
-          type="text"
-          value={comment}
-          onChange={handleInputChange}
-        />
-      </form>
-      <div>
-        {product
-          ? product.Comments
-            ? product.Comments.map((comment, index) => (
-                <div key={index}>
-                  <span>{comment.user}:</span>
-                  <p>{comment.comments.length ? comment.comments : null}</p>
-                </div>
-              )).reverse()
-            : null
-          : null}
+    <div className=" mt-4 ">
+      <div className="flex flex-col ">
+        <form  onSubmit={handleSubmit}>
+          <textarea className=" border border-slate-600 rounded hover:border-purple-400 focus:border-purple-500 py-2 mr-[-1rem] w-[25rem] textarea textarea-sm w-full max-w-xs text-slate-800 dark-slate-200"
+            placeholder="Leave your comment"
+            type="text-area"
+            value={comment}
+            onChange={handleInputChange}
+          />
+          <button className=" flex bg-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 ml-[23rem] " type="submit">Send</button>
+        </form>
+        <h1 className="flex mt-[5rem] ml-[2rem] text-2xl font-roboto dark:text-slate-300">Reviews</h1>
+        <div  className="mt-[1rem] font-roboto dark:text-slate-300">
+          {product
+            ? product.Comments
+              ? product.Comments.map((comment, index) => (
+                  <div className="ml-6 chat chat-start" key={index}>
+                    <span className="chat-header font-bold">{comment.user}:</span>
+                    <p className="chat-bubble bg-slate-300 dark:bg-slate-700">{comment.comments.length ? comment.comments : null}</p>
+                  </div>
+                )).reverse()
+              : null
+            : null}
+        </div>
       </div>
     </div>
   );
 };
+
 
 export default Comments;

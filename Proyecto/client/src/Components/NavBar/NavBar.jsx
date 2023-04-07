@@ -52,7 +52,7 @@ export default function NavBar(props) {
           <div className="flex mt-4 content-center ">
             <ul className="content-center mb-2">
               <Link to={"/accessories"}>
-                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400  hover:animate-pulse">
+                <li className="btn font-roboto font-normal normal-case text-xl border-transparent hover:border-transparent text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-400  hover:animate-pulse drop-shadow-md">
                   Acessories
                 </li>
               </Link>
