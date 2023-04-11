@@ -1,0 +1,3 @@
+# Hola a todos!
+
+Les presentamos **Haal**, un proyecto de e-commerce con tecnologías como Sequelize, PostgreSQL, React y Node.js. Con autenticación, autenticación de terceros, carrito de compras y panel de administrador, Haal ofrece una experiencia de compra en línea excepcional. Los usuarios pueden disfrutar de una amplia gama de productos, realizar pagos seguros y gestionar pedidos en su cuenta personal. El panel de administrador permite a los dueños de tiendas gestionar su negocio de manera eficiente. ¡Estamos muy emocionados de compartir Haal con ustedes! ¡Vamos a Haalizar las compras en línea juntos!
