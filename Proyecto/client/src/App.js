@@ -30,6 +30,7 @@ import ErrorCreateProductOrder from "../src/Components/ShoppingBag/Error"
 
 // // Deploy
 import axios from "axios";
+import { ThemeContext } from "./Contexts/themeContext";
 axios.defaults.baseURL = 'http://localhost:3001'
 // axios.defaults.baseURL='https://finalproject-production-58fc.up.railway.app'
 
@@ -37,6 +38,7 @@ function App() {
   //const location =useLocation();
   const userlogin = useSelector((state) => state.user);
   return (
+    <ThemeContext>
     <AuthProvider>
       <SelectedSizeSizeProvider>
         <ShoppingBagProvider>
@@ -87,6 +89,7 @@ function App() {
         </ShoppingBagProvider>
       </SelectedSizeSizeProvider>
     </AuthProvider>
+    </ThemeContext>
   );
 }
 

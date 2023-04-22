@@ -62,7 +62,7 @@ import Imagen from "./banner-horzontal-bk-adidas.jpg"
 const Jumbutrom= ()=>{
     return (
 
-        <div className="flex justify-center">
+        <div className="hidden xl:flex justify-center">
             <div >
                 <ReactPlayer className="w-screen" url= {Video3} playing loop />
 
