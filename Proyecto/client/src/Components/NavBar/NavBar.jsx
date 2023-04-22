@@ -46,12 +46,12 @@ export default function NavBar(props) {
       <div className="flex-1 ">
         {/* *************************LOGO*********************** */}
         <Link to={"/home"}> 
-          <img
-            className="ml-[px] w-[11rem] text-white "
-            src={logo}
-            alt="Haal"
-          ></img>
-        </Link>
+            <img
+              className="w-[5rem] md:w-[11rem] text-white "
+              src={logo}
+              alt="Haal"
+            ></img>
+          </Link>
                 {/* *************************Categorias*********************** */}
         <div className="hidden md:dropdown mx-auto">
           <nav className="flex mt-4 content-center ">
@@ -81,7 +81,7 @@ export default function NavBar(props) {
           </nav>
         </div>
                 {/* *************************Mobil Categorias*********************** */}
-        <div className="dropdown   md:hidden ">
+        <div className="dropdown ml-2  md:hidden ">
           <AiOutlineMenu tabIndex={0}  className="transition text-current hover:text-purple-700 dark:text-slate-100 dark:hover:text-purple-600 justify-center w-full mt-[2px] text-xl" />
           <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52  normal-case md:hidden text-left	">
           <Link to={"/accessories"}>
@@ -109,10 +109,6 @@ export default function NavBar(props) {
       </div>
         {/* *************************Dropdown*********************** */}
       <div className="flex-none gap-2">
-        {/* <div className="form-control">
-          <SearchBar className='flex justify-end' pagin={props.pagin}/>
-        </div> */}
-
         <div className="flex-none">
           <div className="dropdown dropdown-end">
             <nav>
@@ -152,7 +148,7 @@ export default function NavBar(props) {
           </div>
         </div>
 
-        <div className="flex flex-column dropdown dropdown-end ">
+        <div className="mr-[-2.4rem] md:flex flex-column dropdown dropdown-end ">
           {user ? (
             <h1 className="hidden md:text-lg font-roboto font-bold mt-4 mx-2 text-current dark:text-slate-100">
               Hi {user.displayName ? user.displayName : user.email}!
@@ -208,9 +204,9 @@ export default function NavBar(props) {
           </label>
         </div>
       </div>
-      {/* /****************************************** */}
-      <div>
-      <button className=" md:absolute bottom-[1.8rem] left-[8rem] w-36 ml-4 mb-2">
+      {/* /********************TEMA CLARO Y OSCURO (BOTON)********************** */}
+      <div className="">
+      <button className=" hidden md:block md:absolute bottom-[1.8rem] left-[8rem] w-36 ml-4 mb-2">
           <label className="swap swap-rotate">
             <input type="checkbox" onClick={() => t()} />
             <svg

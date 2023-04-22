@@ -68,13 +68,14 @@ const Comments = ({ product, setRender, render }) => {
     <div className=" mt-4 ">
       <div className="flex flex-col ">
         <form  onSubmit={handleSubmit}>
-          <textarea className=" border border-slate-600 rounded hover:border-purple-400 focus:border-purple-500 py-2 mr-[-1rem] w-[25rem] textarea textarea-sm w-full max-w-xs text-slate-800 dark-slate-200"
+          <textarea className=" border border-slate-600 rounded hover:border-purple-400 focus:border-purple-500 py-2 mx-auto md:mr-[-1rem] w-[25rem] textarea textarea-sm w-full max-w-xs text-slate-800 dark-slate-200"
             placeholder="Leave your comment"
             type="text-area"
             value={comment}
             onChange={handleInputChange}
           />
-          <button className=" flex bg-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 ml-[23rem] " type="submit">Send</button>
+          <button className=" hidden flex bg-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 md:block md:ml-[23rem] " type="submit">Send</button>
+          <button className=" flex bg-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded mt-4 mx-auto md:hidden " type="submit">Send</button>
         </form>
         <h1 className="flex mt-[5rem] ml-[2rem] text-2xl font-roboto dark:text-slate-300">Reviews</h1>
         <div  className="mt-[1rem] font-roboto dark:text-slate-300">

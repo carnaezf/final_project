@@ -7,12 +7,15 @@ import { Link } from 'react-router-dom';
 import Accessories from "./accesories.jpg";
 import Clothing from "./clothing.jpg";
 import Shoes from "./shoes.jpg";
+import Accessories2 from "./accesories 2.jpg";
+import Clothing2 from "./clothing 2.jpg";
+import Shoes2 from "./shoes 2.jpg";
 
 const Category=()=>{
     return(
-        <div className="bg-slate-500  justify-start">
-            
-            <Carousel autoplay className=" flex space-x-4">
+        <div className=" justify-start">
+            <div className='hidden md:block md:p-0'>
+            <Carousel autoplay className="  hidden md:mt-[rem] md:block md:flex space-x-4">
                 <div className='relative'>
                     
                             <img className="w-[full]" src={Accessories} alt="Imagen no disponible"/>
@@ -47,8 +50,40 @@ const Category=()=>{
                                 </Link>
                             </div>
                 </div>
-                
             </Carousel>
+            </div>
+            {/* Carrusel mobile */}
+            <div className='md:hidden '>
+            <Carousel autoplay className="  flex space-x-4">
+                <div className='relative'> 
+                <Link  to ={"/accessories"}>
+                            <img className="bg-contain" src={Accessories2} alt="Imagen no disponible"/>
+                            <div className="absolute bottom-[15rem] left-4 h-[18rem] w-[22.4rem] bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 ">
+                                <h1 className='w-[21rem] text-left absolute font-bold font-roboto text-white text-2xl bottom-[12rem] left-4'>Elevate Your Style with Adidas Accessories</h1>
+                                <p className='w-[20rem] text-left absolute font-roboto text-white text-xl bottom-[1rem] left-4'>Shop our collection of Adidas accessories and take your style to the next level. From backpacks to hats, and everything, we have the perfect accessory to complete your look.</p>
+                            </div>
+                </Link>
+                </div>
+                <div className='relative'> 
+                <Link  to ={"/clothing"}>
+                            <img className="bg-contain" src={Clothing2} alt="Imagen no disponible"/>
+                            <div className="absolute bottom-[15rem] left-4 h-[18rem] w-[22.4rem] bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 ">
+                                <h1 className='w-[21rem] text-left absolute font-bold font-roboto text-white text-2xl bottom-[12rem] left-4'>Upgrade Your Wardrobe with Adidas Clothing</h1>
+                                <p className='w-[20rem] text-left absolute font-roboto text-white text-xl bottom-[1rem] left-4'>Discover the latest Adidas clothing collection and elevate your wardrobe. From comfortable activewear to stylish streetwear, we have everything you need to take your style to the next level.</p>
+                            </div>
+                </Link>
+                </div>
+                <div className='relative'> 
+                <Link  to ={"/shoes"}>
+                            <img className="bg-contain" src={Shoes2} alt="Imagen no disponible"/>
+                            <div className="absolute bottom-[15rem] left-4 h-[18rem] w-[22.4rem] bg-black rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 ">
+                                <h1 className='w-[21rem] text-left absolute font-bold font-roboto text-white text-2xl bottom-[12rem] left-4'>Step Up Your Best Game with Adidas Shoes</h1>
+                                <p className='w-[20rem] text-left absolute font-roboto text-white text-xl bottom-[1rem] left-4'>Shop our latest Adidas shoe collection and take your style to the next level. From high-performance athletic shoes to stylish everyday sneakers, we have the perfect pair for any occasion.</p>
+                            </div>
+                </Link>
+                </div>
+            </Carousel>
+            </div>
         </div>
     )
 }
